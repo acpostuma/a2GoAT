@@ -161,6 +161,48 @@ add_executable(TaggEff
    )
 target_link_libraries(TaggEff goatbase ghist ${LIBS} ${ROOT_LIBRARIES})
 
+add_executable(pi0
+   inc/GTree.h
+   inc/GTreeRawEvent.h
+   inc/GTreeDetectorHits.h
+   inc/GTreeTagger.h
+   inc/GTreeLinPol.h
+   inc/GTreeScaler.h
+   inc/GTreeParticle.h
+   inc/GTreeMeson.h
+   inc/GTreeTrigger.h
+   inc/GTreeEventParameters.h
+   inc/GHistManager.h
+   inc/GTreeManager.h
+   inc/GConfigFile.h
+   inc/GHistTaggerBinning.h
+   inc/GHistBGSub.h
+   inc/GHistScaCor.h
+   inc/GH1.h
+   inc/PPhysics.h
+   inc/PPi0.h
+   src/GTree.cc
+   src/GTreeRawEvent.cc
+   src/GTreeDetectorHits.cc
+   src/GTreeTagger.cc
+   src/GTreeLinPol.cc
+   src/GTreeScaler.cc
+   src/GTreeParticle.cc
+   src/GTreeMeson.cc
+   src/GTreeTrigger.cc
+   src/GTreeEventParameters.cc
+   src/GHistManager.cc
+   src/GTreeManager.cc
+   src/GConfigFile.cc
+   src/GHistTaggerBinning.cc
+   src/GHistBGSub.cc
+   src/GHistScaCor.cc
+   src/PPhysics.cc
+   src/PPi0.cc
+   src/pi0_main.cc
+   )
+target_link_libraries(pi0 ${ROOT_LIBRARIES})
+
 # install some scripts to the bin directory
 # by creating symlinks
 file(GLOB CORE_EXTRA_SCRIPTS "scripts/*")
