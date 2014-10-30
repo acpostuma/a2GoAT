@@ -2,20 +2,20 @@
 
 PPi0::PPi0()
 { 
-  time 	        = new TH1D("time",      "time",     1400, -700, 700);
-  time_cut 	= new TH1D("time_cut",  "time_cut", 1400, -700, 700);
+  time 	        = new GH1("time",      "time",     1400, -700, 700);
+  time_cut 	= new GH1("time_cut",  "time_cut", 1400, -700, 700);
 
-  IM 		= new TH1D("IM", 	"GoAT - #pi^{0}#rightarrowX;m_{#pi^{0}} (MeV)",                    100, 110, 160);
+  IM 		= new GH1("IM", 	"GoAT - #pi^{0}#rightarrowX;m_{#pi^{0}} (MeV)",                    100, 110, 160);
 
-  IM_gg 	= new TH1D("IM_gg", 	"GoAT - #pi^{0}#rightarrow#gamma+#gamma;m_{#pi^{0}} (MeV)",        100, 110, 160);
-  IM_ggg 	= new TH1D("IM_ggg", 	"GoAT - #pi^{0}#rightarrow#gamma+#gamma+#gamma;m_{#pi^{0}} (MeV)", 100, 110, 160);
+  IM_gg 	= new GH1("IM_gg", 	"GoAT - #pi^{0}#rightarrow#gamma+#gamma;m_{#pi^{0}} (MeV)",        100, 110, 160);
+  IM_ggg 	= new GH1("IM_ggg", 	"GoAT - #pi^{0}#rightarrow#gamma+#gamma+#gamma;m_{#pi^{0}} (MeV)", 100, 110, 160);
 
-  IM_rr 	= new TH1D("IM_rr", 	"GoAT - #pi^{0}#rightarrowr+r;m_{#pi^{0}} (MeV)",                  100, 110, 160);
-  IM_rrr 	= new TH1D("IM_rrr", 	"GoAT - #pi^{0}#rightarrowr+r+r;m_{#pi^{0}} (MeV)",                100, 110, 160);
+  IM_rr 	= new GH1("IM_rr", 	"GoAT - #pi^{0}#rightarrowr+r;m_{#pi^{0}} (MeV)",                  100, 110, 160);
+  IM_rrr 	= new GH1("IM_rrr", 	"GoAT - #pi^{0}#rightarrowr+r+r;m_{#pi^{0}} (MeV)",                100, 110, 160);
 
-  IM_gr 	= new TH1D("IM_gr", 	"GoAT - #pi^{0}#rightarrow#gamma+r;m_{#pi^{0}} (MeV)",             100, 110, 160);
-  IM_ggr 	= new TH1D("IM_ggr", 	"GoAT - #pi^{0}#rightarrow#gamma+#gamma+r;m_{#pi^{0}} (MeV)",      100, 110, 160);
-  IM_grr 	= new TH1D("IM_grr", 	"GoAT - #pi^{0}#rightarrow#gamma+r+r;m_{#pi^{0}} (MeV)",           100, 110, 160);
+  IM_gr 	= new GH1("IM_gr", 	"GoAT - #pi^{0}#rightarrow#gamma+r;m_{#pi^{0}} (MeV)",             100, 110, 160);
+  IM_ggr 	= new GH1("IM_ggr", 	"GoAT - #pi^{0}#rightarrow#gamma+#gamma+r;m_{#pi^{0}} (MeV)",      100, 110, 160);
+  IM_grr 	= new GH1("IM_grr", 	"GoAT - #pi^{0}#rightarrow#gamma+r+r;m_{#pi^{0}} (MeV)",           100, 110, 160);
 
   IM_all 	= new TH3D("IM_all", 	"GoAT - #pi^{0}#rightarrowX;N_{#gamma};N_{r};m_{#pi^{0}} (MeV)",   10, 0, 10, 10, 0, 10, 100, 110, 160);
 
@@ -132,20 +132,8 @@ void	PPi0::ProcessScalerRead()
 Bool_t	PPi0::Write()
 {
   // Write some TH1s
-  GTreeManager::Write(time);
-  GTreeManager::Write(time_cut);
-
-  GTreeManager::Write(IM);
-  GTreeManager::Write(IM_gg);
-  GTreeManager::Write(IM_ggg);
-  GTreeManager::Write(IM_rr);
-  GTreeManager::Write(IM_rrr);
-  GTreeManager::Write(IM_gr);
-  GTreeManager::Write(IM_ggr);
-  GTreeManager::Write(IM_grr);
-  GTreeManager::Write(IM_all);
-
   GTreeManager::Write(TaggerAccScal);
+  GTreeManager::Write(IM_all);
 
   // Write all GH1's easily
   GTreeManager::Write();

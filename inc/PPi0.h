@@ -14,20 +14,20 @@
 class	PPi0  : public PPhysics
 {
 private:
-    TH1*	time;
-    TH1*	time_cut;
+    GH1*	time;
+    GH1*	time_cut;
      
-    TH1*	IM;
+    GH1*	IM;
 
-    TH1*	IM_gg;
-    TH1*	IM_ggg;
+    GH1*	IM_gg;
+    GH1*	IM_ggg;
 
-    TH1*	IM_rr;
-    TH1*	IM_rrr;
+    GH1*	IM_rr;
+    GH1*	IM_rrr;
 
-    TH1*	IM_gr;
-    TH1*	IM_ggr;
-    TH1*	IM_grr;
+    GH1*	IM_gr;
+    GH1*	IM_ggr;
+    GH1*	IM_grr;
 
     TH3*	IM_all;
 
