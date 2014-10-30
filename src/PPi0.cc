@@ -67,7 +67,6 @@ Bool_t	PPi0::Start()
 
 void	PPi0::ProcessEvent()
 {
-  if(pi0->GetNParticles() != 1) continue;
 
   // Time diff (tagger - pi0)
   FillTime(*pi0,0,time);
