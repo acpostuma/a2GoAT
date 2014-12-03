@@ -162,52 +162,11 @@ add_executable(TaggEff
 target_link_libraries(TaggEff goatbase ghist ${LIBS} ${ROOT_LIBRARIES})
 
 add_executable(pi0
-   inc/GTree.h
-   inc/GTreeRawEvent.h
-   inc/GTreeDetectorHits.h
-   inc/GTreeTagger.h
-   inc/GTreeLinPol.h
-   inc/GTreeScaler.h
-   inc/GTreeParticle.h
-   inc/GTreeMeson.h
-   inc/GTreeTrigger.h
-   inc/GTreeEventParameters.h
-   inc/GHistManager.h
-   inc/GTreeManager.h
-   inc/GConfigFile.h
-   inc/GHistScaCor.h
-   inc/GHistScaCor2.h
-   inc/GHistScaCor3.h
-   inc/GHistBGSub.h
-   inc/GHistBGSub2.h
-   inc/GHistBGSub3.h
-   inc/GHistTaggerBinning.h
-   inc/GHistTaggerBinning2.h
-   inc/GH1.h
+   ${GOAT_BASE}
+   ${GOAT_GHIST}
    inc/PPhysics.h
-   inc/PPi0.h
-   src/GTree.cc
-   src/GTreeRawEvent.cc
-   src/GTreeDetectorHits.cc
-   src/GTreeTagger.cc
-   src/GTreeLinPol.cc
-   src/GTreeScaler.cc
-   src/GTreeParticle.cc
-   src/GTreeMeson.cc
-   src/GTreeTrigger.cc
-   src/GTreeEventParameters.cc
-   src/GHistManager.cc
-   src/GTreeManager.cc
-   src/GConfigFile.cc
-   src/GHistScaCor.cc
-   src/GHistScaCor2.cc
-   src/GHistScaCor3.cc
-   src/GHistBGSub.cc
-   src/GHistBGSub2.cc
-   src/GHistBGSub3.cc
-   src/GHistTaggerBinning.cc
-   src/GHistTaggerBinning2.cc
    src/PPhysics.cc
+   inc/PPi0.h
    src/PPi0.cc
    src/pi0_main.cc
    )
