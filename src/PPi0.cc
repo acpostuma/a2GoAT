@@ -69,57 +69,57 @@ void	PPi0::ProcessEvent()
 {
 
   // Time diff (tagger - pi0)
-  FillTime(*pi0,0,time);
-  FillTimeCut(*pi0,0,time_cut);
+  FillTime(*neutralPions,0,time);
+  FillTimeCut(*neutralPions,0,time_cut);
   
   // Any decays
-  FillMass(*pi0,0,IM);
-  FillMissingMass(*pi0,0,MM);  
+  FillMass(*neutralPions,0,IM);
+  FillMissingMass(*neutralPions,0,MM);
     
   // 2 photon decay
-  if      ((pi0->GetNSubPhotons(0) == 2) && (pi0->GetNSubRootinos(0) == 0)){
-    FillMass(*pi0,0,IM_gg);
-    FillMissingMass(*pi0,0,MM_gg);
+  if      ((neutralPions->GetNSubPhotons(0) == 2) && (neutralPions->GetNSubRootinos(0) == 0)){
+    FillMass(*neutralPions,0,IM_gg);
+    FillMissingMass(*neutralPions,0,MM_gg);
   }
 
   // 3 photon decay
-  else if ((pi0->GetNSubPhotons(0) == 3) && (pi0->GetNSubRootinos(0) == 0)){
-    FillMass(*pi0,0,IM_ggg);
-    FillMissingMass(*pi0,0,MM_ggg);
+  else if ((neutralPions->GetNSubPhotons(0) == 3) && (neutralPions->GetNSubRootinos(0) == 0)){
+    FillMass(*neutralPions,0,IM_ggg);
+    FillMissingMass(*neutralPions,0,MM_ggg);
   }
 
   // 2 rootino decay
-  else if ((pi0->GetNSubPhotons(0) == 0) && (pi0->GetNSubRootinos(0) == 2)){
-    FillMass(*pi0,0,IM_rr);
-    FillMissingMass(*pi0,0,MM_rr);
+  else if ((neutralPions->GetNSubPhotons(0) == 0) && (neutralPions->GetNSubRootinos(0) == 2)){
+    FillMass(*neutralPions,0,IM_rr);
+    FillMissingMass(*neutralPions,0,MM_rr);
   }
 
   // 3 rootino decay
-  else if ((pi0->GetNSubPhotons(0) == 0) && (pi0->GetNSubRootinos(0) == 3)){
-    FillMass(*pi0,0,IM_rrr);
-    FillMissingMass(*pi0,0,MM_rrr);
+  else if ((neutralPions->GetNSubPhotons(0) == 0) && (neutralPions->GetNSubRootinos(0) == 3)){
+    FillMass(*neutralPions,0,IM_rrr);
+    FillMissingMass(*neutralPions,0,MM_rrr);
   }
 
   // 1 photon and 1 rootino decay
-  else if ((pi0->GetNSubPhotons(0) == 1) && (pi0->GetNSubRootinos(0) == 1)){
-    FillMass(*pi0,0,IM_gr);
-    FillMissingMass(*pi0,0,MM_gr);
+  else if ((neutralPions->GetNSubPhotons(0) == 1) && (neutralPions->GetNSubRootinos(0) == 1)){
+    FillMass(*neutralPions,0,IM_gr);
+    FillMissingMass(*neutralPions,0,MM_gr);
   }
 
   // 2 photon and 1 rootino decay
-  else if ((pi0->GetNSubPhotons(0) == 2) && (pi0->GetNSubRootinos(0) == 1)){
-    FillMass(*pi0,0,IM_ggr);
-    FillMissingMass(*pi0,0,MM_ggr);
+  else if ((neutralPions->GetNSubPhotons(0) == 2) && (neutralPions->GetNSubRootinos(0) == 1)){
+    FillMass(*neutralPions,0,IM_ggr);
+    FillMissingMass(*neutralPions,0,MM_ggr);
   }
 
   // 1 photon and 2 rootino decay
-  else if ((pi0->GetNSubPhotons(0) == 1) && (pi0->GetNSubRootinos(0) == 2)){
-    FillMass(*pi0,0,IM_grr);
-    FillMissingMass(*pi0,0,MM_grr);
+  else if ((neutralPions->GetNSubPhotons(0) == 1) && (neutralPions->GetNSubRootinos(0) == 2)){
+    FillMass(*neutralPions,0,IM_grr);
+    FillMissingMass(*neutralPions,0,MM_grr);
   }
 
   // 3D histogram showing invariant mass for different photon rootino decays
-  IM_all->Fill(pi0->GetNSubPhotons(0),pi0->GetNSubRootinos(0),pi0->Particle(0).M());
+  IM_all->Fill(neutralPions->GetNSubPhotons(0),neutralPions->GetNSubRootinos(0),neutralPions->Particle(0).M());
 
 }  
 
