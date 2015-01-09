@@ -42,6 +42,7 @@ set(GOAT_BASE
    inc/GTreeTrigger.h
    inc/GTreeEventParameters.h
    inc/GTreeA2Geant.h
+   inc/GTreeTrueObservables.h
    inc/GHistManager.h
    inc/GTreeManager.h
    inc/GConfigFile.h   
@@ -56,6 +57,7 @@ set(GOAT_BASE
    src/GTreeTrigger.cc
    src/GTreeEventParameters.cc
    src/GTreeA2Geant.cc
+   src/GTreeTrueObservables.cc	
    src/GHistManager.cc
    src/GTreeManager.cc
    src/GConfigFile.cc
@@ -142,8 +144,6 @@ add_executable(AdlarsonAnalysis
    src/PPi0Example.cc
    src/AdlarsonPhysics.cc
    src/AdlarsonPhysics_main.cc
-   inc/GTreeTrueObservables.h
-   src/GTreeTrueObservables.cc	
    )
 target_link_libraries(AdlarsonAnalysis ${LIBS} ${ROOT_LIBRARIES})
 

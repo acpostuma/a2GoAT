@@ -1,5 +1,5 @@
-#ifndef GTREETRUEOBSERVABLES_H
-#define GTREETRUEOBSERVABLES_H
+#ifndef __GTreeTrueObservables_h__
+#define __GTreeTrueObservables_h__
 
 #include "GTree.h"
 
@@ -37,7 +37,7 @@ public:
     GTreeTrueObservables(GTreeManager *Manager);
     virtual ~GTreeTrueObservables();
 
-//    virtual void            Clear();
+    virtual void            Clear() {nTrueParticles=0;}
 };
 
 
