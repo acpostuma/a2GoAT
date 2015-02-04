@@ -55,7 +55,7 @@ protected:
 public:
     PPi0();
     virtual ~PPi0();
-    virtual Bool_t  Init(const char* configfile);
+    virtual Bool_t  Init();
 
 };
 #endif
