@@ -16,7 +16,7 @@ class	PPi0  : public PPhysics
 private:
     GH1*	time;
     GH1*	time_cut;
-     
+
     GH1*	IM;
 
     GH1*	IM_gg;
@@ -43,6 +43,8 @@ private:
     GH1*	MM_ggr;
     GH1*	MM_grr;
 
+    GH2*    MM_IM;
+
     TH1*	TaggerAccScal;
 
     string  	config;
@@ -51,11 +53,15 @@ protected:
     virtual void    ProcessEvent();
     virtual void    ProcessScalerRead();
     virtual Bool_t  Write();
-			
+
 public:
     PPi0();
     virtual ~PPi0();
     virtual Bool_t  Init();
+
+    void	FillMassMissingMass(const GTreeParticle& tree, GH2* gHist, Bool_t TaggerBinning = kFALSE);
+    void	FillMassMissingMass(const GTreeParticle& tree, Int_t particle_index, GH2* gHist, Bool_t TaggerBinning = kFALSE);
+    void 	FillMassMissingMass(const GTreeParticle& tree, Int_t particle_index, Int_t tagger_index, GH2* gHist, Bool_t TaggerBinning = kFALSE);
 
 };
 #endif
