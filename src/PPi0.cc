@@ -134,7 +134,7 @@ void	PPi0::ProcessScalerRead()
 Bool_t	PPi0::Write()
 {
     // Write all GH1's and TObjects defined in this class
-    GTreeManager::Write();
+    return GTreeManager::Write();
 }
 
 void PPi0::FillMassMissingMass(const GTreeParticle& tree, GH2* gHist, Bool_t TaggerBinning)
