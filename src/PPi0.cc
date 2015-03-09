@@ -34,6 +34,18 @@ PPi0::PPi0()
     MM_IM 	= new GH2("MM_IM", 	"GoAT - #pi^{0}#rightarrow#gamma+r+r;m_{#pi^{0}} (MeV);m_{miss} (MeV)",          100, 110, 160, 400, 800, 1200);
 
     TaggerAccScal = new TH1D("TaggerAccScal","TaggerAccScal",352,0,352);
+
+    nTest = 0;
+    test = new TTree("test","test");
+    test->Branch("nTest",&nTest,"nTest/I");
+    test->Branch("test1",test1,"test1[nTest]/D");
+    test->Branch("test2",test2,"test2[nTest]/D");
+    for(Int_t i=0; i<10; i++)
+    {
+        test1[i] = 0;
+        test2[i] = 0;
+    }
+    gRandom->SetSeed(0);
 }
 
 PPi0::~PPi0()
@@ -123,6 +135,13 @@ void	PPi0::ProcessEvent()
     // 3D histogram showing invariant mass for different photon rootino decays
     IM_all->Fill(GetNeutralPions()->GetNSubPhotons(0),GetNeutralPions()->GetNSubRootinos(0),GetNeutralPions()->Particle(0).M());
 
+    nTest = 0;
+    for(nTest=0; nTest<(Int_t)(10*gRandom->Rndm()); nTest++)
+    {
+        test1[nTest] = gRandom->Rndm();
+        test2[nTest] = gRandom->Rndm();
+    }
+    test->Fill();
 }  
 
 void	PPi0::ProcessScalerRead()

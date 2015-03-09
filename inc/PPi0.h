@@ -10,6 +10,7 @@
 #include "PPhysics.h"
 #include "TH2.h"
 #include "TH3.h"
+#include "TRandom3.h"
 
 class	PPi0  : public PPhysics
 {
@@ -46,6 +47,11 @@ private:
     GH2*    MM_IM;
 
     TH1*	TaggerAccScal;
+
+    TTree *test;
+    Int_t nTest;
+    Double_t test1[10];
+    Double_t test2[10];
 
     string  	config;
 protected:
