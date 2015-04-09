@@ -81,6 +81,8 @@ Bool_t	PPi0::Start()
 void	PPi0::ProcessEvent()
 {
 
+    GetTagger()->DecodeDoubles();
+
     // Time diff (tagger - pi0)
     FillTime(*GetNeutralPions(),0,time);
     FillTimeCut(*GetNeutralPions(),0,time_cut);
@@ -177,9 +179,7 @@ void PPi0::FillMassMissingMass(const GTreeParticle& tree, Int_t particle_index, 
 
 void PPi0::FillMassMissingMass(const GTreeParticle& tree, Int_t particle_index, Int_t tagger_index, GH2* gHist, Bool_t TaggerBinning)
 {
-    // Is tagger channel rejected by user?
-    if(GetTagger()->GetTaggedChannel(tagger_index) < GetTC_cut_min()) return;
-    if(GetTagger()->GetTaggedChannel(tagger_index) > GetTC_cut_max()) return;
+    if(RejectTagged(tagger_index)) return;
 
     // calc particle time diff
     Double_t time = GetTagger()->GetTaggedTime(tagger_index) - tree.GetTime(particle_index);
