@@ -69,10 +69,10 @@ private:
     GTreeMeson*         etas;
     GTreeMeson*         etaPrimes;
 
-#ifdef hasPluto
-    GTreePluto*         pluto;
-#endif
-    GTreeA2Geant*       geant;
+/* #ifdef hasPluto */
+/*     GTreePluto*         pluto; */
+/* #endif */
+/*     GTreeA2Geant*       geant; */
 
 protected:
     TFile*          outputFile;
@@ -96,6 +96,11 @@ protected:
     GTreeMeson*         GetNeutralPions()           {return neutralPions;}
     GTreeMeson*         GetEtas()                   {return etas;}
     GTreeMeson*         GetEtaPrimes()              {return etaPrimes;}
+
+#ifdef hasPluto
+    GTreePluto*         pluto;
+#endif
+    GTreeA2Geant*       geant;
 
 #ifdef hasPluto
     GTreePluto*         GetPluto()                  {return pluto;}
