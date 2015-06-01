@@ -33,8 +33,6 @@ PPi0::PPi0()
 
     MM_IM 	= new GH2("MM_IM", 	"GoAT - #pi^{0}#rightarrow#gamma+r+r;m_{#pi^{0}} (MeV);m_{miss} (MeV)",          100, 110, 160, 400, 800, 1200);
 
-    TaggerAccScal = new TH1D("TaggerAccScal","TaggerAccScal",352,0,352);
-
     nTest = 0;
     test = new TTree("test","test");
     test->Branch("nTest",&nTest,"nTest/I");
@@ -59,8 +57,9 @@ Bool_t	PPi0::Init()
 
     if(!InitBackgroundCuts()) return kFALSE;
     if(!InitTargetMass()) return kFALSE;
-    if(!InitTaggerChannelCuts()) return kFALSE;
-    if(!InitTaggerScalers()) return kFALSE;
+
+    if(!PPhysics::Init()) return kFALSE;
+
     cout << "--------------------------------------------------" << endl;
     return kTRUE;
 }
@@ -148,8 +147,7 @@ void	PPi0::ProcessEvent()
 
 void	PPi0::ProcessScalerRead()
 {
-    // Fill Tagger Scalers
-    FillScalers(GetTC_scaler_min(),GetTC_scaler_max(),TaggerAccScal);
+    PPhysics::ProcessScalerRead();
 }
 
 Bool_t	PPi0::Write()

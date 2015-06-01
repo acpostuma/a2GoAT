@@ -46,8 +46,6 @@ private:
 
     GH2*    MM_IM;
 
-    TH1*	TaggerAccScal;
-
     TTree *test;
     Int_t nTest;
     Double_t test1[10];
