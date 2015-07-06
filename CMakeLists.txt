@@ -143,6 +143,17 @@ add_executable(TaggEff
    )
 target_link_libraries(TaggEff goatbase ghist ${LIBS} ${ROOT_LIBRARIES})
 
+add_executable(pipnmc
+   ${GOAT_BASE}
+   ${GOAT_GHIST}
+   inc/PPhysics.h
+   src/PPhysics.cc
+   inc/PiPlusNMC.h
+   src/PiPlusNMC.cc
+   src/mymcpipn_main.cc
+   )
+target_link_libraries(pipnmc ${ROOT_LIBRARIES})
+
 # install some scripts to the bin directory
 # by creating symlinks
 file(GLOB CORE_EXTRA_SCRIPTS "scripts/*")
