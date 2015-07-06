@@ -16,7 +16,11 @@ Pi0X::Pi0X()
 
   FPD               = new GH1("FPD",               "GoAT - FPD hits (p-r)",                            352, 0, 352);
   FPD_hel0          = new GH1("FPD_hel0",          "GoAT - FPD hits (p-r) helicity 0",                 352, 0, 352);
+  FPD_CB_hel0       = new GH1("FPD_CB_hel0",       "GoAT - FPD hits (p-r) helicity 0, CB trigger",     352, 0, 352);
+  FPD_TAPS_hel0     = new GH1("FPD_TAPS_hel0",     "GoAT - FPD hits (p-r) helicity 0, TAPS trigger",   352, 0, 352);
   FPD_hel1          = new GH1("FPD_hel1",          "GoAT - FPD hits (p-r) helicity 1",                 352, 0, 352);
+  FPD_CB_hel1       = new GH1("FPD_CB_hel1",       "GoAT - FPD hits (p-r) helicity 1, CB trigger",     352, 0, 352);
+  FPD_TAPS_hel1     = new GH1("FPD_TAPS_hel1",     "GoAT - FPD hits (p-r) helicity 1, TAPS trigger",   352, 0, 352);
   FPD_all           = new GH1("FPD_all",           "GoAT - FPD hits all tracks (p-r)",                 352, 0, 352);
   FPD_all_hel0      = new GH1("FPD_all_hel0",      "GoAT - FPD hits all tracks (p-r) hel 0",           352, 0, 352);
   FPD_all_hel1      = new GH1("FPD_all_hel1",      "GoAT - FPD hits all tracks (p-r) hel 1",           352, 0, 352);
@@ -42,13 +46,36 @@ Pi0X::Pi0X()
   theta_all_hel0    = new GH1("theta_all_hel0",    "GOAT - #theta distribution all tracks - hel0",     180, 0, 180);
   theta_all_hel1    = new GH1("theta_all_hel1",    "GOAT - #theta distribution all tracks - hel1",     180, 0, 180);
 
+  Cphi               = new GH1("Cphi",               "GOAT + cond - #phi distribution",                         360, 0, 360);
+  Cthetaphi          = new GH2("Cthetaphi",          "GOAT + cond - #theta vs #phi prompt",                     180, 0, 180, 360, 0, 360);
+  Cphi_all           = new GH1("Cphi_all",           "GOAT + cond - #phi distribution all tracks",              360, 0, 360);
+  Cthetaphi_all      = new GH2("Cthetaphi_all",      "GOAT + cond - #theta vs #phi prompt all tracks",          180, 0, 180, 360, 0, 360);
+  Ctheta             = new GH1("Ctheta",             "GOAT + cond - #theta distribution",                       180, 0, 180);
+  Ctheta_all         = new GH1("Ctheta_all",         "GOAT + cond - #theta distribution all tracks",            180, 0, 180);
+  Ctheta_hel0        = new GH1("Ctheta_hel0",        "GOAT + cond - #theta distribution - hel0",                180, 0, 180);
+  Ctheta_hel1        = new GH1("Ctheta_hel1",        "GOAT + cond - #theta distribution - hel1",                180, 0, 180);
+  Ctheta_hel0CM      = new GH1("Ctheta_hel0CM",      "GOAT + cond - #theta CM distribution - hel0",             180, 0, 180);
+  Ctheta_hel1CM      = new GH1("Ctheta_hel1CM",      "GOAT + cond - #theta CM distribution - hel1",             180, 0, 180);
+  CthetaCB_hel0      = new GH1("CthetaCB_hel0",      "GOAT + cond - #theta distribution - hel0, CB trigg",      180, 0, 180);
+  CthetaCB_hel1      = new GH1("CthetaCB_hel1",      "GOAT + cond - #theta distribution - hel1, CB trigg",      180, 0, 180);
+  CthetaCB_hel0CM    = new GH1("CthetaCB_hel0CM",    "GOAT + cond - #theta CM distribution - hel0, CB trigg",   180, 0, 180);
+  CthetaCB_hel1CM    = new GH1("CthetaCB_hel1CM",    "GOAT + cond - #theta CM distribution - hel1, CB trigg",   180, 0, 180);
+  CthetaTAPS_hel0    = new GH1("CthetaTAPS_hel0",    "GOAT + cond - #theta distribution - hel0, TAPS trigg",    180, 0, 180);
+  CthetaTAPS_hel1    = new GH1("CthetaTAPS_hel1",    "GOAT + cond - #theta distribution - hel1, TAPS trigg",    180, 0, 180);
+  CthetaTAPS_hel0CM  = new GH1("CthetaTAPS_hel0CM",  "GOAT + cond - #theta CM distribution - hel0, TAPS trigg", 180, 0, 180);
+  CthetaTAPS_hel1CM  = new GH1("CthetaTAPS_hel1CM",  "GOAT + cond - #theta CM distribution - hel1, TAPS trigg", 180, 0, 180);
+  Ctheta_all_hel0    = new GH1("Ctheta_all_hel0",    "GOAT + cond - #theta distribution all tracks - hel0",     180, 0, 180);
+  Ctheta_all_hel1    = new GH1("Ctheta_all_hel1",    "GOAT + cond - #theta distribution all tracks - hel1",     180, 0, 180);
+
   IM 	  	  = new GH1("IM", 	       "GoAT - #pi^{0}#rightarrowX;m_{#pi^{0}} (MeV)",                    100, 110, 160);
   IM_gg   	  = new GH1("IM_gg", 	       "GoAT - #pi^{0}#rightarrow#gamma+#gamma;m_{#pi^{0}} (MeV)",        100, 110, 160);
   IM_ggg 	  = new GH1("IM_ggg", 	       "GoAT - #pi^{0}#rightarrow#gamma+#gamma+#gamma;m_{#pi^{0}} (MeV)", 100, 110, 160);
+  CIM_gg   	  = new GH1("CIM_gg", 	       "GoAT + cond - #pi^{0}#rightarrow#gamma+#gamma;m_{#pi^{0}} (MeV)", 100, 110, 160);
 
   MM 	  	  = new GH1("MM", 	       "GoAT - #pi^{0}#rightarrowX;m_{miss} (MeV)",                    400, 600, 2000);
   MM_gg 	  = new GH1("MM_gg", 	       "GoAT - #pi^{0}#rightarrow#gamma+#gamma;m_{miss} (MeV)",        400, 600, 2000);
   MM_ggg 	  = new GH1("MM_ggg", 	       "GoAT - #pi^{0}#rightarrow#gamma+#gamma+#gamma;m_{miss} (MeV)", 400, 600, 2000);
+  CMM_gg 	  = new GH1("CMM_gg", 	       "GoAT + cond - #pi^{0}#rightarrow#gamma+#gamma;m_{miss} (MeV)", 400, 600, 2000);
 
   TaggerAccScal   = new TH1D("TaggerAccScal",   "TaggerAccScal", 352, 0, 352);
 
@@ -104,7 +131,7 @@ void Pi0X::ProcessEvent()
   // FPD hits
   FillFPD(*GetNeutralPions(), 0, FPD);
   FillFPD(*GetNeutralPions(), FPD_all);
-  FillFPD(*GetNeutralPions(), 0, FPD_hel0, FPD_hel1);
+  FillFPD(*GetNeutralPions(), 0, FPD_hel0, FPD_CB_hel0, FPD_TAPS_hel0, FPD_hel1, FPD_CB_hel1, FPD_TAPS_hel1);
   FillFPD(*GetNeutralPions(), FPD_all_hel0, FPD_all_hel1);
 
   // Any decays
@@ -113,7 +140,7 @@ void Pi0X::ProcessEvent()
 
   // 2 photon decay
   //  if ((GetNeutralPions()->GetNSubPhotons(0)==2) && (GetNeutralPions()->GetNSubRootinos(0) == 0)) 
-  if ((GetNeutralPions()->GetNSubPhotons(0)==2))
+  //  if ((GetNeutralPions()->GetNSubPhotons(0)==2))
     {
       // Angular distributions
       FillAngularDist(*GetNeutralPions(), 0, phi, thetaphi);
@@ -130,6 +157,23 @@ void Pi0X::ProcessEvent()
       // mass and missing mass
       FillMass(*GetNeutralPions(),0,IM_gg);
       FillMissingMass(*GetNeutralPions(),0,MM_gg, kTRUE);
+    }
+  if (GetNeutralPions()->GetNSubPhotons(0) == GetNeutralPions()->GetNSubParticles(0) )
+    {
+      // Angular distributions
+      FillAngularDist(*GetNeutralPions(), 0, Cphi, Cthetaphi);
+      FillAngularDist(*GetNeutralPions(), Cphi_all, Cthetaphi_all);
+      FillTheta(*GetNeutralPions(), 0, Ctheta, kTRUE);
+      FillTheta(*GetNeutralPions(), 0, 
+		Ctheta_hel0, CthetaCB_hel0, CthetaTAPS_hel0, Ctheta_hel0CM, CthetaCB_hel0CM, CthetaTAPS_hel0CM,
+		Ctheta_hel1, CthetaCB_hel1, CthetaTAPS_hel1, Ctheta_hel1CM, CthetaCB_hel1CM, CthetaTAPS_hel1CM,
+		kTRUE);
+      FillTheta(*GetNeutralPions(), Ctheta_all, kTRUE);
+      FillTheta(*GetNeutralPions(), Ctheta_all_hel0, Ctheta_all_hel1, kTRUE);
+      
+      // mass and missing mass
+      FillMass(*GetNeutralPions(),0,CIM_gg);
+      FillMissingMass(*GetNeutralPions(),0,CMM_gg, kTRUE);
     }
   
 //   // 3 photon decay
@@ -545,10 +589,11 @@ void Pi0X::FillFPD(const GTreeParticle& tree, Int_t particle_index, GH1* gHist)
 }
 
 
-void Pi0X::FillFPD(const GTreeParticle& tree, Int_t particle_index, GH1* gHist0, GH1* gHist1)
+void Pi0X::FillFPD(const GTreeParticle& tree, Int_t particle_index, GH1* gHist0, GH1* gCBHist0, GH1* gTAPSHist0, GH1* gHist1, GH1* gCBHist1, GH1* gTAPSHist1)
 {
   Int_t nerror = GetTrigger()->GetNErrors();
   Bool_t helicity = GetTrigger()->GetHelicity();
+  const Int_t *tp = GetTrigger()->GetTriggerPattern();
 
   for (Int_t j = 0; j < GetTagger()->GetNTagged(); j++)
     {
@@ -560,10 +605,21 @@ void Pi0X::FillFPD(const GTreeParticle& tree, Int_t particle_index, GH1* gHist0,
       Double_t time = GetTagger()->GetTaggedTime(j) - tree.GetTime(particle_index);
       
       // Fill FPD histograms 
-      if (nerror==0 && helicity==kFALSE)
+      if (nerror==0 && helicity==kFALSE) {
 	gHist0->Fill(GetTagger()->GetTaggedChannel(j), time);
-      else if (nerror==0 && helicity==kTRUE)
-      	gHist1->Fill(GetTagger()->GetTaggedChannel(j), time);      
+	if (tp[0] == 0)
+	  gCBHist0->Fill(GetTagger()->GetTaggedChannel(j), time);
+	else if (tp[0] == 19)
+	  gTAPSHist0->Fill(GetTagger()->GetTaggedChannel(j), time);
+      }
+      else if (nerror==0 && helicity==kTRUE) {
+      	gHist1->Fill(GetTagger()->GetTaggedChannel(j), time);   
+	if (tp[0] == 0)
+	  gCBHist1->Fill(GetTagger()->GetTaggedChannel(j), time);
+	else if (tp[0] == 19)
+	  gTAPSHist1->Fill(GetTagger()->GetTaggedChannel(j), time);
+      }
+  
     }
 
 }

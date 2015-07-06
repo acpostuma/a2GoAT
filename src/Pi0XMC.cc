@@ -2,47 +2,19 @@
 
 Pi0XMC::Pi0XMC()
 { 
-  helicity             = new GH1("helicity",             "helicity",    2, 0, 2);
-  helicityZE           = new GH1("helicityZE",           "helicityZE",  2, 0, 2);
-  helerrors            = new GH1("helicityerr",          "helicityerr", 15, 0, 15);
-  errcode              = new GH1("errcode",              "errcode",     11, 0, 11);
-
   time 	               = new GH1("time",                 "time",       1400, -700, 700);
   time_all             = new GH1("time_all",             "time_all",   1400, -700, 700);
   time_cut             = new GH1("time_cut",             "time_cut",   1400, -700, 700);
 
-  egamma               = new GH1("egamma",               "GOAT - E_{#gamma}",               300, 0, 1600);
-  egamma_all           = new GH1("egamma_all",           "GoAT - E_{#gamma} all tracks",    300, 0, 1600);
-
   FPD                  = new GH1("FPD",                  "GoAT - FPD hits (p-r)",                         352, 0, 352);
-  FPD_hel0             = new GH1("FPD_hel0",             "GoAT - FPD hits (p-r) helicity 0",              352, 0, 352);
-  FPD_hel1             = new GH1("FPD_hel1",             "GoAT - FPD hits (p-r) helicity 1",              352, 0, 352);
   FPD_all              = new GH1("FPD_all",              "GoAT - FPD hits all tracks (p-r)",              352, 0, 352);
-  FPD_all_hel0         = new GH1("FPD_all_hel0",         "GoAT - FPD hits all tracks (p-r) hel 0",        352, 0, 352);
-  FPD_all_hel1         = new GH1("FPD_all_hel1",         "GoAT - FPD hits all tracks (p-r) hel 1",        352, 0, 352);
 
-  phi                  = new GH1("phi",                  "GOAT - #phi distribution",                      360, 0, 360);
-  thetaphi             = new GH2("thetaphi",             "GOAT - #theta vs #phi prompt",                  180, 0, 180, 360, 0, 360);
-  phi_all              = new GH1("phi_all",              "GOAT - #phi distribution all tracks",           360, 0, 360);
-  thetaphi_all         = new GH2("thetaphi_all",         "GOAT - #theta vs #phi prompt all tracks",       180, 0, 180, 360, 0, 360);
   theta                = new GH1("theta",                "GOAT - #theta distribution",                    180, 0, 180);
   theta_all            = new GH1("theta_all",            "GOAT - #theta distribution all tracks",         180, 0, 180);
-  theta_hel0           = new GH1("theta_hel0",           "GOAT - #theta distribution - hel0",             180, 0, 180);
-  theta_hel1           = new GH1("theta_hel1",           "GOAT - #theta distribution - hel1",             180, 0, 180);
-  thetaCB_hel0         = new GH1("thetaCB_hel0",         "GOAT - #theta distribution - hel0, CB trigg",   180, 0, 180);
-  thetaCB_hel1         = new GH1("thetaCB_hel1",         "GOAT - #theta distribution - hel1, CB trigg",   180, 0, 180);
-  thetaTAPS_hel0       = new GH1("thetaTAPS_hel0",       "GOAT - #theta distribution - hel0, TAPS trigg", 180, 0, 180);
-  thetaTAPS_hel1       = new GH1("thetaTAPS_hel1",       "GOAT - #theta distribution - hel1, TAPS trigg", 180, 0, 180);
-  theta_all_hel0       = new GH1("theta_all_hel0",       "GOAT - #theta distribution all tracks - hel0",  180, 0, 180);
-  theta_all_hel1       = new GH1("theta_all_hel1",       "GOAT - #theta distribution all tracks - hel1",  180, 0, 180);
-
-  IM 	  	  = new GH1("IM", 	       "GoAT - #pi^{0}#rightarrowX;m_{#pi^{0}} (MeV)",                    100, 110, 160);
-  IM_gg   	  = new GH1("IM_gg", 	       "GoAT - #pi^{0}#rightarrow#gamma+#gamma;m_{#pi^{0}} (MeV)",        100, 110, 160);
-  IM_ggg 	  = new GH1("IM_ggg", 	       "GoAT - #pi^{0}#rightarrow#gamma+#gamma+#gamma;m_{#pi^{0}} (MeV)", 100, 110, 160);
-
-  MM 	  	  = new GH1("MM", 	       "GoAT - #pi^{0}#rightarrowX;m_{miss} (MeV)",                    400, 600, 2000);
-  MM_gg 	  = new GH1("MM_gg", 	       "GoAT - #pi^{0}#rightarrow#gamma+#gamma;m_{miss} (MeV)",        400, 600, 2000);
-  MM_ggg 	  = new GH1("MM_ggg", 	       "GoAT - #pi^{0}#rightarrow#gamma+#gamma+#gamma;m_{miss} (MeV)", 400, 600, 2000);
+  thetaCM              = new GH1("thetaCM",              "GOAT - #theta CM distribution",                 180, 0, 180);
+  thetaCM_all          = new GH1("thetaCM_all",          "GOAT - #theta CM distribution all tracks",      180, 0, 180);
+  theta_MC             = new GH1("theta_MC",             "GOAT - #theta MC distribution",                 180, 0, 180);
+  thetaCM_MC           = new GH1("thetaCM_MC",           "GOAT - #theta MC CM distribution",              180, 0, 180);
 
   TaggerAccScal   = new TH1D("TaggerAccScal",   "TaggerAccScal", 352, 0, 352);
 
@@ -83,55 +55,21 @@ Bool_t Pi0XMC::Start()
 
 void Pi0XMC::ProcessEvent()
 {
-  //  Int_t nparticles = geant->GetNTrueParticles();
-  //  cout << "N particles " << nparticles << endl;
-  TLorentzVector pi0  = geant->GetTrueVector(0);
-  cout << "pi0: \t theta = " << pi0.Theta() << "\t phi: " << pi0.Phi() << endl;
-  pi0.Print();
-  TLorentzVector neut = geant->GetTrueVector(1);
-  cout << "neutron" << endl;
-  neut.Print();
+
+  FillThetaMC(theta_MC, thetaCM_MC, kTRUE);
+
   // Time diff (tagger - pi0)
   FillTime(*GetNeutralPions(),0,time);
   FillTime(*GetNeutralPions(), time_all);
   FillTimeCut(*GetNeutralPions(),0,time_cut);
 
-  FillHelicity(helicityZE, helerrors, errcode, helicity);
-
-  // Photon energy
-  FillPhotonEnergy(*GetNeutralPions(), 0, egamma);
-  FillPhotonEnergy(*GetNeutralPions(), egamma_all);
-
   // FPD hits
   FillFPD(*GetNeutralPions(), 0, FPD);
   FillFPD(*GetNeutralPions(), FPD_all);
-  FillFPD(*GetNeutralPions(), 0, FPD_hel0, FPD_hel1);
-  FillFPD(*GetNeutralPions(), FPD_all_hel0, FPD_all_hel1);
 
   // Angular distributions
-  FillAngularDist(*GetNeutralPions(), 0, phi, thetaphi);
-  FillAngularDist(*GetNeutralPions(), phi_all, thetaphi_all);
-  FillTheta(*GetNeutralPions(), 0, theta, kTRUE);
-  FillTheta(*GetNeutralPions(), 0, theta_hel0, theta_hel1, kTRUE);
-  FillTheta(*GetNeutralPions(), 0, theta_hel0, thetaCB_hel0, thetaTAPS_hel0, theta_hel1, thetaCB_hel1, thetaTAPS_hel1, kTRUE);
-  FillTheta(*GetNeutralPions(), theta_all, kTRUE);
-  FillTheta(*GetNeutralPions(), theta_all_hel0, theta_all_hel1, kTRUE);
-
-  // Any decays
-  FillMass(*GetNeutralPions(),0,IM);
-  FillMissingMass(*GetNeutralPions(),0,MM, kTRUE);
-    
-  // 2 photon decay
-  if ((GetNeutralPions()->GetNSubPhotons(0) == 2) && (GetNeutralPions()->GetNSubRootinos(0) == 0)){
-    FillMass(*GetNeutralPions(),0,IM_gg);
-    FillMissingMass(*GetNeutralPions(),0,MM_gg, kTRUE);
-  }
-
-  // 3 photon decay
-  else if ((GetNeutralPions()->GetNSubPhotons(0) == 3) && (GetNeutralPions()->GetNSubRootinos(0) == 0)){
-    FillMass(*GetNeutralPions(),0,IM_ggg);
-    FillMissingMass(*GetNeutralPions(),0,MM_ggg, kTRUE);
-  }
+  FillTheta(*GetNeutralPions(), 0, theta, thetaCM, kTRUE);
+  FillTheta(*GetNeutralPions(), theta_all, thetaCM_all, kTRUE);
 
   evtNum++;
 }  
@@ -150,83 +88,15 @@ Bool_t	Pi0XMC::Write()
 }
 
 
-void Pi0XMC::FillPhotonEnergy(const GTreeParticle& tree, GH1* gHist)
+
+void Pi0XMC::FillTheta(const GTreeParticle& tree, GH1* gHist, GH1* gHistCM, Bool_t TaggerBinning)
 {
-  for (Int_t i = 0; i < tree.GetNParticles(); i++)
+  //  for (Int_t i = 0; i < tree.GetNParticles(); i++)
+  for (Int_t i = 0; i < 1; i++)
     {
-      for (Int_t j = 0; j < GetTagger()->GetNTagged(); j++)
-	{
-	  // Is tagger channel rejected by user?
-	  if(GetTagger()->GetTaggedChannel(j) < GetTC_cut_min()) continue;
-	  if(GetTagger()->GetTaggedChannel(j) > GetTC_cut_max()) continue;
-
-	  // calc particle time diff
-	  Double_t time = GetTagger()->GetTaggedTime(j) - tree.GetTime(i);
-
-	  Double_t gammae = GetTagger()->GetTaggedEnergy(j);
-	  gHist->Fill(gammae, time);
-	}
-    }
-}
-
-
-void Pi0XMC::FillPhotonEnergy(const GTreeParticle& tree, Int_t particle_index, GH1* gHist)
-{
-  for (Int_t j = 0; j < GetTagger()->GetNTagged(); j++)
-    {
-      // Is tagger channel rejected by user?
-      if(GetTagger()->GetTaggedChannel(j) < GetTC_cut_min()) continue;
-      if(GetTagger()->GetTaggedChannel(j) > GetTC_cut_max()) continue;
-
-      Double_t time = GetTagger()->GetTaggedTime(j) - tree.GetTime(particle_index);
-      Double_t gammae = GetTagger()->GetTaggedEnergy(j);
-      gHist->Fill(gammae, time);
-    }
-}
-
-
-void Pi0XMC::FillHelicity(GH1* gHist, GH1* gHist2, GH1* gHist3, GH1* gHist4)
-{
-  Int_t nerror = 0;
-  Bool_t hel;
-  Bool_t ErrFlag = kFALSE;
-
-  nerror = GetTrigger()->GetNErrors();
-  gHist2->Fill(nerror);
-
-  hel = GetTrigger()->GetHelicity();
-  if (nerror==0) {
-    if (hel==kFALSE)
-      gHist->Fill(0);
-    else if (hel==kTRUE)
-      gHist->Fill(1);
-  }
-
-  const Int_t* errcode;
-  for (int i=0; i<nerror; i++) {
-    errcode = GetTrigger()->GetErrorCode();
-    gHist3->Fill(*errcode);
-    if (*errcode==9 || *errcode==10) {
-      ErrFlag = kTRUE;
-      break;
-    }
-  }
-  if (!ErrFlag && nerror>0) {
-    if (hel==kFALSE)
-      gHist4->Fill(0);
-    else if (hel==kTRUE)
-      gHist4->Fill(1);
-  }
-}
-
-
-void Pi0XMC::FillAngularDist(const GTreeParticle& tree, GH1* hHist, GH2* ghHist)
-{
-  // hHist   --> phi hist
-  // ghHist  --> 2D theta-phi prompt hist
-  for (Int_t i = 0; i < tree.GetNParticles(); i++)
-    {
-      for (Int_t j = 0; j < GetTagger()->GetNTagged(); j++)
+      if (GetTagger()->GetNTagged()==0) continue;
+      //      for (Int_t j = 0; j < GetTagger()->GetNTagged(); j++)
+      for (Int_t j = 0; j < 1; j++)
 	{
 	  // Is tagger channel rejected by user?
 	  if(GetTagger()->GetTaggedChannel(j) < GetTC_cut_min()) continue;
@@ -234,21 +104,27 @@ void Pi0XMC::FillAngularDist(const GTreeParticle& tree, GH1* hHist, GH2* ghHist)
 	  
 	  // calc particle time diff
 	  Double_t time = GetTagger()->GetTaggedTime(j) - tree.GetTime(i);
-
-	  // Fill theta/phi histograms 
-	  hHist->Fill((TVector2::Phi_0_2pi(tree.GetPhiRad(i)))*TMath::RadToDeg(), time);
-	  ghHist->Fill(tree.GetTheta(i), (TVector2::Phi_0_2pi(tree.GetPhiRad(i)))*TMath::RadToDeg(), time);
+	  Double_t mom = TMath::Sqrt(tree.GetTotalEnergy(i)*tree.GetTotalEnergy(i) - mpi0*mpi0);
+	  Double_t theta_cm = Compute_ThetaCM(GetTagger()->GetTaggedEnergy(j), mom, tree.GetTotalEnergy(i), tree.GetThetaRad(i), TVector2::Phi_0_2pi(tree.GetPhiRad(i))); // deg
+	  // Fill theta histograms 
+	  if (TaggerBinning) {
+	    gHist->Fill(tree.GetTheta(i), time,  GetTagger()->GetTaggedChannel(j));
+	    gHistCM->Fill(theta_cm, time, GetTagger()->GetTaggedChannel(j));
+	  }
+	  else {
+	    gHist->Fill(tree.GetTheta(i), time);
+	    gHistCM->Fill(theta_cm, time);
+	  }
 	}
     }
 }
 
 
-void Pi0XMC::FillAngularDist(const GTreeParticle& tree, Int_t particle_index, GH1* hHist, GH2* ghHist)
-{
-  // hHist   --> phi hist
-  // ghHist  --> 2D theta-phi prompt hist
 
-  for (Int_t j = 0; j < GetTagger()->GetNTagged(); j++)
+void Pi0XMC::FillTheta(const GTreeParticle& tree, Int_t particle_index, GH1* gHist, GH1* gHistCM, Bool_t TaggerBinning)
+{
+  //  for (Int_t j = 0; j < GetTagger()->GetNTagged(); j++)
+  for (Int_t j = 0; j < 1; j++)
     {
       // Is tagger channel rejected by user?
       if(GetTagger()->GetTaggedChannel(j) < GetTC_cut_min()) continue;
@@ -256,183 +132,54 @@ void Pi0XMC::FillAngularDist(const GTreeParticle& tree, Int_t particle_index, GH
       
       // calc particle time diff
       Double_t time = GetTagger()->GetTaggedTime(j) - tree.GetTime(particle_index);
-      
-      // Fill theta/phi histograms 
-      hHist->Fill((TVector2::Phi_0_2pi(tree.GetPhiRad(particle_index)))*TMath::RadToDeg(), time);
-      ghHist->Fill(tree.GetTheta(particle_index), (TVector2::Phi_0_2pi(tree.GetPhiRad(particle_index)))*TMath::RadToDeg(), time);
-    }
-}
+      Double_t mom = TMath::Sqrt(tree.GetTotalEnergy(particle_index)*tree.GetTotalEnergy(particle_index) - mpi0*mpi0);
+      Double_t theta_cm = Compute_ThetaCM(GetTagger()->GetTaggedEnergy(j), mom, tree.GetTotalEnergy(particle_index), tree.GetThetaRad(particle_index), TVector2::Phi_0_2pi(tree.GetPhiRad(particle_index))); // deg
 
-
-void Pi0XMC::FillTheta(const GTreeParticle& tree, GH1* gHist, Bool_t TaggerBinning)
-{
-  for (Int_t i = 0; i < tree.GetNParticles(); i++)
-    {
-      for (Int_t j = 0; j < GetTagger()->GetNTagged(); j++)
-	{
-	  // Is tagger channel rejected by user?
-	  if(GetTagger()->GetTaggedChannel(j) < GetTC_cut_min()) continue;
-	  if(GetTagger()->GetTaggedChannel(j) > GetTC_cut_max()) continue;
-	  
-	  // calc particle time diff
-	  Double_t time = GetTagger()->GetTaggedTime(j) - tree.GetTime(i);
-
-	  // Fill theta/phi histograms 
-	  if (TaggerBinning) gHist->Fill(tree.GetTheta(i), time,  GetTagger()->GetTaggedChannel(j));
-	  else gHist->Fill(tree.GetTheta(i), time);
-	}
-    }
-}
-
-
-void Pi0XMC::FillTheta(const GTreeParticle& tree, GH1* gHist0, GH1* gHist1, Bool_t TaggerBinning)
-{
-  Int_t nerror = GetTrigger()->GetNErrors();
-  Bool_t helicity = GetTrigger()->GetHelicity();
-
-  for (Int_t i = 0; i < tree.GetNParticles(); i++)
-    {
-      for (Int_t j = 0; j < GetTagger()->GetNTagged(); j++)
-	{
-	  // Is tagger channel rejected by user?
-	  if(GetTagger()->GetTaggedChannel(j) < GetTC_cut_min()) continue;
-	  if(GetTagger()->GetTaggedChannel(j) > GetTC_cut_max()) continue;
-	  
-	  // calc particle time diff
-	  Double_t time = GetTagger()->GetTaggedTime(j) - tree.GetTime(i);
-
-	  // Fill theta/phi histograms 
-	  if (nerror==0 && helicity==kFALSE) {
-	    if (TaggerBinning)
-	      gHist0->Fill(tree.GetTheta(i), time, GetTagger()->GetTaggedChannel(j));
-	    else 
-	      gHist0->Fill(tree.GetTheta(i), time);
-	  }
-	  else if (nerror==0 && helicity==kTRUE) {
-	    if (TaggerBinning)
-	      gHist1->Fill(tree.GetTheta(i), time,  GetTagger()->GetTaggedChannel(j));
-	    else 
-	      gHist1->Fill(tree.GetTheta(i), time);
-	  }
-	}
-    }
-}
-
-
-void Pi0XMC::FillTheta(const GTreeParticle& tree, Int_t particle_index, GH1* gHist, Bool_t TaggerBinning)
-{
-  for (Int_t j = 0; j < GetTagger()->GetNTagged(); j++)
-    {
-      // Is tagger channel rejected by user?
-      if(GetTagger()->GetTaggedChannel(j) < GetTC_cut_min()) continue;
-      if(GetTagger()->GetTaggedChannel(j) > GetTC_cut_max()) continue;
-      
-      // calc particle time diff
-      Double_t time = GetTagger()->GetTaggedTime(j) - tree.GetTime(particle_index);
-      
-      // Fill theta/phi histograms 
-      if (TaggerBinning) 
+      // Fill theta histograms 
+      if (TaggerBinning) {
 	gHist->Fill(tree.GetTheta(particle_index), time, GetTagger()->GetTaggedChannel(j));
-      else
+	gHistCM->Fill(theta_cm, time, GetTagger()->GetTaggedChannel(j));
+      }
+      else {
 	gHist->Fill(tree.GetTheta(particle_index), time);
-    }
-}
-
-
-void Pi0XMC::FillTheta(const GTreeParticle& tree, Int_t particle_index, GH1* gHist0, GH1* gHist1, Bool_t TaggerBinning)
-{
-  Int_t nerror = GetTrigger()->GetNErrors();
-  Bool_t helicity = GetTrigger()->GetHelicity();
-
-  for (Int_t j = 0; j < GetTagger()->GetNTagged(); j++)
-    {
-      // Is tagger channel rejected by user?
-      if(GetTagger()->GetTaggedChannel(j) < GetTC_cut_min()) continue;
-      if(GetTagger()->GetTaggedChannel(j) > GetTC_cut_max()) continue;
-      
-      // calc particle time diff
-      Double_t time = GetTagger()->GetTaggedTime(j) - tree.GetTime(particle_index);
-      
-      // Fill theta/phi histograms 
-      if (nerror==0 && helicity==kFALSE) {
-	if (TaggerBinning)
-	  gHist0->Fill(tree.GetTheta(particle_index), time, GetTagger()->GetTaggedChannel(j));
-	else
-	  gHist0->Fill(tree.GetTheta(particle_index), time);
-      }
-      else if (nerror==0 && helicity==kTRUE) {
-	if (TaggerBinning)
-	  gHist1->Fill(tree.GetTheta(particle_index), time, GetTagger()->GetTaggedChannel(j));
-	else
-	  gHist1->Fill(tree.GetTheta(particle_index), time);
+	gHistCM->Fill(theta_cm, time);
       }
     }
 }
 
 
-void Pi0XMC::FillTheta(const GTreeParticle& tree, Int_t particle_index, GH1* gHist0, GH1* gCBHist0, GH1* gTAPSHist0, GH1* gHist1, GH1* gCBHist1, GH1* gTAPSHist1, Bool_t TaggerBinning)
+
+void Pi0XMC::FillThetaMC(GH1* gHist, GH1* gHistCM, Bool_t TaggerBinning)
 {
-  Int_t nerror = GetTrigger()->GetNErrors();
-  Bool_t helicity = GetTrigger()->GetHelicity();
-
-  const Int_t *tp = GetTrigger()->GetTriggerPattern();
-
-  for (Int_t j = 0; j < GetTagger()->GetNTagged(); j++)
+  //  for (Int_t i = 0; i < geant->GetNTrueParticles(); i++) --> i = 0 for pi0
     {
-      // Is tagger channel rejected by user?
-      if(GetTagger()->GetTaggedChannel(j) < GetTC_cut_min()) continue;
-      if(GetTagger()->GetTaggedChannel(j) > GetTC_cut_max()) continue;
-      
-      // calc particle time diff
-      Double_t time = GetTagger()->GetTaggedTime(j) - tree.GetTime(particle_index);
-      
-      // Fill theta/phi histograms 
+      //      for (Int_t j = 0; j < GetTagger()->GetNTagged(); j++)
+      for (Int_t j = 0; j < 1; j++)
+	{
+	  // Is tagger channel rejected by user?
+ 	  if(GetTagger()->GetTaggedChannel(j) < GetTC_cut_min()) continue;
+ 	  if(GetTagger()->GetTaggedChannel(j) > GetTC_cut_max()) continue;
+	  
+	  Double_t time = 0.;
+	  Double_t Ebeam = geant->GetBeam().E()*1e3;
+	  Double_t Energy = (geant->GetTrueVector(0)).Energy()*1e3; // MeV
+	  Double_t Momentum = (geant->GetTrueVector(0)).P()*1e3; // MeV
+	  TVector3 p(geant->GetTrueVector(0).Px()*1e3,geant->GetTrueVector(0).Py()*1e3, geant->GetTrueVector(0).Pz()*1e3);
+	  //	  cout << "MOMENTUM " << p.X() << "\t " << p.Y() << "\t" << p.Z() << "\t" << p.Mag() << "\t" << p.Theta()*TMath::RadToDeg() << "\t" << TVector2::Phi_0_2pi(p.Phi())*TMath::RadToDeg() << endl;
+	  Double_t ThetaRad = (geant->GetTrueVector(0)).Theta(); // Rad
+	  Double_t PhiRad = TVector2::Phi_0_2pi((geant->GetTrueVector(0)).Phi()); // Rad
+	  Double_t thetaMC_CM = Compute_ThetaCM(Ebeam, Momentum, Energy, ThetaRad, PhiRad); // deg
 
-      // all triggers
-      if (nerror==0 && helicity==kFALSE) {
-	if (TaggerBinning)
-	  gHist0->Fill(tree.GetTheta(particle_index), time, GetTagger()->GetTaggedChannel(j));
-	else
-	  gHist0->Fill(tree.GetTheta(particle_index), time);
-      }
-      else if (nerror==0 && helicity==kTRUE) {
-	if (TaggerBinning)
-	  gHist1->Fill(tree.GetTheta(particle_index), time, GetTagger()->GetTaggedChannel(j));
-	else
-	  gHist1->Fill(tree.GetTheta(particle_index), time);
-      }
-
-      // CB trigger 
-      if (tp[0] == 0) {
-	if (nerror==0 && helicity==kFALSE) {
-	  if (TaggerBinning)
-	    gCBHist0->Fill(tree.GetTheta(particle_index), time, GetTagger()->GetTaggedChannel(j));
-	  else
-	    gCBHist0->Fill(tree.GetTheta(particle_index), time);
+	  // Fill theta histograms 
+	  if (TaggerBinning) { 
+	    gHist->Fill(ThetaRad*TMath::RadToDeg(), time, GetTagger()->GetTaggedChannel(j));
+	    gHistCM->Fill(thetaMC_CM, time, GetTagger()->GetTaggedChannel(j));
+	  }
+	  else {
+	    gHist->Fill(ThetaRad*TMath::RadToDeg(), time);
+	    gHistCM->Fill(thetaMC_CM*TMath::RadToDeg(), time);
+	  }
 	}
-	else if (nerror==0 && helicity==kTRUE) {
-	  if (TaggerBinning)
-	    gCBHist1->Fill(tree.GetTheta(particle_index), time, GetTagger()->GetTaggedChannel(j));
-	  else
-	    gCBHist1->Fill(tree.GetTheta(particle_index), time);
-	}
-      }
-
-      // TAPS trigger
-      else if (tp[0] == 19) {
-	if (nerror==0 && helicity==kFALSE) {
-	  if (TaggerBinning)
-	    gTAPSHist0->Fill(tree.GetTheta(particle_index), time, GetTagger()->GetTaggedChannel(j));
-	  else
-	    gTAPSHist0->Fill(tree.GetTheta(particle_index), time);
-	}
-	else if (nerror==0 && helicity==kTRUE) {
-	  if (TaggerBinning)
-	    gTAPSHist1->Fill(tree.GetTheta(particle_index), time, GetTagger()->GetTaggedChannel(j));
-	  else
-	    gTAPSHist1->Fill(tree.GetTheta(particle_index), time);
-	}
-      }
     }
 }
 
@@ -457,30 +204,6 @@ void Pi0XMC::FillFPD(const GTreeParticle& tree, GH1* gHist)
     }
 }
 
-void Pi0XMC::FillFPD(const GTreeParticle& tree, GH1* gHist0, GH1* gHist1)
-{
-  Int_t nerror = GetTrigger()->GetNErrors();
-  Bool_t helicity = GetTrigger()->GetHelicity();
-
-  for (Int_t i = 0; i < tree.GetNParticles(); i++)
-    {
-      for (Int_t j = 0; j < GetTagger()->GetNTagged(); j++)
-	{
-	  // Is tagger channel rejected by user?
-	  if(GetTagger()->GetTaggedChannel(j) < GetTC_cut_min()) continue;
-	  if(GetTagger()->GetTaggedChannel(j) > GetTC_cut_max()) continue;
-	  
-	  // calc particle time diff
-	  Double_t time = GetTagger()->GetTaggedTime(j) - tree.GetTime(i);
-
-	  // Fill FPD histograms 
-	  if (nerror==0 && helicity==kFALSE)
-	    gHist0->Fill(GetTagger()->GetTaggedChannel(j), time);
-	  else if (nerror==0 && helicity==kTRUE)
-	    gHist1->Fill(GetTagger()->GetTaggedChannel(j), time);
-	}
-    }
-}
 
 
 void Pi0XMC::FillFPD(const GTreeParticle& tree, Int_t particle_index, GH1* gHist)
@@ -500,24 +223,26 @@ void Pi0XMC::FillFPD(const GTreeParticle& tree, Int_t particle_index, GH1* gHist
 }
 
 
-void Pi0XMC::FillFPD(const GTreeParticle& tree, Int_t particle_index, GH1* gHist0, GH1* gHist1)
+Double_t Pi0XMC::Compute_ThetaCM(Double_t Egamma, Double_t mom, Double_t ene, Double_t theta, Double_t phi)
 {
-  Int_t nerror = GetTrigger()->GetNErrors();
-  Bool_t helicity = GetTrigger()->GetHelicity();
+  static const Double_t mproton  = 938.272013; // GeV
+  Double_t theta_cm;
 
-  for (Int_t j = 0; j < GetTagger()->GetNTagged(); j++)
-    {
-      // Is tagger channel rejected by user?
-      if(GetTagger()->GetTaggedChannel(j) < GetTC_cut_min()) continue;
-      if(GetTagger()->GetTaggedChannel(j) > GetTC_cut_max()) continue;
+  Double_t px = mom * TMath::Sin(theta) * TMath::Cos(phi);
+  Double_t py = mom * TMath::Sin(theta) * TMath::Sin(phi);
+  Double_t pz = mom * TMath::Cos(theta);
 
-      // calc particle time diff
-      Double_t time = GetTagger()->GetTaggedTime(j) - tree.GetTime(particle_index);
-      
-      // Fill FPD histograms 
-      if (nerror==0 && helicity==kFALSE)
-	gHist0->Fill(GetTagger()->GetTaggedChannel(j), time);
-      else if (nerror==0 && helicity==kTRUE)
-      	gHist1->Fill(GetTagger()->GetTaggedChannel(j), time);      
-    }
+  Double_t v;
+  v = Egamma / (Egamma + mproton);
+
+  Double_t gamma = 1./TMath::Sqrt(1 - v*v);
+  Double_t px_cm = px;
+  Double_t py_cm = py;
+  Double_t pz_cm = -gamma*v*ene + gamma*pz;
+  Double_t mom_cm = TMath::Sqrt(px_cm*px_cm + py_cm*py_cm + pz_cm*pz_cm);
+
+  theta_cm = TMath::ACos((gamma*mom*TMath::Cos(theta) - gamma*v*ene) / mom_cm);
+  
+  return theta_cm * TMath::RadToDeg();
+
 }
