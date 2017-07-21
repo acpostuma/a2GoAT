@@ -152,6 +152,15 @@ add_executable(pi0-example
    )
 target_link_libraries(pi0-example goatbase ghist ${LIBS} ${ROOT_LIBRARIES})
 
+add_executable(CalibESum
+   inc/PPhysics.h
+   src/PPhysics.cc
+   inc/PCalibESum.h
+   src/PCalibESum.cc
+   src/CalibESum_main.cc
+   )
+target_link_libraries(CalibESum goatbase ghist ${LIBS} ${ROOT_LIBRARIES})
+
 add_executable(active
    inc/PPhysics.h
    src/PPhysics.cc
