@@ -1,0 +1,18 @@
+#=======================================================================
+# Config file for a TaggCal Analysis of GoAT-Trees with new FPD
+#=======================================================================
+
+Display-Scalers: TaggerCurScal 2864 2895
+Display-Scalers: TaggerCurScal 2064 2095
+Display-Scalers: TaggerCurScal 2576 2607
+Display-Scalers: TaggerCurScal 2288 2311
+# Note the previous ends 8 channels early for the CAEN TDC cableing
+Display-Scalers: TaggerCurScal 2000 2031
+Display-Scalers: TaggerCurScal 2352 2383
+Display-Scalers: TaggerCurScal 2640 2671
+Display-Scalers: TaggerCurScal 2032 2055
+# Note the previous ends 8 channels early for the CAEN TDC cableing
+Display-Scalers: TaggerCurScal 2320 2351
+Display-Scalers: TaggerCurScal 2608 2639
+Display-Scalers: TaggerCurScal 2896 2919
+# Note the previous ends 8 channels early for the CAEN TDC cableing
