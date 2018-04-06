@@ -13,6 +13,9 @@ Bool_t	PTaggCal::Init()
     cout << "Initialising tagger calibration analysis..." << endl;
 	cout << "--------------------------------------------------" << endl << endl;
 
+    if(!InitNMRScan()) return kFALSE;
+    if(!InitNMRLimits()) return kFALSE;
+
     if(!PPhysics::Init()) return kFALSE;
 
     TaggerCurScal = GetScalerHist("TaggerCurScal");
@@ -54,6 +57,55 @@ void	PTaggCal::ProcessEvent()
 {
 }
 
+Bool_t 	PTaggCal::InitNMRScan()
+{
+    Int_t n;
+    Double_t d;
+    string config = ReadConfig("NMR-Scan");
+    if(strcmp(config.c_str(), "nokey") == 0)
+    {
+        cout << "Using default NMR scan settings: " << numReads << " reads with difference of " << NMRdif << endl << endl;
+    }
+    else if(sscanf( config.c_str(), "%d%lf\n", &n, &d) == 2)
+    {
+        cout << "Setting NMR scan: " << n << " reads with difference of " << d << endl << endl;
+        numReads = n;
+        NMRdif = d;
+    }
+    else
+    {
+        cout << "NMR scan not set correctly" << endl << endl;
+        return kFALSE;
+    }
+
+    return kTRUE;
+
+}
+
+Bool_t 	PTaggCal::InitNMRLimits()
+{
+    Double_t min, max;
+    string config = ReadConfig("NMR-Limits");
+    if(strcmp(config.c_str(), "nokey") == 0)
+    {
+        cout << "Using default NMR limits: " << NMRmin << " to " << NMRmax << endl << endl;
+    }
+    else if(sscanf( config.c_str(), "%lf%lf\n", &min, &max) == 2)
+    {
+        cout << "Setting NMR limits: " << min << " to " << max << endl << endl;
+        NMRmin = min;
+        NMRmax = max;
+    }
+    else
+    {
+        cout << "NMR limits not set correctly" << endl << endl;
+        return kFALSE;
+    }
+
+    return kTRUE;
+
+}
+
 void	PTaggCal::ProcessScalerRead()
 {
     PPhysics::ProcessScalerRead();
@@ -61,43 +113,62 @@ void	PTaggCal::ProcessScalerRead()
     GoosyNewFPD(TaggerCurScal);
 
     Float_t nmr = GetScalers()->GetNMR();
+    if(nmr < NMRmin || nmr > NMRmax) return;
+
     if(nmr < minNMR) minNMR = nmr;
     if(nmr > maxNMR) maxNMR = nmr;
 
-    if(TMath::Abs(nmr-preNMR) < 0.0001)
+    if(TMath::Abs(nmr-newNMR) < NMRdif)
     {
         TaggerSumScal->Add(TaggerCurScal,1);
-        numReads++;
+        readNum++;
     }
     else
     {
-        if(numReads > 12)
+        if(readNum > numReads)
         {
-            TaggerSumScal->Scale(1.0/numReads);
-            Int_t maxbin = TaggerSumScal->GetMaximumBin();
-            if(TaggerSumScal->GetBinContent(maxbin) > 100)
+            TaggerSumScal->Scale(1.0/readNum);
+            newMaxBin = TaggerSumScal->GetMaximumBin();
+            if(TaggerSumScal->GetBinContent(newMaxBin) > 100)
             {
                 Double_t meanchan = (TaggerSumScal->GetMean()-0.5);
-                if(TMath::Abs(meanchan-(maxbin-1)) < 1)
+                if(TMath::Abs(meanchan-(newMaxBin-1)) < 1)
                 {
-                    TaggEnerCalib.at(0).SetPoint(TaggEnerCalib.at(0).GetN(),preNMR,meanchan);
-                    TaggEnerCalib.at(329).SetPoint(TaggEnerCalib.at(329).GetN(),preNMR,TaggerSumScal->Integral(maxbin-1,maxbin+1));
+                    TaggEnerCalib.at(0).SetPoint(TaggEnerCalib.at(0).GetN(),newNMR,meanchan);
+                    TaggEnerCalib.at(329).SetPoint(TaggEnerCalib.at(329).GetN(),newNMR,TaggerSumScal->Integral(newMaxBin-1,newMaxBin+1));
                 }
-                if(maxbin>1 && maxbin<328)
+                /*
+                if(newMaxBin>1 && newMaxBin<328)
                 {
-                    cout << numReads << " reads, NMR = " << preNMR << ", Max chan = " << maxbin-1 << "\t";
-                    cout << TaggerSumScal->GetBinContent(maxbin-1) << "\t" << TaggerSumScal->GetBinContent(maxbin) << "\t" << TaggerSumScal->GetBinContent(maxbin+1) << endl;
+                    cout << readNum << " reads, NMR = " << newNMR << ", Max chan = " << newMaxBin-1 << "\t";
+                    cout << TaggerSumScal->GetBinContent(newMaxBin-1) << "\t" << TaggerSumScal->GetBinContent(newMaxBin) << "\t" << TaggerSumScal->GetBinContent(newMaxBin+1) << endl;
                 }
+                */
+                if(newMaxBin>1) TaggEnerCalib.at(newMaxBin-1).SetPoint(TaggEnerCalib.at(newMaxBin-1).GetN(),newNMR,TaggerSumScal->GetBinContent(newMaxBin-1)/TaggerSumScal->Integral());
+                TaggEnerCalib.at(newMaxBin).SetPoint(TaggEnerCalib.at(newMaxBin).GetN(),newNMR,TaggerSumScal->GetBinContent(newMaxBin)/TaggerSumScal->Integral());
+                if(newMaxBin<328) TaggEnerCalib.at(newMaxBin+1).SetPoint(TaggEnerCalib.at(newMaxBin+1).GetN(),newNMR,TaggerSumScal->GetBinContent(newMaxBin+1)/TaggerSumScal->Integral());
 
-                if(maxbin>1) TaggEnerCalib.at(maxbin-1).SetPoint(TaggEnerCalib.at(maxbin-1).GetN(),preNMR,TaggerSumScal->GetBinContent(maxbin-1)/TaggerSumScal->Integral());
-                TaggEnerCalib.at(maxbin).SetPoint(TaggEnerCalib.at(maxbin).GetN(),preNMR,TaggerSumScal->GetBinContent(maxbin)/TaggerSumScal->Integral());
-                if(maxbin<328) TaggEnerCalib.at(maxbin+1).SetPoint(TaggEnerCalib.at(maxbin+1).GetN(),preNMR,TaggerSumScal->GetBinContent(maxbin+1)/TaggerSumScal->Integral());
+                newHiPer = TaggerSumScal->GetBinContent(newMaxBin)/TaggerSumScal->Integral();
+                newLoPer = TaggerSumScal->GetBinContent(newMaxBin+1)/TaggerSumScal->Integral();
+                if(newMaxBin==(preMaxBin-1))
+                {
+                    Double_t intersect = ((((newHiPer-newLoPer)*preNMR)+((preHiPer-preLoPer)*newNMR))/((newHiPer-newLoPer)+(preHiPer-preLoPer)));
+                    cout << "Intersection found at " << intersect << " between channels " << newMaxBin-1 << " and " << preMaxBin-1 << endl;
+                    TLine temp(intersect,0,intersect,1);
+                    temp.SetLineColor(2);
+                    Intersections.push_back(temp);
+
+                }
+                preMaxBin = newMaxBin;
+                preNMR = newNMR;
+                preHiPer = TaggerSumScal->GetBinContent(newMaxBin)/TaggerSumScal->Integral();
+                preLoPer = TaggerSumScal->GetBinContent(newMaxBin-1)/TaggerSumScal->Integral();
             }
         }
 
-        preNMR = nmr;
+        newNMR = nmr;
         TaggerSumScal->Reset();
-        numReads = 0;
+        readNum = 0;
     }
     
     TaggerCurScal->Reset();
@@ -119,6 +190,7 @@ Bool_t	PTaggCal::Write()
     temp.SetPoint(1,maxNMR,1);
     temp.Draw("AP");
     for(Int_t i=1; i<=328; i++) if(TaggEnerCalib.at(i).GetN()) TaggEnerCalib.at(i).Draw("*L");
+    for(UInt_t i=0; i<Intersections.size(); i++) Intersections.at(i).Draw();
     c2->SaveAs("TaggEnerCalibPer.pdf");
 
     TCanvas *c3 = new TCanvas("c3","c3");

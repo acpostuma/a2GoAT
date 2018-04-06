@@ -2,6 +2,12 @@
 # Config file for a TaggCal Analysis of GoAT-Trees with new FPD
 #=======================================================================
 
+# Scan settings, first is number of reads, second is max NMR difference
+NMR-Scan: 12 0.0001
+
+# NMR limits for scan
+#NMR-Limits: 1.2 1.23
+
 Display-Scalers: TaggerCurScal 2864 2895
 Display-Scalers: TaggerCurScal 2064 2095
 Display-Scalers: TaggerCurScal 2576 2607
