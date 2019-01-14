@@ -1,0 +1,33 @@
+#=======================================================================
+# Config file for a TaggCal Analysis of GoAT-Trees with new FPD
+#=======================================================================
+
+# Scan name for graphing
+Scan-Name: 195 MeV - No Al Shields
+
+# Scan settings, first is number of reads, second is max NMR difference
+NMR-Scan: 12 0.0001
+
+# NMR limits for scan
+NMR-Limits: 0.536 0.551
+#NMR-Limits: 0.742 0.768
+#NMR-Limits: 1.006 1.078
+#NMR-Limits: 1.182 1.218
+#NMR-Limits: 1.42 1.47
+#NMR-Limits: 1.544 1.594
+#NMR-Limits: 1.82 1.845
+#NMR-Limits: 1.885 1.91
+#NMR-Limits: 1.8 2
+
+Display-Scalers: TaggerCurScal 2064 2095
+Display-Scalers: TaggerCurScal 2864 2895
+Display-Scalers: TaggerCurScal 2352 2383
+Display-Scalers: TaggerCurScal 2000 2031
+Display-Scalers: TaggerCurScal 2608 2639
+Display-Scalers: TaggerCurScal 2320 2351
+Display-Scalers: TaggerCurScal 2288 2319
+Display-Scalers: TaggerCurScal 2576 2607
+Display-Scalers: TaggerCurScal 2032 2063
+Display-Scalers: TaggerCurScal 2640 2671
+Display-Scalers: TaggerCurScal 2928 2959
+Display-Scalers: TaggerCurScal 2896 2927

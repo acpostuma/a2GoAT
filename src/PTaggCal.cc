@@ -13,6 +13,7 @@ Bool_t	PTaggCal::Init()
     cout << "Initialising tagger calibration analysis..." << endl;
 	cout << "--------------------------------------------------" << endl << endl;
 
+    if(!InitScanName()) return kFALSE;
     if(!InitNMRScan()) return kFALSE;
     if(!InitNMRLimits()) return kFALSE;
 
@@ -55,6 +56,29 @@ Bool_t	PTaggCal::Start()
 
 void	PTaggCal::ProcessEvent()
 {
+}
+
+Bool_t 	PTaggCal::InitScanName()
+{
+    char name[256];
+    string config = ReadConfig("Scan-Name");
+    if(strcmp(config.c_str(), "nokey") == 0)
+    {
+        cout << "Using default scan name: " << scanName << endl << endl;
+    }
+    else if(sscanf( config.c_str(), "%[^\n]s", name) == 1)
+    {
+        cout << "Naming NMR scan: " << name << endl << endl;
+        scanName = name;
+    }
+    else
+    {
+        cout << "Scan name not set correctly" << endl << endl;
+        return kFALSE;
+    }
+
+    return kTRUE;
+
 }
 
 Bool_t 	PTaggCal::InitNMRScan()
@@ -110,7 +134,10 @@ void	PTaggCal::ProcessScalerRead()
 {
     PPhysics::ProcessScalerRead();
 
-    GoosyNewFPD(TaggerCurScal);
+    //nScalerReads++;
+    //if(nScalerReads>)
+
+    TaggerSumScal->SetBins(TaggerCurScal->GetNbinsX(),0,TaggerCurScal->GetNbinsX());
 
     Float_t nmr = GetScalers()->GetNMR();
     if(nmr < NMRmin || nmr > NMRmax) return;
@@ -127,8 +154,11 @@ void	PTaggCal::ProcessScalerRead()
     {
         if(readNum > numReads)
         {
+            //GoosyNewFPD(TaggerSumScal);
+            GoosyNewFPDRecabled(TaggerSumScal);
             TaggerSumScal->Scale(1.0/readNum);
             newMaxBin = TaggerSumScal->GetMaximumBin();
+            //cout << "Max channel = " << newMaxBin-1 << endl;
             if(TaggerSumScal->GetBinContent(newMaxBin) > 100)
             {
                 Double_t meanchan = (TaggerSumScal->GetMean()-0.5);
@@ -184,13 +214,29 @@ Bool_t	PTaggCal::Write()
     TaggEnerCalib.at(0).Draw("A*L");
     c1->SaveAs("TaggEnerCalibMax.pdf");
     
+    TLegend l1(0.85,0.92,0.95,0.95);
+    l1.SetHeader("Chan (JA)");
+    Int_t nChan = 0;
+    scanName.Append(";NMR (T);Hits in Channel / Hits in Ladder");
+
     TCanvas *c2 = new TCanvas("c2","c2");
     TGraph temp(2);
     temp.SetPoint(0,minNMR,0);
     temp.SetPoint(1,maxNMR,1);
+    temp.SetTitle(scanName);
     temp.Draw("AP");
-    for(Int_t i=1; i<=328; i++) if(TaggEnerCalib.at(i).GetN()) TaggEnerCalib.at(i).Draw("*L");
+    for(Int_t i=1; i<=328; i++) if(TaggEnerCalib.at(i).GetN())
+    {
+        nChan++;
+        l1.AddEntry(&TaggEnerCalib.at(i),Form("%d (%d)",i-1,329-i),"p");
+        TaggEnerCalib.at(i).Draw("*L");
+    }
     for(UInt_t i=0; i<Intersections.size(); i++) Intersections.at(i).Draw();
+    if(nChan<30)
+    {
+        l1.SetY1(0.92-0.03*nChan);
+        l1.Draw();
+    }
     c2->SaveAs("TaggEnerCalibPer.pdf");
 
     TCanvas *c3 = new TCanvas("c3","c3");

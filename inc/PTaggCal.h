@@ -12,6 +12,7 @@
 #include "TF1.h"
 #include "TGraph.h"
 #include "TLine.h"
+#include "TLegend.h"
 
 class	PTaggCal  : public PPhysics
 {
@@ -23,6 +24,10 @@ private:
 
     std::vector<TGraph> TaggEnerCalib;
     std::vector<TLine> Intersections;
+
+    TString scanName = "Tagger Field Scan";
+
+    Int_t nScalerReads = 0;
 
     Int_t numReads = 0;
     Int_t readNum = 0;
@@ -52,6 +57,7 @@ public:
     PTaggCal();
     virtual ~PTaggCal();
     virtual Bool_t  Init();
+    Bool_t InitScanName();
     Bool_t InitNMRScan();
     Bool_t InitNMRLimits();
 
