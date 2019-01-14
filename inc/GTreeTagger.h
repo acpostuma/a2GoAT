@@ -19,12 +19,16 @@ private:
     Double_t        taggedTime[GTreeTagger_MAX];
     Double_t        taggedEnergy[GTreeTagger_MAX];
     Bool_t          taggedDouble[GTreeTagger_MAX];
+    Bool_t          taggedChain[GTreeTagger_MAX];
     Int_t           nDouble;
-    Int_t           nChain;
     Int_t           doubleChannel[GTreeTagger_MAX];
     Int_t           doubleRandom[GTreeTagger_MAX];
     Double_t        doubleTime[GTreeTagger_MAX];
     Double_t        doubleEnergy[GTreeTagger_MAX];
+    Int_t           nChain;
+    Int_t           chainChannel[GTreeTagger_MAX];
+    Int_t           chainLength[GTreeTagger_MAX];
+    Double_t        chainTime[GTreeTagger_MAX];
     Bool_t          hasEnergy;
     Double_t        calibration[352];
     TH1*            TaggerPairTimeDiff;
@@ -48,8 +52,9 @@ public:
             Double_t        GetTaggedEnergy(const Int_t index)	const	{if(hasEnergy) return taggedEnergy[index]; return calibration[taggedChannel[index]];}
     const	Bool_t*         GetTaggedDouble()                   const	{return taggedDouble;}
             Bool_t          GetTaggedDouble(const Int_t index)  const	{return taggedDouble[index];}
+    const	Bool_t*         GetTaggedChain()                    const	{return taggedChain;}
+            Bool_t          GetTaggedChain(const Int_t index)   const	{return taggedChain[index];}
             Int_t           GetNDouble()                        const	{return nDouble;}
-            Int_t           GetNChain()                         const	{return nChain;}
     const	Int_t*          GetDoubleChannel()                  const	{return doubleChannel;}
             Int_t           GetDoubleChannel(const Int_t index) const	{return doubleChannel[index];}
             Int_t           GetDoubleRandom(const Int_t index)  const	{return doubleRandom[index];}
@@ -57,7 +62,13 @@ public:
             Double_t        GetDoubleTime(const Int_t index)    const	{return doubleTime[index];}
     const	Double_t*       GetDoubleEnergy()                   const	{return doubleEnergy;}
             Double_t        GetDoubleEnergy(const Int_t index)  const	{return doubleEnergy[index];}
-            void            DecodeDoubles(const Double_t timingRes = 3.0, const Bool_t decodeChain = true);
+            Int_t           GetNChain()                         const	{return nChain;}
+    const	Int_t*          GetChainChannel()                   const	{return chainChannel;}
+            Int_t           GetChainChannel(const Int_t index)  const	{return chainChannel[index];}
+            Int_t           GetChainLength(const Int_t index)   const	{return chainLength[index];}
+    const	Double_t*       GetChainTime()                      const	{return chainTime;}
+            Double_t        GetChainTime(const Int_t index)     const	{return chainTime[index];}
+            void            DecodeDoubles(const Double_t timingRes = 2.0, const Bool_t decodeChain = true);
             Bool_t          HasEnergy()                         const   {return hasEnergy;}
             void            SetCalibration(const Int_t nChan, const Double_t *energy);
     TLorentzVector          GetVector(const Int_t index)        const   {return TLorentzVector(0, 0, taggedEnergy[index], taggedEnergy[index]);}

@@ -18,6 +18,11 @@ private:
     Int_t scalerRead;
 
     TH2*	TaggerTime;
+    TH2*	DoubleTime;
+    TH2*	ChainTime;
+    TH1*    SingleHits;
+    TH1*    DoubleHits;
+    TH1*    ChainHits;
     TH1*	TaggerPreHits;
     TH1*	TaggerCurHits;
     GH1*	TaggerAllHits;

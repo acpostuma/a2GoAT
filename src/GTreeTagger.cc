@@ -14,13 +14,17 @@ GTreeTagger::GTreeTagger(GTreeManager *Manager)    :
         taggedTime[i]    = 0;
         taggedEnergy[i]  = 0;
         taggedDouble[i]  = 0;
+        taggedChain[i]   = 0;
         doubleChannel[i] = 0;
         doubleRandom[i]  = 0;
         doubleTime[i]    = 0;
         doubleEnergy[i]  = 0;
+        chainChannel[i]  = 0;
+        chainLength[i]   = 0;
+        chainTime[i]     = 0;
     }
     for(Int_t i=0; i<352; i++) calibration[i] = 0;
-    TaggerPairTimeDiff = new TH1D("TaggerPairTimeDiff","Absolute Time Difference between Tagger Pairs",100,0,20);
+    TaggerPairTimeDiff = new TH1D("TaggerPairTimeDiff","Absolute Time Difference between Tagger Pairs",100,-5,5);
 }
 
 GTreeTagger::~GTreeTagger()
@@ -63,6 +67,7 @@ void    GTreeTagger::DecodeDoubles(const Double_t timingRes, const Bool_t decode
     nDouble = 0;
     nChain = 0;
     for(Int_t i=0; i<nTagged; i++) taggedDouble[i] = false;
+    for(Int_t i=0; i<nTagged; i++) taggedChain[i] = false;
 
     // Sort channel list into ascending order to make the search easier
     TMath::Sort(nTagged, taggedChannel, taggedOrder, false);
@@ -79,14 +84,14 @@ void    GTreeTagger::DecodeDoubles(const Double_t timingRes, const Bool_t decode
             if(taggedChannel[taggedOrder[j]] > (taggedChannel[taggedOrder[i]] + 1)) break;
 
             // Check if neighboring channel is within timing resolution
-            timeDiff = (TMath::Abs(taggedTime[taggedOrder[j]]-taggedTime[taggedOrder[i]]));
+            timeDiff = (taggedTime[taggedOrder[j]]-taggedTime[taggedOrder[i]]);
             TaggerPairTimeDiff->Fill(timeDiff);
-            if(timeDiff < timingRes)
+            if(TMath::Abs(timeDiff) < timingRes)
             {
                 pairInd1[nPairs] = taggedOrder[i];
                 pairInd2[nPairs] = taggedOrder[j];
                 pairTime[nPairs] = ((taggedTime[taggedOrder[i]]+taggedTime[taggedOrder[j]])/2.0);
-                pairDiff[nPairs] = timeDiff;
+                pairDiff[nPairs] = TMath::Abs(timeDiff);
                 nPairs++;
             }
 
@@ -102,36 +107,82 @@ void    GTreeTagger::DecodeDoubles(const Double_t timingRes, const Bool_t decode
     // Look for neighboring pairs to form chain
     if(decodeChain)
     {
+        //printf("Event %d\n",manager->GetEventNumber());
         // Loop over pairs, looking for multiples that represent a chain
         for(Int_t i=0; i<nPairs; i++)
         {
+            Bool_t isChain = (taggedChain[pairInd1[i]] || taggedChain[pairInd2[i]]);
+
+            // Skip if already part of a chain
+            if(isChain) continue;
+
+            //printf("\tFirst pair %3d\t%3d\t%3d\n",i,taggedChannel[pairInd1[i]],taggedChannel[pairInd2[i]]);
+
             for(Int_t j=i+1; j<nPairs; j++)
             {
-                // Skip if multi-hit of same channel
-                if(taggedChannel[pairInd1[j]] == taggedChannel[pairInd1[i]]) continue;
+                //printf("\t\tSecond pair %3d\t%3d\t%3d\n",i,taggedChannel[pairInd1[j]],taggedChannel[pairInd2[j]]);
 
-                // Break if beyond neighbor
-                if(taggedChannel[pairInd1[j]] != taggedChannel[pairInd2[i]]) break;
-
-                // Check if neighboring pair is within timing resolution
-                timeDiff = (TMath::Abs(pairTime[j]-pairTime[i]));
-                if(timeDiff < timingRes)
+                // Chain with pair 'i' already exists
+                if(isChain)
                 {
-                    // Increment number of chains if first pair not already part of a chain
-                    if(!taggedDouble[pairInd1[i]] && !taggedDouble[pairInd2[i]]) nChain++;
+                    // Skip if multi-hit of same channel
+                    if(taggedChannel[pairInd1[j]] == (chainChannel[nChain]+chainLength[nChain]-2)) continue;
 
-                    // Denote both pairs as belonging to a chain
-                    taggedDouble[pairInd1[i]] = true;
-                    taggedDouble[pairInd2[i]] = true;
+                    // Break if beyond neighbor
+                    if(taggedChannel[pairInd1[j]] != (chainChannel[nChain]+chainLength[nChain]-1)) break;
 
-                    taggedDouble[pairInd1[j]] = true;
-                    taggedDouble[pairInd2[j]] = true;
+                    // Check if neighboring pair is within timing resolution
+                    timeDiff = (TMath::Abs(pairTime[j]-pairTime[i]));
+                    if(timeDiff < timingRes)
+                    {
+                        chainLength[nChain] += 1;
+                        chainTime[nChain] += taggedTime[pairInd2[j]];
+
+                        // Denote new pair as belonging to a chain
+                        taggedChain[pairInd1[j]] = true;
+                        taggedChain[pairInd2[j]] = true;
+                    }
+                }
+                // Chain with pair 'i' does not exist yet
+                else
+                {
+                    // Skip if multi-hit of same channel
+                    if(taggedChannel[pairInd1[j]] == taggedChannel[pairInd1[i]]) continue;
+
+                    // Break if beyond neighbor
+                    if(taggedChannel[pairInd1[j]] != taggedChannel[pairInd2[i]]) break;
+
+                    // Check if neighboring pair is within timing resolution
+                    timeDiff = (TMath::Abs(pairTime[j]-pairTime[i]));
+                    if(timeDiff < timingRes)
+                    {
+                        // Create new chain
+                        isChain = true;
+                        chainChannel[nChain] = taggedChannel[pairInd1[i]];
+                        chainLength[nChain] = 3;
+                        chainTime[nChain] = taggedTime[pairInd1[i]]+taggedTime[pairInd2[i]]+taggedTime[pairInd2[j]];
+
+                        // Denote first pair as belonging to a chain
+                        taggedChain[pairInd1[i]] = true;
+                        taggedChain[pairInd2[i]] = true;
+
+                        // Denote second pair as belonging to a chain
+                        taggedChain[pairInd1[j]] = true;
+                        taggedChain[pairInd2[j]] = true;
+                    }
                 }
             }
 
-            // Skip if already part of a chain
-            if(taggedDouble[pairInd1[i]]) continue;
-            if(taggedDouble[pairInd2[i]]) continue;
+            // If a chain was found
+            if(isChain)
+            {
+                // Average the time
+                chainTime[nChain] = (chainTime[nChain]/chainLength[nChain]);
+                nChain++;
+
+                // Do not call this pair a double
+                continue;
+            }
 
             // Otherwise call this pair a double
             taggedDouble[pairInd1[i]] = true;
@@ -169,13 +220,13 @@ void    GTreeTagger::DecodeDoubles(const Double_t timingRes, const Bool_t decode
         }
     }
     /*
-    if((inputTree->GetReadEntry()) < 100){
-        cout << "Event " << manager->GetEventNumber() << " - nDouble = " << nDouble << " - nChain = " << nChain << endl << endl;
+    if(nDouble || nChain){
+        printf("Event %7d - nDouble = %d - nChain = %d\n\n",manager->GetEventNumber(),nDouble,nChain);
         for(Int_t i=0; i<nTagged; i++)
         {
-            cout << i << "\t" << taggedChannel[i] << "\t" << taggedTime[i] << "   \t" << taggedOrder[i] << "\t" << taggedChannel[taggedOrder[i]] << "\t" << taggedTime[taggedOrder[i]] << "   \t" << taggedDouble[taggedOrder[i]] << endl;
+            printf("%3d\t%3d\t%7.2f\t%3d\t%3d\t%7.2f\t%d\t%d\n",i,taggedChannel[i],taggedTime[i],taggedOrder[i],taggedChannel[taggedOrder[i]],taggedTime[taggedOrder[i]],taggedDouble[taggedOrder[i]],taggedChain[taggedOrder[i]]);
         }
-        cout << endl;
+        printf("\n");
     }
     */
 }

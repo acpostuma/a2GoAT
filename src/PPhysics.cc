@@ -709,6 +709,9 @@ Bool_t 	PPhysics::RejectTagged(Int_t tagger_index)
     // Is tagger hit a decoded double?
     if(GetTagger()->GetTaggedDouble(tagger_index)) reject = true;
 
+    // Is tagger hit a decoded chain?
+    if(GetTagger()->GetTaggedChain(tagger_index)) reject = true;
+
     return reject;
 }
 
