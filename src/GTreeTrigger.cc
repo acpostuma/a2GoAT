@@ -11,6 +11,7 @@ GTreeTrigger::GTreeTrigger(GTreeManager* Manager)    :
     helicity(0),
     MC_evt_id(-1),
     MC_rnd_id(-1),
+    MC_weight(1),
     hasHelicity(0),
     hasMCID(0)
 {
@@ -49,6 +50,7 @@ void    GTreeTrigger::SetBranchAdresses()
         inputTree->SetBranchAddress("mc_rnd_id", &MC_rnd_id);
         hasMCID = true;
     }
+    if(inputTree->GetBranch("mc_weight")) inputTree->SetBranchAddress("mc_weight", &MC_weight);
 }
 
 void    GTreeTrigger::SetBranches()

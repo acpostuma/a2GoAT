@@ -23,6 +23,7 @@ private:
     Bool_t      helicity;
     Long64_t    MC_evt_id;
     Long64_t    MC_rnd_id;
+    Double_t    MC_weight;
     Bool_t      hasHelicity;
     Bool_t      hasMCID;
 
@@ -46,6 +47,7 @@ public:
     const   Int_t*		GetErrorCode()          const {return errorCode;}
             Bool_t 	    GetHelicity()    	    const {return helicity;}
             Bool_t 	    HasHelicity()    	    const {return hasHelicity;}
+            Double_t    GetMCWeight()           const {return MC_weight;}
 
 };
 
