@@ -179,6 +179,15 @@ add_executable(TaggCal
    )
 target_link_libraries(TaggCal goatbase ghist ${LIBS} ${ROOT_LIBRARIES})
 
+add_executable(TaggCal2
+   inc/PPhysics.h
+   src/PPhysics.cc
+   inc/PTaggCal2.h
+   src/PTaggCal2.cc
+   src/TaggCal2_main.cc
+   )
+target_link_libraries(TaggCal2 goatbase ghist ${LIBS} ${ROOT_LIBRARIES})
+
 # install some scripts to the bin directory
 # by creating symlinks
 file(GLOB CORE_EXTRA_SCRIPTS "scripts/*")
