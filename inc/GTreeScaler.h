@@ -13,7 +13,8 @@ class  GTreeScaler : public GTree
 private:
     Int_t		eventNumber;
     Int_t		eventID;
-    Float_t    nmr;
+    Float_t     nmr;
+    Float_t     cur;
     UInt_t		scalers[GTreeScaler_MAX];
 
     Int_t		nScalers;
@@ -30,7 +31,8 @@ public:
             void        CloneValidEntries();
             Int_t 		GetEventID()        		const	{return eventID;}
             Int_t 		GetEventNumber()        	const	{return eventNumber;}
-            Float_t    GetNMR()                    const   {return nmr;}
+            Float_t     GetNMR()                    const   {return nmr;}
+            Float_t     GetCur()                    const   {return cur;}
             Int_t 		GetNScalers()    			const	{return nScalers;}
     const	UInt_t*		GetScaler()                 const	{return	scalers;}
             UInt_t		GetScaler(const Int_t index)const	{return	scalers[index];}
