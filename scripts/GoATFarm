@@ -109,11 +109,12 @@ do
     echo "#PBS -m a" >> $JobFile;
     echo "#PBS -M $MailAddress"  >> $JobFile;
     echo "#PBS -V"  >> $JobFile;
-    #echo "#PBS -l ncpus=3,walltime=${WALLTIME}" >> $JobFile;
-    echo "#PBS -l walltime=${WALLTIME}" >> $JobFile;
+    echo "#PBS -l ncpus=3,walltime=${WALLTIME}" >> $JobFile;
+    #echo "#PBS -l walltime=${WALLTIME}" >> $JobFile;
     echo "#PBS -e ${JobDir}/jobfiles"  >> $JobFile;
     echo "#PBS -o ${JobDir}/jobfiles"  >> $JobFile;
     echo "#PBS -q batch" >> $JobFile;
+    #echo "#PBS -q dflt_xlong" >> $JobFile;
     echo "#"  >> $JobFile;
     echo "#InputFiles: $line"   >> $JobFile;
     echo "#"  >> $JobFile;
