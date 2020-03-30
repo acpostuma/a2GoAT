@@ -51,10 +51,10 @@ Bool_t	PTaggEff::Start()
 
     TraverseValidEvents();
 
-    //GoosyTagger(TaggerAccScal);
+    GoosyTagger(TaggerAccScal);
     //GoosyVuprom(TaggerAccScal);
     //GoosyNewFPD(TaggerAccScal);
-    GoosyNewFPDRecabled(TaggerAccScal);
+    //GoosyNewFPDRecabled(TaggerAccScal);
 
     return kTRUE;
 }
@@ -216,7 +216,10 @@ void	PTaggEff::ProcessScalerRead()
     TH1D *TaggerCurScal = (TH1D*)TaggerAccScal->Clone("TaggerCurScal");
     TaggerCurScal->Add(TaggerPreScal,-1);
 
-    GoosyNewFPDRecabled(TaggerCurScal);
+    GoosyTagger(TaggerCurScal);
+    //GoosyVuprom(TaggerCurScal);
+    //GoosyNewFPD(TaggerCurScal);
+    //GoosyNewFPDRecabled(TaggerCurScal);
 
     // Get Pair Spect array
     const Double_t* scalerOpen = GetPairspec() -> GetScalerOpen();
