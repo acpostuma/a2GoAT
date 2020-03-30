@@ -1,136 +1,173 @@
+#!/usr/bin/perl
+use strict;
+use warnings;
+use Getopt::Long;
+
+use Cwd qw(abs_path getcwd);
+use File::Path qw(rmtree mkpath);
+use File::Basename qw(basename);
+
+my $filelist = '-';             # default STDIN
+my $config;                     # needs to be provided on cmd line
+my $outputdir;                  # needs to be provided on cmd line
+my $program = 'goat';
+my $inputpre = 'Acqu';
+my $outputpre = 'GoAT';
+my $clean = 0;
+my $help = 0;
+my $cwd = getcwd;
+my $QSUB_BIN = 'qsub';
+my $GOAT_BIN;
+# parse options
+Getopt::Long::Configure(qw(gnu_getopt));
+GetOptions(
+           'help|h' => \$help,
+           'clean|c' => \$clean,
+           'prog=s' => \$program,
+           'ip=s' => \$inputpre,
+           'op=s' => \$outputpre
+          ) or print_help();
+
+
+# parse arguments
+if (@ARGV==2 || @ARGV==3) {
+  $config = $ARGV[0];
+  $outputdir = $ARGV[1];
+  if (@ARGV==3) {
+    $filelist = $ARGV[2];
+  }
+} else {
+  print_help();
+}
+
+
+&main;
+
+sub main {
+  # check some things before submission
+  $GOAT_BIN = which($program);
+  die "GoAT not found in PATH=$ENV{PATH}" unless defined $GOAT_BIN;
+
+  # check for top-level config files
+  my $haveConfig = -f $config ? 1 : 0;
+
+  die "Error: $config config not found. Are you in the wrong working directory?"
+    unless $haveConfig;
+
+
+  # read in the filelist, check for more errors
+  open(my $inputfiles_fh, "<$filelist") or die "Can't open filelist $filelist: $!";
+  my $n = 0;
+  my @files;
+  while (my $inputfile = <$inputfiles_fh>) {
+    $n++;
+    # remove leading and trailing whitespace
+    $inputfile =~ s/^\s+//;
+    $inputfile =~ s/\s+$//;
+    unless(-f $inputfile) {
+      warn "Warning: Inputfile $inputfile does not exist, skipping.";
+      next;
+    }
+    unless($inputfile =~ /\.root$/) {
+      warn "Warning: Inputfile $inputfile does not end with .root, skipping.";
+      next;
+    }
+
+    my $runnumber = $n;
+    $inputfile = abs_path($inputfile);
+    push(@files, [$inputfile, $runnumber]);
+  }
+  close $inputfiles_fh;
+
+  my $total = scalar @files;
+  die "No files to be submitted, abort." if $total==0;
+
+  # clean/create outputdir
+  if ($clean) {
+    print "Deleting outputdir $outputdir\n";
+    rmtree([$outputdir]) or die "Error: Outputdir $outputdir was not deleted.";
+  }
+  die "Error: Output dir '$outputdir' already or still exists. Maybe use --clean?" if -e $outputdir;
+  mkpath(["$outputdir/log", "$outputdir/root"]) == 3 # three folders should be created
+    or die "Error: Cannot create log and root folders below outputdir $outputdir";
+
+
+  # for jobs, make it absolute
+  $outputdir = abs_path($outputdir);
+  $GOAT_BIN = abs_path($GOAT_BIN);
+
+  # finally submit the jobs
+  my $submitted = 0;
+  for my $f (@files) {
+    submit_file($f->[0], $f->[1]);
+    $submitted++;
+    printf("%-40s\r",sprintf("%04d/%04d = %03.0f %% submitted",$submitted,$total,100*$submitted/$total));
+  }
+  printf("%-40s\n", "Submitted $submitted jobs.");
+}
+
+sub which {
+  my $cmd = shift;
+  open(my $p, "which $cmd |") or die "Can't open which: $!";
+  my @lines = <$p>;
+  close $p;
+  my $exit_value = $? >> 8;
+  if ($exit_value != 0 || @lines != 1) {
+    return undef;
+  }
+  chomp $lines[0];
+  return $lines[0];
+}
+
+sub submit_file {
+  my $inputfile = shift;
+  my $runnumber = shift;
+
+  my $ncpus = 3;
+
+  my $basename = basename($inputfile);
+
+  my $arguments = "$config -f $inputfile -D $outputdir/root -p $inputpre -P $outputpre";
+
+  my $user = $ENV{USER};
+  # open pipe to qsub
+  open(my $qsub, "| $QSUB_BIN >/dev/null")
+    or die "Can't open pipe to $QSUB_BIN: $!";
+  print $qsub <<__BATCHSCRIPT;
 #!/bin/bash
-
-# A shell script to submit farm jobs
-
-# 1st version Ken Livingston, Nov 2007
-# Modified from Jlab auger to pbs / torque - Ken Livingston Feb 2014
-
-# function defs first,  main script below that.
-
-
-exe=`basename $0`
-print_usage()
-{
-    echo
-    echo "Description: A shell script to submit jobs to a pbs / torque batch farm queue."
-    echo
-    echo "Usage: $exe [-r] [-s sleep] [-m <maxjobs>] <jobdir>|<jobfile>"
-    echo
-    echo "Options:"
-    echo "  -m <maxjobs>   Set the maximum no of user owned jobs on the farm (default = 500)"
-    echo "  -s <sleep>     Sleep time(s) between submitting jobs (default = 5s)"
-    echo "  -r             Submit jobs in reverse order to their directory listing in <jobdir> "
-
-    echo "Attempts to run qsub to submit <jobfile>, or all the *.sub files in <jobdir>"
-    echo "For each jobfile, a test is made to see if jobfile.done exists. If so, the assumption is"
-    echo "that the file has already been submitted. To allow resubmission, the .done file must be removed manually" 
-    echo "The log of the each jsub command is put in <jobfile>.done"
-    echo "Furthermore, no jsub commands will be executed until there are less than <maxjobs> jobs pending" 
-    echo "or running on the farm (counted using the jobstat comand)"
-    echo "The maximum no of jobs can be adjusted using the -m option. (default = 500)"
-    echo "If there are more than <maxjobs>, the script will loop, testing every hour until it is able to"
-    echo "submit another job."
-    echo 
-    echo "Examples:"
-    echo
-    echo "$exe jobs/g13/pass0/v7/batch1/runs53764-53783.sub"
-    echo "Submits  jobs/g13/pass0/v7/batch1/runs53764-53783.sub with result in jobs/g13/pass0/v7/batch1/runs53764-53783.sub.done"
-    echo
-    echo "$exe -m 1000 jobs/g13/pass0/v7/batch1"
-    echo "Submits all .sub files in jobs/g13/pass0/v7/batch1, with logs in corresponding .done files,"
-    echo "also increasing the maximum no of jobs to 1000." 
-    echo 
-    exit;
+#PBS -N GoAT_$runnumber
+## Send eMail if job aborts
+#PBS -m a
+## Send eMail when job begins
+##PBS -m b
+## Send eMail if job ends
+##PBS -m e
+#PBS -M $user\@kph.uni-mainz.de
+#PBS -V
+#PBS -l walltime=12:00:00
+#PBS -j oe
+#PBS -o $outputdir/log/$basename.log
+#PBS -q batch
+#PBS -l ncpus=$ncpus
+echo INPUTFILE: $inputfile
+cd $cwd
+$GOAT_BIN $arguments
+__BATCHSCRIPT
+  close $qsub or die "Cannot close pipe to qsub";
 }
 
-init_values()
-{
-#set the defaults
-    sleeptime=0
-    default_maxq="3000";
-    rev="";
-    maxq="${default_maxq}";
-    waittime="5m";
+sub print_help {
+  print <<__EOF;
+Usage: GoATSubmit [--clean] [--prog=program] [--ip=inputpre] [--op=outputpre] <config> <outputdir> [<filelist>|-]
+
+Submit jobs with qsub running GoAT on files in provided <filelist>
+(or read it from STDIN), output goes to <outputdir> (will be created
+and must not exist already). Needs to be run from "GoAT"
+directory with proper <config> existing.
+
+Options:
+
+  --clean   Recursively delete <outputdir> before submission.
+__EOF
+  exit 255;
 }
-
-#  Function to set the command line options
-function set_option {
- 	case $1 in
-	    m)
-	    maxq="${OPTARG}" ;;
-	    s)
-	    sleeptime="${OPTARG}" ;;
-	    r)
-	    rev="-r" ;;
-            *)
-	    print_usage ;;
-	esac
-    shift $[OPTIND-1]
-} 
-
-################################################################################################
-#MAIN SCRIPT STARTS HERE
-
-if [ $# -lt 1 ]; then
-     print_usage;
-fi
-
-init_values;
-
-#parse the command options and set variables accordingly
-while getopts "rm:" opt ; do 
-    set_option $opt  
-done
-shift $[$OPTIND-1]
-
-#work out if we have a file or directory ( or neither)
-if [ -f "$1" ]; then
-    #make a filelist with a single file, for consistency
-    dir=`dirname $1`
-    rm -f ${dir}/allsubs.dat
-    echo $1 > ${dir}/allsubs.dat
-else
-    dir=$1
-    if [ -d "$dir" ]; then
-	#make a filelist of all files
-	rm -f ${dir}/allsubs.dat
-	ls $rev $dir/*.sub > ${dir}/allsubs.dat
-    else
-	echo "Fatel Error: $1 doesn't seem to exist"
-	print_usage
-    fi
-fi
-
-#loop over all files in ${dir}/allsubs.dat
-
-while read subfile
-do
-    #if not already submitted (ie no .done file)
-    if [ ! -f "${subfile}.done" ]; then
-	
-	#count no of jobs already queued on farm
-	jobcount=`qstat -u ${USER} | gawk '{if(($10=="Q")||($10=="H")||($10=="R")) print $0}' | wc -l`
-
-	#go if less than the (self imposed) maximum
-	jobgo=`echo $jobcount | gawk -v maxq=$maxq '{if ($1>=maxq){print"wait"}else{print"go"}}'`
-
-	while [ "$jobgo" = "wait" ]; do
-	    echo "There are aleady $jobcount jobs queued. Waiting until it drops below $maxq. Trying again in $waittime"
-	    sleep $waittime
-	    jobcount=`qstat -u ${USER} | gawk '{if(($10=="Q")||($10=="H")||($10=="R")) print $0}' | wc -l`
-	    jobgo=`echo $jobcount | gawk -v maxq=$maxq '{if ($1>=maxq){print"wait"}else{print"go"}}'`
-	done
-
-	#OK to go
-        #echo "$jobcount jobs on already in the queue, submitting $subfile "
-	echo "qsub $subfile >&  ${subfile}.done"
-	qsub $subfile >&  ${subfile}.done
-	sleep $sleeptime
-    else
-	echo "$subfile was submitted previously."
-    fi
-
-done < ${dir}/allsubs.dat
-
-
-exit;
