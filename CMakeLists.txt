@@ -154,6 +154,15 @@ add_executable(pi0-example
    )
 target_link_libraries(pi0-example goatbase ghist ${LIBS} ${ROOT_LIBRARIES})
 
+add_executable(Scalers
+   inc/PPhysics.h
+   src/PPhysics.cc
+   inc/PScalers.h
+   src/PScalers.cc
+   src/Scalers_main.cc
+   )
+target_link_libraries(Scalers goatbase ghist ${LIBS} ${ROOT_LIBRARIES})
+
 add_executable(TaggEff
    inc/PPhysics.h
    src/PPhysics.cc
