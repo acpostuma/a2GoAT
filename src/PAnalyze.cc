@@ -7,83 +7,219 @@ PAnalyze::PAnalyze()
 
     Helicity = new TH1D("Helicity", "Helicity", 3, 0, 3);
 
-    TaggTime = new TH1D("TaggTime", "Tagger Time;t_{#gamma} (ns)", 1400, -700, 700);
-    TaggHel0 = new TH1D("TaggHel0", "Tagger Hits;Tagger Channel", 352, 0, 352);
-    TaggHel0_R = new TH1D("TaggHel0_R", "Tagger Hits;Tagger Channel", 352, 0, 352);
-    TaggHel1 = new TH1D("TaggHel1", "Tagger Hits;Tagger Channel", 352, 0, 352);
-    TaggHel1_R = new TH1D("TaggHel1_R", "Tagger Hits;Tagger Channel", 352, 0, 352);
+    // Inclusive histograms
+    Tagg_Tm = new TH1D("Tagg_Tm", "Tagger Time;t_{#gamma} (ns)", 1400, -700, 700);
+    Tagg_0 = new TH1D("Tagg_0", "Tagger Hits;Tagger Channel", 352, 0, 352);
+    Tagg_0_R = new TH1D("Tagg_0_R", "Tagger Hits;Tagger Channel", 352, 0, 352);
+    Tagg_1 = new TH1D("Tagg_1", "Tagger Hits;Tagger Channel", 352, 0, 352);
+    Tagg_1_R = new TH1D("Tagg_1_R", "Tagger Hits;Tagger Channel", 352, 0, 352);
 
-    IncTime = new TH1D("IncTime", "Tagger - CB Time;t_{Tagger}-t_{CB} (ns)", 1400, -700, 700);
-    IncHel0 = new TH1D("IncHel0", "Total Inclusive Hits;Tagger Channel", 352, 0, 352);
-    IncHel0_R = new TH1D("IncHel0_R", "Total Inclusive Hits;Tagger Channel", 352, 0, 352);
-    IncHel1 = new TH1D("IncHel1", "Total Inclusive Hits;Tagger Channel", 352, 0, 352);
-    IncHel1_R = new TH1D("IncHel1_R", "Total Inclusive Hits;Tagger Channel", 352, 0, 352);
-    IncHits = new TH2D("IncHits", "Total Inclusive Hits;Tagger Channel;Number of Tracks", 352, 0, 352, 10, 0, 10);
-    IncHits_R = new TH2D("IncHits_R", "Total Inclusive Hits;Tagger Channel;Number of Tracks", 352, 0, 352, 10, 0, 10);
+    Inc_Tm = new TH1D("Inc_Tm", "Tagger - CB Time;t_{Tagger}-t_{CB} (ns)", 1400, -700, 700);
+    Inc_0 = new TH2D("Inc_0", "Total Inclusive Hits;Tagger Channel;Number of Tracks", 352, 0, 352, 10, 0, 10);
+    Inc_0_R = new TH2D("Inc_0_R", "Total Inclusive Hits;Tagger Channel;Number of Tracks", 352, 0, 352, 10, 0, 10);
+    Inc_1 = new TH2D("Inc_1", "Total Inclusive Hits;Tagger Channel;Number of Tracks", 352, 0, 352, 10, 0, 10);
+    Inc_1_R = new TH2D("Inc_1_R", "Total Inclusive Hits;Tagger Channel;Number of Tracks", 352, 0, 352, 10, 0, 10);
 
-    Pi0IM   = new TH1D("Pi0IM", "Neutral Pion Invariant Mass;m_{#gamma#gamma} (MeV)", 400, 0, 400);
-    Pi0IM_XX   = new TH1D("Pi0IM_XX", "Neutral Pion Invariant Mass;m_{#gamma#gamma} (MeV)", 400, 0, 400);
-    Pi0IM_NN   = new TH1D("Pi0IM_NN", "Neutral Pion Invariant Mass;m_{#gamma#gamma} (MeV)", 400, 0, 400);
-    Pi0IM_CBSum = new TH3D("Pi0IM_CBSum", "CB Invariant Mass;E_{#gamma1}+E_{#gamma2} (MeV);#sqrt{2*E_{#gamma1}*E_{#gamma2}} (MeV);m_{#gamma#gamma} (MeV)", 60, 150, 450, 50, 100, 300, 60, 115, 155);
-    Pi0IM_CB = new TH3D("Pi0IM_CB", "CB Invariant Mass;E_{#gamma_1};E_{#gamma_2};m_{#gamma#gamma} (MeV)", 80, 0, 800, 80, 0, 800, 200, 0, 200);
-    Pi0IM_TAPS = new TH3D("Pi0IM_TAPS", "TAPS Invariant Mass;E_{#gamma_1};E_{#gamma_2};m_{#gamma#gamma} (MeV)", 80, 0, 800, 80, 0, 800, 200, 0, 200);
-    Pi0IM_CBTAPS = new TH3D("Pi0IM_CBTAPS", "CB/TAPS Invariant Mass;E_{#gamma_{CB}};E_{#gamma_{TAPS}};m_{#gamma#gamma} (MeV)", 80, 0, 800, 80, 0, 800, 200, 0, 200);
-    Coplanarity = new TH1D("Coplanarity","Coplanarity Angle;#phi_{0}-#phi_{1} (deg)",360,0,360);
-    Split_OA_E = new TH2D("Split_OA_E", "Split OA vs Energy Ratio;E_{split}/E_{#gamma};#theta_{OA} (deg)", 200, 0, 1, 180, 0, 180);
-    MM_CA_OA = new TH3D("MM_CA_OA", "Kinematic Cuts;m_{miss}-m_{targ} (MeV);#phi_{0}-#phi_{1} (deg);#theta_{OA} (deg)", 80, -80, 120, 72, 0, 360, 36, 0, 180);
-    MM_CA_OA_R = new TH3D("MM_CA_OA_R", "Kinematic Cuts;m_{miss}-m_{targ} (MeV);#phi_{0}-#phi_{1} (deg);#theta_{OA} (deg)", 80, -80, 120, 72, 0, 360, 36, 0, 180);
+    // Pi0 histograms
+    Pi0_IM_A = new TH1D("Pi0_IM_A", "Pi0 Invariant Mass;m_{#gamma#gamma} (MeV)", 400, 0, 400);
+    Pi0_IM_E = new TH1D("Pi0_IM_E", "Pi0 Invariant Mass;m_{#gamma#gamma} (MeV)", 400, 0, 400);
+    Pi0_IM_I = new TH1D("Pi0_IM_I", "Pi0 Invariant Mass;m_{#gamma#gamma} (MeV)", 400, 0, 400);
+    Pi0_IM_CC = new TH3D("Pi0_IM_CC", "CB Invariant Mass;E_{#gamma_1};E_{#gamma_2};m_{#gamma#gamma} (MeV)", 80, 0, 800, 80, 0, 800, 200, 0, 200);
+    Pi0_IM_CT = new TH3D("Pi0_IM_CT", "CB/TAPS Invariant Mass;E_{#gamma_{CB}};E_{#gamma_{TAPS}};m_{#gamma#gamma} (MeV)", 80, 0, 800, 80, 0, 800, 200, 0, 200);
 
-    Pi0_Dt = new TH2D("Pi0_Dt", "Pi0 Time;Tagger Channel;t_{#gamma}-t_{#pi^{0}} (ns)", 352, 0, 352, 1400, -700, 700);
-    Pi0_Dt_NN = new TH2D("Pi0_Dt_NN", "Pi0 Time;Tagger Channel;t_{#gamma}-t_{#pi^{0}} (ns)", 352, 0, 352, 1400, -700, 700);
+    Pi0_CA = new TH1D("Pi0_Re_CA", "Pi0 Recoil Coplanarity Angle;#phi_{#pi^{0}}-#phi_{p} (deg)", 360, 0, 360);
 
-    Pi0_IM_MM = new TH3D("Pi0_IM_MM", "Pi0 Missing Mass;Tagger Channel;m_{#gamma#gamma} (MeV);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 100, 0, 200, 80, -80, 120);
-    Pi0_IM_MM_R = new TH3D("Pi0_IM_MM_R", "Pi0 Missing Mass;Tagger Channel;m_{#gamma#gamma} (MeV);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 100, 0, 200, 80, -80, 120);
-    Pi0_IM_MM_NN = new TH3D("Pi0_IM_MM_NN", "Pi0 Missing Mass;Tagger Channel;m_{#gamma#gamma} (MeV);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 100, 0, 200, 80, -80, 120);
-    Pi0_IM_MM_NN_R = new TH3D("Pi0_IM_MM_NN_R", "Pi0 Missing Mass;Tagger Channel;m_{#gamma#gamma} (MeV);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 100, 0, 200, 80, -80, 120);
+    Pi0_Tm_NE = new TH2D("Pi0_Tm_N", "Pi0 Time;Tagger Channel;t_{#gamma}-t_{#pi0^{0}} (ns)", 352, 0, 352, 1400, -700, 700);
+    Pi0_Tm_NI = new TH2D("Pi0_Tm_C", "Pi0 Time;Tagger Channel;t_{#gamma}-t_{#pi0^{0}} (ns)", 352, 0, 352, 1400, -700, 700);
+    Pi0_Tm_CE = new TH2D("Pi0_Tm_NN", "Pi0 Time;Tagger Channel;t_{#gamma}-t_{#pi0^{0}} (ns)", 352, 0, 352, 1400, -700, 700);
+    Pi0_Tm_CI = new TH2D("Pi0_Tm_NC", "Pi0 Time;Tagger Channel;t_{#gamma}-t_{#pi0^{0}} (ns)", 352, 0, 352, 1400, -700, 700);
+    Pi0_Tm_WE = new TH2D("Pi0_Tm_NNX", "Pi0 Time;Tagger Channel;t_{#gamma}-t_{#pi0^{0}} (ns)", 352, 0, 352, 1400, -700, 700);
+    Pi0_Tm_WI = new TH2D("Pi0_Tm_NCX", "Pi0 Time;Tagger Channel;t_{#gamma}-t_{#pi0^{0}} (ns)", 352, 0, 352, 1400, -700, 700);
+    Pi0_Tm_TE = new TH2D("Pi0_Tm_NT", "Pi0 Time;Tagger Channel;t_{#gamma}-t_{#pi0^{0}} (ns)", 352, 0, 352, 1400, -700, 700);
+    Pi0_Tm_TI = new TH2D("Pi0_Tm_NW", "Pi0 Time;Tagger Channel;t_{#gamma}-t_{#pi0^{0}} (ns)", 352, 0, 352, 1400, -700, 700);
 
-    Pi0_MM = new TH3D("Pi0_MM", "Pi0 Missing Mass;Tagger Channel;#theta^{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_MM_R = new TH3D("Pi0_MM_R", "Pi0 Missing Mass;Tagger Channel;#theta^{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_MM_IM = new TH3D("Pi0_MM_IM", "Pi0 Missing Mass;Tagger Channel;#theta^{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_MM_IM_R = new TH3D("Pi0_MM_IM_R", "Pi0 Missing Mass;Tagger Channel;#theta^{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_OA = new TH3D("Pi0_OA", "Pi0 Recoil Opening Angle;Tagger Channel;#theta_{miss} (deg);Opening Angle (deg)", 352, 0, 352, 12, 0, 60, 90, 0, 180);
+    Pi0_OA_R = new TH3D("Pi0_OA_R", "Pi0 Recoil Opening Angle;Tagger Channel;#theta_{miss} (deg);Opening Angle (deg)", 352, 0, 352, 12, 0, 60, 90, 0, 180);
+    Pi0_OA_Cut = new TH3D("Pi0_OA_Cut", "Pi0 Recoil Opening Angle;Tagger Channel;#theta_{miss} (deg);Opening Angle (deg)", 352, 0, 352, 12, 0, 60, 90, 0, 180);
+    Pi0_OA_Cut_R = new TH3D("Pi0_OA_Cut_R", "Pi0 Recoil Opening Angle;Tagger Channel;#theta_{miss} (deg);Opening Angle (deg)", 352, 0, 352, 12, 0, 60, 90, 0, 180);
 
-    Pi0_MM_NN = new TH3D("Pi0_MM_NN", "Pi0 Missing Mass;Tagger Channel;#theta^{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_MM_NN_R = new TH3D("Pi0_MM_NN_R", "Pi0 Missing Mass;Tagger Channel;#theta^{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_MM_NC = new TH3D("Pi0_MM_NC", "Pi0 Missing Mass;Tagger Channel;#theta^{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_MM_NC_R = new TH3D("Pi0_MM_NC_R", "Pi0 Missing Mass;Tagger Channel;#theta^{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_MM_CC = new TH3D("Pi0_MM_CC", "Pi0 Missing Mass;Tagger Channel;#theta^{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_MM_CC_R = new TH3D("Pi0_MM_CC_R", "Pi0 Missing Mass;Tagger Channel;#theta^{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_NE_0 = new TH3D("Pi0_MM_NE_0", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi0^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_NE_0_R = new TH3D("Pi0_MM_NE_0_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi0^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_NE_1 = new TH3D("Pi0_MM_NE_1", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi0^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_NE_1_R = new TH3D("Pi0_MM_NE_1_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi0^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_Ph_NE_0 = new TH3D("Pi0_Ph_NE_0", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi0^{0}} (deg);#phi_{#pi0^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Pi0_Ph_NE_0_R = new TH3D("Pi0_Ph_NE_0_R", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi0^{0}} (deg);#phi_{#pi0^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Pi0_Ph_NE_1 = new TH3D("Pi0_Ph_NE_1", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi0^{0}} (deg);#phi_{#pi0^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Pi0_Ph_NE_1_R = new TH3D("Pi0_Ph_NE_1_R", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi0^{0}} (deg);#phi_{#pi0^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
 
-    Pi0_MM_NNX = new TH3D("Pi0_MM_NNX", "Pi0 Missing Mass;Tagger Channel;#theta^{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_MM_NNX_R = new TH3D("Pi0_MM_NNX_R", "Pi0 Missing Mass;Tagger Channel;#theta^{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_MM_NCX = new TH3D("Pi0_MM_NCX", "Pi0 Missing Mass;Tagger Channel;#theta^{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_MM_NCX_R = new TH3D("Pi0_MM_NCX_R", "Pi0 Missing Mass;Tagger Channel;#theta^{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_MM_CCX = new TH3D("Pi0_MM_CCX", "Pi0 Missing Mass;Tagger Channel;#theta^{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_MM_CCX_R = new TH3D("Pi0_MM_CCX_R", "Pi0 Missing Mass;Tagger Channel;#theta^{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_NI_0 = new TH3D("Pi0_MM_NI_0", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi0^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_NI_0_R = new TH3D("Pi0_MM_NI_0_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi0^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_NI_1 = new TH3D("Pi0_MM_NI_1", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi0^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_NI_1_R = new TH3D("Pi0_MM_NI_1_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi0^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_Ph_NI_0 = new TH3D("Pi0_Ph_NI_0", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi0^{0}} (deg);#phi_{#pi0^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Pi0_Ph_NI_0_R = new TH3D("Pi0_Ph_NI_0_R", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi0^{0}} (deg);#phi_{#pi0^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Pi0_Ph_NI_1 = new TH3D("Pi0_Ph_NI_1", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi0^{0}} (deg);#phi_{#pi0^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Pi0_Ph_NI_1_R = new TH3D("Pi0_Ph_NI_1_R", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi0^{0}} (deg);#phi_{#pi0^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
 
-    Pi0_Re_All = new TH3D("Pi0_Re_All", "Pi0 Missing Mass;Recoil Energy (MeV);#theta^{p} (deg);m_{miss}-m_{targ} (MeV)", 350, 0, 350, 36, 0, 180, 80, -80, 120);
-    Pi0_Re_All_R = new TH3D("Pi0_Re_All_R", "Pi0 Missing Mass;Recoil Energy (MeV);#theta^{p} (deg);m_{miss}-m_{targ} (MeV)", 350, 0, 350, 36, 0, 180, 80, -80, 120);
-    Pi0_Re_Det = new TH3D("Pi0_Re_Det", "Pi0 Missing Mass;Recoil Energy (MeV);#theta^{p} (deg);m_{miss}-m_{targ} (MeV)", 350, 0, 350, 36, 0, 180, 80, -80, 120);
-    Pi0_Re_Det_R = new TH3D("Pi0_Re_Det_R", "Pi0 Missing Mass;Recoil Energy (MeV);#theta^{p} (deg);m_{miss}-m_{targ} (MeV)", 350, 0, 350, 36, 0, 180, 80, -80, 120);
-    Pi0_Re_NoE = new TH3D("Pi0_Re_NoE", "Pi0 Missing Mass;Recoil Energy (MeV);#theta^{p} (deg);m_{miss}-m_{targ} (MeV)", 350, 0, 350, 36, 0, 180, 80, -80, 120);
-    Pi0_Re_NoE_R = new TH3D("Pi0_Re_NoE_R", "Pi0 Missing Mass;Recoil Energy (MeV);#theta^{p} (deg);m_{miss}-m_{targ} (MeV)", 350, 0, 350, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_CE_0 = new TH3D("Pi0_MM_CE_0", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi0^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_CE_0_R = new TH3D("Pi0_MM_CE_0_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi0^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_CE_1 = new TH3D("Pi0_MM_CE_1", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi0^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_CE_1_R = new TH3D("Pi0_MM_CE_1_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi0^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_Ph_CE_0 = new TH3D("Pi0_Ph_CE_0", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi0^{0}} (deg);#phi_{#pi0^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Pi0_Ph_CE_0_R = new TH3D("Pi0_Ph_CE_0_R", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi0^{0}} (deg);#phi_{#pi0^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Pi0_Ph_CE_1 = new TH3D("Pi0_Ph_CE_1", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi0^{0}} (deg);#phi_{#pi0^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Pi0_Ph_CE_1_R = new TH3D("Pi0_Ph_CE_1_R", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi0^{0}} (deg);#phi_{#pi0^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
 
-    Comp_Dt_N_MM = new TH2D("Comp_Dt_N_MM", "Compton Time;Tagger Channel;t_{#gamma}-t_{#gamma^{'}} (ns)", 352, 0, 352, 1400, -700, 700);
-    Comp_Dt_N_CS = new TH2D("Comp_Dt_N_CS", "Compton Time;Tagger Channel;t_{#gamma}-t_{#gamma^{'}} (ns)", 352, 0, 352, 1400, -700, 700);
-    Comp_Dt_N_MMCS = new TH2D("Comp_Dt_N_MMCS", "Compton Time;Tagger Channel;t_{#gamma}-t_{#gamma^{'}} (ns)", 352, 0, 352, 1400, -700, 700);
+    Pi0_MM_CI_0 = new TH3D("Pi0_MM_CI_0", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi0^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_CI_0_R = new TH3D("Pi0_MM_CI_0_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi0^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_CI_1 = new TH3D("Pi0_MM_CI_1", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi0^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_CI_1_R = new TH3D("Pi0_MM_CI_1_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi0^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_Ph_CI_0 = new TH3D("Pi0_Ph_CI_0", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi0^{0}} (deg);#phi_{#pi0^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Pi0_Ph_CI_0_R = new TH3D("Pi0_Ph_CI_0_R", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi0^{0}} (deg);#phi_{#pi0^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Pi0_Ph_CI_1 = new TH3D("Pi0_Ph_CI_1", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi0^{0}} (deg);#phi_{#pi0^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Pi0_Ph_CI_1_R = new TH3D("Pi0_Ph_CI_1_R", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi0^{0}} (deg);#phi_{#pi0^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
 
-    Comp_Dt_N = new TH2D("Comp_Dt_N", "Compton Time;Tagger Channel;t_{#gamma}-t_{#gamma^{'}} (ns)", 352, 0, 352, 1400, -700, 700);
-    Comp_Dt_C = new TH2D("Comp_Dt_C", "Compton Time;Tagger Channel;t_{#gamma}-t_{#gamma^{'}} (ns)", 352, 0, 352, 1400, -700, 700);
-    Comp_Dt_NN = new TH2D("Comp_Dt_NN", "Compton Time;Tagger Channel;t_{#gamma}-t_{#gamma^{'}} (ns)", 352, 0, 352, 1400, -700, 700);
-    Comp_Dt_NC = new TH2D("Comp_Dt_NC", "Compton Time;Tagger Channel;t_{#gamma}-t_{#gamma^{'}} (ns)", 352, 0, 352, 1400, -700, 700);
-    Comp_Dt_NT = new TH2D("Comp_Dt_NT", "Compton Time;Tagger Channel;t_{#gamma}-t_{#gamma^{'}} (ns)", 352, 0, 352, 1400, -700, 700);
-    Comp_Dt_NW = new TH2D("Comp_Dt_NW", "Compton Time;Tagger Channel;t_{#gamma}-t_{#gamma^{'}} (ns)", 352, 0, 352, 1400, -700, 700);
-    Comp_Dt_NNX = new TH2D("Comp_Dt_NNX", "Compton Time;Tagger Channel;t_{#gamma}-t_{#gamma^{'}} (ns)", 352, 0, 352, 1400, -700, 700);
-    Comp_Dt_NCX = new TH2D("Comp_Dt_NCX", "Compton Time;Tagger Channel;t_{#gamma}-t_{#gamma^{'}} (ns)", 352, 0, 352, 1400, -700, 700);
-    Comp_Dt_NTX = new TH2D("Comp_Dt_NTX", "Compton Time;Tagger Channel;t_{#gamma}-t_{#gamma^{'}} (ns)", 352, 0, 352, 1400, -700, 700);
-    Comp_Dt_NWX = new TH2D("Comp_Dt_NWX", "Compton Time;Tagger Channel;t_{#gamma}-t_{#gamma^{'}} (ns)", 352, 0, 352, 1400, -700, 700);
+    Pi0_MM_WE_0 = new TH3D("Pi0_MM_WE_0", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi0^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_WE_0_R = new TH3D("Pi0_MM_WE_0_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi0^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_WE_1 = new TH3D("Pi0_MM_WE_1", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi0^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_WE_1_R = new TH3D("Pi0_MM_WE_1_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi0^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_Ph_WE_0 = new TH3D("Pi0_Ph_WE_0", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi0^{0}} (deg);#phi_{#pi0^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Pi0_Ph_WE_0_R = new TH3D("Pi0_Ph_WE_0_R", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi0^{0}} (deg);#phi_{#pi0^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Pi0_Ph_WE_1 = new TH3D("Pi0_Ph_WE_1", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi0^{0}} (deg);#phi_{#pi0^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Pi0_Ph_WE_1_R = new TH3D("Pi0_Ph_WE_1_R", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi0^{0}} (deg);#phi_{#pi0^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
 
-    Comp_MM_N_C = new TH3D("Comp_MM_N_C", "Compton Missing Mass;Tagger Channel;#theta^{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Comp_MM_N_C_R = new TH3D("Comp_MM_N_C_R", "Compton Missing Mass;Tagger Channel;#theta^{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_WI_0 = new TH3D("Pi0_MM_WI_0", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi0^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_WI_0_R = new TH3D("Pi0_MM_WI_0_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi0^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_WI_1 = new TH3D("Pi0_MM_WI_1", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi0^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_WI_1_R = new TH3D("Pi0_MM_WI_1_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi0^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_Ph_WI_0 = new TH3D("Pi0_Ph_WI_0", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi0^{0}} (deg);#phi_{#pi0^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Pi0_Ph_WI_0_R = new TH3D("Pi0_Ph_WI_0_R", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi0^{0}} (deg);#phi_{#pi0^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Pi0_Ph_WI_1 = new TH3D("Pi0_Ph_WI_1", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi0^{0}} (deg);#phi_{#pi0^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Pi0_Ph_WI_1_R = new TH3D("Pi0_Ph_WI_1_R", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi0^{0}} (deg);#phi_{#pi0^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+
+    Pi0_MM_TE_0 = new TH3D("Pi0_MM_TE_0", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi0^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_TE_0_R = new TH3D("Pi0_MM_TE_0_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi0^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_TE_1 = new TH3D("Pi0_MM_TE_1", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi0^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_TE_1_R = new TH3D("Pi0_MM_TE_1_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi0^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_Ph_TE_0 = new TH3D("Pi0_Ph_TE_0", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi0^{0}} (deg);#phi_{#pi0^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Pi0_Ph_TE_0_R = new TH3D("Pi0_Ph_TE_0_R", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi0^{0}} (deg);#phi_{#pi0^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Pi0_Ph_TE_1 = new TH3D("Pi0_Ph_TE_1", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi0^{0}} (deg);#phi_{#pi0^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Pi0_Ph_TE_1_R = new TH3D("Pi0_Ph_TE_1_R", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi0^{0}} (deg);#phi_{#pi0^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+
+    Pi0_MM_TI_0 = new TH3D("Pi0_MM_TI_0", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi0^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_TI_0_R = new TH3D("Pi0_MM_TI_0_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi0^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_TI_1 = new TH3D("Pi0_MM_TI_1", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi0^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_TI_1_R = new TH3D("Pi0_MM_TI_1_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi0^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_Ph_TI_0 = new TH3D("Pi0_Ph_TI_0", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi0^{0}} (deg);#phi_{#pi0^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Pi0_Ph_TI_0_R = new TH3D("Pi0_Ph_TI_0_R", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi0^{0}} (deg);#phi_{#pi0^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Pi0_Ph_TI_1 = new TH3D("Pi0_Ph_TI_1", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi0^{0}} (deg);#phi_{#pi0^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Pi0_Ph_TI_1_R = new TH3D("Pi0_Ph_TI_1_R", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi0^{0}} (deg);#phi_{#pi0^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+
+    Pi0_Re_All = new TH3D("Pi0_Re_All", "Pi0 Recoil Detection;Tagger Channel;#theta_{miss} (deg);Recoil Energy (MeV)", 352, 0, 352, 12, 0, 60, 200, 0, 200);
+    Pi0_Re_All_R = new TH3D("Pi0_Re_All_R", "Pi0 Recoil Detection;Tagger Channel;#theta_{miss} (deg);Recoil Energy (MeV)", 352, 0, 352, 12, 0, 60, 200, 0, 200);
+    Pi0_Re_Det = new TH3D("Pi0_Re_Det", "Pi0 Recoil Detection;Tagger Channel;#theta_{miss} (deg);Recoil Energy (MeV)", 352, 0, 352, 12, 0, 60, 200, 0, 200);
+    Pi0_Re_Det_R = new TH3D("Pi0_Re_Det_R", "Pi0 Recoil Detection;Tagger Channel;#theta_{miss} (deg);Recoil Energy (MeV)", 352, 0, 352, 12, 0, 60, 200, 0, 200);
+    Pi0_Re_Dif = new TH3D("Pi0_Re_Dif", "Pi0 Recoil Detection;Tagger Channel;#theta_{miss} (deg);E_{miss}-E_{det} (MeV)", 352, 0, 352, 12, 0, 60, 200, -50, 150);
+    Pi0_Re_Dif_R = new TH3D("Pi0_Re_Dif_R", "Pi0 Recoil Detection;Tagger Channel;#theta_{miss} (deg);E_{miss}-E_{det} (MeV)", 352, 0, 352, 12, 0, 60, 200, -50, 150);
+    Pi0_Re_NoE = new TH3D("Pi0_Re_NoE", "Pi0 Recoil Detection;Tagger Channel;#theta_{miss} (deg);Recoil Energy (MeV)", 352, 0, 352, 12, 0, 60, 200, 0, 200);
+    Pi0_Re_NoE_R = new TH3D("Pi0_Re_NoE_R", "Pi0 Recoil Detection;Tagger Channel;#theta_{miss} (deg);Recoil Energy (MeV)", 352, 0, 352, 12, 0, 60, 200, 0, 200);
+
+    // Compton histograms
+    Comp_CA = new TH1D("Comp_CA", "Compton Recoil Coplanarity Angle;#phi_{#gamma}-#phi_{p} (deg)", 360, 0, 360);
+
+    Comp_Tm_NE = new TH2D("Comp_Tm_N", "Compton Time;Tagger Channel;t_{#gamma}-t_{#gamma^{'}} (ns)", 352, 0, 352, 1400, -700, 700);
+    Comp_Tm_NI = new TH2D("Comp_Tm_C", "Compton Time;Tagger Channel;t_{#gamma}-t_{#gamma^{'}} (ns)", 352, 0, 352, 1400, -700, 700);
+    Comp_Tm_CE = new TH2D("Comp_Tm_NN", "Compton Time;Tagger Channel;t_{#gamma}-t_{#gamma^{'}} (ns)", 352, 0, 352, 1400, -700, 700);
+    Comp_Tm_CI = new TH2D("Comp_Tm_NC", "Compton Time;Tagger Channel;t_{#gamma}-t_{#gamma^{'}} (ns)", 352, 0, 352, 1400, -700, 700);
+    Comp_Tm_WE = new TH2D("Comp_Tm_NNX", "Compton Time;Tagger Channel;t_{#gamma}-t_{#gamma^{'}} (ns)", 352, 0, 352, 1400, -700, 700);
+    Comp_Tm_WI = new TH2D("Comp_Tm_NCX", "Compton Time;Tagger Channel;t_{#gamma}-t_{#gamma^{'}} (ns)", 352, 0, 352, 1400, -700, 700);
+    Comp_Tm_TE = new TH2D("Comp_Tm_NT", "Compton Time;Tagger Channel;t_{#gamma}-t_{#gamma^{'}} (ns)", 352, 0, 352, 1400, -700, 700);
+    Comp_Tm_TI = new TH2D("Comp_Tm_NW", "Compton Time;Tagger Channel;t_{#gamma}-t_{#gamma^{'}} (ns)", 352, 0, 352, 1400, -700, 700);
+
+    Comp_OA = new TH3D("Comp_OA", "Compton Recoil Opening Angle;Tagger Channel;#theta_{miss} (deg);Opening Angle (deg)", 352, 0, 352, 12, 0, 60, 90, 0, 180);
+    Comp_OA_R = new TH3D("Comp_OA_R", "Compton Recoil Opening Angle;Tagger Channel;#theta_{miss} (deg);Opening Angle (deg)", 352, 0, 352, 12, 0, 60, 90, 0, 180);
+    Comp_OA_Cut = new TH3D("Comp_OA_Cut", "Compton Recoil Opening Angle;Tagger Channel;#theta_{miss} (deg);Opening Angle (deg)", 352, 0, 352, 12, 0, 60, 90, 0, 180);
+    Comp_OA_Cut_R = new TH3D("Comp_OA_Cut_R", "Compton Recoil Opening Angle;Tagger Channel;#theta_{miss} (deg);Opening Angle (deg)", 352, 0, 352, 12, 0, 60, 90, 0, 180);
+
+    Comp_MM_NE_0 = new TH3D("Comp_MM_NE_0", "Compton Missing Mass;Tagger Channel;#theta_{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Comp_MM_NE_0_R = new TH3D("Comp_MM_NE_0_R", "Compton Missing Mass;Tagger Channel;#theta_{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Comp_MM_NE_1 = new TH3D("Comp_MM_NE_1", "Compton Missing Mass;Tagger Channel;#theta_{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Comp_MM_NE_1_R = new TH3D("Comp_MM_NE_1_R", "Compton Missing Mass;Tagger Channel;#theta_{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Comp_Ph_NE_0 = new TH3D("Comp_Ph_NE_0", "Compton Phi Distribution;Tagger Channel;#theta_{#gamma} (deg);#phi_{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Comp_Ph_NE_0_R = new TH3D("Comp_Ph_NE_0_R", "Compton Phi Distribution;Tagger Channel;#theta_{#gamma} (deg);#phi_{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Comp_Ph_NE_1 = new TH3D("Comp_Ph_NE_1", "Compton Phi Distribution;Tagger Channel;#theta_{#gamma} (deg);#phi_{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Comp_Ph_NE_1_R = new TH3D("Comp_Ph_NE_1_R", "Compton Phi Distribution;Tagger Channel;#theta_{#gamma} (deg);#phi_{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+
+    Comp_MM_NI_0 = new TH3D("Comp_MM_NI_0", "Compton Missing Mass;Tagger Channel;#theta_{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Comp_MM_NI_0_R = new TH3D("Comp_MM_NI_0_R", "Compton Missing Mass;Tagger Channel;#theta_{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Comp_MM_NI_1 = new TH3D("Comp_MM_NI_1", "Compton Missing Mass;Tagger Channel;#theta_{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Comp_MM_NI_1_R = new TH3D("Comp_MM_NI_1_R", "Compton Missing Mass;Tagger Channel;#theta_{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Comp_Ph_NI_0 = new TH3D("Comp_Ph_NI_0", "Compton Phi Distribution;Tagger Channel;#theta_{#gamma} (deg);#phi_{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Comp_Ph_NI_0_R = new TH3D("Comp_Ph_NI_0_R", "Compton Phi Distribution;Tagger Channel;#theta_{#gamma} (deg);#phi_{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Comp_Ph_NI_1 = new TH3D("Comp_Ph_NI_1", "Compton Phi Distribution;Tagger Channel;#theta_{#gamma} (deg);#phi_{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Comp_Ph_NI_1_R = new TH3D("Comp_Ph_NI_1_R", "Compton Phi Distribution;Tagger Channel;#theta_{#gamma} (deg);#phi_{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+
+    Comp_MM_CE_0 = new TH3D("Comp_MM_CE_0", "Compton Missing Mass;Tagger Channel;#theta_{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Comp_MM_CE_0_R = new TH3D("Comp_MM_CE_0_R", "Compton Missing Mass;Tagger Channel;#theta_{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Comp_MM_CE_1 = new TH3D("Comp_MM_CE_1", "Compton Missing Mass;Tagger Channel;#theta_{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Comp_MM_CE_1_R = new TH3D("Comp_MM_CE_1_R", "Compton Missing Mass;Tagger Channel;#theta_{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Comp_Ph_CE_0 = new TH3D("Comp_Ph_CE_0", "Compton Phi Distribution;Tagger Channel;#theta_{#gamma} (deg);#phi_{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Comp_Ph_CE_0_R = new TH3D("Comp_Ph_CE_0_R", "Compton Phi Distribution;Tagger Channel;#theta_{#gamma} (deg);#phi_{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Comp_Ph_CE_1 = new TH3D("Comp_Ph_CE_1", "Compton Phi Distribution;Tagger Channel;#theta_{#gamma} (deg);#phi_{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Comp_Ph_CE_1_R = new TH3D("Comp_Ph_CE_1_R", "Compton Phi Distribution;Tagger Channel;#theta_{#gamma} (deg);#phi_{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+
+    Comp_MM_CI_0 = new TH3D("Comp_MM_CI_0", "Compton Missing Mass;Tagger Channel;#theta_{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Comp_MM_CI_0_R = new TH3D("Comp_MM_CI_0_R", "Compton Missing Mass;Tagger Channel;#theta_{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Comp_MM_CI_1 = new TH3D("Comp_MM_CI_1", "Compton Missing Mass;Tagger Channel;#theta_{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Comp_MM_CI_1_R = new TH3D("Comp_MM_CI_1_R", "Compton Missing Mass;Tagger Channel;#theta_{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Comp_Ph_CI_0 = new TH3D("Comp_Ph_CI_0", "Compton Phi Distribution;Tagger Channel;#theta_{#gamma} (deg);#phi_{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Comp_Ph_CI_0_R = new TH3D("Comp_Ph_CI_0_R", "Compton Phi Distribution;Tagger Channel;#theta_{#gamma} (deg);#phi_{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Comp_Ph_CI_1 = new TH3D("Comp_Ph_CI_1", "Compton Phi Distribution;Tagger Channel;#theta_{#gamma} (deg);#phi_{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Comp_Ph_CI_1_R = new TH3D("Comp_Ph_CI_1_R", "Compton Phi Distribution;Tagger Channel;#theta_{#gamma} (deg);#phi_{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+
+    Comp_MM_WE_0 = new TH3D("Comp_MM_WE_0", "Compton Missing Mass;Tagger Channel;#theta_{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Comp_MM_WE_0_R = new TH3D("Comp_MM_WE_0_R", "Compton Missing Mass;Tagger Channel;#theta_{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Comp_MM_WE_1 = new TH3D("Comp_MM_WE_1", "Compton Missing Mass;Tagger Channel;#theta_{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Comp_MM_WE_1_R = new TH3D("Comp_MM_WE_1_R", "Compton Missing Mass;Tagger Channel;#theta_{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Comp_Ph_WE_0 = new TH3D("Comp_Ph_WE_0", "Compton Phi Distribution;Tagger Channel;#theta_{#gamma} (deg);#phi_{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Comp_Ph_WE_0_R = new TH3D("Comp_Ph_WE_0_R", "Compton Phi Distribution;Tagger Channel;#theta_{#gamma} (deg);#phi_{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Comp_Ph_WE_1 = new TH3D("Comp_Ph_WE_1", "Compton Phi Distribution;Tagger Channel;#theta_{#gamma} (deg);#phi_{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Comp_Ph_WE_1_R = new TH3D("Comp_Ph_WE_1_R", "Compton Phi Distribution;Tagger Channel;#theta_{#gamma} (deg);#phi_{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+
+    Comp_MM_WI_0 = new TH3D("Comp_MM_WI_0", "Compton Missing Mass;Tagger Channel;#theta_{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Comp_MM_WI_0_R = new TH3D("Comp_MM_WI_0_R", "Compton Missing Mass;Tagger Channel;#theta_{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Comp_MM_WI_1 = new TH3D("Comp_MM_WI_1", "Compton Missing Mass;Tagger Channel;#theta_{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Comp_MM_WI_1_R = new TH3D("Comp_MM_WI_1_R", "Compton Missing Mass;Tagger Channel;#theta_{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Comp_Ph_WI_0 = new TH3D("Comp_Ph_WI_0", "Compton Phi Distribution;Tagger Channel;#theta_{#gamma} (deg);#phi_{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Comp_Ph_WI_0_R = new TH3D("Comp_Ph_WI_0_R", "Compton Phi Distribution;Tagger Channel;#theta_{#gamma} (deg);#phi_{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Comp_Ph_WI_1 = new TH3D("Comp_Ph_WI_1", "Compton Phi Distribution;Tagger Channel;#theta_{#gamma} (deg);#phi_{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Comp_Ph_WI_1_R = new TH3D("Comp_Ph_WI_1_R", "Compton Phi Distribution;Tagger Channel;#theta_{#gamma} (deg);#phi_{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+
+    Comp_MM_TE_0 = new TH3D("Comp_MM_TE_0", "Compton Missing Mass;Tagger Channel;#theta_{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Comp_MM_TE_0_R = new TH3D("Comp_MM_TE_0_R", "Compton Missing Mass;Tagger Channel;#theta_{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Comp_MM_TE_1 = new TH3D("Comp_MM_TE_1", "Compton Missing Mass;Tagger Channel;#theta_{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Comp_MM_TE_1_R = new TH3D("Comp_MM_TE_1_R", "Compton Missing Mass;Tagger Channel;#theta_{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Comp_Ph_TE_0 = new TH3D("Comp_Ph_TE_0", "Compton Phi Distribution;Tagger Channel;#theta_{#gamma} (deg);#phi_{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Comp_Ph_TE_0_R = new TH3D("Comp_Ph_TE_0_R", "Compton Phi Distribution;Tagger Channel;#theta_{#gamma} (deg);#phi_{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Comp_Ph_TE_1 = new TH3D("Comp_Ph_TE_1", "Compton Phi Distribution;Tagger Channel;#theta_{#gamma} (deg);#phi_{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Comp_Ph_TE_1_R = new TH3D("Comp_Ph_TE_1_R", "Compton Phi Distribution;Tagger Channel;#theta_{#gamma} (deg);#phi_{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+
+    Comp_MM_TI_0 = new TH3D("Comp_MM_TI_0", "Compton Missing Mass;Tagger Channel;#theta_{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Comp_MM_TI_0_R = new TH3D("Comp_MM_TI_0_R", "Compton Missing Mass;Tagger Channel;#theta_{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Comp_MM_TI_1 = new TH3D("Comp_MM_TI_1", "Compton Missing Mass;Tagger Channel;#theta_{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Comp_MM_TI_1_R = new TH3D("Comp_MM_TI_1_R", "Compton Missing Mass;Tagger Channel;#theta_{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Comp_Ph_TI_0 = new TH3D("Comp_Ph_TI_0", "Compton Phi Distribution;Tagger Channel;#theta_{#gamma} (deg);#phi_{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Comp_Ph_TI_0_R = new TH3D("Comp_Ph_TI_0_R", "Compton Phi Distribution;Tagger Channel;#theta_{#gamma} (deg);#phi_{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Comp_Ph_TI_1 = new TH3D("Comp_Ph_TI_1", "Compton Phi Distribution;Tagger Channel;#theta_{#gamma} (deg);#phi_{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Comp_Ph_TI_1_R = new TH3D("Comp_Ph_TI_1_R", "Compton Phi Distribution;Tagger Channel;#theta_{#gamma} (deg);#phi_{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+
+    // Do I want these?
+    Comp_Tm_N_MM = new TH2D("Comp_Tm_N_MM", "Compton Time;Tagger Channel;t_{#gamma}-t_{#gamma^{'}} (ns)", 352, 0, 352, 1400, -700, 700);
+    Comp_Tm_N_CS = new TH2D("Comp_Tm_N_CS", "Compton Time;Tagger Channel;t_{#gamma}-t_{#gamma^{'}} (ns)", 352, 0, 352, 1400, -700, 700);
+    Comp_Tm_N_MMCS = new TH2D("Comp_Tm_N_MMCS", "Compton Time;Tagger Channel;t_{#gamma}-t_{#gamma^{'}} (ns)", 352, 0, 352, 1400, -700, 700);
+
+    Comp_MM_N_C = new TH3D("Comp_MM_N_C", "Compton Missing Mass;Tagger Channel;#theta_{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Comp_MM_N_C_R = new TH3D("Comp_MM_N_C_R", "Compton Missing Mass;Tagger Channel;#theta_{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
 
     Comp_CS = new TH3D("Comp_CS", "Compton Cluster Size;E^{#gamma} (MeV);#theta_{#gamma} (deg);Cluster Size", 300, 0, 300, 36, 0, 180, 12, 0, 12);
     Comp_CS_MM = new TH3D("Comp_CS_MM", "Compton Cluster Size Cut by MM;E^{#gamma} (MeV);#theta_{#gamma} (deg);Cluster Size", 300, 0, 300, 36, 0, 180, 12, 0, 12);
@@ -92,95 +228,9 @@ PAnalyze::PAnalyze()
     Reco_CS_MM = new TH3D("Reco_CS_MM", "Recoil Cluster Size Cut by MM;E^{p} (MeV);#theta_{p} (deg);Cluster Size", 300, 0, 300, 36, 0, 180, 12, 0, 12);
     Reco_CS_MM_R = new TH3D("Reco_CS_MM_R", "Recoil Cluster Size Cut by MM;E^{p} (MeV);#theta_{p} (deg);Cluster Size", 300, 0, 300, 36, 0, 180, 12, 0, 12);
 
-    Comp_MM_N_0 = new TH3D("Comp_MM_N_0", "Compton Missing Mass;Tagger Channel;#theta^{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Comp_MM_N_0_R = new TH3D("Comp_MM_N_0_R", "Compton Missing Mass;Tagger Channel;#theta^{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Comp_MM_N_1 = new TH3D("Comp_MM_N_1", "Compton Missing Mass;Tagger Channel;#theta^{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Comp_MM_N_1_R = new TH3D("Comp_MM_N_1_R", "Compton Missing Mass;Tagger Channel;#theta^{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Comp_Ph_N_0 = new TH3D("Comp_Ph_N_0", "Compton Phi Distribution;Tagger Channel;#theta^{#gamma} (deg);#phi^{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
-    Comp_Ph_N_0_R = new TH3D("Comp_Ph_N_0_R", "Compton Phi Distribution;Tagger Channel;#theta^{#gamma} (deg);#phi^{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
-    Comp_Ph_N_1 = new TH3D("Comp_Ph_N_1", "Compton Phi Distribution;Tagger Channel;#theta^{#gamma} (deg);#phi^{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
-    Comp_Ph_N_1_R = new TH3D("Comp_Ph_N_1_R", "Compton Phi Distribution;Tagger Channel;#theta^{#gamma} (deg);#phi^{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
-
-    Comp_MM_C_0 = new TH3D("Comp_MM_C_0", "Compton Missing Mass;Tagger Channel;#theta^{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Comp_MM_C_0_R = new TH3D("Comp_MM_C_0_R", "Compton Missing Mass;Tagger Channel;#theta^{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Comp_MM_C_1 = new TH3D("Comp_MM_C_1", "Compton Missing Mass;Tagger Channel;#theta^{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Comp_MM_C_1_R = new TH3D("Comp_MM_C_1_R", "Compton Missing Mass;Tagger Channel;#theta^{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Comp_Ph_C_0 = new TH3D("Comp_Ph_C_0", "Compton Phi Distribution;Tagger Channel;#theta^{#gamma} (deg);#phi^{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
-    Comp_Ph_C_0_R = new TH3D("Comp_Ph_C_0_R", "Compton Phi Distribution;Tagger Channel;#theta^{#gamma} (deg);#phi^{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
-    Comp_Ph_C_1 = new TH3D("Comp_Ph_C_1", "Compton Phi Distribution;Tagger Channel;#theta^{#gamma} (deg);#phi^{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
-    Comp_Ph_C_1_R = new TH3D("Comp_Ph_C_1_R", "Compton Phi Distribution;Tagger Channel;#theta^{#gamma} (deg);#phi^{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
-
-    Comp_MM_NN_0 = new TH3D("Comp_MM_NN_0", "Compton Missing Mass;Tagger Channel;#theta^{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Comp_MM_NN_0_R = new TH3D("Comp_MM_NN_0_R", "Compton Missing Mass;Tagger Channel;#theta^{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Comp_MM_NN_1 = new TH3D("Comp_MM_NN_1", "Compton Missing Mass;Tagger Channel;#theta^{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Comp_MM_NN_1_R = new TH3D("Comp_MM_NN_1_R", "Compton Missing Mass;Tagger Channel;#theta^{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Comp_Ph_NN_0 = new TH3D("Comp_Ph_NN_0", "Compton Phi Distribution;Tagger Channel;#theta^{#gamma} (deg);#phi^{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
-    Comp_Ph_NN_0_R = new TH3D("Comp_Ph_NN_0_R", "Compton Phi Distribution;Tagger Channel;#theta^{#gamma} (deg);#phi^{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
-    Comp_Ph_NN_1 = new TH3D("Comp_Ph_NN_1", "Compton Phi Distribution;Tagger Channel;#theta^{#gamma} (deg);#phi^{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
-    Comp_Ph_NN_1_R = new TH3D("Comp_Ph_NN_1_R", "Compton Phi Distribution;Tagger Channel;#theta^{#gamma} (deg);#phi^{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
-
-    Comp_MM_NC_0 = new TH3D("Comp_MM_NC_0", "Compton Missing Mass;Tagger Channel;#theta^{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Comp_MM_NC_0_R = new TH3D("Comp_MM_NC_0_R", "Compton Missing Mass;Tagger Channel;#theta^{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Comp_MM_NC_1 = new TH3D("Comp_MM_NC_1", "Compton Missing Mass;Tagger Channel;#theta^{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Comp_MM_NC_1_R = new TH3D("Comp_MM_NC_1_R", "Compton Missing Mass;Tagger Channel;#theta^{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Comp_Ph_NC_0 = new TH3D("Comp_Ph_NC_0", "Compton Phi Distribution;Tagger Channel;#theta^{#gamma} (deg);#phi^{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
-    Comp_Ph_NC_0_R = new TH3D("Comp_Ph_NC_0_R", "Compton Phi Distribution;Tagger Channel;#theta^{#gamma} (deg);#phi^{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
-    Comp_Ph_NC_1 = new TH3D("Comp_Ph_NC_1", "Compton Phi Distribution;Tagger Channel;#theta^{#gamma} (deg);#phi^{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
-    Comp_Ph_NC_1_R = new TH3D("Comp_Ph_NC_1_R", "Compton Phi Distribution;Tagger Channel;#theta^{#gamma} (deg);#phi^{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
-
-    Comp_MM_NT_0 = new TH3D("Comp_MM_NT_0", "Compton Missing Mass;Tagger Channel;#theta^{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Comp_MM_NT_0_R = new TH3D("Comp_MM_NT_0_R", "Compton Missing Mass;Tagger Channel;#theta^{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Comp_MM_NT_1 = new TH3D("Comp_MM_NT_1", "Compton Missing Mass;Tagger Channel;#theta^{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Comp_MM_NT_1_R = new TH3D("Comp_MM_NT_1_R", "Compton Missing Mass;Tagger Channel;#theta^{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Comp_Ph_NT_0 = new TH3D("Comp_Ph_NT_0", "Compton Phi Distribution;Tagger Channel;#theta^{#gamma} (deg);#phi^{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
-    Comp_Ph_NT_0_R = new TH3D("Comp_Ph_NT_0_R", "Compton Phi Distribution;Tagger Channel;#theta^{#gamma} (deg);#phi^{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
-    Comp_Ph_NT_1 = new TH3D("Comp_Ph_NT_1", "Compton Phi Distribution;Tagger Channel;#theta^{#gamma} (deg);#phi^{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
-    Comp_Ph_NT_1_R = new TH3D("Comp_Ph_NT_1_R", "Compton Phi Distribution;Tagger Channel;#theta^{#gamma} (deg);#phi^{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
-
-    Comp_MM_NW_0 = new TH3D("Comp_MM_NW_0", "Compton Missing Mass;Tagger Channel;#theta^{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Comp_MM_NW_0_R = new TH3D("Comp_MM_NW_0_R", "Compton Missing Mass;Tagger Channel;#theta^{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Comp_MM_NW_1 = new TH3D("Comp_MM_NW_1", "Compton Missing Mass;Tagger Channel;#theta^{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Comp_MM_NW_1_R = new TH3D("Comp_MM_NW_1_R", "Compton Missing Mass;Tagger Channel;#theta^{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Comp_Ph_NW_0 = new TH3D("Comp_Ph_NW_0", "Compton Phi Distribution;Tagger Channel;#theta^{#gamma} (deg);#phi^{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
-    Comp_Ph_NW_0_R = new TH3D("Comp_Ph_NW_0_R", "Compton Phi Distribution;Tagger Channel;#theta^{#gamma} (deg);#phi^{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
-    Comp_Ph_NW_1 = new TH3D("Comp_Ph_NW_1", "Compton Phi Distribution;Tagger Channel;#theta^{#gamma} (deg);#phi^{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
-    Comp_Ph_NW_1_R = new TH3D("Comp_Ph_NW_1_R", "Compton Phi Distribution;Tagger Channel;#theta^{#gamma} (deg);#phi^{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
-
-    Comp_MM_NNX_0 = new TH3D("Comp_MM_NNX_0", "Compton Missing Mass;Tagger Channel;#theta^{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Comp_MM_NNX_0_R = new TH3D("Comp_MM_NNX_0_R", "Compton Missing Mass;Tagger Channel;#theta^{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Comp_MM_NNX_1 = new TH3D("Comp_MM_NNX_1", "Compton Missing Mass;Tagger Channel;#theta^{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Comp_MM_NNX_1_R = new TH3D("Comp_MM_NNX_1_R", "Compton Missing Mass;Tagger Channel;#theta^{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Comp_Ph_NNX_0 = new TH3D("Comp_Ph_NNX_0", "Compton Phi Distribution;Tagger Channel;#theta^{#gamma} (deg);#phi^{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
-    Comp_Ph_NNX_0_R = new TH3D("Comp_Ph_NNX_0_R", "Compton Phi Distribution;Tagger Channel;#theta^{#gamma} (deg);#phi^{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
-    Comp_Ph_NNX_1 = new TH3D("Comp_Ph_NNX_1", "Compton Phi Distribution;Tagger Channel;#theta^{#gamma} (deg);#phi^{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
-    Comp_Ph_NNX_1_R = new TH3D("Comp_Ph_NNX_1_R", "Compton Phi Distribution;Tagger Channel;#theta^{#gamma} (deg);#phi^{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
-
-    Comp_MM_NCX_0 = new TH3D("Comp_MM_NCX_0", "Compton Missing Mass;Tagger Channel;#theta^{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Comp_MM_NCX_0_R = new TH3D("Comp_MM_NCX_0_R", "Compton Missing Mass;Tagger Channel;#theta^{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Comp_MM_NCX_1 = new TH3D("Comp_MM_NCX_1", "Compton Missing Mass;Tagger Channel;#theta^{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Comp_MM_NCX_1_R = new TH3D("Comp_MM_NCX_1_R", "Compton Missing Mass;Tagger Channel;#theta^{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Comp_Ph_NCX_0 = new TH3D("Comp_Ph_NCX_0", "Compton Phi Distribution;Tagger Channel;#theta^{#gamma} (deg);#phi^{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
-    Comp_Ph_NCX_0_R = new TH3D("Comp_Ph_NCX_0_R", "Compton Phi Distribution;Tagger Channel;#theta^{#gamma} (deg);#phi^{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
-    Comp_Ph_NCX_1 = new TH3D("Comp_Ph_NCX_1", "Compton Phi Distribution;Tagger Channel;#theta^{#gamma} (deg);#phi^{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
-    Comp_Ph_NCX_1_R = new TH3D("Comp_Ph_NCX_1_R", "Compton Phi Distribution;Tagger Channel;#theta^{#gamma} (deg);#phi^{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
-
-    Comp_MM_NTX_0 = new TH3D("Comp_MM_NTX_0", "Compton Missing Mass;Tagger Channel;#theta^{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Comp_MM_NTX_0_R = new TH3D("Comp_MM_NTX_0_R", "Compton Missing Mass;Tagger Channel;#theta^{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Comp_MM_NTX_1 = new TH3D("Comp_MM_NTX_1", "Compton Missing Mass;Tagger Channel;#theta^{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Comp_MM_NTX_1_R = new TH3D("Comp_MM_NTX_1_R", "Compton Missing Mass;Tagger Channel;#theta^{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Comp_Ph_NTX_0 = new TH3D("Comp_Ph_NTX_0", "Compton Phi Distribution;Tagger Channel;#theta^{#gamma} (deg);#phi^{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
-    Comp_Ph_NTX_0_R = new TH3D("Comp_Ph_NTX_0_R", "Compton Phi Distribution;Tagger Channel;#theta^{#gamma} (deg);#phi^{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
-    Comp_Ph_NTX_1 = new TH3D("Comp_Ph_NTX_1", "Compton Phi Distribution;Tagger Channel;#theta^{#gamma} (deg);#phi^{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
-    Comp_Ph_NTX_1_R = new TH3D("Comp_Ph_NTX_1_R", "Compton Phi Distribution;Tagger Channel;#theta^{#gamma} (deg);#phi^{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
-
-    Comp_MM_NWX_0 = new TH3D("Comp_MM_NWX_0", "Compton Missing Mass;Tagger Channel;#theta^{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Comp_MM_NWX_0_R = new TH3D("Comp_MM_NWX_0_R", "Compton Missing Mass;Tagger Channel;#theta^{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Comp_MM_NWX_1 = new TH3D("Comp_MM_NWX_1", "Compton Missing Mass;Tagger Channel;#theta^{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Comp_MM_NWX_1_R = new TH3D("Comp_MM_NWX_1_R", "Compton Missing Mass;Tagger Channel;#theta^{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Comp_Ph_NWX_0 = new TH3D("Comp_Ph_NWX_0", "Compton Phi Distribution;Tagger Channel;#theta^{#gamma} (deg);#phi^{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
-    Comp_Ph_NWX_0_R = new TH3D("Comp_Ph_NWX_0_R", "Compton Phi Distribution;Tagger Channel;#theta^{#gamma} (deg);#phi^{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
-    Comp_Ph_NWX_1 = new TH3D("Comp_Ph_NWX_1", "Compton Phi Distribution;Tagger Channel;#theta^{#gamma} (deg);#phi^{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
-    Comp_Ph_NWX_1_R = new TH3D("Comp_Ph_NWX_1_R", "Compton Phi Distribution;Tagger Channel;#theta^{#gamma} (deg);#phi^{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Split_OA_E = new TH2D("Split_OA_E", "Split OA vs Energy Ratio;E_{split}/E_{#gamma};#theta_{OA} (deg)", 200, 0, 1, 180, 0, 180);
+    MM_CA_OA = new TH3D("MM_CA_OA", "Kinematic Cuts;m_{miss}-m_{targ} (MeV);#phi_{0}-#phi_{1} (deg);#theta_{OA} (deg)", 80, -80, 120, 72, 0, 360, 36, 0, 180);
+    MM_CA_OA_R = new TH3D("MM_CA_OA_R", "Kinematic Cuts;m_{miss}-m_{targ} (MeV);#phi_{0}-#phi_{1} (deg);#theta_{OA} (deg)", 80, -80, 120, 72, 0, 360, 36, 0, 180);
 
     verbosity = 0;
     excl_pi0 = false;
@@ -193,6 +243,9 @@ PAnalyze::PAnalyze()
     ESCut = 0;
 
     save_randoms = false;
+    split_search = false;
+
+    taps_eff = 1;
 
     cir_beam = false;
     lin_beam = false;
@@ -200,6 +253,7 @@ PAnalyze::PAnalyze()
     targPol = 1;
 
     firstEvent = true;
+    gRandom->SetSeed(0);
 }
 
 PAnalyze::~PAnalyze()
@@ -262,6 +316,9 @@ Bool_t	PAnalyze::Start()
 
 void	PAnalyze::ProcessEvent()
 {
+    //////////////////////////////////////////////////
+    // Read in polarization info on first event
+    //////////////////////////////////////////////////
     if (firstEvent)
     {
         Int_t fileTime = GetSetupParameters()->GetTimeStamp();
@@ -293,18 +350,26 @@ void	PAnalyze::ProcessEvent()
 
     if (GetEventNumber()%100000 == 0) cout << "Event " << GetEventNumber() << endl;
 
+    //////////////////////////////////////////////////
+    // Reject events below energy sum cut
+    //////////////////////////////////////////////////
     if (GetTrigger()->GetEnergySum() < ESCut) return;
 
+    //////////////////////////////////////////////////
+    // Event weighting for MC
+    //////////////////////////////////////////////////
     Float_t event_weight = 1;
     if (IsMCFile()) event_weight = GetTrigger()->GetMCWeight();
 
-    Bool_t hel = 0;
+    //////////////////////////////////////////////////
+    // Figure out 'helicity' state, reject errors
+    //////////////////////////////////////////////////
+    Bool_t b_hel = 0;
     if (cir_beam && !(IsMCFile()))
     {
         if(!(GetTrigger()->HasHelicity())) return;
-        hel = GetTrigger()->GetHelicity();
+        b_hel = GetTrigger()->GetHelicity();
     }
-
     for (Int_t i=0; i<(GetTrigger()->GetNErrors()); i++)
     {
         if (!(IsMCFile()) && (cir_beam || (GetTrigger()->GetErrorModuleID())[i] >= 0 || (GetTrigger()->GetErrorModuleIndex())[i] >= 0))
@@ -313,873 +378,882 @@ void	PAnalyze::ProcessEvent()
             return;
         }
     }
+    Helicity->Fill(b_hel);
 
-    Helicity->Fill(hel);
+    //////////////////////////////////////////////////
+    // Kinematic variables
+    //////////////////////////////////////////////////
+    Int_t i_tagg_ch, i_part_sz, i_reco_sz;
+    Double_t d_part_tm, d_tagg_tm, d_aver_tm, d_subt_tm;
+    Double_t d_tagg_en, d_trk0_en, d_trk1_en, d_part_en, d_reco_en, d_splt_en, d_miss_ma;
+    Double_t d_part_th, d_part_ph, d_reco_th, d_miss_th, d_CA, d_OA, d_temp;
+    TLorentzVector lv_trk0, lv_trk1, lv_splt, lv_part, lv_ptot, lv_beam, lv_miss;
+    TLorentzVector lv_targ = GetTarget();
+    TVector3 v_reco, v_splt;
 
-    Int_t tagg_chan, clus_size;
-    Double_t comp_time, pi0_time, tagg_time, tagg_energy, time, energy, theta, theta_cm, phi, phi_cm, copl_ang, open_ang, split_energy, m_miss;
-    Double_t reco_energy, reco_theta;
-    Int_t reco_size;
-    TLorentzVector beam, target, compton, compton_cm, pi0, missing, ptot;
-    TVector3 lab_to_cm, recoil, split;
-    TLorentzVector track_0, track_1, miss_0, miss_1;
-    target = GetTarget();
+    // Currently unused center of mass stuff
+    //TLorentzVector lv_part_cm;
+    //TVector3 v_lab_cm;
+    //Double_t d_part_th_cm, d_part_ph_cm;
 
-    Bool_t comp_N, comp_C, comp_NN, comp_NC, comp_NT, comp_NW, comp_NNX, comp_NCX, comp_NTX, comp_NWX, comp_X;
-    comp_N = comp_C = comp_NN = comp_NC = comp_NT = comp_NW = comp_NNX = comp_NCX = comp_NTX = comp_NWX = comp_X = false;
-    Bool_t fill_Ph_0, fill_Ph_1, fill_MM_0, fill_MM_1, cut_CA, cut_OA;
-    fill_Ph_0 = fill_Ph_1 = fill_MM_0 = fill_MM_1 = cut_CA = cut_OA = false;
-    split_energy = 0;
-    Bool_t pi0_NN, pi0_NC, pi0_CC, pi0_NNX, pi0_NCX, pi0_CCX, pi0_X;
-    pi0_NN = pi0_NC = pi0_CC = pi0_NNX = pi0_NCX = pi0_CCX = pi0_X = false;
+    Bool_t b_comp, b_pi0, b_pi0_CC, b_pi0_CT, b_pi0_TC, b_NE, b_NI, b_CE, b_CI, b_TE, b_TI, b_WE, b_WI, b_cut_CA, b_cut_OA;
+    b_comp = b_pi0 = b_pi0_CC = b_pi0_CT = b_pi0_TC = b_NE = b_NI = b_CE = b_CI = b_TE = b_TI = b_WE = b_WI = b_cut_CA = b_cut_OA = false;
 
-    if (!lin_beam)
+    Double_t d_min_IM = 0;
+
+    ignoreTrack.clear();
+
+    //////////////////////////////////////////////////
+    // Check for tracks in TAPS
+    //////////////////////////////////////////////////
+    for (Int_t i=0; i<(GetTracks()->GetNTracks()); i++)
     {
-        if(hel) fill_MM_1 = true;
-        else fill_MM_0 = true;
+        if ((GetTracks()->HasTAPS(i)) && (gRandom->Rndm() >= taps_eff)) ignoreTrack.push_back(true);
+        else ignoreTrack.push_back(false);
     }
-
-    //if(GetDecodeDoubles()) GetTagger()->DecodeDoubles();
-
-    Int_t nTagg = GetTagger()->GetNTagged();
-    //Int_t nDoub = GetTagger()->GetNDouble();
-
-    Double_t minIM = 0;
-    Bool_t IM_CB = false;
-    Bool_t IM_TAPS = false;
-    Bool_t IM_CBTAPS = false;
-    Double_t e0, e1;
 
     //////////////////////////////////////////////////
     // Initial pi0 stuff
     //////////////////////////////////////////////////
-    if (GetTracks()->GetNTracks() == 2 && GetTracks()->GetClusterEnergy(0) != 0 && GetTracks()->GetClusterEnergy(1) != 0)
+    for (Int_t i=0; i<(GetTracks()->GetNTracks()-1); i++)
     {
-        pi0 = GetTracks()->GetVector(0) + GetTracks()->GetVector(1);
-        minIM = pi0.M();
-        pi0_time = 0.5*(GetTracks()->GetTime(0) + GetTracks()->GetTime(1));
-        IM_CB = (GetTracks()->HasCB(0) && GetTracks()->HasCB(1));
-        IM_TAPS = (GetTracks()->HasTAPS(0) && GetTracks()->HasTAPS(1));
-        IM_CBTAPS = ((GetTracks()->HasCB(0) && GetTracks()->HasTAPS(1)) || (GetTracks()->HasTAPS(0) && GetTracks()->HasCB(1)));
-        if (GetTracks()->HasTAPS(0) && GetTracks()->HasCB(1))
+        d_trk0_en = GetTracks()->GetClusterEnergy(i);
+        if (d_trk0_en == 0 || ignoreTrack.at(i)) continue;
+        lv_trk0 = GetTracks()->GetVector(i);
+
+        for (Int_t j=i+1; j<(GetTracks()->GetNTracks()); j++)
         {
-            e0 = GetTracks()->GetClusterEnergy(1);
-            e1 = GetTracks()->GetClusterEnergy(0);
-        }
-        else
-        {
-            e0 = GetTracks()->GetClusterEnergy(0);
-            e1 = GetTracks()->GetClusterEnergy(1);
-        }
-        if (GetTracks()->IsNeutral(0) && GetTracks()->IsNeutral(1)) pi0_NN = true;
-        else if (GetTracks()->IsNeutral(0) || GetTracks()->IsNeutral(1)) pi0_NC = true;
-        else pi0_CC = true;
-    }
-    else if (GetTracks()->GetNTracks() == 3)
-    {
-        if (GetTracks()->GetClusterEnergy(0) != 0 && GetTracks()->GetClusterEnergy(1) != 0)
-        {
-            ptot = GetTracks()->GetVector(0) + GetTracks()->GetVector(1);
-            if(TMath::Abs(134.98 - ptot.M()) < TMath::Abs(134.98 - minIM))
+            d_trk1_en = GetTracks()->GetClusterEnergy(j);
+            if (d_trk1_en == 0 || ignoreTrack.at(j)) continue;
+            lv_trk1 = GetTracks()->GetVector(j);
+
+            lv_ptot = lv_trk0 + lv_trk1;
+            if (TMath::Abs(134.98 - lv_ptot.M()) < TMath::Abs(134.98 - d_min_IM))
             {
-                pi0 = GetTracks()->GetVector(0) + GetTracks()->GetVector(1);
-                minIM = pi0.M();
-                pi0_time = 0.5*(GetTracks()->GetTime(0) + GetTracks()->GetTime(1));
-                IM_CB = (GetTracks()->HasCB(0) && GetTracks()->HasCB(1));
-                IM_TAPS = (GetTracks()->HasTAPS(0) && GetTracks()->HasTAPS(1));
-                IM_CBTAPS = ((GetTracks()->HasCB(0) && GetTracks()->HasTAPS(1)) || (GetTracks()->HasTAPS(0) && GetTracks()->HasCB(1)));
-                if (GetTracks()->HasTAPS(0) && GetTracks()->HasCB(1))
+                if ((GetTracks()->HasCB(i)) && (GetTracks()->HasCB(j)))
                 {
-                    e0 = GetTracks()->GetClusterEnergy(1);
-                    e1 = GetTracks()->GetClusterEnergy(0);
+                    d_part_tm = 0.5*(GetTracks()->GetTime(i) + GetTracks()->GetTime(j));
+                    b_pi0_CC = true;
+                    b_pi0_CT = b_pi0_TC = false;
                 }
-                else
+                else if (GetTracks()->HasCB(i))
                 {
-                    e0 = GetTracks()->GetClusterEnergy(0);
-                    e1 = GetTracks()->GetClusterEnergy(1);
+                    d_part_tm = (GetTracks()->GetTime(i));
+                    b_pi0_CT = true;
+                    b_pi0_CC = b_pi0_TC = false;
                 }
-                recoil = GetTracks()->GetUnitVector(2);
-                reco_energy = GetTracks()->GetClusterEnergy(2);
-                copl_ang = TMath::Abs(pi0.Phi()*TMath::RadToDeg()-GetTracks()->GetPhi(2));
-                cut_CA = (TMath::Abs(180.0-copl_ang) < OACut);
-                pi0_NNX = pi0_NCX = pi0_CCX = false;
-                if (GetTracks()->IsNeutral(0) && GetTracks()->IsNeutral(1)) pi0_NNX = true;
-                else if (GetTracks()->IsNeutral(0) || GetTracks()->IsNeutral(1)) pi0_NCX = true;
-                else pi0_CCX = true;
-            }
-        }
-        if (GetTracks()->GetClusterEnergy(0) != 0 && GetTracks()->GetClusterEnergy(2) != 0)
-        {
-            ptot = GetTracks()->GetVector(0) + GetTracks()->GetVector(2);
-            if(TMath::Abs(134.98 - ptot.M()) < TMath::Abs(134.98 - minIM))
-            {
-                pi0 = GetTracks()->GetVector(0) + GetTracks()->GetVector(2);
-                minIM = pi0.M();
-                pi0_time = 0.5*(GetTracks()->GetTime(0) + GetTracks()->GetTime(2));
-                IM_CB = (GetTracks()->HasCB(0) && GetTracks()->HasCB(2));
-                IM_TAPS = (GetTracks()->HasTAPS(0) && GetTracks()->HasTAPS(2));
-                IM_CBTAPS = ((GetTracks()->HasCB(0) && GetTracks()->HasTAPS(2)) || (GetTracks()->HasTAPS(0) && GetTracks()->HasCB(2)));
-                if (GetTracks()->HasTAPS(0) && GetTracks()->HasCB(2))
+                else if (GetTracks()->HasCB(j))
                 {
-                    e0 = GetTracks()->GetClusterEnergy(2);
-                    e1 = GetTracks()->GetClusterEnergy(0);
+                    d_part_tm = (GetTracks()->GetTime(j));
+                    b_pi0_TC = true;
+                    b_pi0_CC = b_pi0_CT = false;
                 }
-                else
+                else continue;
+                lv_part = lv_trk0 + lv_trk1;                
+                d_part_th = lv_part.Theta()*TMath::RadToDeg();
+                d_part_ph = lv_part.Phi()*TMath::RadToDeg();
+                d_min_IM = lv_part.M();
+                //if (GetTracks()->IsNeutral(i) && GetTracks()->IsNeutral(j)) pi0_NN = true;
+                b_NE = b_NI = b_CE = b_CI = b_WE = b_WI = b_TE = b_TI = b_cut_CA = false;
+                if (GetTracks()->GetNTracks() == 2) b_NE = true;
+                else b_NI = true;
+                d_CA = 360;
+                d_splt_en = 0;
+
+                //////////////////////////////////////////////////
+                // Look for best recoil
+                //////////////////////////////////////////////////
+                for (Int_t k=0; k<(GetTracks()->GetNTracks()); k++)
                 {
-                    e0 = GetTracks()->GetClusterEnergy(0);
-                    e1 = GetTracks()->GetClusterEnergy(2);
+                    if (k == i || k == j || ignoreTrack.at(k)) continue;
+                    d_temp = TMath::Abs(d_part_ph-GetTracks()->GetPhi(k));
+                    if (TMath::Abs(180.0-d_temp) < TMath::Abs(180.0-d_CA))
+                    {
+                        d_CA = d_temp;
+                        if (TMath::Abs(180.0-d_CA) < OACut)
+                        {
+                            b_cut_CA = true;
+                            v_reco = GetTracks()->GetUnitVector(k);
+                            d_reco_en = GetTracks()->GetClusterEnergy(k);
+                            d_reco_th = GetTracks()->GetTheta(k);
+                            i_reco_sz = GetTracks()->GetClusterSize(k);
+                            //if (GetTracks()->IsNeutral(k)) rec_N = true;
+                            b_NE = b_NI = b_CE = b_CI = b_WE = b_WI = b_TE = b_TI = false;
+                            if (GetTracks()->HasCB(k) && d_reco_en > 0)
+                            {
+                                if (GetTracks()->GetNTracks() == 3) b_CE = true;
+                                else b_CI = true;
+                            }
+                            else if (GetTracks()->HasCB(k))
+                            {
+                                if (GetTracks()->GetNTracks() == 3) b_WE = true;
+                                else b_WI = true;
+                            }
+                            else
+                            {
+                                if (GetTracks()->GetNTracks() == 3) b_TE = true;
+                                else b_TI = true;
+                            }
+                        }
+                    }
                 }
-                recoil = GetTracks()->GetUnitVector(1);
-                reco_energy = GetTracks()->GetClusterEnergy(1);
-                copl_ang = TMath::Abs(pi0.Phi()*TMath::RadToDeg()-GetTracks()->GetPhi(1));
-                cut_CA = (TMath::Abs(180.0-copl_ang) < OACut);
-                pi0_NNX = pi0_NCX = pi0_CCX = false;
-                if (GetTracks()->IsNeutral(0) && GetTracks()->IsNeutral(2)) pi0_NNX = true;
-                else if (GetTracks()->IsNeutral(0) || GetTracks()->IsNeutral(2)) pi0_NCX = true;
-                else pi0_CCX = true;
-            }
-        }
-        if (GetTracks()->GetClusterEnergy(1) != 0 && GetTracks()->GetClusterEnergy(2) != 0)
-        {
-            ptot = GetTracks()->GetVector(1) + GetTracks()->GetVector(2);
-            if(TMath::Abs(134.98 - ptot.M()) < TMath::Abs(134.98 - minIM))
-            {
-                pi0 = GetTracks()->GetVector(1) + GetTracks()->GetVector(2);
-                minIM = pi0.M();
-                pi0_time = 0.5*(GetTracks()->GetTime(1) + GetTracks()->GetTime(2));
-                IM_CB = (GetTracks()->HasCB(1) && GetTracks()->HasCB(2));
-                IM_TAPS = (GetTracks()->HasTAPS(1) && GetTracks()->HasTAPS(2));
-                IM_CBTAPS = ((GetTracks()->HasCB(1) && GetTracks()->HasTAPS(2)) || (GetTracks()->HasTAPS(1) && GetTracks()->HasCB(2)));
-                if (GetTracks()->HasTAPS(1) && GetTracks()->HasCB(2))
+
+                if (!split_search) continue;
+                //////////////////////////////////////////////////
+                // Look for splits
+                //////////////////////////////////////////////////
+                for (Int_t k=0; k<(GetTracks()->GetNTracks()); k++)
                 {
-                    e0 = GetTracks()->GetClusterEnergy(2);
-                    e1 = GetTracks()->GetClusterEnergy(1);
+                    d_splt_en = GetTracks()->GetClusterEnergy(k);
+                    if (k == i || k == j || d_splt_en == 0 || ignoreTrack.at(k)) continue;
+                    lv_splt = GetTracks()->GetVector(k);
+                    v_splt = GetTracks()->GetUnitVector(k);
+
+                    Split_OA_E->Fill(d_splt_en/d_trk0_en,(TMath::RadToDeg()*lv_trk0.Angle(v_splt)));
+                    Split_OA_E->Fill(d_splt_en/d_trk1_en,(TMath::RadToDeg()*lv_trk1.Angle(v_splt)));
+
+                    if ((TMath::RadToDeg()*lv_trk0.Angle(v_splt)) < 40*(1-(2*d_splt_en/d_trk0_en)) ||
+                        (TMath::RadToDeg()*lv_trk1.Angle(v_splt)) < 40*(1-(2*d_splt_en/d_trk1_en)))
+                    {
+                        lv_ptot = lv_trk0 + lv_trk1 + lv_splt;
+                        if (TMath::Abs(134.98 - lv_ptot.M()) < TMath::Abs(134.98 - d_min_IM))
+                        {
+                            if ((GetTracks()->HasCB(i)) && (GetTracks()->HasCB(j)))
+                            {
+                                d_part_tm = 0.5*(GetTracks()->GetTime(i) + GetTracks()->GetTime(j));
+                                b_pi0_CC = true;
+                                b_pi0_CT = b_pi0_TC = false;
+                            }
+                            else if (GetTracks()->HasCB(i))
+                            {
+                                d_part_tm = (GetTracks()->GetTime(i));
+                                b_pi0_CT = true;
+                                b_pi0_CC = b_pi0_TC = false;
+                            }
+                            else if (GetTracks()->HasCB(j))
+                            {
+                                d_part_tm = (GetTracks()->GetTime(j));
+                                b_pi0_TC = true;
+                                b_pi0_CC = b_pi0_CT = false;
+                            }
+                            else continue;
+                            lv_part = lv_trk0 + lv_trk1 + lv_splt;
+                            d_part_th = lv_part.Theta()*TMath::RadToDeg();
+                            d_part_ph = lv_part.Phi()*TMath::RadToDeg();
+                            //pi0_XX = lv_trk0 + lv_trk1;
+                            d_min_IM = lv_part.M();
+                            //if (GetTracks()->IsNeutral(i) && GetTracks()->IsNeutral(j)) pi0_NN = true;
+                            b_NE = b_NI = b_CE = b_CI = b_WE = b_WI = b_TE = b_TI = b_cut_CA = false;
+                            if (GetTracks()->GetNTracks() == 3) b_NE = true;
+                            else b_NI = true;
+                            d_CA = 360;
+
+                            //////////////////////////////////////////////////
+                            // Look for best recoil
+                            //////////////////////////////////////////////////
+                            for (Int_t l=0; l<(GetTracks()->GetNTracks()); l++)
+                            {
+                                if (l == i || l == j || l == k || ignoreTrack.at(l)) continue;
+                                d_temp = TMath::Abs(d_part_ph-GetTracks()->GetPhi(l));
+                                if (TMath::Abs(180.0-d_temp) < TMath::Abs(180.0-d_CA))
+                                {
+                                    d_CA = d_temp;
+                                    if (TMath::Abs(180.0-d_CA) < OACut)
+                                    {
+                                        b_cut_CA = true;
+                                        v_reco = GetTracks()->GetUnitVector(l);
+                                        d_reco_en = GetTracks()->GetClusterEnergy(l);
+                                        d_reco_th = GetTracks()->GetTheta(l);
+                                        i_reco_sz = GetTracks()->GetClusterSize(l);
+                                        //if (GetTracks()->IsNeutral(l)) rec_N = true;
+                                        b_NE = b_NI = b_CE = b_CI = b_WE = b_WI = b_TE = b_TI = false;
+                                        if (GetTracks()->HasCB(l) && d_reco_en > 0)
+                                        {
+                                            if (GetTracks()->GetNTracks() == 4) b_CE = true;
+                                            else b_CI = true;
+                                        }
+                                        else if (GetTracks()->HasCB(l))
+                                        {
+                                            if (GetTracks()->GetNTracks() == 4) b_WE = true;
+                                            else b_WI = true;
+                                        }
+                                        else
+                                        {
+                                            if (GetTracks()->GetNTracks() == 4) b_TE = true;
+                                            else b_TI = true;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
-                else
-                {
-                    e0 = GetTracks()->GetClusterEnergy(1);
-                    e1 = GetTracks()->GetClusterEnergy(2);
-                }
-                recoil = GetTracks()->GetUnitVector(0);
-                reco_energy = GetTracks()->GetClusterEnergy(0);
-                copl_ang = TMath::Abs(pi0.Phi()*TMath::RadToDeg()-GetTracks()->GetPhi(0));
-                cut_CA = (TMath::Abs(180.0-copl_ang) < OACut);
-                pi0_NNX = pi0_NCX = pi0_CCX = false;
-                if (GetTracks()->IsNeutral(1) && GetTracks()->IsNeutral(2)) pi0_NNX = true;
-                else if (GetTracks()->IsNeutral(1) || GetTracks()->IsNeutral(2)) pi0_NCX = true;
-                else pi0_CCX = true;
             }
         }
     }
 
-    if (minIM > 0)
+    if (d_min_IM > 0)
     {
-        if (TMath::Abs(134.98 - minIM) <= IMCut) pi0_X = pi0_NN || pi0_NC || pi0_CC || pi0_NNX || pi0_NCX || pi0_CCX;
+        b_pi0 = (TMath::Abs(134.98 - d_min_IM) < IMCut);
 
-        Pi0IM->Fill(minIM,event_weight);
-        if (GetTracks()->GetNTracks() == 2)
-        {
-            Pi0IM_XX->Fill(minIM,event_weight);
-            if (pi0_NN) Pi0IM_NN->Fill(minIM,event_weight);
-        }
-        if (IM_CB)
-        {
-            Pi0IM_CBSum->Fill(e0+e1,TMath::Sqrt(2*e0*e1),minIM,event_weight);
-            Pi0IM_CB->Fill(e0,e1,minIM,event_weight);
-        }
-        if (IM_TAPS) Pi0IM_TAPS->Fill(e0,e1,minIM,event_weight);
-        if (IM_CBTAPS) Pi0IM_CBTAPS->Fill(e0,e1,minIM,event_weight);
+        Pi0_IM_A->Fill(d_min_IM, event_weight);
+        if (b_NE || b_CE || b_WE || b_TE) Pi0_IM_E->Fill(d_min_IM, event_weight);
+        else if(b_NI || b_CI || b_WI || b_TI) Pi0_IM_I->Fill(d_min_IM, event_weight);
+
+        if (b_pi0_CC) Pi0_IM_CC->Fill(d_trk0_en, d_trk1_en, d_min_IM, event_weight);
+        else if (b_pi0_CT) Pi0_IM_CT->Fill(d_trk0_en, d_trk1_en, d_min_IM, event_weight);
+        else if (b_pi0_TC) Pi0_IM_CT->Fill(d_trk1_en, d_trk0_en, d_min_IM, event_weight);
+
+        if (b_pi0) Pi0_CA->Fill(d_CA, event_weight);
     }
 
     //////////////////////////////////////////////////
     // Initial compton stuff
     //////////////////////////////////////////////////
-    if (!pi0_X && GetTracks()->GetNTracks() == 1 && GetTracks()->GetClusterEnergy(0) != 0)
+    if (!b_pi0)
     {
-        compton = GetTracks()->GetVector(0);
-        comp_time = GetTracks()->GetTime(0);
-        energy = compton.E();
-        theta = compton.Theta()*TMath::RadToDeg();
-        phi = compton.Phi()*TMath::RadToDeg();
-        clus_size = GetTracks()->GetClusterSize(0);
-        if (lin_beam)
+        d_part_en = 0;
+        for (Int_t i=0; i<(GetTracks()->GetNTracks()); i++)
         {
-            if (phi < -90 || (phi > 0 && phi < 90)) fill_MM_0 = true;
-            else fill_MM_1 = true;
+            if (GetTracks()->GetClusterEnergy(i) < d_part_en || ignoreTrack.at(i)) continue;
+            lv_part = GetTracks()->GetVector(i);
+            d_part_tm = GetTracks()->GetTime(i);
+            d_part_en = GetTracks()->GetClusterEnergy(i);
+            d_part_th = GetTracks()->GetTheta(i);
+            d_part_ph = GetTracks()->GetPhi(i);
+            i_part_sz = GetTracks()->GetClusterSize(i);
+            //if (GetTracks()->IsNeutral(i) && GetTracks()->IsNeutral(j)) pi0_NN = true;
+            b_NE = b_NI = b_CE = b_CI = b_WE = b_WI = b_TE = b_TI = b_cut_CA = false;
+            if (GetTracks()->GetNTracks() == 1) b_NE = true;
+            else b_NI = true;
+            d_CA = 360;
+            d_splt_en = 0;
+
+            //////////////////////////////////////////////////
+            // Look for best recoil
+            //////////////////////////////////////////////////
+            for (Int_t j=0; j<(GetTracks()->GetNTracks()); j++)
+            {
+                if (j == i || ignoreTrack.at(j)) continue;
+                d_temp = TMath::Abs(d_part_ph-GetTracks()->GetPhi(j));
+                if (TMath::Abs(180.0-d_temp) < TMath::Abs(180.0-d_CA))
+                {
+                    d_CA = d_temp;
+                    if (TMath::Abs(180.0-d_CA) < OACut)
+                    {
+                        b_cut_CA = true;
+                        v_reco = GetTracks()->GetUnitVector(j);
+                        d_reco_en = GetTracks()->GetClusterEnergy(j);
+                        d_reco_th = GetTracks()->GetTheta(j);
+                        i_reco_sz = GetTracks()->GetClusterSize(j);
+                        //if (GetTracks()->IsNeutral(j)) rec_N = true;
+                        b_NE = b_NI = b_CE = b_CI = b_WE = b_WI = b_TE = b_TI = false;
+                        if (GetTracks()->HasCB(j) && d_reco_en > 0)
+                        {
+                            if (GetTracks()->GetNTracks() == 2) b_CE = true;
+                            else b_CI = true;
+                        }
+                        else if (GetTracks()->HasCB(j))
+                        {
+                            if (GetTracks()->GetNTracks() == 2) b_WE = true;
+                            else b_WI = true;
+                        }
+                        else
+                        {
+                            if (GetTracks()->GetNTracks() == 2) b_TE = true;
+                            else b_TI = true;
+                        }
+                    }
+                }
+            }
+
+            if (!split_search) continue;
+            //////////////////////////////////////////////////
+            // Look for splits
+            //////////////////////////////////////////////////
+            for (Int_t k=0; k<(GetTracks()->GetNTracks()); k++)
+            {
+                d_splt_en = GetTracks()->GetClusterEnergy(k);
+                if (k == i || d_splt_en == 0 || ignoreTrack.at(k)) continue;
+                lv_splt = GetTracks()->GetVector(k);
+                v_splt = GetTracks()->GetUnitVector(k);
+
+                Split_OA_E->Fill(d_splt_en/d_part_en,(TMath::RadToDeg()*lv_part.Angle(v_splt)));
+
+                if ((TMath::RadToDeg()*lv_part.Angle(v_splt)) < 40*(1-(2*d_splt_en/d_trk0_en)))
+                {
+                    lv_ptot = lv_part + lv_splt;
+                    lv_part = lv_ptot;
+                    d_part_en = lv_part.E();
+                    d_part_th = lv_part.Theta()*TMath::RadToDeg();
+                    d_part_ph = lv_part.Phi()*TMath::RadToDeg();
+                    i_part_sz += GetTracks()->GetClusterSize(k);
+                    //if (GetTracks()->IsNeutral(i) && GetTracks()->IsNeutral(j)) pi0_NN = true;
+                    b_NE = b_NI = b_CE = b_CI = b_WE = b_WI = b_TE = b_TI = b_cut_CA = false;
+                    if (GetTracks()->GetNTracks() == 2) b_NE = true;
+                    else b_NI = true;
+                    d_CA = 360;
+
+                    //////////////////////////////////////////////////
+                    // Look for best recoil
+                    //////////////////////////////////////////////////
+                    for (Int_t j=0; j<(GetTracks()->GetNTracks()); j++)
+                    {
+                        if (j == i || j == k || ignoreTrack.at(j)) continue;
+                        d_temp = TMath::Abs(d_part_ph-GetTracks()->GetPhi(j));
+                        if (TMath::Abs(180.0-d_temp) < TMath::Abs(180.0-d_CA))
+                        {
+                            d_CA = d_temp;
+                            if (TMath::Abs(180.0-d_CA) < OACut)
+                            {
+                                b_cut_CA = true;
+                                v_reco = GetTracks()->GetUnitVector(j);
+                                d_reco_en = GetTracks()->GetClusterEnergy(j);
+                                d_reco_th = GetTracks()->GetTheta(j);
+                                i_reco_sz = GetTracks()->GetClusterSize(j);
+                                //if (GetTracks()->IsNeutral(j)) rec_N = true;
+                                b_NE = b_NI = b_CE = b_CI = b_WE = b_WI = b_TE = b_TI = false;
+                                if (GetTracks()->HasCB(j) && d_reco_en > 0)
+                                {
+                                    if (GetTracks()->GetNTracks() == 3) b_CE = true;
+                                    else b_CI = true;
+                                }
+                                else if (GetTracks()->HasCB(j))
+                                {
+                                    if (GetTracks()->GetNTracks() == 3) b_WE = true;
+                                    else b_WI = true;
+                                }
+                                else
+                                {
+                                    if (GetTracks()->GetNTracks() == 3) b_TE = true;
+                                    else b_TI = true;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
-        if (GetTracks()->IsNeutral(0)) comp_N = true;
-        else comp_C = true;
+        b_comp = true;
+        Comp_CA->Fill(d_CA, event_weight);
     }
-    else if (!pi0_X && GetTracks()->GetNTracks() == 2 && (GetTracks()->GetClusterEnergy(0) != 0 || GetTracks()->GetClusterEnergy(1) != 0))
+
+    //////////////////////////////////////////////////
+    // Decide which state to fill
+    //////////////////////////////////////////////////
+    Bool_t b_fill_Ph_0, b_fill_Ph_1, b_fill_MM_0, b_fill_MM_1;
+    b_fill_Ph_0 = b_fill_Ph_1 = b_fill_MM_0 = b_fill_MM_1 = false;
+    if (lin_beam)
     {
-        copl_ang = TMath::Abs(GetTracks()->GetPhi(0)-GetTracks()->GetPhi(1));
-        Coplanarity->Fill(copl_ang,event_weight);
-
-        if (TMath::Abs(180.0-copl_ang) < OACut)
-        {
-            if (GetTracks()->IsNeutral(0) && (GetTracks()->GetClusterEnergy(0) > GetTracks()->GetClusterEnergy(1)))
-            {
-                compton = GetTracks()->GetVector(0);
-                comp_time = GetTracks()->GetTime(0);
-                energy = compton.E();
-                theta = compton.Theta()*TMath::RadToDeg();
-                phi = compton.Phi()*TMath::RadToDeg();
-                clus_size = GetTracks()->GetClusterSize(0);
-                if (lin_beam)
-                {
-                    if (phi < -90 || (phi > 0 && phi < 90)) fill_MM_0 = true;
-                    else fill_MM_1 = true;
-                }
-                recoil = GetTracks()->GetUnitVector(1);
-                reco_energy = GetTracks()->GetClusterEnergy(1);
-                reco_theta = recoil.Theta()*TMath::RadToDeg();
-                reco_size = GetTracks()->GetClusterSize(1);
-                if (GetTracks()->IsNeutral(1)) comp_NN = true;
-                else if (GetTracks()->GetClusterEnergy(1) > 0 && GetTracks()->HasCB(1)) comp_NC = true;
-                else if (GetTracks()->GetClusterEnergy(1) > 0 && GetTracks()->HasTAPS(1)) comp_NT = true;
-                else comp_NW = true;
-            }
-            else if (GetTracks()->IsNeutral(1) && (GetTracks()->GetClusterEnergy(1) > GetTracks()->GetClusterEnergy(0)))
-            {
-                compton = GetTracks()->GetVector(1);
-                comp_time = GetTracks()->GetTime(1);
-                energy = compton.E();
-                theta = compton.Theta()*TMath::RadToDeg();
-                phi = compton.Phi()*TMath::RadToDeg();
-                clus_size = GetTracks()->GetClusterSize(1);
-                if (lin_beam)
-                {
-                    if (phi < -90 || (phi > 0 && phi < 90)) fill_MM_0 = true;
-                    else fill_MM_1 = true;
-                }
-                recoil = GetTracks()->GetUnitVector(0);
-                reco_energy = GetTracks()->GetClusterEnergy(0);
-                reco_theta = recoil.Theta()*TMath::RadToDeg();
-                reco_size = GetTracks()->GetClusterSize(0);
-                if (GetTracks()->IsNeutral(0)) comp_NN = true;
-                else if (GetTracks()->GetClusterEnergy(0) > 0 && GetTracks()->HasCB(0)) comp_NC = true;
-                else if (GetTracks()->GetClusterEnergy(0) > 0 && GetTracks()->HasTAPS(0)) comp_NT = true;
-                else comp_NW = true;
-            }
-        }
+        if (d_part_ph < -90 || (d_part_ph > 0 && d_part_ph < 90)) b_fill_MM_0 = true;
+        else b_fill_MM_1 = true;
     }
-    else if (!pi0_X && GetTracks()->GetNTracks() == 3 && (GetTracks()->GetClusterEnergy(0) != 0 || GetTracks()->GetClusterEnergy(1) != 0 || GetTracks()->GetClusterEnergy(2) != 0))
+    else
     {
-        if (GetTracks()->IsNeutral(0) && (GetTracks()->GetClusterEnergy(0) > GetTracks()->GetClusterEnergy(1)) && (GetTracks()->GetClusterEnergy(0) > GetTracks()->GetClusterEnergy(2)))
-        {
-            if (TMath::Abs(180.0-TMath::Abs(GetTracks()->GetPhi(0)-GetTracks()->GetPhi(1))) < TMath::Abs(180.0-TMath::Abs(GetTracks()->GetPhi(0)-GetTracks()->GetPhi(2))))
-            {
-                copl_ang = TMath::Abs(GetTracks()->GetPhi(0)-GetTracks()->GetPhi(1));
-                Coplanarity->Fill(copl_ang,event_weight);
-
-                if (TMath::Abs(180.0-copl_ang) < OACut)
-                {
-                    compton = GetTracks()->GetVector(0);
-                    comp_time = GetTracks()->GetTime(0);
-                    energy = compton.E();
-                    theta = compton.Theta()*TMath::RadToDeg();
-                    phi = compton.Phi()*TMath::RadToDeg();
-                    clus_size = GetTracks()->GetClusterSize(0);
-                    if (lin_beam)
-                    {
-                        if (phi < -90 || (phi > 0 && phi < 90)) fill_MM_0 = true;
-                        else fill_MM_1 = true;
-                    }
-                    recoil = GetTracks()->GetUnitVector(1);
-                    reco_energy = GetTracks()->GetClusterEnergy(1);
-                    reco_theta = recoil.Theta()*TMath::RadToDeg();
-                    reco_size = GetTracks()->GetClusterSize(1);
-                    if (GetTracks()->IsNeutral(1)) comp_NNX = true;
-                    else if (GetTracks()->GetClusterEnergy(1) > 0 && GetTracks()->HasCB(1)) comp_NCX = true;
-                    else if (GetTracks()->GetClusterEnergy(1) > 0 && GetTracks()->HasTAPS(1)) comp_NTX = true;
-                    else comp_NWX = true;
-                    split = GetTracks()->GetUnitVector(2);
-                    split_energy = GetTracks()->GetClusterEnergy(2);
-                }
-            }
-            else if (TMath::Abs(180.0-TMath::Abs(GetTracks()->GetPhi(0)-GetTracks()->GetPhi(2))) < TMath::Abs(180.0-TMath::Abs(GetTracks()->GetPhi(0)-GetTracks()->GetPhi(1))))
-            {
-                copl_ang = TMath::Abs(GetTracks()->GetPhi(0)-GetTracks()->GetPhi(2));
-                Coplanarity->Fill(copl_ang,event_weight);
-
-                if (TMath::Abs(180.0-copl_ang) < OACut)
-                {
-                    compton = GetTracks()->GetVector(0);
-                    comp_time = GetTracks()->GetTime(0);
-                    energy = compton.E();
-                    theta = compton.Theta()*TMath::RadToDeg();
-                    phi = compton.Phi()*TMath::RadToDeg();
-                    clus_size = GetTracks()->GetClusterSize(0);
-                    if (lin_beam)
-                    {
-                        if (phi < -90 || (phi > 0 && phi < 90)) fill_MM_0 = true;
-                        else fill_MM_1 = true;
-                    }
-                    recoil = GetTracks()->GetUnitVector(2);
-                    reco_energy = GetTracks()->GetClusterEnergy(2);
-                    reco_theta = recoil.Theta()*TMath::RadToDeg();
-                    reco_size = GetTracks()->GetClusterSize(2);
-                    if (GetTracks()->IsNeutral(2)) comp_NNX = true;
-                    else if (GetTracks()->GetClusterEnergy(2) > 0 && GetTracks()->HasCB(2)) comp_NCX = true;
-                    else if (GetTracks()->GetClusterEnergy(2) > 0 && GetTracks()->HasTAPS(2)) comp_NTX = true;
-                    else comp_NWX = true;
-                    split = GetTracks()->GetUnitVector(1);
-                    split_energy = GetTracks()->GetClusterEnergy(1);
-                }
-            }
-        }
-        else if (GetTracks()->IsNeutral(1) && (GetTracks()->GetClusterEnergy(1) > GetTracks()->GetClusterEnergy(0)) && (GetTracks()->GetClusterEnergy(1) > GetTracks()->GetClusterEnergy(2)))
-        {
-            if (TMath::Abs(180.0-TMath::Abs(GetTracks()->GetPhi(1)-GetTracks()->GetPhi(0))) < TMath::Abs(180.0-TMath::Abs(GetTracks()->GetPhi(1)-GetTracks()->GetPhi(2))))
-            {
-                copl_ang = TMath::Abs(GetTracks()->GetPhi(1)-GetTracks()->GetPhi(0));
-                Coplanarity->Fill(copl_ang,event_weight);
-
-                if (TMath::Abs(180.0-copl_ang) < OACut)
-                {
-                    compton = GetTracks()->GetVector(1);
-                    comp_time = GetTracks()->GetTime(1);
-                    energy = compton.E();
-                    theta = compton.Theta()*TMath::RadToDeg();
-                    phi = compton.Phi()*TMath::RadToDeg();
-                    clus_size = GetTracks()->GetClusterSize(1);
-                    if (lin_beam)
-                    {
-                        if (phi < -90 || (phi > 0 && phi < 90)) fill_MM_0 = true;
-                        else fill_MM_1 = true;
-                    }
-                    recoil = GetTracks()->GetUnitVector(0);
-                    reco_energy = GetTracks()->GetClusterEnergy(0);
-                    reco_theta = recoil.Theta()*TMath::RadToDeg();
-                    reco_size = GetTracks()->GetClusterSize(0);
-                    if (GetTracks()->IsNeutral(0)) comp_NNX = true;
-                    else if (GetTracks()->GetClusterEnergy(0) > 0 && GetTracks()->HasCB(0)) comp_NCX = true;
-                    else if (GetTracks()->GetClusterEnergy(0) > 0 && GetTracks()->HasTAPS(0)) comp_NTX = true;
-                    else comp_NWX = true;
-                    split = GetTracks()->GetUnitVector(2);
-                    split_energy = GetTracks()->GetClusterEnergy(2);
-                }
-            }
-            else if (TMath::Abs(180.0-TMath::Abs(GetTracks()->GetPhi(1)-GetTracks()->GetPhi(2))) < TMath::Abs(180.0-TMath::Abs(GetTracks()->GetPhi(1)-GetTracks()->GetPhi(0))))
-            {
-                copl_ang = TMath::Abs(GetTracks()->GetPhi(1)-GetTracks()->GetPhi(2));
-                Coplanarity->Fill(copl_ang,event_weight);
-
-                if (TMath::Abs(180.0-copl_ang) < OACut)
-                {
-                    compton = GetTracks()->GetVector(1);
-                    comp_time = GetTracks()->GetTime(1);
-                    energy = compton.E();
-                    theta = compton.Theta()*TMath::RadToDeg();
-                    phi = compton.Phi()*TMath::RadToDeg();
-                    clus_size = GetTracks()->GetClusterSize(1);
-                    if (lin_beam)
-                    {
-                        if (phi < -90 || (phi > 0 && phi < 90)) fill_MM_0 = true;
-                        else fill_MM_1 = true;
-                    }
-                    recoil = GetTracks()->GetUnitVector(2);
-                    reco_energy = GetTracks()->GetClusterEnergy(2);
-                    reco_theta = recoil.Theta()*TMath::RadToDeg();
-                    reco_size = GetTracks()->GetClusterSize(2);
-                    if (GetTracks()->IsNeutral(2)) comp_NNX = true;
-                    else if (GetTracks()->GetClusterEnergy(2) > 0 && GetTracks()->HasCB(2)) comp_NCX = true;
-                    else if (GetTracks()->GetClusterEnergy(2) > 0 && GetTracks()->HasTAPS(2)) comp_NTX = true;
-                    else comp_NWX = true;
-                    split = GetTracks()->GetUnitVector(0);
-                    split_energy = GetTracks()->GetClusterEnergy(0);
-                }
-            }
-        }
-        else if (GetTracks()->IsNeutral(2) && (GetTracks()->GetClusterEnergy(2) > GetTracks()->GetClusterEnergy(0)) && (GetTracks()->GetClusterEnergy(2) > GetTracks()->GetClusterEnergy(1)))
-        {
-            if (TMath::Abs(180.0-TMath::Abs(GetTracks()->GetPhi(2)-GetTracks()->GetPhi(0))) < TMath::Abs(180.0-TMath::Abs(GetTracks()->GetPhi(2)-GetTracks()->GetPhi(1))))
-            {
-                copl_ang = TMath::Abs(GetTracks()->GetPhi(2)-GetTracks()->GetPhi(0));
-                Coplanarity->Fill(copl_ang,event_weight);
-
-                if (TMath::Abs(180.0-copl_ang) < OACut)
-                {
-                    compton = GetTracks()->GetVector(2);
-                    comp_time = GetTracks()->GetTime(2);
-                    energy = compton.E();
-                    theta = compton.Theta()*TMath::RadToDeg();
-                    phi = compton.Phi()*TMath::RadToDeg();
-                    clus_size = GetTracks()->GetClusterSize(2);
-                    if (lin_beam)
-                    {
-                        if (phi < -90 || (phi > 0 && phi < 90)) fill_MM_0 = true;
-                        else fill_MM_1 = true;
-                    }
-                    recoil = GetTracks()->GetUnitVector(0);
-                    reco_energy = GetTracks()->GetClusterEnergy(0);
-                    reco_theta = recoil.Theta()*TMath::RadToDeg();
-                    reco_size = GetTracks()->GetClusterSize(0);
-                    if (GetTracks()->IsNeutral(0)) comp_NNX = true;
-                    else if (GetTracks()->GetClusterEnergy(0) > 0 && GetTracks()->HasCB(0)) comp_NCX = true;
-                    else if (GetTracks()->GetClusterEnergy(0) > 0 && GetTracks()->HasTAPS(0)) comp_NTX = true;
-                    else comp_NWX = true;
-                    split = GetTracks()->GetUnitVector(1);
-                    split_energy = GetTracks()->GetClusterEnergy(1);
-                }
-            }
-            else if (TMath::Abs(180.0-TMath::Abs(GetTracks()->GetPhi(2)-GetTracks()->GetPhi(1))) < TMath::Abs(180.0-TMath::Abs(GetTracks()->GetPhi(2)-GetTracks()->GetPhi(0))))
-            {
-                copl_ang = TMath::Abs(GetTracks()->GetPhi(2)-GetTracks()->GetPhi(1));
-                Coplanarity->Fill(copl_ang,event_weight);
-
-                if (TMath::Abs(180.0-copl_ang) < OACut)
-                {
-                    compton = GetTracks()->GetVector(2);
-                    comp_time = GetTracks()->GetTime(2);
-                    energy = compton.E();
-                    theta = compton.Theta()*TMath::RadToDeg();
-                    phi = compton.Phi()*TMath::RadToDeg();
-                    clus_size = GetTracks()->GetClusterSize(2);
-                    if (lin_beam)
-                    {
-                        if (phi < -90 || (phi > 0 && phi < 90)) fill_MM_0 = true;
-                        else fill_MM_1 = true;
-                    }
-                    recoil = GetTracks()->GetUnitVector(1);
-                    reco_energy = GetTracks()->GetClusterEnergy(1);
-                    reco_theta = recoil.Theta()*TMath::RadToDeg();
-                    reco_size = GetTracks()->GetClusterSize(1);
-                    if (GetTracks()->IsNeutral(1)) comp_NNX = true;
-                    else if (GetTracks()->GetClusterEnergy(1) > 0 && GetTracks()->HasCB(1)) comp_NCX = true;
-                    else if (GetTracks()->GetClusterEnergy(1) > 0 && GetTracks()->HasTAPS(1)) comp_NTX = true;
-                    else comp_NWX = true;
-                    split = GetTracks()->GetUnitVector(0);
-                    split_energy = GetTracks()->GetClusterEnergy(0);
-                }
-            }
-        }
+        if(b_hel) b_fill_MM_1 = true;
+        else b_fill_MM_0 = true;
     }
-    comp_X = comp_N || comp_C || comp_NN || comp_NC || comp_NT || comp_NW || comp_NNX || comp_NCX || comp_NTX || comp_NWX;
 
-    if (split_energy > 0) Split_OA_E->Fill(split_energy/compton.E(),(TMath::RadToDeg()*compton.Angle(split)));
-    if (comp_X && !comp_C) Comp_CS->Fill(energy, theta, clus_size, event_weight);
-    if (comp_NN || comp_NC || comp_NT || comp_NNX || comp_NCX || comp_NTX) Reco_CS->Fill(reco_energy, reco_theta, reco_size, event_weight);
+    //if (comp_X && !comp_C) Comp_CS->Fill(d_part_en, d_part_th, i_part_sz, event_weight);
+    //if (comp_NN || comp_NC || comp_NT || comp_NNX || comp_NCX || comp_NTX) Reco_CS->Fill(d_reco_en, d_reco_th, i_reco_sz, event_weight);
 
-    Int_t num_clust = 0;
-    Double_t avg_time = 0;
+    //////////////////////////////////////////////////
+    // Get average time for total inclusive
+    //////////////////////////////////////////////////
+    Int_t n_clus = 0;
+    d_aver_tm = 0;
     for (Int_t i = 0; i < GetTracks()->GetNTracks(); i++)
     {
         if (GetTracks()->GetClusterEnergy(i) != 0)
         {
-            avg_time += GetTracks()->GetTime(i);
-            num_clust++;
+            d_aver_tm += GetTracks()->GetTime(i);
+            n_clus++;
         }
     }
-    avg_time = avg_time/num_clust;
+    d_aver_tm = d_aver_tm/n_clus;
 
     //////////////////////////////////////////////////
     // Tagger loop
     //////////////////////////////////////////////////
-    for (Int_t i = 0; i < nTagg; i++)
+    for (Int_t i = 0; i < GetTagger()->GetNTagged(); i++)
     {
         if (RejectTagged(i)) continue;
 
-        tagg_chan = GetTagger()->GetTaggedChannel(i);
-        tagg_time = GetTagger()->GetTaggedTime(i);
-        tagg_energy = GetTagger()->GetTaggedEnergy(i);
-        beam = TLorentzVector(0., 0., tagg_energy, tagg_energy);
+        i_tagg_ch = GetTagger()->GetTaggedChannel(i);
+        d_tagg_tm = GetTagger()->GetTaggedTime(i);
+        d_tagg_en = GetTagger()->GetTaggedEnergy(i);
+        lv_beam = TLorentzVector(0., 0., d_tagg_en, d_tagg_en);
 
-        TaggTime->Fill(tagg_time);
-        if (hel)
+        //////////////////////////////////////////////////
+        // Total inclusive stuff
+        //////////////////////////////////////////////////
+        Tagg_Tm->Fill(d_tagg_tm);
+        if (b_hel)
         {
-            if (GHistBGSub::IsPrompt(tagg_time)) TaggHel1->Fill(tagg_chan);
-            else if (GHistBGSub::IsRandom(tagg_time)) TaggHel1_R->Fill(tagg_chan);
+            if (GHistBGSub::IsPrompt(d_tagg_tm)) Tagg_1->Fill(i_tagg_ch);
+            else if (GHistBGSub::IsRandom(d_tagg_tm)) Tagg_1_R->Fill(i_tagg_ch);
         }
         else
         {
-            if (GHistBGSub::IsPrompt(tagg_time)) TaggHel0->Fill(tagg_chan);
-            else if (GHistBGSub::IsRandom(tagg_time)) TaggHel0_R->Fill(tagg_chan);
+            if (GHistBGSub::IsPrompt(d_tagg_tm)) Tagg_0->Fill(i_tagg_ch);
+            else if (GHistBGSub::IsRandom(d_tagg_tm)) Tagg_0_R->Fill(i_tagg_ch);
         }
 
-        time = tagg_time - avg_time;
-        IncTime->Fill(time);
-        if (hel)
+        d_subt_tm = d_tagg_tm - d_aver_tm;
+        Inc_Tm->Fill(d_subt_tm);
+        if (b_hel)
         {
-            if (GHistBGSub::IsPrompt(time)) IncHel1->Fill(tagg_chan);
-            else if (GHistBGSub::IsRandom(time)) IncHel1_R->Fill(tagg_chan);
+            if (GHistBGSub::IsPrompt(d_subt_tm)) Inc_1->Fill(i_tagg_ch, GetTracks()->GetNTracks());
+            else if (GHistBGSub::IsRandom(d_subt_tm)) Inc_1_R->Fill(i_tagg_ch, GetTracks()->GetNTracks());
         }
         else
         {
-            if (GHistBGSub::IsPrompt(time)) IncHel0->Fill(tagg_chan);
-            else if (GHistBGSub::IsRandom(time)) IncHel0_R->Fill(tagg_chan);
-        }
-        if (GHistBGSub::IsPrompt(time)) IncHits->Fill(tagg_chan,GetTracks()->GetNTracks());
-        else if (GHistBGSub::IsRandom(time)) IncHits_R->Fill(tagg_chan,GetTracks()->GetNTracks());
-
-        if (minIM > 0)
-        {
-            time = tagg_time - pi0_time;
-            missing = beam + target - pi0;
-            m_miss = missing.M()-target.M();
-            Pi0_Dt->Fill(tagg_chan,time,event_weight);
-
-            if (GHistBGSub::IsPrompt(time))
-            {
-                Pi0_MM->Fill(tagg_chan,pi0.Theta()*TMath::RadToDeg(),m_miss,event_weight);
-                Pi0_IM_MM->Fill(tagg_chan,minIM,m_miss,event_weight);
-            }
-            else if (GHistBGSub::IsRandom(time))
-            {
-                Pi0_MM_R->Fill(tagg_chan,pi0.Theta()*TMath::RadToDeg(),m_miss,event_weight);
-                Pi0_IM_MM_R->Fill(tagg_chan,minIM,m_miss,event_weight);
-            }
+            if (GHistBGSub::IsPrompt(d_subt_tm)) Inc_0->Fill(i_tagg_ch, GetTracks()->GetNTracks());
+            else if (GHistBGSub::IsRandom(d_subt_tm)) Inc_0_R->Fill(i_tagg_ch, GetTracks()->GetNTracks());
         }
 
-        if (pi0_X)
+        /*
+        if (d_min_IM > 0)
         {
-            time = tagg_time - pi0_time;
-            missing = beam + target - pi0;
-            m_miss = missing.M()-target.M();
+            d_subt_tm = d_tagg_tm - d_part_tm;
+            lv_miss = lv_beam + lv_targ - lv_part;
+            d_miss_ma = lv_miss.M()-lv_targ.M();
+            Pi0_Tm->Fill(i_tagg_ch,d_subt_tm,event_weight);
 
-            if (GHistBGSub::IsPrompt(time))
+            if (GHistBGSub::IsPrompt(d_subt_tm))
             {
-                Pi0_MM_IM->Fill(tagg_chan,pi0.Theta()*TMath::RadToDeg(),m_miss,event_weight);
-                Pi0_Re_All->Fill(missing.E()-missing.M(),missing.Theta()*TMath::RadToDeg(),m_miss,event_weight);
+                Pi0_MM->Fill(i_tagg_ch,lv_part.Theta()*TMath::RadToDeg(),d_miss_ma,event_weight);
+                Pi0_IM_MM->Fill(i_tagg_ch,d_min_IM,d_miss_ma,event_weight);
             }
-            else if (GHistBGSub::IsRandom(time))
+            else if (GHistBGSub::IsRandom(d_subt_tm))
             {
-                Pi0_MM_IM_R->Fill(tagg_chan,pi0.Theta()*TMath::RadToDeg(),m_miss,event_weight);
-                Pi0_Re_All_R->Fill(missing.E()-missing.M(),missing.Theta()*TMath::RadToDeg(),m_miss,event_weight);
+                Pi0_MM_R->Fill(i_tagg_ch,lv_part.Theta()*TMath::RadToDeg(),d_miss_ma,event_weight);
+                Pi0_IM_MM_R->Fill(i_tagg_ch,d_min_IM,d_miss_ma,event_weight);
+            }
+        }
+        */
+        //////////////////////////////////////////////////
+        // Pi0 stuff
+        //////////////////////////////////////////////////
+        if (b_pi0)
+        {
+            d_subt_tm = d_tagg_tm - d_part_tm;
+            lv_miss = lv_beam + lv_targ - lv_part;
+            d_miss_ma = lv_miss.M()-lv_targ.M();
+            d_miss_th = lv_miss.Theta()*TMath::RadToDeg();
+
+            b_cut_OA = false;
+            if (b_cut_CA)
+            {
+                d_OA = (TMath::RadToDeg()*lv_miss.Angle(v_reco));
+                b_cut_OA = (d_OA < OACut);
             }
 
-            if (pi0_NN)
+            //////////////////////////////////////////////////
+            // Recoil detection stuff
+            //////////////////////////////////////////////////
+            if (GHistBGSub::IsPrompt(d_subt_tm))
             {
-                Pi0_Dt_NN->Fill(tagg_chan,time,event_weight);
-                if (GHistBGSub::IsPrompt(time))
+                //Pi0_MM->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                if (b_cut_CA) Pi0_OA->Fill(i_tagg_ch, d_miss_th, d_OA, event_weight);
+                if (TMath::Abs(d_miss_ma) < 15)
                 {
-                    Pi0_MM_NN->Fill(tagg_chan,pi0.Theta()*TMath::RadToDeg(),m_miss,event_weight);
-                    Pi0_IM_MM_NN->Fill(tagg_chan,minIM,m_miss,event_weight);
-                }
-                else if (GHistBGSub::IsRandom(time))
-                {
-                    Pi0_MM_NN_R->Fill(tagg_chan,pi0.Theta()*TMath::RadToDeg(),m_miss,event_weight);
-                    Pi0_IM_MM_NN_R->Fill(tagg_chan,minIM,m_miss,event_weight);
-                }
-            }
-            else if (pi0_NC)
-            {
-                if (GHistBGSub::IsPrompt(time)) Pi0_MM_NC->Fill(tagg_chan,pi0.Theta()*TMath::RadToDeg(),m_miss,event_weight);
-                else if (GHistBGSub::IsRandom(time)) Pi0_MM_NC_R->Fill(tagg_chan,pi0.Theta()*TMath::RadToDeg(),m_miss,event_weight);
-            }
-            else if (pi0_CC)
-            {
-                if (GHistBGSub::IsPrompt(time)) Pi0_MM_CC->Fill(tagg_chan,pi0.Theta()*TMath::RadToDeg(),m_miss,event_weight);
-                else if (GHistBGSub::IsRandom(time)) Pi0_MM_CC_R->Fill(tagg_chan,pi0.Theta()*TMath::RadToDeg(),m_miss,event_weight);
-            }
-            else if (pi0_NNX)
-            {
-                if (GHistBGSub::IsPrompt(time)) Pi0_MM_NNX->Fill(tagg_chan,pi0.Theta()*TMath::RadToDeg(),m_miss,event_weight);
-                else if (GHistBGSub::IsRandom(time)) Pi0_MM_NNX_R->Fill(tagg_chan,pi0.Theta()*TMath::RadToDeg(),m_miss,event_weight);
-
-            }
-            else if (pi0_NCX)
-            {
-                if (GHistBGSub::IsPrompt(time)) Pi0_MM_NCX->Fill(tagg_chan,pi0.Theta()*TMath::RadToDeg(),m_miss,event_weight);
-                else if (GHistBGSub::IsRandom(time)) Pi0_MM_NCX_R->Fill(tagg_chan,pi0.Theta()*TMath::RadToDeg(),m_miss,event_weight);
-            }
-            else if (pi0_CCX)
-            {
-                if (GHistBGSub::IsPrompt(time)) Pi0_MM_CCX->Fill(tagg_chan,pi0.Theta()*TMath::RadToDeg(),m_miss,event_weight);
-                else if (GHistBGSub::IsRandom(time)) Pi0_MM_CCX_R->Fill(tagg_chan,pi0.Theta()*TMath::RadToDeg(),m_miss,event_weight);
-            }
-
-            if (cut_CA)
-            {
-                open_ang = (TMath::RadToDeg()*missing.Angle(recoil));
-                if (open_ang < OACut)
-                {
-                    if (reco_energy > 0)
+                    Pi0_Re_All->Fill(i_tagg_ch, d_miss_th, lv_miss.E()-lv_miss.M(), event_weight);
+                    if (b_cut_CA) Pi0_OA_Cut->Fill(i_tagg_ch, d_miss_th, d_OA, event_weight);
+                    if (b_cut_OA)
                     {
-                        if (GHistBGSub::IsPrompt(time)) Pi0_Re_Det->Fill(missing.E()-missing.M(),missing.Theta()*TMath::RadToDeg(),m_miss,event_weight);
-                        else if (GHistBGSub::IsRandom(time)) Pi0_Re_Det_R->Fill(missing.E()-missing.M(),missing.Theta()*TMath::RadToDeg(),m_miss,event_weight);
+                        if (d_reco_en > 0)
+                        {
+                            Pi0_Re_Det->Fill(i_tagg_ch, d_miss_th, lv_miss.E()-lv_miss.M(), event_weight);
+                            Pi0_Re_Dif->Fill(i_tagg_ch, d_miss_th, lv_miss.E()-lv_miss.M()-d_reco_en, event_weight);
+                        }
+                        else Pi0_Re_NoE->Fill(i_tagg_ch, d_miss_th, lv_miss.E()-lv_miss.M(), event_weight);
                     }
-                    else
+                }
+            }
+            else if (GHistBGSub::IsRandom(d_subt_tm))
+            {
+                //Pi0_MM_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                if (b_cut_CA) Pi0_OA_R->Fill(i_tagg_ch, d_miss_th, d_OA,event_weight);
+                if (TMath::Abs(d_miss_ma) < 15)
+                {
+                    Pi0_Re_All_R->Fill(i_tagg_ch, d_miss_th, lv_miss.E()-lv_miss.M(), event_weight);
+                    if (b_cut_CA) Pi0_OA_Cut_R->Fill(i_tagg_ch, d_miss_th, d_OA, event_weight);
+                    if (b_cut_OA)
                     {
-                        if (GHistBGSub::IsPrompt(time)) Pi0_Re_NoE->Fill(missing.E()-missing.M(),missing.Theta()*TMath::RadToDeg(),m_miss,event_weight);
-                        else if (GHistBGSub::IsRandom(time)) Pi0_Re_NoE_R->Fill(missing.E()-missing.M(),missing.Theta()*TMath::RadToDeg(),m_miss,event_weight);
+                        if (d_reco_en > 0)
+                        {
+                            Pi0_Re_Det_R->Fill(i_tagg_ch, d_miss_th, lv_miss.E()-lv_miss.M(), event_weight);
+                            Pi0_Re_Dif_R->Fill(i_tagg_ch, d_miss_th,lv_miss.E()-lv_miss.M()-d_reco_en,  event_weight);
+                        }
+                        else Pi0_Re_NoE_R->Fill(i_tagg_ch, d_miss_th,lv_miss.E()-lv_miss.M(), event_weight);
                     }
+                }
+            }
+
+            //////////////////////////////////////////////////
+            // State selection
+            //////////////////////////////////////////////////
+            if (!b_hel) b_fill_Ph_0 = (lv_miss.M() >= MMLoC && lv_miss.M() < MMHiC);
+            else b_fill_Ph_1 = (lv_miss.M() >= MMLoC && lv_miss.M() < MMHiC);
+
+            if (b_NE)
+            {
+                Pi0_Tm_NE->Fill(i_tagg_ch, d_subt_tm, event_weight);
+                if (GHistBGSub::IsPrompt(d_subt_tm))
+                {
+                    if (b_fill_MM_0) Pi0_MM_NE_0->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) Pi0_MM_NE_1->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    if (b_fill_Ph_0) Pi0_Ph_NE_0->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                    else if (b_fill_Ph_1) Pi0_Ph_NE_1->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                }
+                else if (GHistBGSub::IsRandom(d_subt_tm))
+                {
+                    if (b_fill_MM_0) Pi0_MM_NE_0_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) Pi0_MM_NE_1_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    if (b_fill_Ph_0) Pi0_Ph_NE_0_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                    else if (b_fill_Ph_1) Pi0_Ph_NE_1_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                }
+            }
+            // Add all of the now failed recoil ones into inclusive
+            else if (b_NI || !b_cut_OA)
+            {
+                Pi0_Tm_NI->Fill(i_tagg_ch, d_subt_tm, event_weight);
+                if (GHistBGSub::IsPrompt(d_subt_tm))
+                {
+                    if (b_fill_MM_0) Pi0_MM_NI_0->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) Pi0_MM_NI_1->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    if (b_fill_Ph_0) Pi0_Ph_NI_0->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                    else if (b_fill_Ph_1) Pi0_Ph_NI_1->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                }
+                else if (GHistBGSub::IsRandom(d_subt_tm))
+                {
+                    if (b_fill_MM_0) Pi0_MM_NI_0_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) Pi0_MM_NI_1_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    if (b_fill_Ph_0) Pi0_Ph_NI_0_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                    else if (b_fill_Ph_1) Pi0_Ph_NI_1_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                }
+            }
+            // From here on the opening angle must have been satisfied
+            else if (b_CE)
+            {
+                Pi0_Tm_CE->Fill(i_tagg_ch, d_subt_tm, event_weight);
+                if (GHistBGSub::IsPrompt(d_subt_tm))
+                {
+                    if (b_fill_MM_0) Pi0_MM_CE_0->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) Pi0_MM_CE_1->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    if (b_fill_Ph_0) Pi0_Ph_CE_0->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                    else if (b_fill_Ph_1) Pi0_Ph_CE_1->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                }
+                else if (GHistBGSub::IsRandom(d_subt_tm))
+                {
+                    if (b_fill_MM_0) Pi0_MM_CE_0_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) Pi0_MM_CE_1_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    if (b_fill_Ph_0) Pi0_Ph_CE_0_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                    else if (b_fill_Ph_1) Pi0_Ph_CE_1_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                }
+            }
+            else if (b_CI)
+            {
+                Pi0_Tm_CI->Fill(i_tagg_ch, d_subt_tm, event_weight);
+                if (GHistBGSub::IsPrompt(d_subt_tm))
+                {
+                    if (b_fill_MM_0) Pi0_MM_CI_0->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) Pi0_MM_CI_1->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    if (b_fill_Ph_0) Pi0_Ph_CI_0->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                    else if (b_fill_Ph_1) Pi0_Ph_CI_1->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                }
+                else if (GHistBGSub::IsRandom(d_subt_tm))
+                {
+                    if (b_fill_MM_0) Pi0_MM_CI_0_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) Pi0_MM_CI_1_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    if (b_fill_Ph_0) Pi0_Ph_CI_0_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                    else if (b_fill_Ph_1) Pi0_Ph_CI_1_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                }
+            }
+            else if (b_WE)
+            {
+                Pi0_Tm_WE->Fill(i_tagg_ch, d_subt_tm, event_weight);
+                if (GHistBGSub::IsPrompt(d_subt_tm))
+                {
+                    if (b_fill_MM_0) Pi0_MM_WE_0->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) Pi0_MM_WE_1->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    if (b_fill_Ph_0) Pi0_Ph_WE_0->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                    else if (b_fill_Ph_1) Pi0_Ph_WE_1->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                }
+                else if (GHistBGSub::IsRandom(d_subt_tm))
+                {
+                    if (b_fill_MM_0) Pi0_MM_WE_0_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) Pi0_MM_WE_1_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    if (b_fill_Ph_0) Pi0_Ph_WE_0_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                    else if (b_fill_Ph_1) Pi0_Ph_WE_1_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                }
+            }
+            else if (b_WI)
+            {
+                Pi0_Tm_WI->Fill(i_tagg_ch, d_subt_tm, event_weight);
+                if (GHistBGSub::IsPrompt(d_subt_tm))
+                {
+                    if (b_fill_MM_0) Pi0_MM_WI_0->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) Pi0_MM_WI_1->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    if (b_fill_Ph_0) Pi0_Ph_WI_0->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                    else if (b_fill_Ph_1) Pi0_Ph_WI_1->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                }
+                else if (GHistBGSub::IsRandom(d_subt_tm))
+                {
+                    if (b_fill_MM_0) Pi0_MM_WI_0_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) Pi0_MM_WI_1_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    if (b_fill_Ph_0) Pi0_Ph_WI_0_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                    else if (b_fill_Ph_1) Pi0_Ph_WI_1_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                }
+            }
+            else if (b_TE)
+            {
+                Pi0_Tm_TE->Fill(i_tagg_ch, d_subt_tm, event_weight);
+                if (GHistBGSub::IsPrompt(d_subt_tm))
+                {
+                    if (b_fill_MM_0) Pi0_MM_TE_0->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) Pi0_MM_TE_1->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    if (b_fill_Ph_0) Pi0_Ph_TE_0->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                    else if (b_fill_Ph_1) Pi0_Ph_TE_1->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                }
+                else if (GHistBGSub::IsRandom(d_subt_tm))
+                {
+                    if (b_fill_MM_0) Pi0_MM_TE_0_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) Pi0_MM_TE_1_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    if (b_fill_Ph_0) Pi0_Ph_TE_0_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                    else if (b_fill_Ph_1) Pi0_Ph_TE_1_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                }
+            }
+            else if (b_TI)
+            {
+                Pi0_Tm_TI->Fill(i_tagg_ch, d_subt_tm, event_weight);
+                if (GHistBGSub::IsPrompt(d_subt_tm))
+                {
+                    if (b_fill_MM_0) Pi0_MM_TI_0->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) Pi0_MM_TI_1->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    if (b_fill_Ph_0) Pi0_Ph_TI_0->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                    else if (b_fill_Ph_1) Pi0_Ph_TI_1->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                }
+                else if (GHistBGSub::IsRandom(d_subt_tm))
+                {
+                    if (b_fill_MM_0) Pi0_MM_TI_0_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) Pi0_MM_TI_1_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    if (b_fill_Ph_0) Pi0_Ph_TI_0_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                    else if (b_fill_Ph_1) Pi0_Ph_TI_1_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
                 }
             }
         }
 
-        else if(comp_X)
+        else if(b_comp)
         {
-            time = tagg_time - comp_time;
-            missing = beam + target - compton;
-            m_miss = missing.M()-target.M();
-            if (!hel) fill_Ph_0 = (missing.M() >= MMLoC && missing.M() < MMHiC);
-            else fill_Ph_1 = (missing.M() >= MMLoC && missing.M() < MMHiC);
+            d_subt_tm = d_tagg_tm - d_part_tm;
+            lv_miss = lv_beam + lv_targ - lv_part;
+            d_miss_ma = lv_miss.M()-lv_targ.M();
+            d_miss_th = lv_miss.Theta()*TMath::RadToDeg();
 
-            ptot = beam + target;
-            lab_to_cm = -ptot.BoostVector();
-            compton_cm = compton;
-            compton_cm.Boost(lab_to_cm);
-            theta_cm = compton_cm.Theta()*TMath::RadToDeg();
-            phi_cm = compton_cm.Phi()*TMath::RadToDeg();
+            /*
+            lv_ptot = lv_beam + lv_targ;
+            v_lab_cm = -lv_ptot.BoostVector();
+            lv_part_cm = lv_part;
+            lv_part_cm.Boost(v_lab_cm);
+            d_part_th_cm = lv_part_cm.Theta()*TMath::RadToDeg();
+            d_part_ph_cm = lv_part_cm.Phi()*TMath::RadToDeg();
+            */
 
-            if (!comp_N && !comp_C)
+            b_cut_OA = false;
+            if (b_cut_CA)
             {
-                open_ang = (TMath::RadToDeg()*missing.Angle(recoil));
-                cut_OA = (open_ang < OACut);
-                if (GHistBGSub::IsPrompt(time)) MM_CA_OA->Fill(m_miss,copl_ang,open_ang,event_weight);
-                else if (GHistBGSub::IsRandom(time)) MM_CA_OA_R->Fill(m_miss,copl_ang,open_ang,event_weight);
+                d_OA = (TMath::RadToDeg()*lv_miss.Angle(v_reco));
+                b_cut_OA = (d_OA < OACut);
             }
 
-            if (comp_N)
+            //////////////////////////////////////////////////
+            // Recoil detection stuff
+            //////////////////////////////////////////////////
+            if (GHistBGSub::IsPrompt(d_subt_tm))
             {
-                if(TMath::Abs(m_miss) < 15) Comp_Dt_N_MM->Fill(tagg_chan,time,event_weight);
-                if(GetTracks()->GetClusterSize(0) > 1) Comp_Dt_N_CS->Fill(tagg_chan,time,event_weight);
-                if((TMath::Abs(m_miss) < 15) && (GetTracks()->GetClusterSize(0) > 1)) Comp_Dt_N_MMCS->Fill(tagg_chan,time,event_weight);
-                Comp_Dt_N->Fill(tagg_chan,time,event_weight);
-                if (GHistBGSub::IsPrompt(time))
+                if (b_cut_CA) Comp_OA->Fill(i_tagg_ch, d_miss_th, d_OA, event_weight);
+                if (TMath::Abs(d_miss_ma) < 15)
                 {
-                    if (GetTracks()->GetClusterSize(0) > 1) Comp_MM_N_C->Fill(tagg_chan,theta,m_miss,event_weight);
-                    if (TMath::Abs(m_miss) < 15) Comp_CS_MM->Fill(energy, theta, clus_size, event_weight);
-                    if (fill_MM_0) Comp_MM_N_0->Fill(tagg_chan,theta,m_miss,event_weight);
-                    else if (fill_MM_1) Comp_MM_N_1->Fill(tagg_chan,theta,m_miss,event_weight);
-                    if (fill_Ph_0) Comp_Ph_N_0->Fill(tagg_chan,theta,phi,event_weight);
-                    else if (fill_Ph_1) Comp_Ph_N_1->Fill(tagg_chan,theta,phi,event_weight);
-                }
-                else if (GHistBGSub::IsRandom(time))
-                {
-                    if(GetTracks()->GetClusterSize(0) > 1) Comp_MM_N_C_R->Fill(tagg_chan,theta,m_miss,event_weight);
-                    if (TMath::Abs(m_miss) < 15) Comp_CS_MM_R->Fill(energy, theta, clus_size, event_weight);
-                    if (fill_MM_0) Comp_MM_N_0_R->Fill(tagg_chan,theta,m_miss,event_weight);
-                    else if (fill_MM_1) Comp_MM_N_1_R->Fill(tagg_chan,theta,m_miss,event_weight);
-                    if (fill_Ph_0) Comp_Ph_N_0_R->Fill(tagg_chan,theta,phi,event_weight);
-                    else if (fill_Ph_1) Comp_Ph_N_1_R->Fill(tagg_chan,theta,phi,event_weight);
+                    if (b_cut_CA) Comp_OA_Cut->Fill(i_tagg_ch, d_miss_th, d_OA, event_weight);
+                    if (b_cut_OA)
+                    {
+                        if (d_reco_en > 0)
+                        {
+                            Comp_CS_MM->Fill(d_part_en, d_part_th, i_part_sz, event_weight);
+                            Reco_CS_MM->Fill(d_reco_en, d_reco_th, i_reco_sz, event_weight);
+                        }
+                    }
                 }
             }
-            else if (comp_C)
+            else if (GHistBGSub::IsRandom(d_subt_tm))
             {
-                Comp_Dt_C->Fill(tagg_chan,time,event_weight);
-                if (GHistBGSub::IsPrompt(time))
+                if (b_cut_CA) Comp_OA_R->Fill(i_tagg_ch, d_miss_th, d_OA, event_weight);
+                if (TMath::Abs(d_miss_ma) < 15)
                 {
-                    if (fill_MM_0) Comp_MM_C_0->Fill(tagg_chan,theta,m_miss,event_weight);
-                    else if (fill_MM_1) Comp_MM_C_1->Fill(tagg_chan,theta,m_miss,event_weight);
-                    if (fill_Ph_0) Comp_Ph_C_0->Fill(tagg_chan,theta,phi,event_weight);
-                    else if (fill_Ph_1) Comp_Ph_C_1->Fill(tagg_chan,theta,phi,event_weight);
-                }
-                else if (GHistBGSub::IsRandom(time))
-                {
-                    if (fill_MM_0) Comp_MM_C_0_R->Fill(tagg_chan,theta,m_miss,event_weight);
-                    else if (fill_MM_1) Comp_MM_C_1_R->Fill(tagg_chan,theta,m_miss,event_weight);
-                    if (fill_Ph_0) Comp_Ph_C_0_R->Fill(tagg_chan,theta,phi,event_weight);
-                    else if (fill_Ph_1) Comp_Ph_C_1_R->Fill(tagg_chan,theta,phi,event_weight);
+                    if (b_cut_CA) Comp_OA_Cut_R->Fill(i_tagg_ch, d_miss_th, d_OA, event_weight);
+                    if (b_cut_OA)
+                    {
+                        if (d_reco_en > 0)
+                        {
+                            Comp_CS_MM_R->Fill(d_part_en, d_part_th, i_part_sz, event_weight);
+                            Reco_CS_MM_R->Fill(d_reco_en, d_reco_th, i_reco_sz, event_weight);
+                        }
+                    }
                 }
             }
-            else if (comp_NN && cut_OA)
+
+            //////////////////////////////////////////////////
+            // State selection
+            //////////////////////////////////////////////////
+            if (!b_hel) b_fill_Ph_0 = (lv_miss.M() >= MMLoC && lv_miss.M() < MMHiC);
+            else b_fill_Ph_1 = (lv_miss.M() >= MMLoC && lv_miss.M() < MMHiC);
+
+            if (b_NE)
             {
-                Comp_Dt_NN->Fill(tagg_chan,time,event_weight);
-                if (GHistBGSub::IsPrompt(time))
+                Comp_Tm_NE->Fill(i_tagg_ch, d_subt_tm, event_weight);
+                if (GHistBGSub::IsPrompt(d_subt_tm))
                 {
-                    if (TMath::Abs(m_miss) < 15)
-                    {
-                        Comp_CS_MM->Fill(energy, theta, clus_size, event_weight);
-                        Reco_CS_MM->Fill(reco_energy, reco_theta, reco_size, event_weight);
-                    }
-                    if (fill_MM_0) Comp_MM_NN_0->Fill(tagg_chan,theta,m_miss,event_weight);
-                    else if (fill_MM_1) Comp_MM_NN_1->Fill(tagg_chan,theta,m_miss,event_weight);
-                    if (fill_Ph_0) Comp_Ph_NN_0->Fill(tagg_chan,theta,phi,event_weight);
-                    else if (fill_Ph_1) Comp_Ph_NN_1->Fill(tagg_chan,theta,phi,event_weight);
+                    if (b_fill_MM_0) Comp_MM_NE_0->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) Comp_MM_NE_1->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    if (b_fill_Ph_0) Comp_Ph_NE_0->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                    else if (b_fill_Ph_1) Comp_Ph_NE_1->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
                 }
-                else if (GHistBGSub::IsRandom(time))
+                else if (GHistBGSub::IsRandom(d_subt_tm))
                 {
-                    if (TMath::Abs(m_miss) < 15)
-                    {
-                        Comp_CS_MM_R->Fill(energy, theta, clus_size, event_weight);
-                        Reco_CS_MM_R->Fill(reco_energy, reco_theta, reco_size, event_weight);
-                    }
-                    if (fill_MM_0) Comp_MM_NN_0_R->Fill(tagg_chan,theta,m_miss,event_weight);
-                    else if (fill_MM_1) Comp_MM_NN_1_R->Fill(tagg_chan,theta,m_miss,event_weight);
-                    if (fill_Ph_0) Comp_Ph_NN_0_R->Fill(tagg_chan,theta,phi,event_weight);
-                    else if (fill_Ph_1) Comp_Ph_NN_1_R->Fill(tagg_chan,theta,phi,event_weight);
+                    if (b_fill_MM_0) Comp_MM_NE_0_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) Comp_MM_NE_1_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    if (b_fill_Ph_0) Comp_Ph_NE_0_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                    else if (b_fill_Ph_1) Comp_Ph_NE_1_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
                 }
             }
-            else if (comp_NC && cut_OA)
+            // Add all of the now failed recoil ones into inclusive
+            else if (b_NI || !b_cut_OA)
             {
-                Comp_Dt_NC->Fill(tagg_chan,time,event_weight);
-                if (GHistBGSub::IsPrompt(time))
+                Comp_Tm_NI->Fill(i_tagg_ch, d_subt_tm, event_weight);
+                if (GHistBGSub::IsPrompt(d_subt_tm))
                 {
-                    if (TMath::Abs(m_miss) < 15)
-                    {
-                        Comp_CS_MM->Fill(energy, theta, clus_size, event_weight);
-                        Reco_CS_MM->Fill(reco_energy, reco_theta, reco_size, event_weight);
-                    }
-                    if (fill_MM_0) Comp_MM_NC_0->Fill(tagg_chan,theta,m_miss,event_weight);
-                    else if (fill_MM_1) Comp_MM_NC_1->Fill(tagg_chan,theta,m_miss,event_weight);
-                    if (fill_Ph_0) Comp_Ph_NC_0->Fill(tagg_chan,theta,phi,event_weight);
-                    else if (fill_Ph_1) Comp_Ph_NC_1->Fill(tagg_chan,theta,phi,event_weight);
+                    if (b_fill_MM_0) Comp_MM_NI_0->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) Comp_MM_NI_1->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    if (b_fill_Ph_0) Comp_Ph_NI_0->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                    else if (b_fill_Ph_1) Comp_Ph_NI_1->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
                 }
-                else if (GHistBGSub::IsRandom(time))
+                else if (GHistBGSub::IsRandom(d_subt_tm))
                 {
-                    if (TMath::Abs(m_miss) < 15)
-                    {
-                        Comp_CS_MM_R->Fill(energy, theta, clus_size, event_weight);
-                        Reco_CS_MM_R->Fill(reco_energy, reco_theta, reco_size, event_weight);
-                    }
-                    if (fill_MM_0) Comp_MM_NC_0_R->Fill(tagg_chan,theta,m_miss,event_weight);
-                    else if (fill_MM_1) Comp_MM_NC_1_R->Fill(tagg_chan,theta,m_miss,event_weight);
-                    if (fill_Ph_0) Comp_Ph_NC_0_R->Fill(tagg_chan,theta,phi,event_weight);
-                    else if (fill_Ph_1) Comp_Ph_NC_1_R->Fill(tagg_chan,theta,phi,event_weight);
+                    if (b_fill_MM_0) Comp_MM_NI_0_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) Comp_MM_NI_1_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    if (b_fill_Ph_0) Comp_Ph_NI_0_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                    else if (b_fill_Ph_1) Comp_Ph_NI_1_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
                 }
             }
-            else if (comp_NT && cut_OA)
+            // From here on the opening angle must have been satisfied
+            else if (b_CE)
             {
-                Comp_Dt_NT->Fill(tagg_chan,time,event_weight);
-                if (GHistBGSub::IsPrompt(time))
+                Comp_Tm_CE->Fill(i_tagg_ch, d_subt_tm, event_weight);
+                if (GHistBGSub::IsPrompt(d_subt_tm))
                 {
-                    if (TMath::Abs(m_miss) < 15)
-                    {
-                        Comp_CS_MM->Fill(energy, theta, clus_size, event_weight);
-                        Reco_CS_MM->Fill(reco_energy, reco_theta, reco_size, event_weight);
-                    }
-                    if (fill_MM_0) Comp_MM_NT_0->Fill(tagg_chan,theta,m_miss,event_weight);
-                    else if (fill_MM_1) Comp_MM_NT_1->Fill(tagg_chan,theta,m_miss,event_weight);
-                    if (fill_Ph_0) Comp_Ph_NT_0->Fill(tagg_chan,theta,phi,event_weight);
-                    else if (fill_Ph_1) Comp_Ph_NT_1->Fill(tagg_chan,theta,phi,event_weight);
+                    if (b_fill_MM_0) Comp_MM_CE_0->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) Comp_MM_CE_1->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    if (b_fill_Ph_0) Comp_Ph_CE_0->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                    else if (b_fill_Ph_1) Comp_Ph_CE_1->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
                 }
-                else if (GHistBGSub::IsRandom(time))
+                else if (GHistBGSub::IsRandom(d_subt_tm))
                 {
-                    if (TMath::Abs(m_miss) < 15)
-                    {
-                        Comp_CS_MM_R->Fill(energy, theta, clus_size, event_weight);
-                        Reco_CS_MM_R->Fill(reco_energy, reco_theta, reco_size, event_weight);
-                    }
-                    if (fill_MM_0) Comp_MM_NT_0_R->Fill(tagg_chan,theta,m_miss,event_weight);
-                    else if (fill_MM_1) Comp_MM_NT_1_R->Fill(tagg_chan,theta,m_miss,event_weight);
-                    if (fill_Ph_0) Comp_Ph_NT_0_R->Fill(tagg_chan,theta,phi,event_weight);
-                    else if (fill_Ph_1) Comp_Ph_NT_1_R->Fill(tagg_chan,theta,phi,event_weight);
+                    if (b_fill_MM_0) Comp_MM_CE_0_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) Comp_MM_CE_1_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    if (b_fill_Ph_0) Comp_Ph_CE_0_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                    else if (b_fill_Ph_1) Comp_Ph_CE_1_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
                 }
             }
-            else if (comp_NW && cut_OA)
+            else if (b_CI)
             {
-                Comp_Dt_NW->Fill(tagg_chan,time,event_weight);
-                if (GHistBGSub::IsPrompt(time))
+                Comp_Tm_CI->Fill(i_tagg_ch, d_subt_tm, event_weight);
+                if (GHistBGSub::IsPrompt(d_subt_tm))
                 {
-                    if (TMath::Abs(m_miss) < 15) Comp_CS_MM->Fill(energy, theta, clus_size, event_weight);
-                    if (fill_MM_0) Comp_MM_NW_0->Fill(tagg_chan,theta,m_miss,event_weight);
-                    else if (fill_MM_1) Comp_MM_NW_1->Fill(tagg_chan,theta,m_miss,event_weight);
-                    if (fill_Ph_0) Comp_Ph_NW_0->Fill(tagg_chan,theta,phi,event_weight);
-                    else if (fill_Ph_1) Comp_Ph_NW_1->Fill(tagg_chan,theta,phi,event_weight);
+                    if (b_fill_MM_0) Comp_MM_CI_0->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) Comp_MM_CI_1->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    if (b_fill_Ph_0) Comp_Ph_CI_0->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                    else if (b_fill_Ph_1) Comp_Ph_CI_1->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
                 }
-                else if (GHistBGSub::IsRandom(time))
+                else if (GHistBGSub::IsRandom(d_subt_tm))
                 {
-                    if (TMath::Abs(m_miss) < 15) Comp_CS_MM_R->Fill(energy, theta, clus_size, event_weight);
-                    if (fill_MM_0) Comp_MM_NW_0_R->Fill(tagg_chan,theta,m_miss,event_weight);
-                    else if (fill_MM_1) Comp_MM_NW_1_R->Fill(tagg_chan,theta,m_miss,event_weight);
-                    if (fill_Ph_0) Comp_Ph_NW_0_R->Fill(tagg_chan,theta,phi,event_weight);
-                    else if (fill_Ph_1) Comp_Ph_NW_1_R->Fill(tagg_chan,theta,phi,event_weight);
+                    if (b_fill_MM_0) Comp_MM_CI_0_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) Comp_MM_CI_1_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    if (b_fill_Ph_0) Comp_Ph_CI_0_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                    else if (b_fill_Ph_1) Comp_Ph_CI_1_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
                 }
             }
-            else if (comp_NNX && cut_OA)
+            else if (b_WE)
             {
-                Comp_Dt_NNX->Fill(tagg_chan,time,event_weight);
-                if (GHistBGSub::IsPrompt(time))
+                Comp_Tm_WE->Fill(i_tagg_ch, d_subt_tm, event_weight);
+                if (GHistBGSub::IsPrompt(d_subt_tm))
                 {
-                    if (TMath::Abs(m_miss) < 15)
-                    {
-                        Comp_CS_MM->Fill(energy, theta, clus_size, event_weight);
-                        Reco_CS_MM->Fill(reco_energy, reco_theta, reco_size, event_weight);
-                    }
-                    if (fill_MM_0) Comp_MM_NNX_0->Fill(tagg_chan,theta,m_miss,event_weight);
-                    else if (fill_MM_1) Comp_MM_NNX_1->Fill(tagg_chan,theta,m_miss,event_weight);
-                    if (fill_Ph_0) Comp_Ph_NNX_0->Fill(tagg_chan,theta,phi,event_weight);
-                    else if (fill_Ph_1) Comp_Ph_NNX_1->Fill(tagg_chan,theta,phi,event_weight);
+                    if (b_fill_MM_0) Comp_MM_WE_0->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) Comp_MM_WE_1->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    if (b_fill_Ph_0) Comp_Ph_WE_0->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                    else if (b_fill_Ph_1) Comp_Ph_WE_1->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
                 }
-                else if (GHistBGSub::IsRandom(time))
+                else if (GHistBGSub::IsRandom(d_subt_tm))
                 {
-                    if (TMath::Abs(m_miss) < 15)
-                    {
-                        Comp_CS_MM_R->Fill(energy, theta, clus_size, event_weight);
-                        Reco_CS_MM_R->Fill(reco_energy, reco_theta, reco_size, event_weight);
-                    }
-                    if (fill_MM_0) Comp_MM_NNX_0_R->Fill(tagg_chan,theta,m_miss,event_weight);
-                    else if (fill_MM_1) Comp_MM_NNX_1_R->Fill(tagg_chan,theta,m_miss,event_weight);
-                    if (fill_Ph_0) Comp_Ph_NNX_0_R->Fill(tagg_chan,theta,phi,event_weight);
-                    else if (fill_Ph_1) Comp_Ph_NNX_1_R->Fill(tagg_chan,theta,phi,event_weight);
+                    if (b_fill_MM_0) Comp_MM_WE_0_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) Comp_MM_WE_1_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    if (b_fill_Ph_0) Comp_Ph_WE_0_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                    else if (b_fill_Ph_1) Comp_Ph_WE_1_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
                 }
             }
-            else if (comp_NCX && cut_OA)
+            else if (b_WI)
             {
-                Comp_Dt_NCX->Fill(tagg_chan,time,event_weight);
-                if (GHistBGSub::IsPrompt(time))
+                Comp_Tm_WI->Fill(i_tagg_ch, d_subt_tm, event_weight);
+                if (GHistBGSub::IsPrompt(d_subt_tm))
                 {
-                    if (TMath::Abs(m_miss) < 15)
-                    {
-                        Comp_CS_MM->Fill(energy, theta, clus_size, event_weight);
-                        Reco_CS_MM->Fill(reco_energy, reco_theta, reco_size, event_weight);
-                    }
-                    if (fill_MM_0) Comp_MM_NCX_0->Fill(tagg_chan,theta,m_miss,event_weight);
-                    else if (fill_MM_1) Comp_MM_NCX_1->Fill(tagg_chan,theta,m_miss,event_weight);
-                    if (fill_Ph_0) Comp_Ph_NCX_0->Fill(tagg_chan,theta,phi,event_weight);
-                    else if (fill_Ph_1) Comp_Ph_NCX_1->Fill(tagg_chan,theta,phi,event_weight);
+                    if (b_fill_MM_0) Comp_MM_WI_0->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) Comp_MM_WI_1->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    if (b_fill_Ph_0) Comp_Ph_WI_0->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                    else if (b_fill_Ph_1) Comp_Ph_WI_1->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
                 }
-                else if (GHistBGSub::IsRandom(time))
+                else if (GHistBGSub::IsRandom(d_subt_tm))
                 {
-                    if (TMath::Abs(m_miss) < 15)
-                    {
-                        Comp_CS_MM_R->Fill(energy, theta, clus_size, event_weight);
-                        Reco_CS_MM_R->Fill(reco_energy, reco_theta, reco_size, event_weight);
-                    }
-                    if (fill_MM_0) Comp_MM_NCX_0_R->Fill(tagg_chan,theta,m_miss,event_weight);
-                    else if (fill_MM_1) Comp_MM_NCX_1_R->Fill(tagg_chan,theta,m_miss,event_weight);
-                    if (fill_Ph_0) Comp_Ph_NCX_0_R->Fill(tagg_chan,theta,phi,event_weight);
-                    else if (fill_Ph_1) Comp_Ph_NCX_1_R->Fill(tagg_chan,theta,phi,event_weight);
+                    if (b_fill_MM_0) Comp_MM_WI_0_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) Comp_MM_WI_1_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    if (b_fill_Ph_0) Comp_Ph_WI_0_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                    else if (b_fill_Ph_1) Comp_Ph_WI_1_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
                 }
             }
-            else if (comp_NTX && cut_OA)
+            else if (b_TE)
             {
-                Comp_Dt_NTX->Fill(tagg_chan,time,event_weight);
-                if (GHistBGSub::IsPrompt(time))
+                Comp_Tm_TE->Fill(i_tagg_ch, d_subt_tm, event_weight);
+                if (GHistBGSub::IsPrompt(d_subt_tm))
                 {
-                    if (TMath::Abs(m_miss) < 15)
-                    {
-                        Comp_CS_MM->Fill(energy, theta, clus_size, event_weight);
-                        Reco_CS_MM->Fill(reco_energy, reco_theta, reco_size, event_weight);
-                    }
-                    if (fill_MM_0) Comp_MM_NTX_0->Fill(tagg_chan,theta,m_miss,event_weight);
-                    else if (fill_MM_1) Comp_MM_NTX_1->Fill(tagg_chan,theta,m_miss,event_weight);
-                    if (fill_Ph_0) Comp_Ph_NTX_0->Fill(tagg_chan,theta,phi,event_weight);
-                    else if (fill_Ph_1) Comp_Ph_NTX_1->Fill(tagg_chan,theta,phi,event_weight);
+                    if (b_fill_MM_0) Comp_MM_TE_0->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) Comp_MM_TE_1->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    if (b_fill_Ph_0) Comp_Ph_TE_0->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                    else if (b_fill_Ph_1) Comp_Ph_TE_1->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
                 }
-                else if (GHistBGSub::IsRandom(time))
+                else if (GHistBGSub::IsRandom(d_subt_tm))
                 {
-                    if (TMath::Abs(m_miss) < 15)
-                    {
-                        Comp_CS_MM_R->Fill(energy, theta, clus_size, event_weight);
-                        Reco_CS_MM_R->Fill(reco_energy, reco_theta, reco_size, event_weight);
-                    }
-                    if (fill_MM_0) Comp_MM_NTX_0_R->Fill(tagg_chan,theta,m_miss,event_weight);
-                    else if (fill_MM_1) Comp_MM_NTX_1_R->Fill(tagg_chan,theta,m_miss,event_weight);
-                    if (fill_Ph_0) Comp_Ph_NTX_0_R->Fill(tagg_chan,theta,phi,event_weight);
-                    else if (fill_Ph_1) Comp_Ph_NTX_1_R->Fill(tagg_chan,theta,phi,event_weight);
+                    if (b_fill_MM_0) Comp_MM_TE_0_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) Comp_MM_TE_1_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    if (b_fill_Ph_0) Comp_Ph_TE_0_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                    else if (b_fill_Ph_1) Comp_Ph_TE_1_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
                 }
             }
-            else if (comp_NWX && cut_OA)
+            else if (b_TI)
             {
-                Comp_Dt_NWX->Fill(tagg_chan,time,event_weight);
-                if (GHistBGSub::IsPrompt(time))
+                Comp_Tm_TI->Fill(i_tagg_ch, d_subt_tm, event_weight);
+                if (GHistBGSub::IsPrompt(d_subt_tm))
                 {
-                    if (TMath::Abs(m_miss) < 15) Comp_CS_MM->Fill(energy, theta, clus_size, event_weight);
-                    if (fill_MM_0) Comp_MM_NWX_0->Fill(tagg_chan,theta,m_miss,event_weight);
-                    else if (fill_MM_1) Comp_MM_NWX_1->Fill(tagg_chan,theta,m_miss,event_weight);
-                    if (fill_Ph_0) Comp_Ph_NWX_0->Fill(tagg_chan,theta,phi,event_weight);
-                    else if (fill_Ph_1) Comp_Ph_NWX_1->Fill(tagg_chan,theta,phi,event_weight);
+                    if (b_fill_MM_0) Comp_MM_TI_0->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) Comp_MM_TI_1->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    if (b_fill_Ph_0) Comp_Ph_TI_0->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                    else if (b_fill_Ph_1) Comp_Ph_TI_1->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
                 }
-                else if (GHistBGSub::IsRandom(time))
+                else if (GHistBGSub::IsRandom(d_subt_tm))
                 {
-                    if (TMath::Abs(m_miss) < 15) Comp_CS_MM_R->Fill(energy, theta, clus_size, event_weight);
-                    if (fill_MM_0) Comp_MM_NWX_0_R->Fill(tagg_chan,theta,m_miss,event_weight);
-                    else if (fill_MM_1) Comp_MM_NWX_1_R->Fill(tagg_chan,theta,m_miss,event_weight);
-                    if (fill_Ph_0) Comp_Ph_NWX_0_R->Fill(tagg_chan,theta,phi,event_weight);
-                    else if (fill_Ph_1) Comp_Ph_NWX_1_R->Fill(tagg_chan,theta,phi,event_weight);
+                    if (b_fill_MM_0) Comp_MM_TI_0_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) Comp_MM_TI_1_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    if (b_fill_Ph_0) Comp_Ph_TI_0_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                    else if (b_fill_Ph_1) Comp_Ph_TI_1_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
                 }
             }
         }
@@ -1321,6 +1395,25 @@ Bool_t 	PAnalyze::InitSaveRandoms()
 
 }
 
+Bool_t 	PAnalyze::InitTAPSEff()
+{
+    Double_t sc1;
+    string config = ReadConfig("TAPS-Efficiency");
+    if(sscanf( config.c_str(), "%lf\n", &sc1) == 1)
+    {
+        cout << "TAPS efficiency: " << sc1 << endl << endl;
+        taps_eff = sc1;
+    }
+    else if(strcmp(config.c_str(), "nokey") != 0)
+    {
+        cout << "TAPS efficiency not set correctly" << endl << endl;
+        return kFALSE;
+    }
+
+    return kTRUE;
+
+}
+
 Bool_t  PAnalyze::InitBeamPol()
 {
     string config;
@@ -1402,6 +1495,25 @@ Bool_t  PAnalyze::InitTargPol()
     return kTRUE;
 }
 
+Bool_t 	PAnalyze::InitSplitSearch()
+{
+    Int_t sc1;
+    string config = ReadConfig("Split-Search");
+    if(sscanf( config.c_str(), "%d\n", &sc1) == 1)
+    {
+        cout << "Search for splits: " << sc1 << endl << endl;
+        split_search = sc1;
+    }
+    else if(strcmp(config.c_str(), "nokey") != 0)
+    {
+        cout << "Split search not set correctly" << endl << endl;
+        return kFALSE;
+    }
+
+    return kTRUE;
+
+}
+
 Double_t  PAnalyze::TwoBodyAngleToEnergyMin(Double_t eBeam, Double_t mTarg, Double_t mPar1, Double_t mPar2, Double_t tPar1)
 {
     Double_t dX = ((eBeam*(mPar1-mTarg))-(0.5*(TMath::Power((mTarg-mPar1),2.0)))+(0.5*mPar2*mPar2));
@@ -1474,632 +1586,765 @@ Bool_t	PAnalyze::Write()
 
     if(save_randoms && !(IsMCFile()))
     {
-        TH1D *TaggHel0_P = (TH1D*)TaggHel0->Clone("TaggHel0_P");
-        TH1D *TaggHel1_P = (TH1D*)TaggHel1->Clone("TaggHel1_P");
+        TH1D *Tagg_0_P = (TH1D*)Tagg_0->Clone("Tagg_0_P");
+        TH1D *Tagg_1_P = (TH1D*)Tagg_1->Clone("Tagg_1_P");
 
-        TH1D *IncHel0_P = (TH1D*)IncHel0->Clone("IncHel0_P");
-        TH1D *IncHel1_P = (TH1D*)IncHel1->Clone("IncHel1_P");
-        TH2D *IncHits_P = (TH2D*)IncHits->Clone("IncHits_P");
+        TH2D *Inc_0_P = (TH2D*)Inc_0->Clone("Inc_0_P");
+        TH2D *Inc_1_P = (TH2D*)Inc_1->Clone("Inc_1_P");
 
-        TH3D *MM_CA_OA_P = (TH3D*)MM_CA_OA->Clone("MM_CA_OA_P");
+        TH3D *Pi0_OA_P = (TH3D*)Pi0_OA->Clone("Pi0_OA_P");
+        TH3D *Pi0_OA_Cut_P = (TH3D*)Pi0_OA_Cut->Clone("Pi0_OA_Cut_P");
 
-        TH3D *Pi0_IM_MM_P = (TH3D*)Pi0_IM_MM->Clone("Pi0_IM_MM_P");
-        TH3D *Pi0_IM_MM_NN_P = (TH3D*)Pi0_IM_MM_NN->Clone("Pi0_IM_MM_NN_P");
+        TH3D *Pi0_MM_NE_0_P = (TH3D*)Pi0_MM_NE_0->Clone("Pi0_MM_NE_0_P");
+        TH3D *Pi0_MM_NE_1_P = (TH3D*)Pi0_MM_NE_1->Clone("Pi0_MM_NE_1_P");
+        TH3D *Pi0_Ph_NE_0_P = (TH3D*)Pi0_Ph_NE_0->Clone("Pi0_Ph_NE_0_P");
+        TH3D *Pi0_Ph_NE_1_P = (TH3D*)Pi0_Ph_NE_1->Clone("Pi0_Ph_NE_1_P");
 
-        TH3D *Pi0_MM_P = (TH3D*)Pi0_MM->Clone("Pi0_MM_P");
-        TH3D *Pi0_MM_IM_P = (TH3D*)Pi0_MM_IM->Clone("Pi0_MM_IM_P");
+        TH3D *Pi0_MM_NI_0_P = (TH3D*)Pi0_MM_NI_0->Clone("Pi0_MM_NI_0_P");
+        TH3D *Pi0_MM_NI_1_P = (TH3D*)Pi0_MM_NI_1->Clone("Pi0_MM_NI_1_P");
+        TH3D *Pi0_Ph_NI_0_P = (TH3D*)Pi0_Ph_NI_0->Clone("Pi0_Ph_NI_0_P");
+        TH3D *Pi0_Ph_NI_1_P = (TH3D*)Pi0_Ph_NI_1->Clone("Pi0_Ph_NI_1_P");
 
-        TH3D *Pi0_MM_NN_P = (TH3D*)Pi0_MM_NN->Clone("Pi0_MM_NN_P");
-        TH3D *Pi0_MM_NC_P = (TH3D*)Pi0_MM_NC->Clone("Pi0_MM_NC_P");
-        TH3D *Pi0_MM_CC_P = (TH3D*)Pi0_MM_CC->Clone("Pi0_MM_CC_P");
+        TH3D *Pi0_MM_CE_0_P = (TH3D*)Pi0_MM_CE_0->Clone("Pi0_MM_CE_0_P");
+        TH3D *Pi0_MM_CE_1_P = (TH3D*)Pi0_MM_CE_1->Clone("Pi0_MM_CE_1_P");
+        TH3D *Pi0_Ph_CE_0_P = (TH3D*)Pi0_Ph_CE_0->Clone("Pi0_Ph_CE_0_P");
+        TH3D *Pi0_Ph_CE_1_P = (TH3D*)Pi0_Ph_CE_1->Clone("Pi0_Ph_CE_1_P");
 
-        TH3D *Pi0_MM_NNX_P = (TH3D*)Pi0_MM_NNX->Clone("Pi0_MM_NNX_P");
-        TH3D *Pi0_MM_NCX_P = (TH3D*)Pi0_MM_NCX->Clone("Pi0_MM_NCX_P");
-        TH3D *Pi0_MM_CCX_P = (TH3D*)Pi0_MM_CCX->Clone("Pi0_MM_CCX_P");
+        TH3D *Pi0_MM_CI_0_P = (TH3D*)Pi0_MM_CI_0->Clone("Pi0_MM_CI_0_P");
+        TH3D *Pi0_MM_CI_1_P = (TH3D*)Pi0_MM_CI_1->Clone("Pi0_MM_CI_1_P");
+        TH3D *Pi0_Ph_CI_0_P = (TH3D*)Pi0_Ph_CI_0->Clone("Pi0_Ph_CI_0_P");
+        TH3D *Pi0_Ph_CI_1_P = (TH3D*)Pi0_Ph_CI_1->Clone("Pi0_Ph_CI_1_P");
+
+        TH3D *Pi0_MM_WE_0_P = (TH3D*)Pi0_MM_WE_0->Clone("Pi0_MM_WE_0_P");
+        TH3D *Pi0_MM_WE_1_P = (TH3D*)Pi0_MM_WE_1->Clone("Pi0_MM_WE_1_P");
+        TH3D *Pi0_Ph_WE_0_P = (TH3D*)Pi0_Ph_WE_0->Clone("Pi0_Ph_WE_0_P");
+        TH3D *Pi0_Ph_WE_1_P = (TH3D*)Pi0_Ph_WE_1->Clone("Pi0_Ph_WE_1_P");
+
+        TH3D *Pi0_MM_WI_0_P = (TH3D*)Pi0_MM_WI_0->Clone("Pi0_MM_WI_0_P");
+        TH3D *Pi0_MM_WI_1_P = (TH3D*)Pi0_MM_WI_1->Clone("Pi0_MM_WI_1_P");
+        TH3D *Pi0_Ph_WI_0_P = (TH3D*)Pi0_Ph_WI_0->Clone("Pi0_Ph_WI_0_P");
+        TH3D *Pi0_Ph_WI_1_P = (TH3D*)Pi0_Ph_WI_1->Clone("Pi0_Ph_WI_1_P");
+
+        TH3D *Pi0_MM_TE_0_P = (TH3D*)Pi0_MM_TE_0->Clone("Pi0_MM_TE_0_P");
+        TH3D *Pi0_MM_TE_1_P = (TH3D*)Pi0_MM_TE_1->Clone("Pi0_MM_TE_1_P");
+        TH3D *Pi0_Ph_TE_0_P = (TH3D*)Pi0_Ph_TE_0->Clone("Pi0_Ph_TE_0_P");
+        TH3D *Pi0_Ph_TE_1_P = (TH3D*)Pi0_Ph_TE_1->Clone("Pi0_Ph_TE_1_P");
+
+        TH3D *Pi0_MM_TI_0_P = (TH3D*)Pi0_MM_TI_0->Clone("Pi0_MM_TI_0_P");
+        TH3D *Pi0_MM_TI_1_P = (TH3D*)Pi0_MM_TI_1->Clone("Pi0_MM_TI_1_P");
+        TH3D *Pi0_Ph_TI_0_P = (TH3D*)Pi0_Ph_TI_0->Clone("Pi0_Ph_TI_0_P");
+        TH3D *Pi0_Ph_TI_1_P = (TH3D*)Pi0_Ph_TI_1->Clone("Pi0_Ph_TI_1_P");
 
         TH3D *Pi0_Re_All_P = (TH3D*)Pi0_Re_All->Clone("Pi0_Re_All_P");
         TH3D *Pi0_Re_Det_P = (TH3D*)Pi0_Re_Det->Clone("Pi0_Re_Det_P");
+        TH3D *Pi0_Re_Dif_P = (TH3D*)Pi0_Re_Dif->Clone("Pi0_Re_Dif_P");
         TH3D *Pi0_Re_NoE_P = (TH3D*)Pi0_Re_NoE->Clone("Pi0_Re_NoE_P");
 
-        TH3D *Comp_MM_N_C_P = (TH3D*)Comp_MM_N_C->Clone("Comp_MM_N_C_P");
+        TH3D *Comp_OA_P = (TH3D*)Comp_OA->Clone("Comp_OA_P");
+        TH3D *Comp_OA_Cut_P = (TH3D*)Comp_OA_Cut->Clone("Comp_OA_Cut_P");
+
+        TH3D *Comp_MM_NE_0_P = (TH3D*)Comp_MM_NE_0->Clone("Comp_MM_NE_0_P");
+        TH3D *Comp_MM_NE_1_P = (TH3D*)Comp_MM_NE_1->Clone("Comp_MM_NE_1_P");
+        TH3D *Comp_Ph_NE_0_P = (TH3D*)Comp_Ph_NE_0->Clone("Comp_Ph_NE_0_P");
+        TH3D *Comp_Ph_NE_1_P = (TH3D*)Comp_Ph_NE_1->Clone("Comp_Ph_NE_1_P");
+
+        TH3D *Comp_MM_NI_0_P = (TH3D*)Comp_MM_NI_0->Clone("Comp_MM_NI_0_P");
+        TH3D *Comp_MM_NI_1_P = (TH3D*)Comp_MM_NI_1->Clone("Comp_MM_NI_1_P");
+        TH3D *Comp_Ph_NI_0_P = (TH3D*)Comp_Ph_NI_0->Clone("Comp_Ph_NI_0_P");
+        TH3D *Comp_Ph_NI_1_P = (TH3D*)Comp_Ph_NI_1->Clone("Comp_Ph_NI_1_P");
+
+        TH3D *Comp_MM_CE_0_P = (TH3D*)Comp_MM_CE_0->Clone("Comp_MM_CE_0_P");
+        TH3D *Comp_MM_CE_1_P = (TH3D*)Comp_MM_CE_1->Clone("Comp_MM_CE_1_P");
+        TH3D *Comp_Ph_CE_0_P = (TH3D*)Comp_Ph_CE_0->Clone("Comp_Ph_CE_0_P");
+        TH3D *Comp_Ph_CE_1_P = (TH3D*)Comp_Ph_CE_1->Clone("Comp_Ph_CE_1_P");
+
+        TH3D *Comp_MM_CI_0_P = (TH3D*)Comp_MM_CI_0->Clone("Comp_MM_CI_0_P");
+        TH3D *Comp_MM_CI_1_P = (TH3D*)Comp_MM_CI_1->Clone("Comp_MM_CI_1_P");
+        TH3D *Comp_Ph_CI_0_P = (TH3D*)Comp_Ph_CI_0->Clone("Comp_Ph_CI_0_P");
+        TH3D *Comp_Ph_CI_1_P = (TH3D*)Comp_Ph_CI_1->Clone("Comp_Ph_CI_1_P");
+
+        TH3D *Comp_MM_WE_0_P = (TH3D*)Comp_MM_WE_0->Clone("Comp_MM_WE_0_P");
+        TH3D *Comp_MM_WE_1_P = (TH3D*)Comp_MM_WE_1->Clone("Comp_MM_WE_1_P");
+        TH3D *Comp_Ph_WE_0_P = (TH3D*)Comp_Ph_WE_0->Clone("Comp_Ph_WE_0_P");
+        TH3D *Comp_Ph_WE_1_P = (TH3D*)Comp_Ph_WE_1->Clone("Comp_Ph_WE_1_P");
+
+        TH3D *Comp_MM_WI_0_P = (TH3D*)Comp_MM_WI_0->Clone("Comp_MM_WI_0_P");
+        TH3D *Comp_MM_WI_1_P = (TH3D*)Comp_MM_WI_1->Clone("Comp_MM_WI_1_P");
+        TH3D *Comp_Ph_WI_0_P = (TH3D*)Comp_Ph_WI_0->Clone("Comp_Ph_WI_0_P");
+        TH3D *Comp_Ph_WI_1_P = (TH3D*)Comp_Ph_WI_1->Clone("Comp_Ph_WI_1_P");
+
+        TH3D *Comp_MM_TE_0_P = (TH3D*)Comp_MM_TE_0->Clone("Comp_MM_TE_0_P");
+        TH3D *Comp_MM_TE_1_P = (TH3D*)Comp_MM_TE_1->Clone("Comp_MM_TE_1_P");
+        TH3D *Comp_Ph_TE_0_P = (TH3D*)Comp_Ph_TE_0->Clone("Comp_Ph_TE_0_P");
+        TH3D *Comp_Ph_TE_1_P = (TH3D*)Comp_Ph_TE_1->Clone("Comp_Ph_TE_1_P");
+
+        TH3D *Comp_MM_TI_0_P = (TH3D*)Comp_MM_TI_0->Clone("Comp_MM_TI_0_P");
+        TH3D *Comp_MM_TI_1_P = (TH3D*)Comp_MM_TI_1->Clone("Comp_MM_TI_1_P");
+        TH3D *Comp_Ph_TI_0_P = (TH3D*)Comp_Ph_TI_0->Clone("Comp_Ph_TI_0_P");
+        TH3D *Comp_Ph_TI_1_P = (TH3D*)Comp_Ph_TI_1->Clone("Comp_Ph_TI_1_P");
 
         TH3D *Comp_CS_MM_P = (TH3D*)Comp_CS_MM->Clone("Comp_CS_MM_P");
         TH3D *Reco_CS_MM_P = (TH3D*)Reco_CS_MM->Clone("Reco_CS_MM_P");
 
-        TH3D *Comp_MM_N_0_P = (TH3D*)Comp_MM_N_0->Clone("Comp_MM_N_0_P");
-        TH3D *Comp_MM_N_1_P = (TH3D*)Comp_MM_N_1->Clone("Comp_MM_N_1_P");
-        TH3D *Comp_Ph_N_0_P = (TH3D*)Comp_Ph_N_0->Clone("Comp_Ph_N_0_P");
-        TH3D *Comp_Ph_N_1_P = (TH3D*)Comp_Ph_N_1->Clone("Comp_Ph_N_1_P");
+        Tagg_0_P->Write();
+        Tagg_1_P->Write();
 
-        TH3D *Comp_MM_C_0_P = (TH3D*)Comp_MM_C_0->Clone("Comp_MM_C_0_P");
-        TH3D *Comp_MM_C_1_P = (TH3D*)Comp_MM_C_1->Clone("Comp_MM_C_1_P");
-        TH3D *Comp_Ph_C_0_P = (TH3D*)Comp_Ph_C_0->Clone("Comp_Ph_C_0_P");
-        TH3D *Comp_Ph_C_1_P = (TH3D*)Comp_Ph_C_1->Clone("Comp_Ph_C_1_P");
+        Inc_0_P->Write();
+        Inc_1_P->Write();
 
-        TH3D *Comp_MM_NN_0_P = (TH3D*)Comp_MM_NN_0->Clone("Comp_MM_NN_0_P");
-        TH3D *Comp_MM_NN_1_P = (TH3D*)Comp_MM_NN_1->Clone("Comp_MM_NN_1_P");
-        TH3D *Comp_Ph_NN_0_P = (TH3D*)Comp_Ph_NN_0->Clone("Comp_Ph_NN_0_P");
-        TH3D *Comp_Ph_NN_1_P = (TH3D*)Comp_Ph_NN_1->Clone("Comp_Ph_NN_1_P");
+        Pi0_OA_P->Write();
+        Pi0_OA_Cut_P->Write();
 
-        TH3D *Comp_MM_NC_0_P = (TH3D*)Comp_MM_NC_0->Clone("Comp_MM_NC_0_P");
-        TH3D *Comp_MM_NC_1_P = (TH3D*)Comp_MM_NC_1->Clone("Comp_MM_NC_1_P");
-        TH3D *Comp_Ph_NC_0_P = (TH3D*)Comp_Ph_NC_0->Clone("Comp_Ph_NC_0_P");
-        TH3D *Comp_Ph_NC_1_P = (TH3D*)Comp_Ph_NC_1->Clone("Comp_Ph_NC_1_P");
-
-        TH3D *Comp_MM_NT_0_P = (TH3D*)Comp_MM_NT_0->Clone("Comp_MM_NT_0_P");
-        TH3D *Comp_MM_NT_1_P = (TH3D*)Comp_MM_NT_1->Clone("Comp_MM_NT_1_P");
-        TH3D *Comp_Ph_NT_0_P = (TH3D*)Comp_Ph_NT_0->Clone("Comp_Ph_NT_0_P");
-        TH3D *Comp_Ph_NT_1_P = (TH3D*)Comp_Ph_NT_1->Clone("Comp_Ph_NT_1_P");
-
-        TH3D *Comp_MM_NW_0_P = (TH3D*)Comp_MM_NW_0->Clone("Comp_MM_NW_0_P");
-        TH3D *Comp_MM_NW_1_P = (TH3D*)Comp_MM_NW_1->Clone("Comp_MM_NW_1_P");
-        TH3D *Comp_Ph_NW_0_P = (TH3D*)Comp_Ph_NW_0->Clone("Comp_Ph_NW_0_P");
-        TH3D *Comp_Ph_NW_1_P = (TH3D*)Comp_Ph_NW_1->Clone("Comp_Ph_NW_1_P");
-
-        TH3D *Comp_MM_NNX_0_P = (TH3D*)Comp_MM_NNX_0->Clone("Comp_MM_NNX_0_P");
-        TH3D *Comp_MM_NNX_1_P = (TH3D*)Comp_MM_NNX_1->Clone("Comp_MM_NNX_1_P");
-        TH3D *Comp_Ph_NNX_0_P = (TH3D*)Comp_Ph_NNX_0->Clone("Comp_Ph_NNX_0_P");
-        TH3D *Comp_Ph_NNX_1_P = (TH3D*)Comp_Ph_NNX_1->Clone("Comp_Ph_NNX_1_P");
-
-        TH3D *Comp_MM_NCX_0_P = (TH3D*)Comp_MM_NCX_0->Clone("Comp_MM_NCX_0_P");
-        TH3D *Comp_MM_NCX_1_P = (TH3D*)Comp_MM_NCX_1->Clone("Comp_MM_NCX_1_P");
-        TH3D *Comp_Ph_NCX_0_P = (TH3D*)Comp_Ph_NCX_0->Clone("Comp_Ph_NCX_0_P");
-        TH3D *Comp_Ph_NCX_1_P = (TH3D*)Comp_Ph_NCX_1->Clone("Comp_Ph_NCX_1_P");
-
-        TH3D *Comp_MM_NTX_0_P = (TH3D*)Comp_MM_NTX_0->Clone("Comp_MM_NTX_0_P");
-        TH3D *Comp_MM_NTX_1_P = (TH3D*)Comp_MM_NTX_1->Clone("Comp_MM_NTX_1_P");
-        TH3D *Comp_Ph_NTX_0_P = (TH3D*)Comp_Ph_NTX_0->Clone("Comp_Ph_NTX_0_P");
-        TH3D *Comp_Ph_NTX_1_P = (TH3D*)Comp_Ph_NTX_1->Clone("Comp_Ph_NTX_1_P");
-
-        TH3D *Comp_MM_NWX_0_P = (TH3D*)Comp_MM_NWX_0->Clone("Comp_MM_NWX_0_P");
-        TH3D *Comp_MM_NWX_1_P = (TH3D*)Comp_MM_NWX_1->Clone("Comp_MM_NWX_1_P");
-        TH3D *Comp_Ph_NWX_0_P = (TH3D*)Comp_Ph_NWX_0->Clone("Comp_Ph_NWX_0_P");
-        TH3D *Comp_Ph_NWX_1_P = (TH3D*)Comp_Ph_NWX_1->Clone("Comp_Ph_NWX_1_P");
-
-        TaggHel0_P->Write();
-        TaggHel1_P->Write();
-
-        IncHel0_P->Write();
-        IncHel1_P->Write();
-        IncHits_P->Write();
-
-        MM_CA_OA_P->Write();
-
-        Pi0_IM_MM_P->Write();
-        Pi0_IM_MM_NN_P->Write();
-
-        Pi0_MM_P->Write();
-        Pi0_MM_IM_P->Write();
-
-        Pi0_MM_NN_P->Write();
-        Pi0_MM_NC_P->Write();
-        Pi0_MM_CC_P->Write();
-
-        Pi0_MM_NNX_P->Write();
-        Pi0_MM_NCX_P->Write();
-        Pi0_MM_CCX_P->Write();
+        Pi0_MM_NE_0_P->Write();
+        Pi0_MM_NI_0_P->Write();
+        Pi0_MM_CE_0_P->Write();
+        Pi0_MM_CI_0_P->Write();
+        Pi0_MM_WE_0_P->Write();
+        Pi0_MM_WI_0_P->Write();
+        Pi0_MM_TE_0_P->Write();
+        Pi0_MM_TI_0_P->Write();
 
         Pi0_Re_All_P->Write();
         Pi0_Re_Det_P->Write();
+        Pi0_Re_Dif_P->Write();
         Pi0_Re_NoE_P->Write();
 
-        Comp_MM_N_C_P->Write();
+        Comp_OA_P->Write();
+        Comp_OA_Cut_P->Write();
+
+        Comp_MM_NE_0_P->Write();
+        Comp_MM_NI_0_P->Write();
+        Comp_MM_CE_0_P->Write();
+        Comp_MM_CI_0_P->Write();
+        Comp_MM_WE_0_P->Write();
+        Comp_MM_WI_0_P->Write();
+        Comp_MM_TE_0_P->Write();
+        Comp_MM_TI_0_P->Write();
+
+        if(cir_beam || lin_beam)
+        {
+            Pi0_MM_NE_1_P->Write();
+            Pi0_Ph_NE_0_P->Write();
+            Pi0_Ph_NE_1_P->Write();
+
+            Pi0_MM_NI_1_P->Write();
+            Pi0_Ph_NI_0_P->Write();
+            Pi0_Ph_NI_1_P->Write();
+
+            Pi0_MM_CE_1_P->Write();
+            Pi0_Ph_CE_0_P->Write();
+            Pi0_Ph_CE_1_P->Write();
+
+            Pi0_MM_CI_1_P->Write();
+            Pi0_Ph_CI_0_P->Write();
+            Pi0_Ph_CI_1_P->Write();
+
+            Pi0_MM_WE_1_P->Write();
+            Pi0_Ph_WE_0_P->Write();
+            Pi0_Ph_WE_1_P->Write();
+
+            Pi0_MM_WI_1_P->Write();
+            Pi0_Ph_WI_0_P->Write();
+            Pi0_Ph_WI_1_P->Write();
+
+            Pi0_MM_TE_1_P->Write();
+            Pi0_Ph_TE_0_P->Write();
+            Pi0_Ph_TE_1_P->Write();
+
+            Pi0_MM_TI_1_P->Write();
+            Pi0_Ph_TI_0_P->Write();
+            Pi0_Ph_TI_1_P->Write();
+
+            Comp_MM_NE_1_P->Write();
+            Comp_Ph_NE_0_P->Write();
+            Comp_Ph_NE_1_P->Write();
+
+            Comp_MM_NI_1_P->Write();
+            Comp_Ph_NI_0_P->Write();
+            Comp_Ph_NI_1_P->Write();
+
+            Comp_MM_CE_1_P->Write();
+            Comp_Ph_CE_0_P->Write();
+            Comp_Ph_CE_1_P->Write();
+
+            Comp_MM_CI_1_P->Write();
+            Comp_Ph_CI_0_P->Write();
+            Comp_Ph_CI_1_P->Write();
+
+            Comp_MM_WE_1_P->Write();
+            Comp_Ph_WE_0_P->Write();
+            Comp_Ph_WE_1_P->Write();
+
+            Comp_MM_WI_1_P->Write();
+            Comp_Ph_WI_0_P->Write();
+            Comp_Ph_WI_1_P->Write();
+
+            Comp_MM_TE_1_P->Write();
+            Comp_Ph_TE_0_P->Write();
+            Comp_Ph_TE_1_P->Write();
+
+            Comp_MM_TI_1_P->Write();
+            Comp_Ph_TI_0_P->Write();
+            Comp_Ph_TI_1_P->Write();
+        }
 
         Comp_CS_MM_P->Write();
         Reco_CS_MM_P->Write();
 
-        Comp_MM_N_0_P->Write();
+        delete Tagg_0_P;
+        delete Tagg_1_P;
 
-        Comp_MM_C_0_P->Write();
+        delete Inc_0_P;
+        delete Inc_1_P;
 
-        Comp_MM_NN_0_P->Write();
+        delete Pi0_OA_P;
+        delete Pi0_OA_Cut_P;
 
-        Comp_MM_NC_0_P->Write();
+        delete Pi0_MM_NE_0_P;
+        delete Pi0_MM_NE_1_P;
+        delete Pi0_Ph_NE_0_P;
+        delete Pi0_Ph_NE_1_P;
 
-        Comp_MM_NT_0_P->Write();
+        delete Pi0_MM_NI_0_P;
+        delete Pi0_MM_NI_1_P;
+        delete Pi0_Ph_NI_0_P;
+        delete Pi0_Ph_NI_1_P;
 
-        Comp_MM_NW_0_P->Write();
+        delete Pi0_MM_CE_0_P;
+        delete Pi0_MM_CE_1_P;
+        delete Pi0_Ph_CE_0_P;
+        delete Pi0_Ph_CE_1_P;
 
-        Comp_MM_NNX_0_P->Write();
+        delete Pi0_MM_CI_0_P;
+        delete Pi0_MM_CI_1_P;
+        delete Pi0_Ph_CI_0_P;
+        delete Pi0_Ph_CI_1_P;
 
-        Comp_MM_NCX_0_P->Write();
+        delete Pi0_MM_WE_0_P;
+        delete Pi0_MM_WE_1_P;
+        delete Pi0_Ph_WE_0_P;
+        delete Pi0_Ph_WE_1_P;
 
-        Comp_MM_NTX_0_P->Write();
+        delete Pi0_MM_WI_0_P;
+        delete Pi0_MM_WI_1_P;
+        delete Pi0_Ph_WI_0_P;
+        delete Pi0_Ph_WI_1_P;
 
-        Comp_MM_NWX_0_P->Write();
+        delete Pi0_MM_TE_0_P;
+        delete Pi0_MM_TE_1_P;
+        delete Pi0_Ph_TE_0_P;
+        delete Pi0_Ph_TE_1_P;
 
-        if(cir_beam || lin_beam)
-        {
-            Comp_MM_N_1_P->Write();
-            Comp_Ph_N_0_P->Write();
-            Comp_Ph_N_1_P->Write();
-
-            Comp_MM_C_1_P->Write();
-            Comp_Ph_C_0_P->Write();
-            Comp_Ph_C_1_P->Write();
-
-            Comp_MM_NN_1_P->Write();
-            Comp_Ph_NN_0_P->Write();
-            Comp_Ph_NN_1_P->Write();
-
-            Comp_MM_NC_1_P->Write();
-            Comp_Ph_NC_0_P->Write();
-            Comp_Ph_NC_1_P->Write();
-
-            Comp_MM_NT_1_P->Write();
-            Comp_Ph_NT_0_P->Write();
-            Comp_Ph_NT_1_P->Write();
-
-            Comp_MM_NW_1_P->Write();
-            Comp_Ph_NW_0_P->Write();
-            Comp_Ph_NW_1_P->Write();
-
-            Comp_MM_NNX_1_P->Write();
-            Comp_Ph_NNX_0_P->Write();
-            Comp_Ph_NNX_1_P->Write();
-
-            Comp_MM_NCX_1_P->Write();
-            Comp_Ph_NCX_0_P->Write();
-            Comp_Ph_NCX_1_P->Write();
-
-            Comp_MM_NTX_1_P->Write();
-            Comp_Ph_NTX_0_P->Write();
-            Comp_Ph_NTX_1_P->Write();
-
-            Comp_MM_NWX_1_P->Write();
-            Comp_Ph_NWX_0_P->Write();
-            Comp_Ph_NWX_1_P->Write();
-        }
-
-        delete TaggHel0_P;
-        delete TaggHel1_P;
-
-        delete IncHel0_P;
-        delete IncHel1_P;
-        delete IncHits_P;
-
-        delete MM_CA_OA_P;
-
-        delete Pi0_IM_MM_P;
-        delete Pi0_IM_MM_NN_P;
-
-        delete Pi0_MM_P;
-        delete Pi0_MM_IM_P;
-
-        delete Pi0_MM_NN_P;
-        delete Pi0_MM_NC_P;
-        delete Pi0_MM_CC_P;
-
-        delete Pi0_MM_NNX_P;
-        delete Pi0_MM_NCX_P;
-        delete Pi0_MM_CCX_P;
+        delete Pi0_MM_TI_0_P;
+        delete Pi0_MM_TI_1_P;
+        delete Pi0_Ph_TI_0_P;
+        delete Pi0_Ph_TI_1_P;
 
         delete Pi0_Re_All_P;
         delete Pi0_Re_Det_P;
+        delete Pi0_Re_Dif_P;
         delete Pi0_Re_NoE_P;
 
-        delete Comp_MM_N_C_P;
+        delete Comp_OA_P;
+        delete Comp_OA_Cut_P;
+
+        delete Comp_MM_NE_0_P;
+        delete Comp_MM_NE_1_P;
+        delete Comp_Ph_NE_0_P;
+        delete Comp_Ph_NE_1_P;
+
+        delete Comp_MM_NI_0_P;
+        delete Comp_MM_NI_1_P;
+        delete Comp_Ph_NI_0_P;
+        delete Comp_Ph_NI_1_P;
+
+        delete Comp_MM_CE_0_P;
+        delete Comp_MM_CE_1_P;
+        delete Comp_Ph_CE_0_P;
+        delete Comp_Ph_CE_1_P;
+
+        delete Comp_MM_CI_0_P;
+        delete Comp_MM_CI_1_P;
+        delete Comp_Ph_CI_0_P;
+        delete Comp_Ph_CI_1_P;
+
+        delete Comp_MM_WE_0_P;
+        delete Comp_MM_WE_1_P;
+        delete Comp_Ph_WE_0_P;
+        delete Comp_Ph_WE_1_P;
+
+        delete Comp_MM_WI_0_P;
+        delete Comp_MM_WI_1_P;
+        delete Comp_Ph_WI_0_P;
+        delete Comp_Ph_WI_1_P;
+
+        delete Comp_MM_TE_0_P;
+        delete Comp_MM_TE_1_P;
+        delete Comp_Ph_TE_0_P;
+        delete Comp_Ph_TE_1_P;
+
+        delete Comp_MM_TI_0_P;
+        delete Comp_MM_TI_1_P;
+        delete Comp_Ph_TI_0_P;
+        delete Comp_Ph_TI_1_P;
 
         delete Comp_CS_MM_P;
         delete Reco_CS_MM_P;
 
-        delete Comp_MM_N_0_P;
-        delete Comp_MM_N_1_P;
-        delete Comp_Ph_N_0_P;
-        delete Comp_Ph_N_1_P;
-
-        delete Comp_MM_C_0_P;
-        delete Comp_MM_C_1_P;
-        delete Comp_Ph_C_0_P;
-        delete Comp_Ph_C_1_P;
-
-        delete Comp_MM_NN_0_P;
-        delete Comp_MM_NN_1_P;
-        delete Comp_Ph_NN_0_P;
-        delete Comp_Ph_NN_1_P;
-
-        delete Comp_MM_NC_0_P;
-        delete Comp_MM_NC_1_P;
-        delete Comp_Ph_NC_0_P;
-        delete Comp_Ph_NC_1_P;
-
-        delete Comp_MM_NT_0_P;
-        delete Comp_MM_NT_1_P;
-        delete Comp_Ph_NT_0_P;
-        delete Comp_Ph_NT_1_P;
-
-        delete Comp_MM_NW_0_P;
-        delete Comp_MM_NW_1_P;
-        delete Comp_Ph_NW_0_P;
-        delete Comp_Ph_NW_1_P;
-
-        delete Comp_MM_NNX_0_P;
-        delete Comp_MM_NNX_1_P;
-        delete Comp_Ph_NNX_0_P;
-        delete Comp_Ph_NNX_1_P;
-
-        delete Comp_MM_NCX_0_P;
-        delete Comp_MM_NCX_1_P;
-        delete Comp_Ph_NCX_0_P;
-        delete Comp_Ph_NCX_1_P;
-
-        delete Comp_MM_NTX_0_P;
-        delete Comp_MM_NTX_1_P;
-        delete Comp_Ph_NTX_0_P;
-        delete Comp_Ph_NTX_1_P;
-
-        delete Comp_MM_NWX_0_P;
-        delete Comp_MM_NWX_1_P;
-        delete Comp_Ph_NWX_0_P;
-        delete Comp_Ph_NWX_1_P;
     }
     if(!(IsMCFile()))
     {
-        TaggHel0->Sumw2();
-        TaggHel0->Add(TaggHel0_R,-ratio);
-        TaggHel1->Sumw2();
-        TaggHel1->Add(TaggHel1_R,-ratio);
+        Tagg_0->Sumw2();
+        Tagg_0->Add(Tagg_0_R,-ratio);
+        Tagg_1->Sumw2();
+        Tagg_1->Add(Tagg_1_R,-ratio);
 
-        IncHel0->Sumw2();
-        IncHel0->Add(IncHel0_R,-ratio);
-        IncHel1->Sumw2();
-        IncHel1->Add(IncHel1_R,-ratio);
-        IncHits->Sumw2();
-        IncHits->Add(IncHits_R,-ratio);
+        Inc_0->Sumw2();
+        Inc_0->Add(Inc_0_R,-ratio);
+        Inc_1->Sumw2();
+        Inc_1->Add(Inc_1_R,-ratio);
 
-        MM_CA_OA->Sumw2();
-        MM_CA_OA->Add(MM_CA_OA_R,-ratio);
+        Pi0_OA->Sumw2();
+        Pi0_OA->Add(Pi0_OA_R,-ratio);
+        Pi0_OA_Cut->Sumw2();
+        Pi0_OA_Cut->Add(Pi0_OA_Cut_R,-ratio);
 
-        Pi0_IM_MM->Sumw2();
-        Pi0_IM_MM->Add(Pi0_IM_MM_R,-ratio);
-        Pi0_IM_MM_NN->Sumw2();
-        Pi0_IM_MM_NN->Add(Pi0_IM_MM_NN_R,-ratio);
+        Pi0_MM_NE_0->Sumw2();
+        Pi0_MM_NE_0->Add(Pi0_MM_NE_0_R,-ratio);
+        Pi0_MM_NE_1->Sumw2();
+        Pi0_MM_NE_1->Add(Pi0_MM_NE_1_R,-ratio);
+        Pi0_Ph_NE_0->Sumw2();
+        Pi0_Ph_NE_0->Add(Pi0_Ph_NE_0_R,-ratio);
+        Pi0_Ph_NE_1->Sumw2();
+        Pi0_Ph_NE_1->Add(Pi0_Ph_NE_1_R,-ratio);
 
-        Pi0_MM->Sumw2();
-        Pi0_MM->Add(Pi0_MM_R,-ratio);
-        Pi0_MM_IM->Sumw2();
-        Pi0_MM_IM->Add(Pi0_MM_IM_R,-ratio);
+        Pi0_MM_NI_0->Sumw2();
+        Pi0_MM_NI_0->Add(Pi0_MM_NI_0_R,-ratio);
+        Pi0_MM_NI_1->Sumw2();
+        Pi0_MM_NI_1->Add(Pi0_MM_NI_1_R,-ratio);
+        Pi0_Ph_NI_0->Sumw2();
+        Pi0_Ph_NI_0->Add(Pi0_Ph_NI_0_R,-ratio);
+        Pi0_Ph_NI_1->Sumw2();
+        Pi0_Ph_NI_1->Add(Pi0_Ph_NI_1_R,-ratio);
 
-        Pi0_MM_NN->Sumw2();
-        Pi0_MM_NN->Add(Pi0_MM_NN_R,-ratio);
-        Pi0_MM_NC->Sumw2();
-        Pi0_MM_NC->Add(Pi0_MM_NC_R,-ratio);
-        Pi0_MM_CC->Sumw2();
-        Pi0_MM_CC->Add(Pi0_MM_CC_R,-ratio);
+        Pi0_MM_CE_0->Sumw2();
+        Pi0_MM_CE_0->Add(Pi0_MM_CE_0_R,-ratio);
+        Pi0_MM_CE_1->Sumw2();
+        Pi0_MM_CE_1->Add(Pi0_MM_CE_1_R,-ratio);
+        Pi0_Ph_CE_0->Sumw2();
+        Pi0_Ph_CE_0->Add(Pi0_Ph_CE_0_R,-ratio);
+        Pi0_Ph_CE_1->Sumw2();
+        Pi0_Ph_CE_1->Add(Pi0_Ph_CE_1_R,-ratio);
 
-        Pi0_MM_NNX->Sumw2();
-        Pi0_MM_NNX->Add(Pi0_MM_NNX_R,-ratio);
-        Pi0_MM_NCX->Sumw2();
-        Pi0_MM_NCX->Add(Pi0_MM_NCX_R,-ratio);
-        Pi0_MM_CCX->Sumw2();
-        Pi0_MM_CCX->Add(Pi0_MM_CCX_R,-ratio);
+        Pi0_MM_CI_0->Sumw2();
+        Pi0_MM_CI_0->Add(Pi0_MM_CI_0_R,-ratio);
+        Pi0_MM_CI_1->Sumw2();
+        Pi0_MM_CI_1->Add(Pi0_MM_CI_1_R,-ratio);
+        Pi0_Ph_CI_0->Sumw2();
+        Pi0_Ph_CI_0->Add(Pi0_Ph_CI_0_R,-ratio);
+        Pi0_Ph_CI_1->Sumw2();
+        Pi0_Ph_CI_1->Add(Pi0_Ph_CI_1_R,-ratio);
+
+        Pi0_MM_WE_0->Sumw2();
+        Pi0_MM_WE_0->Add(Pi0_MM_WE_0_R,-ratio);
+        Pi0_MM_WE_1->Sumw2();
+        Pi0_MM_WE_1->Add(Pi0_MM_WE_1_R,-ratio);
+        Pi0_Ph_WE_0->Sumw2();
+        Pi0_Ph_WE_0->Add(Pi0_Ph_WE_0_R,-ratio);
+        Pi0_Ph_WE_1->Sumw2();
+        Pi0_Ph_WE_1->Add(Pi0_Ph_WE_1_R,-ratio);
+
+        Pi0_MM_WI_0->Sumw2();
+        Pi0_MM_WI_0->Add(Pi0_MM_WI_0_R,-ratio);
+        Pi0_MM_WI_1->Sumw2();
+        Pi0_MM_WI_1->Add(Pi0_MM_WI_1_R,-ratio);
+        Pi0_Ph_WI_0->Sumw2();
+        Pi0_Ph_WI_0->Add(Pi0_Ph_WI_0_R,-ratio);
+        Pi0_Ph_WI_1->Sumw2();
+        Pi0_Ph_WI_1->Add(Pi0_Ph_WI_1_R,-ratio);
+
+        Pi0_MM_TE_0->Sumw2();
+        Pi0_MM_TE_0->Add(Pi0_MM_TE_0_R,-ratio);
+        Pi0_MM_TE_1->Sumw2();
+        Pi0_MM_TE_1->Add(Pi0_MM_TE_1_R,-ratio);
+        Pi0_Ph_TE_0->Sumw2();
+        Pi0_Ph_TE_0->Add(Pi0_Ph_TE_0_R,-ratio);
+        Pi0_Ph_TE_1->Sumw2();
+        Pi0_Ph_TE_1->Add(Pi0_Ph_TE_1_R,-ratio);
+
+        Pi0_MM_TI_0->Sumw2();
+        Pi0_MM_TI_0->Add(Pi0_MM_TI_0_R,-ratio);
+        Pi0_MM_TI_1->Sumw2();
+        Pi0_MM_TI_1->Add(Pi0_MM_TI_1_R,-ratio);
+        Pi0_Ph_TI_0->Sumw2();
+        Pi0_Ph_TI_0->Add(Pi0_Ph_TI_0_R,-ratio);
+        Pi0_Ph_TI_1->Sumw2();
+        Pi0_Ph_TI_1->Add(Pi0_Ph_TI_1_R,-ratio);
 
         Pi0_Re_All->Sumw2();
         Pi0_Re_All->Add(Pi0_Re_All_R,-ratio);
         Pi0_Re_Det->Sumw2();
         Pi0_Re_Det->Add(Pi0_Re_Det_R,-ratio);
+        Pi0_Re_Dif->Sumw2();
+        Pi0_Re_Dif->Add(Pi0_Re_Dif_R,-ratio);
         Pi0_Re_NoE->Sumw2();
         Pi0_Re_NoE->Add(Pi0_Re_NoE_R,-ratio);
 
-        Comp_MM_N_C->Sumw2();
-        Comp_MM_N_C->Add(Comp_MM_N_C_R,-ratio);
+        Comp_OA->Sumw2();
+        Comp_OA->Add(Comp_OA_R,-ratio);
+        Comp_OA_Cut->Sumw2();
+        Comp_OA_Cut->Add(Comp_OA_Cut_R,-ratio);
+
+        Comp_MM_NE_0->Sumw2();
+        Comp_MM_NE_0->Add(Comp_MM_NE_0_R,-ratio);
+        Comp_MM_NE_1->Sumw2();
+        Comp_MM_NE_1->Add(Comp_MM_NE_1_R,-ratio);
+        Comp_Ph_NE_0->Sumw2();
+        Comp_Ph_NE_0->Add(Comp_Ph_NE_0_R,-ratio);
+        Comp_Ph_NE_1->Sumw2();
+        Comp_Ph_NE_1->Add(Comp_Ph_NE_1_R,-ratio);
+
+        Comp_MM_NI_0->Sumw2();
+        Comp_MM_NI_0->Add(Comp_MM_NI_0_R,-ratio);
+        Comp_MM_NI_1->Sumw2();
+        Comp_MM_NI_1->Add(Comp_MM_NI_1_R,-ratio);
+        Comp_Ph_NI_0->Sumw2();
+        Comp_Ph_NI_0->Add(Comp_Ph_NI_0_R,-ratio);
+        Comp_Ph_NI_1->Sumw2();
+        Comp_Ph_NI_1->Add(Comp_Ph_NI_1_R,-ratio);
+
+        Comp_MM_CE_0->Sumw2();
+        Comp_MM_CE_0->Add(Comp_MM_CE_0_R,-ratio);
+        Comp_MM_CE_1->Sumw2();
+        Comp_MM_CE_1->Add(Comp_MM_CE_1_R,-ratio);
+        Comp_Ph_CE_0->Sumw2();
+        Comp_Ph_CE_0->Add(Comp_Ph_CE_0_R,-ratio);
+        Comp_Ph_CE_1->Sumw2();
+        Comp_Ph_CE_1->Add(Comp_Ph_CE_1_R,-ratio);
+
+        Comp_MM_CI_0->Sumw2();
+        Comp_MM_CI_0->Add(Comp_MM_CI_0_R,-ratio);
+        Comp_MM_CI_1->Sumw2();
+        Comp_MM_CI_1->Add(Comp_MM_CI_1_R,-ratio);
+        Comp_Ph_CI_0->Sumw2();
+        Comp_Ph_CI_0->Add(Comp_Ph_CI_0_R,-ratio);
+        Comp_Ph_CI_1->Sumw2();
+        Comp_Ph_CI_1->Add(Comp_Ph_CI_1_R,-ratio);
+
+        Comp_MM_WE_0->Sumw2();
+        Comp_MM_WE_0->Add(Comp_MM_WE_0_R,-ratio);
+        Comp_MM_WE_1->Sumw2();
+        Comp_MM_WE_1->Add(Comp_MM_WE_1_R,-ratio);
+        Comp_Ph_WE_0->Sumw2();
+        Comp_Ph_WE_0->Add(Comp_Ph_WE_0_R,-ratio);
+        Comp_Ph_WE_1->Sumw2();
+        Comp_Ph_WE_1->Add(Comp_Ph_WE_1_R,-ratio);
+
+        Comp_MM_WI_0->Sumw2();
+        Comp_MM_WI_0->Add(Comp_MM_WI_0_R,-ratio);
+        Comp_MM_WI_1->Sumw2();
+        Comp_MM_WI_1->Add(Comp_MM_WI_1_R,-ratio);
+        Comp_Ph_WI_0->Sumw2();
+        Comp_Ph_WI_0->Add(Comp_Ph_WI_0_R,-ratio);
+        Comp_Ph_WI_1->Sumw2();
+        Comp_Ph_WI_1->Add(Comp_Ph_WI_1_R,-ratio);
+
+        Comp_MM_TE_0->Sumw2();
+        Comp_MM_TE_0->Add(Comp_MM_TE_0_R,-ratio);
+        Comp_MM_TE_1->Sumw2();
+        Comp_MM_TE_1->Add(Comp_MM_TE_1_R,-ratio);
+        Comp_Ph_TE_0->Sumw2();
+        Comp_Ph_TE_0->Add(Comp_Ph_TE_0_R,-ratio);
+        Comp_Ph_TE_1->Sumw2();
+        Comp_Ph_TE_1->Add(Comp_Ph_TE_1_R,-ratio);
+
+        Comp_MM_TI_0->Sumw2();
+        Comp_MM_TI_0->Add(Comp_MM_TI_0_R,-ratio);
+        Comp_MM_TI_1->Sumw2();
+        Comp_MM_TI_1->Add(Comp_MM_TI_1_R,-ratio);
+        Comp_Ph_TI_0->Sumw2();
+        Comp_Ph_TI_0->Add(Comp_Ph_TI_0_R,-ratio);
+        Comp_Ph_TI_1->Sumw2();
+        Comp_Ph_TI_1->Add(Comp_Ph_TI_1_R,-ratio);
 
         Comp_CS_MM->Sumw2();
         Comp_CS_MM->Add(Comp_CS_MM_R,-ratio);
         Reco_CS_MM->Sumw2();
         Reco_CS_MM->Add(Reco_CS_MM_R,-ratio);
-
-        Comp_MM_N_0->Sumw2();
-        Comp_MM_N_0->Add(Comp_MM_N_0_R,-ratio);
-        Comp_MM_N_1->Sumw2();
-        Comp_MM_N_1->Add(Comp_MM_N_1_R,-ratio);
-        Comp_Ph_N_0->Sumw2();
-        Comp_Ph_N_0->Add(Comp_Ph_N_0_R,-ratio);
-        Comp_Ph_N_1->Sumw2();
-        Comp_Ph_N_1->Add(Comp_Ph_N_1_R,-ratio);
-
-        Comp_MM_C_0->Sumw2();
-        Comp_MM_C_0->Add(Comp_MM_C_0_R,-ratio);
-        Comp_MM_C_1->Sumw2();
-        Comp_MM_C_1->Add(Comp_MM_C_1_R,-ratio);
-        Comp_Ph_C_0->Sumw2();
-        Comp_Ph_C_0->Add(Comp_Ph_C_0_R,-ratio);
-        Comp_Ph_C_1->Sumw2();
-        Comp_Ph_C_1->Add(Comp_Ph_C_1_R,-ratio);
-
-        Comp_MM_NN_0->Sumw2();
-        Comp_MM_NN_0->Add(Comp_MM_NN_0_R,-ratio);
-        Comp_MM_NN_1->Sumw2();
-        Comp_MM_NN_1->Add(Comp_MM_NN_1_R,-ratio);
-        Comp_Ph_NN_0->Sumw2();
-        Comp_Ph_NN_0->Add(Comp_Ph_NN_0_R,-ratio);
-        Comp_Ph_NN_1->Sumw2();
-        Comp_Ph_NN_1->Add(Comp_Ph_NN_1_R,-ratio);
-
-        Comp_MM_NC_0->Sumw2();
-        Comp_MM_NC_0->Add(Comp_MM_NC_0_R,-ratio);
-        Comp_MM_NC_1->Sumw2();
-        Comp_MM_NC_1->Add(Comp_MM_NC_1_R,-ratio);
-        Comp_Ph_NC_0->Sumw2();
-        Comp_Ph_NC_0->Add(Comp_Ph_NC_0_R,-ratio);
-        Comp_Ph_NC_1->Sumw2();
-        Comp_Ph_NC_1->Add(Comp_Ph_NC_1_R,-ratio);
-
-        Comp_MM_NT_0->Sumw2();
-        Comp_MM_NT_0->Add(Comp_MM_NT_0_R,-ratio);
-        Comp_MM_NT_1->Sumw2();
-        Comp_MM_NT_1->Add(Comp_MM_NT_1_R,-ratio);
-        Comp_Ph_NT_0->Sumw2();
-        Comp_Ph_NT_0->Add(Comp_Ph_NT_0_R,-ratio);
-        Comp_Ph_NT_1->Sumw2();
-        Comp_Ph_NT_1->Add(Comp_Ph_NT_1_R,-ratio);
-
-        Comp_MM_NW_0->Sumw2();
-        Comp_MM_NW_0->Add(Comp_MM_NW_0_R,-ratio);
-        Comp_MM_NW_1->Sumw2();
-        Comp_MM_NW_1->Add(Comp_MM_NW_1_R,-ratio);
-        Comp_Ph_NW_0->Sumw2();
-        Comp_Ph_NW_0->Add(Comp_Ph_NW_0_R,-ratio);
-        Comp_Ph_NW_1->Sumw2();
-        Comp_Ph_NW_1->Add(Comp_Ph_NW_1_R,-ratio);
-
-        Comp_MM_NNX_0->Sumw2();
-        Comp_MM_NNX_0->Add(Comp_MM_NNX_0_R,-ratio);
-        Comp_MM_NNX_1->Sumw2();
-        Comp_MM_NNX_1->Add(Comp_MM_NNX_1_R,-ratio);
-        Comp_Ph_NNX_0->Sumw2();
-        Comp_Ph_NNX_0->Add(Comp_Ph_NNX_0_R,-ratio);
-        Comp_Ph_NNX_1->Sumw2();
-        Comp_Ph_NNX_1->Add(Comp_Ph_NNX_1_R,-ratio);
-
-        Comp_MM_NCX_0->Sumw2();
-        Comp_MM_NCX_0->Add(Comp_MM_NCX_0_R,-ratio);
-        Comp_MM_NCX_1->Sumw2();
-        Comp_MM_NCX_1->Add(Comp_MM_NCX_1_R,-ratio);
-        Comp_Ph_NCX_0->Sumw2();
-        Comp_Ph_NCX_0->Add(Comp_Ph_NCX_0_R,-ratio);
-        Comp_Ph_NCX_1->Sumw2();
-        Comp_Ph_NCX_1->Add(Comp_Ph_NCX_1_R,-ratio);
-
-        Comp_MM_NTX_0->Sumw2();
-        Comp_MM_NTX_0->Add(Comp_MM_NTX_0_R,-ratio);
-        Comp_MM_NTX_1->Sumw2();
-        Comp_MM_NTX_1->Add(Comp_MM_NTX_1_R,-ratio);
-        Comp_Ph_NTX_0->Sumw2();
-        Comp_Ph_NTX_0->Add(Comp_Ph_NTX_0_R,-ratio);
-        Comp_Ph_NTX_1->Sumw2();
-        Comp_Ph_NTX_1->Add(Comp_Ph_NTX_1_R,-ratio);
-
-        Comp_MM_NWX_0->Sumw2();
-        Comp_MM_NWX_0->Add(Comp_MM_NWX_0_R,-ratio);
-        Comp_MM_NWX_1->Sumw2();
-        Comp_MM_NWX_1->Add(Comp_MM_NWX_1_R,-ratio);
-        Comp_Ph_NWX_0->Sumw2();
-        Comp_Ph_NWX_0->Add(Comp_Ph_NWX_0_R,-ratio);
-        Comp_Ph_NWX_1->Sumw2();
-        Comp_Ph_NWX_1->Add(Comp_Ph_NWX_1_R,-ratio);
     }
     if(save_randoms && !(IsMCFile()))
     {
-        TaggHel0_R->Write();
-        TaggHel1_R->Write();
+        Tagg_0_R->Write();
+        Tagg_1_R->Write();
 
-        IncHel0_R->Write();
-        IncHel1_R->Write();
-        IncHits_R->Write();
+        Inc_0_R->Write();
+        Inc_1_R->Write();
 
-        MM_CA_OA_R->Write();
+        Pi0_OA_R->Write();
+        Pi0_OA_Cut_R->Write();
 
-        Pi0_IM_MM_R->Write();
-        Pi0_IM_MM_NN_R->Write();
-
-        Pi0_MM_R->Write();
-        Pi0_MM_IM_R->Write();
-
-        Pi0_MM_NN_R->Write();
-        Pi0_MM_NC_R->Write();
-        Pi0_MM_CC_R->Write();
-
-        Pi0_MM_NNX_R->Write();
-        Pi0_MM_NCX_R->Write();
-        Pi0_MM_CCX_R->Write();
+        Pi0_MM_NE_0_R->Write();
+        Pi0_MM_NI_0_R->Write();
+        Pi0_MM_CE_0_R->Write();
+        Pi0_MM_CI_0_R->Write();
+        Pi0_MM_WE_0_R->Write();
+        Pi0_MM_WI_0_R->Write();
+        Pi0_MM_TE_0_R->Write();
+        Pi0_MM_TI_0_R->Write();
 
         Pi0_Re_All_R->Write();
         Pi0_Re_Det_R->Write();
+        Pi0_Re_Dif_R->Write();
         Pi0_Re_NoE_R->Write();
 
-        Comp_MM_N_C_R->Write();
+        Comp_OA_R->Write();
+        Comp_OA_Cut_R->Write();
+
+        Comp_MM_NE_0_R->Write();
+        Comp_MM_NI_0_R->Write();
+        Comp_MM_CE_0_R->Write();
+        Comp_MM_CI_0_R->Write();
+        Comp_MM_WE_0_R->Write();
+        Comp_MM_WI_0_R->Write();
+        Comp_MM_TE_0_R->Write();
+        Comp_MM_TI_0_R->Write();
 
         Comp_CS_MM_R->Write();
         Reco_CS_MM_R->Write();
 
-        Comp_MM_N_0_R->Write();
-
-        Comp_MM_C_0_R->Write();
-
-        Comp_MM_NN_0_R->Write();
-
-        Comp_MM_NC_0_R->Write();
-
-        Comp_MM_NT_0_R->Write();
-
-        Comp_MM_NW_0_R->Write();
-
-        Comp_MM_NNX_0_R->Write();
-
-        Comp_MM_NCX_0_R->Write();
-
-        Comp_MM_NTX_0_R->Write();
-
-        Comp_MM_NWX_0_R->Write();
-
         if(cir_beam || lin_beam)
         {
-            Comp_MM_N_1_R->Write();
-            Comp_Ph_N_0_R->Write();
-            Comp_Ph_N_1_R->Write();
+            Pi0_MM_NE_1_R->Write();
+            Pi0_Ph_NE_0_R->Write();
+            Pi0_Ph_NE_1_R->Write();
 
-            Comp_MM_C_1_R->Write();
-            Comp_Ph_C_0_R->Write();
-            Comp_Ph_C_1_R->Write();
+            Pi0_MM_NI_1_R->Write();
+            Pi0_Ph_NI_0_R->Write();
+            Pi0_Ph_NI_1_R->Write();
 
-            Comp_MM_NN_1_R->Write();
-            Comp_Ph_NN_0_R->Write();
-            Comp_Ph_NN_1_R->Write();
+            Pi0_MM_CE_1_R->Write();
+            Pi0_Ph_CE_0_R->Write();
+            Pi0_Ph_CE_1_R->Write();
 
-            Comp_MM_NC_1_R->Write();
-            Comp_Ph_NC_0_R->Write();
-            Comp_Ph_NC_1_R->Write();
+            Pi0_MM_CI_1_R->Write();
+            Pi0_Ph_CI_0_R->Write();
+            Pi0_Ph_CI_1_R->Write();
 
-            Comp_MM_NT_1_R->Write();
-            Comp_Ph_NT_0_R->Write();
-            Comp_Ph_NT_1_R->Write();
+            Pi0_MM_WE_1_R->Write();
+            Pi0_Ph_WE_0_R->Write();
+            Pi0_Ph_WE_1_R->Write();
 
-            Comp_MM_NW_1_R->Write();
-            Comp_Ph_NW_0_R->Write();
-            Comp_Ph_NW_1_R->Write();
+            Pi0_MM_WI_1_R->Write();
+            Pi0_Ph_WI_0_R->Write();
+            Pi0_Ph_WI_1_R->Write();
 
-            Comp_MM_NNX_1_R->Write();
-            Comp_Ph_NNX_0_R->Write();
-            Comp_Ph_NNX_1_R->Write();
+            Pi0_MM_TE_1_R->Write();
+            Pi0_Ph_TE_0_R->Write();
+            Pi0_Ph_TE_1_R->Write();
 
-            Comp_MM_NCX_1_R->Write();
-            Comp_Ph_NCX_0_R->Write();
-            Comp_Ph_NCX_1_R->Write();
+            Pi0_MM_TI_1_R->Write();
+            Pi0_Ph_TI_0_R->Write();
+            Pi0_Ph_TI_1_R->Write();
 
-            Comp_MM_NTX_1_R->Write();
-            Comp_Ph_NTX_0_R->Write();
-            Comp_Ph_NTX_1_R->Write();
+            Comp_MM_NE_1_R->Write();
+            Comp_Ph_NE_0_R->Write();
+            Comp_Ph_NE_1_R->Write();
 
-            Comp_MM_NWX_1_R->Write();
-            Comp_Ph_NWX_0_R->Write();
-            Comp_Ph_NWX_1_R->Write();
+            Comp_MM_NI_1_R->Write();
+            Comp_Ph_NI_0_R->Write();
+            Comp_Ph_NI_1_R->Write();
+
+            Comp_MM_CE_1_R->Write();
+            Comp_Ph_CE_0_R->Write();
+            Comp_Ph_CE_1_R->Write();
+
+            Comp_MM_CI_1_R->Write();
+            Comp_Ph_CI_0_R->Write();
+            Comp_Ph_CI_1_R->Write();
+
+            Comp_MM_WE_1_R->Write();
+            Comp_Ph_WE_0_R->Write();
+            Comp_Ph_WE_1_R->Write();
+
+            Comp_MM_WI_1_R->Write();
+            Comp_Ph_WI_0_R->Write();
+            Comp_Ph_WI_1_R->Write();
+
+            Comp_MM_TE_1_R->Write();
+            Comp_Ph_TE_0_R->Write();
+            Comp_Ph_TE_1_R->Write();
+
+            Comp_MM_TI_1_R->Write();
+            Comp_Ph_TI_0_R->Write();
+            Comp_Ph_TI_1_R->Write();
         }
     }
 
-    delete TaggHel0_R;
-    delete TaggHel1_R;
+    delete Tagg_0_R;
+    delete Tagg_1_R;
 
-    delete IncHel0_R;
-    delete IncHel1_R;
-    delete IncHits_R;
+    delete Inc_0_R;
+    delete Inc_1_R;
 
-    delete MM_CA_OA_R;
+    delete Pi0_OA_R;
+    delete Pi0_OA_Cut_R;
 
-    delete Pi0_IM_MM_R;
-    delete Pi0_IM_MM_NN_R;
+    delete Pi0_MM_NE_0_R;
+    delete Pi0_MM_NE_1_R;
+    delete Pi0_Ph_NE_0_R;
+    delete Pi0_Ph_NE_1_R;
 
-    delete Pi0_MM_R;
-    delete Pi0_MM_IM_R;
+    delete Pi0_MM_NI_0_R;
+    delete Pi0_MM_NI_1_R;
+    delete Pi0_Ph_NI_0_R;
+    delete Pi0_Ph_NI_1_R;
 
-    delete Pi0_MM_NN_R;
-    delete Pi0_MM_NC_R;
-    delete Pi0_MM_CC_R;
+    delete Pi0_MM_CE_0_R;
+    delete Pi0_MM_CE_1_R;
+    delete Pi0_Ph_CE_0_R;
+    delete Pi0_Ph_CE_1_R;
 
-    delete Pi0_MM_NNX_R;
-    delete Pi0_MM_NCX_R;
-    delete Pi0_MM_CCX_R;
+    delete Pi0_MM_CI_0_R;
+    delete Pi0_MM_CI_1_R;
+    delete Pi0_Ph_CI_0_R;
+    delete Pi0_Ph_CI_1_R;
+
+    delete Pi0_MM_WE_0_R;
+    delete Pi0_MM_WE_1_R;
+    delete Pi0_Ph_WE_0_R;
+    delete Pi0_Ph_WE_1_R;
+
+    delete Pi0_MM_WI_0_R;
+    delete Pi0_MM_WI_1_R;
+    delete Pi0_Ph_WI_0_R;
+    delete Pi0_Ph_WI_1_R;
+
+    delete Pi0_MM_TE_0_R;
+    delete Pi0_MM_TE_1_R;
+    delete Pi0_Ph_TE_0_R;
+    delete Pi0_Ph_TE_1_R;
+
+    delete Pi0_MM_TI_0_R;
+    delete Pi0_MM_TI_1_R;
+    delete Pi0_Ph_TI_0_R;
+    delete Pi0_Ph_TI_1_R;
 
     delete Pi0_Re_All_R;
     delete Pi0_Re_Det_R;
+    delete Pi0_Re_Dif_R;
     delete Pi0_Re_NoE_R;
 
-    delete Comp_MM_N_C_R;
+    delete Comp_OA_R;
+    delete Comp_OA_Cut_R;
+
+    delete Comp_MM_NE_0_R;
+    delete Comp_MM_NE_1_R;
+    delete Comp_Ph_NE_0_R;
+    delete Comp_Ph_NE_1_R;
+
+    delete Comp_MM_NI_0_R;
+    delete Comp_MM_NI_1_R;
+    delete Comp_Ph_NI_0_R;
+    delete Comp_Ph_NI_1_R;
+
+    delete Comp_MM_CE_0_R;
+    delete Comp_MM_CE_1_R;
+    delete Comp_Ph_CE_0_R;
+    delete Comp_Ph_CE_1_R;
+
+    delete Comp_MM_CI_0_R;
+    delete Comp_MM_CI_1_R;
+    delete Comp_Ph_CI_0_R;
+    delete Comp_Ph_CI_1_R;
+
+    delete Comp_MM_WE_0_R;
+    delete Comp_MM_WE_1_R;
+    delete Comp_Ph_WE_0_R;
+    delete Comp_Ph_WE_1_R;
+
+    delete Comp_MM_WI_0_R;
+    delete Comp_MM_WI_1_R;
+    delete Comp_Ph_WI_0_R;
+    delete Comp_Ph_WI_1_R;
+
+    delete Comp_MM_TE_0_R;
+    delete Comp_MM_TE_1_R;
+    delete Comp_Ph_TE_0_R;
+    delete Comp_Ph_TE_1_R;
+
+    delete Comp_MM_TI_0_R;
+    delete Comp_MM_TI_1_R;
+    delete Comp_Ph_TI_0_R;
+    delete Comp_Ph_TI_1_R;
 
     delete Comp_CS_MM_R;
     delete Reco_CS_MM_R;
 
-    delete Comp_MM_N_0_R;
-    delete Comp_MM_N_1_R;
-    delete Comp_Ph_N_0_R;
-    delete Comp_Ph_N_1_R;
-
-    delete Comp_MM_C_0_R;
-    delete Comp_MM_C_1_R;
-    delete Comp_Ph_C_0_R;
-    delete Comp_Ph_C_1_R;
-
-    delete Comp_MM_NN_0_R;
-    delete Comp_MM_NN_1_R;
-    delete Comp_Ph_NN_0_R;
-    delete Comp_Ph_NN_1_R;
-
-    delete Comp_MM_NC_0_R;
-    delete Comp_MM_NC_1_R;
-    delete Comp_Ph_NC_0_R;
-    delete Comp_Ph_NC_1_R;
-
-    delete Comp_MM_NT_0_R;
-    delete Comp_MM_NT_1_R;
-    delete Comp_Ph_NT_0_R;
-    delete Comp_Ph_NT_1_R;
-
-    delete Comp_MM_NW_0_R;
-    delete Comp_MM_NW_1_R;
-    delete Comp_Ph_NW_0_R;
-    delete Comp_Ph_NW_1_R;
-
-    delete Comp_MM_NNX_0_R;
-    delete Comp_MM_NNX_1_R;
-    delete Comp_Ph_NNX_0_R;
-    delete Comp_Ph_NNX_1_R;
-
-    delete Comp_MM_NCX_0_R;
-    delete Comp_MM_NCX_1_R;
-    delete Comp_Ph_NCX_0_R;
-    delete Comp_Ph_NCX_1_R;
-
-    delete Comp_MM_NTX_0_R;
-    delete Comp_MM_NTX_1_R;
-    delete Comp_Ph_NTX_0_R;
-    delete Comp_Ph_NTX_1_R;
-
-    delete Comp_MM_NWX_0_R;
-    delete Comp_MM_NWX_1_R;
-    delete Comp_Ph_NWX_0_R;
-    delete Comp_Ph_NWX_1_R;
-
     if(!cir_beam && !lin_beam)
     {
-        delete Comp_MM_N_1;
-        delete Comp_Ph_N_0;
-        delete Comp_Ph_N_1;
+        delete Pi0_MM_NE_1;
+        delete Pi0_Ph_NE_0;
+        delete Pi0_Ph_NE_1;
 
-        delete Comp_MM_C_1;
-        delete Comp_Ph_C_0;
-        delete Comp_Ph_C_1;
+        delete Pi0_MM_NI_1;
+        delete Pi0_Ph_NI_0;
+        delete Pi0_Ph_NI_1;
 
-        delete Comp_MM_NN_1;
-        delete Comp_Ph_NN_0;
-        delete Comp_Ph_NN_1;
+        delete Pi0_MM_CE_1;
+        delete Pi0_Ph_CE_0;
+        delete Pi0_Ph_CE_1;
 
-        delete Comp_MM_NC_1;
-        delete Comp_Ph_NC_0;
-        delete Comp_Ph_NC_1;
+        delete Pi0_MM_CI_1;
+        delete Pi0_Ph_CI_0;
+        delete Pi0_Ph_CI_1;
 
-        delete Comp_MM_NT_1;
-        delete Comp_Ph_NT_0;
-        delete Comp_Ph_NT_1;
+        delete Pi0_MM_WE_1;
+        delete Pi0_Ph_WE_0;
+        delete Pi0_Ph_WE_1;
 
-        delete Comp_MM_NW_1;
-        delete Comp_Ph_NW_0;
-        delete Comp_Ph_NW_1;
+        delete Pi0_MM_WI_1;
+        delete Pi0_Ph_WI_0;
+        delete Pi0_Ph_WI_1;
 
-        delete Comp_MM_NNX_1;
-        delete Comp_Ph_NNX_0;
-        delete Comp_Ph_NNX_1;
+        delete Pi0_MM_TE_1;
+        delete Pi0_Ph_TE_0;
+        delete Pi0_Ph_TE_1;
 
-        delete Comp_MM_NCX_1;
-        delete Comp_Ph_NCX_0;
-        delete Comp_Ph_NCX_1;
+        delete Pi0_MM_TI_1;
+        delete Pi0_Ph_TI_0;
+        delete Pi0_Ph_TI_1;
 
-        delete Comp_MM_NTX_1;
-        delete Comp_Ph_NTX_0;
-        delete Comp_Ph_NTX_1;
+        delete Comp_MM_NE_1;
+        delete Comp_Ph_NE_0;
+        delete Comp_Ph_NE_1;
 
-        delete Comp_MM_NWX_1;
-        delete Comp_Ph_NWX_0;
-        delete Comp_Ph_NWX_1;
+        delete Comp_MM_NI_1;
+        delete Comp_Ph_NI_0;
+        delete Comp_Ph_NI_1;
+
+        delete Comp_MM_CE_1;
+        delete Comp_Ph_CE_0;
+        delete Comp_Ph_CE_1;
+
+        delete Comp_MM_CI_1;
+        delete Comp_Ph_CI_0;
+        delete Comp_Ph_CI_1;
+
+        delete Comp_MM_WE_1;
+        delete Comp_Ph_WE_0;
+        delete Comp_Ph_WE_1;
+
+        delete Comp_MM_WI_1;
+        delete Comp_Ph_WI_0;
+        delete Comp_Ph_WI_1;
+
+        delete Comp_MM_TE_1;
+        delete Comp_Ph_TE_0;
+        delete Comp_Ph_TE_1;
+
+        delete Comp_MM_TI_1;
+        delete Comp_Ph_TI_0;
+        delete Comp_Ph_TI_1;
     }
 
     // Write all GH1's and TObjects defined in this class
