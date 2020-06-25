@@ -28,7 +28,7 @@ PAnalyze::PAnalyze()
     Pi0_IM_CT = new TH3D("Pi0_IM_CT", "CB/TAPS Invariant Mass;E_{#gamma_{CB}};E_{#gamma_{TAPS}};m_{#gamma#gamma} (MeV)", 80, 0, 800, 80, 0, 800, 200, 0, 200);
 
     Pi0_Sp = new TH2D("Pi0_Sp", "Split OA vs Energy Ratio;E_{split}/E_{#gamma};#theta_{OA} (deg)", 200, 0, 1, 180, 0, 180);
-    Pi0_CA = new TH1D("Pi0_Re_CA", "Pi0 Recoil Coplanarity Angle;#phi_{#pi^{0}}-#phi_{p} (deg)", 360, 0, 360);
+    Pi0_CA = new TH1D("Pi0_CA", "Pi0 Recoil Coplanarity Angle;#phi_{#pi^{0}}-#phi_{p} (deg)", 360, 0, 360);
 
     Pi0_Tm_NE = new TH2D("Pi0_Tm_NE", "Pi0 Time;Tagger Channel;t_{#gamma}-t_{#pi0^{0}} (ns)", 352, 0, 352, 1400, -700, 700);
     Pi0_Tm_NI = new TH2D("Pi0_Tm_NI", "Pi0 Time;Tagger Channel;t_{#gamma}-t_{#pi0^{0}} (ns)", 352, 0, 352, 1400, -700, 700);
@@ -134,7 +134,7 @@ PAnalyze::PAnalyze()
     Comp_Tm_CE = new TH2D("Comp_Tm_CE", "Compton Time;Tagger Channel;t_{#gamma}-t_{#gamma^{'}} (ns)", 352, 0, 352, 1400, -700, 700);
     Comp_Tm_CI = new TH2D("Comp_Tm_CI", "Compton Time;Tagger Channel;t_{#gamma}-t_{#gamma^{'}} (ns)", 352, 0, 352, 1400, -700, 700);
     Comp_Tm_WE = new TH2D("Comp_Tm_WE", "Compton Time;Tagger Channel;t_{#gamma}-t_{#gamma^{'}} (ns)", 352, 0, 352, 1400, -700, 700);
-    Comp_Tm_WI = new TH2D("Comp_Tm_NI", "Compton Time;Tagger Channel;t_{#gamma}-t_{#gamma^{'}} (ns)", 352, 0, 352, 1400, -700, 700);
+    Comp_Tm_WI = new TH2D("Comp_Tm_WI", "Compton Time;Tagger Channel;t_{#gamma}-t_{#gamma^{'}} (ns)", 352, 0, 352, 1400, -700, 700);
     Comp_Tm_TE = new TH2D("Comp_Tm_TE", "Compton Time;Tagger Channel;t_{#gamma}-t_{#gamma^{'}} (ns)", 352, 0, 352, 1400, -700, 700);
     Comp_Tm_TI = new TH2D("Comp_Tm_TI", "Compton Time;Tagger Channel;t_{#gamma}-t_{#gamma^{'}} (ns)", 352, 0, 352, 1400, -700, 700);
 
