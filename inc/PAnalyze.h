@@ -137,6 +137,95 @@ private:
     TH3*    Pi0_Re_NoE;
     TH3*    Pi0_Re_NoE_R;
 
+    TH2*    PiP_Sp;
+    TH1*    PiP_CA;
+
+    TH2*    PiP_Tm_NE;
+    TH2*    PiP_Tm_NI;
+    TH2*    PiP_Tm_CE;
+    TH2*    PiP_Tm_CI;
+    TH2*    PiP_Tm_WE;
+    TH2*    PiP_Tm_WI;
+    TH2*    PiP_Tm_TE;
+    TH2*    PiP_Tm_TI;
+
+    TH3*    PiP_OA;
+    TH3*    PiP_OA_R;
+    TH3*    PiP_OA_Cut;
+    TH3*    PiP_OA_Cut_R;
+
+    TH3*    PiP_MM_NE_0;
+    TH3*    PiP_MM_NE_0_R;
+    TH3*    PiP_MM_NE_1;
+    TH3*    PiP_MM_NE_1_R;
+    TH3*    PiP_Ph_NE_0;
+    TH3*    PiP_Ph_NE_0_R;
+    TH3*    PiP_Ph_NE_1;
+    TH3*    PiP_Ph_NE_1_R;
+
+    TH3*    PiP_MM_NI_0;
+    TH3*    PiP_MM_NI_0_R;
+    TH3*    PiP_MM_NI_1;
+    TH3*    PiP_MM_NI_1_R;
+    TH3*    PiP_Ph_NI_0;
+    TH3*    PiP_Ph_NI_0_R;
+    TH3*    PiP_Ph_NI_1;
+    TH3*    PiP_Ph_NI_1_R;
+
+    TH3*    PiP_MM_CE_0;
+    TH3*    PiP_MM_CE_0_R;
+    TH3*    PiP_MM_CE_1;
+    TH3*    PiP_MM_CE_1_R;
+    TH3*    PiP_Ph_CE_0;
+    TH3*    PiP_Ph_CE_0_R;
+    TH3*    PiP_Ph_CE_1;
+    TH3*    PiP_Ph_CE_1_R;
+
+    TH3*    PiP_MM_CI_0;
+    TH3*    PiP_MM_CI_0_R;
+    TH3*    PiP_MM_CI_1;
+    TH3*    PiP_MM_CI_1_R;
+    TH3*    PiP_Ph_CI_0;
+    TH3*    PiP_Ph_CI_0_R;
+    TH3*    PiP_Ph_CI_1;
+    TH3*    PiP_Ph_CI_1_R;
+
+    TH3*    PiP_MM_WE_0;
+    TH3*    PiP_MM_WE_0_R;
+    TH3*    PiP_MM_WE_1;
+    TH3*    PiP_MM_WE_1_R;
+    TH3*    PiP_Ph_WE_0;
+    TH3*    PiP_Ph_WE_0_R;
+    TH3*    PiP_Ph_WE_1;
+    TH3*    PiP_Ph_WE_1_R;
+
+    TH3*    PiP_MM_WI_0;
+    TH3*    PiP_MM_WI_0_R;
+    TH3*    PiP_MM_WI_1;
+    TH3*    PiP_MM_WI_1_R;
+    TH3*    PiP_Ph_WI_0;
+    TH3*    PiP_Ph_WI_0_R;
+    TH3*    PiP_Ph_WI_1;
+    TH3*    PiP_Ph_WI_1_R;
+
+    TH3*    PiP_MM_TE_0;
+    TH3*    PiP_MM_TE_0_R;
+    TH3*    PiP_MM_TE_1;
+    TH3*    PiP_MM_TE_1_R;
+    TH3*    PiP_Ph_TE_0;
+    TH3*    PiP_Ph_TE_0_R;
+    TH3*    PiP_Ph_TE_1;
+    TH3*    PiP_Ph_TE_1_R;
+
+    TH3*    PiP_MM_TI_0;
+    TH3*    PiP_MM_TI_0_R;
+    TH3*    PiP_MM_TI_1;
+    TH3*    PiP_MM_TI_1_R;
+    TH3*    PiP_Ph_TI_0;
+    TH3*    PiP_Ph_TI_0_R;
+    TH3*    PiP_Ph_TI_1;
+    TH3*    PiP_Ph_TI_1_R;
+
     TH2*    Comp_Sp;
     TH1*    Comp_CA;
 
@@ -286,6 +375,7 @@ public:
     Bool_t InitTAPSEff();
     Bool_t InitBeamPol();
     Bool_t InitTargPol();
+    TLorentzVector AdjustMass(TLorentzVector lv, Double_t mass);
     Double_t TwoBodyAngleToEnergyMin(Double_t eBeam, Double_t mTarg, Double_t mPar1, Double_t mPar2, Double_t tPar1);
     Double_t TwoBodyAngleToEnergyMax(Double_t eBeam, Double_t mTarg, Double_t mPar1, Double_t mPar2, Double_t tPar1);
     Double_t TwoBodyEnergyToAngle(Double_t eBeam, Double_t mTarg, Double_t mPar1, Double_t mPar2, Double_t ePar1);

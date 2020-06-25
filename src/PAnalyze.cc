@@ -30,91 +30,91 @@ PAnalyze::PAnalyze()
     Pi0_Sp = new TH2D("Pi0_Sp", "Split OA vs Energy Ratio;E_{split}/E_{#gamma};#theta_{OA} (deg)", 200, 0, 1, 180, 0, 180);
     Pi0_CA = new TH1D("Pi0_CA", "Pi0 Recoil Coplanarity Angle;#phi_{#pi^{0}}-#phi_{p} (deg)", 360, 0, 360);
 
-    Pi0_Tm_NE = new TH2D("Pi0_Tm_NE", "Pi0 Time;Tagger Channel;t_{#gamma}-t_{#pi0^{0}} (ns)", 352, 0, 352, 1400, -700, 700);
-    Pi0_Tm_NI = new TH2D("Pi0_Tm_NI", "Pi0 Time;Tagger Channel;t_{#gamma}-t_{#pi0^{0}} (ns)", 352, 0, 352, 1400, -700, 700);
-    Pi0_Tm_CE = new TH2D("Pi0_Tm_CE", "Pi0 Time;Tagger Channel;t_{#gamma}-t_{#pi0^{0}} (ns)", 352, 0, 352, 1400, -700, 700);
-    Pi0_Tm_CI = new TH2D("Pi0_Tm_CI", "Pi0 Time;Tagger Channel;t_{#gamma}-t_{#pi0^{0}} (ns)", 352, 0, 352, 1400, -700, 700);
-    Pi0_Tm_WE = new TH2D("Pi0_Tm_WE", "Pi0 Time;Tagger Channel;t_{#gamma}-t_{#pi0^{0}} (ns)", 352, 0, 352, 1400, -700, 700);
-    Pi0_Tm_WI = new TH2D("Pi0_Tm_WI", "Pi0 Time;Tagger Channel;t_{#gamma}-t_{#pi0^{0}} (ns)", 352, 0, 352, 1400, -700, 700);
-    Pi0_Tm_TE = new TH2D("Pi0_Tm_TE", "Pi0 Time;Tagger Channel;t_{#gamma}-t_{#pi0^{0}} (ns)", 352, 0, 352, 1400, -700, 700);
-    Pi0_Tm_TI = new TH2D("Pi0_Tm_TI", "Pi0 Time;Tagger Channel;t_{#gamma}-t_{#pi0^{0}} (ns)", 352, 0, 352, 1400, -700, 700);
+    Pi0_Tm_NE = new TH2D("Pi0_Tm_NE", "Pi0 Time;Tagger Channel;t_{#gamma}-t_{#pi^{0}} (ns)", 352, 0, 352, 1400, -700, 700);
+    Pi0_Tm_NI = new TH2D("Pi0_Tm_NI", "Pi0 Time;Tagger Channel;t_{#gamma}-t_{#pi^{0}} (ns)", 352, 0, 352, 1400, -700, 700);
+    Pi0_Tm_CE = new TH2D("Pi0_Tm_CE", "Pi0 Time;Tagger Channel;t_{#gamma}-t_{#pi^{0}} (ns)", 352, 0, 352, 1400, -700, 700);
+    Pi0_Tm_CI = new TH2D("Pi0_Tm_CI", "Pi0 Time;Tagger Channel;t_{#gamma}-t_{#pi^{0}} (ns)", 352, 0, 352, 1400, -700, 700);
+    Pi0_Tm_WE = new TH2D("Pi0_Tm_WE", "Pi0 Time;Tagger Channel;t_{#gamma}-t_{#pi^{0}} (ns)", 352, 0, 352, 1400, -700, 700);
+    Pi0_Tm_WI = new TH2D("Pi0_Tm_WI", "Pi0 Time;Tagger Channel;t_{#gamma}-t_{#pi^{0}} (ns)", 352, 0, 352, 1400, -700, 700);
+    Pi0_Tm_TE = new TH2D("Pi0_Tm_TE", "Pi0 Time;Tagger Channel;t_{#gamma}-t_{#pi^{0}} (ns)", 352, 0, 352, 1400, -700, 700);
+    Pi0_Tm_TI = new TH2D("Pi0_Tm_TI", "Pi0 Time;Tagger Channel;t_{#gamma}-t_{#pi^{0}} (ns)", 352, 0, 352, 1400, -700, 700);
 
     Pi0_OA = new TH3D("Pi0_OA", "Pi0 Recoil Opening Angle;Tagger Channel;#theta_{miss} (deg);Opening Angle (deg)", 352, 0, 352, 12, 0, 60, 90, 0, 180);
     Pi0_OA_R = new TH3D("Pi0_OA_R", "Pi0 Recoil Opening Angle;Tagger Channel;#theta_{miss} (deg);Opening Angle (deg)", 352, 0, 352, 12, 0, 60, 90, 0, 180);
     Pi0_OA_Cut = new TH3D("Pi0_OA_Cut", "Pi0 Recoil Opening Angle;Tagger Channel;#theta_{miss} (deg);Opening Angle (deg)", 352, 0, 352, 12, 0, 60, 90, 0, 180);
     Pi0_OA_Cut_R = new TH3D("Pi0_OA_Cut_R", "Pi0 Recoil Opening Angle;Tagger Channel;#theta_{miss} (deg);Opening Angle (deg)", 352, 0, 352, 12, 0, 60, 90, 0, 180);
 
-    Pi0_MM_NE_0 = new TH3D("Pi0_MM_NE_0", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi0^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_MM_NE_0_R = new TH3D("Pi0_MM_NE_0_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi0^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_MM_NE_1 = new TH3D("Pi0_MM_NE_1", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi0^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_MM_NE_1_R = new TH3D("Pi0_MM_NE_1_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi0^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_Ph_NE_0 = new TH3D("Pi0_Ph_NE_0", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi0^{0}} (deg);#phi_{#pi0^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
-    Pi0_Ph_NE_0_R = new TH3D("Pi0_Ph_NE_0_R", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi0^{0}} (deg);#phi_{#pi0^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
-    Pi0_Ph_NE_1 = new TH3D("Pi0_Ph_NE_1", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi0^{0}} (deg);#phi_{#pi0^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
-    Pi0_Ph_NE_1_R = new TH3D("Pi0_Ph_NE_1_R", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi0^{0}} (deg);#phi_{#pi0^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Pi0_MM_NE_0 = new TH3D("Pi0_MM_NE_0", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_NE_0_R = new TH3D("Pi0_MM_NE_0_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_NE_1 = new TH3D("Pi0_MM_NE_1", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_NE_1_R = new TH3D("Pi0_MM_NE_1_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_Ph_NE_0 = new TH3D("Pi0_Ph_NE_0", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi^{0}} (deg);#phi_{#pi^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Pi0_Ph_NE_0_R = new TH3D("Pi0_Ph_NE_0_R", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi^{0}} (deg);#phi_{#pi^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Pi0_Ph_NE_1 = new TH3D("Pi0_Ph_NE_1", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi^{0}} (deg);#phi_{#pi^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Pi0_Ph_NE_1_R = new TH3D("Pi0_Ph_NE_1_R", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi^{0}} (deg);#phi_{#pi^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
 
-    Pi0_MM_NI_0 = new TH3D("Pi0_MM_NI_0", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi0^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_MM_NI_0_R = new TH3D("Pi0_MM_NI_0_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi0^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_MM_NI_1 = new TH3D("Pi0_MM_NI_1", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi0^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_MM_NI_1_R = new TH3D("Pi0_MM_NI_1_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi0^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_Ph_NI_0 = new TH3D("Pi0_Ph_NI_0", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi0^{0}} (deg);#phi_{#pi0^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
-    Pi0_Ph_NI_0_R = new TH3D("Pi0_Ph_NI_0_R", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi0^{0}} (deg);#phi_{#pi0^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
-    Pi0_Ph_NI_1 = new TH3D("Pi0_Ph_NI_1", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi0^{0}} (deg);#phi_{#pi0^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
-    Pi0_Ph_NI_1_R = new TH3D("Pi0_Ph_NI_1_R", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi0^{0}} (deg);#phi_{#pi0^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Pi0_MM_NI_0 = new TH3D("Pi0_MM_NI_0", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_NI_0_R = new TH3D("Pi0_MM_NI_0_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_NI_1 = new TH3D("Pi0_MM_NI_1", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_NI_1_R = new TH3D("Pi0_MM_NI_1_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_Ph_NI_0 = new TH3D("Pi0_Ph_NI_0", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi^{0}} (deg);#phi_{#pi^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Pi0_Ph_NI_0_R = new TH3D("Pi0_Ph_NI_0_R", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi^{0}} (deg);#phi_{#pi^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Pi0_Ph_NI_1 = new TH3D("Pi0_Ph_NI_1", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi^{0}} (deg);#phi_{#pi^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Pi0_Ph_NI_1_R = new TH3D("Pi0_Ph_NI_1_R", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi^{0}} (deg);#phi_{#pi^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
 
-    Pi0_MM_CE_0 = new TH3D("Pi0_MM_CE_0", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi0^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_MM_CE_0_R = new TH3D("Pi0_MM_CE_0_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi0^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_MM_CE_1 = new TH3D("Pi0_MM_CE_1", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi0^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_MM_CE_1_R = new TH3D("Pi0_MM_CE_1_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi0^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_Ph_CE_0 = new TH3D("Pi0_Ph_CE_0", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi0^{0}} (deg);#phi_{#pi0^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
-    Pi0_Ph_CE_0_R = new TH3D("Pi0_Ph_CE_0_R", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi0^{0}} (deg);#phi_{#pi0^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
-    Pi0_Ph_CE_1 = new TH3D("Pi0_Ph_CE_1", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi0^{0}} (deg);#phi_{#pi0^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
-    Pi0_Ph_CE_1_R = new TH3D("Pi0_Ph_CE_1_R", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi0^{0}} (deg);#phi_{#pi0^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Pi0_MM_CE_0 = new TH3D("Pi0_MM_CE_0", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_CE_0_R = new TH3D("Pi0_MM_CE_0_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_CE_1 = new TH3D("Pi0_MM_CE_1", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_CE_1_R = new TH3D("Pi0_MM_CE_1_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_Ph_CE_0 = new TH3D("Pi0_Ph_CE_0", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi^{0}} (deg);#phi_{#pi^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Pi0_Ph_CE_0_R = new TH3D("Pi0_Ph_CE_0_R", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi^{0}} (deg);#phi_{#pi^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Pi0_Ph_CE_1 = new TH3D("Pi0_Ph_CE_1", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi^{0}} (deg);#phi_{#pi^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Pi0_Ph_CE_1_R = new TH3D("Pi0_Ph_CE_1_R", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi^{0}} (deg);#phi_{#pi^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
 
-    Pi0_MM_CI_0 = new TH3D("Pi0_MM_CI_0", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi0^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_MM_CI_0_R = new TH3D("Pi0_MM_CI_0_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi0^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_MM_CI_1 = new TH3D("Pi0_MM_CI_1", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi0^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_MM_CI_1_R = new TH3D("Pi0_MM_CI_1_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi0^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_Ph_CI_0 = new TH3D("Pi0_Ph_CI_0", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi0^{0}} (deg);#phi_{#pi0^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
-    Pi0_Ph_CI_0_R = new TH3D("Pi0_Ph_CI_0_R", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi0^{0}} (deg);#phi_{#pi0^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
-    Pi0_Ph_CI_1 = new TH3D("Pi0_Ph_CI_1", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi0^{0}} (deg);#phi_{#pi0^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
-    Pi0_Ph_CI_1_R = new TH3D("Pi0_Ph_CI_1_R", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi0^{0}} (deg);#phi_{#pi0^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Pi0_MM_CI_0 = new TH3D("Pi0_MM_CI_0", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_CI_0_R = new TH3D("Pi0_MM_CI_0_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_CI_1 = new TH3D("Pi0_MM_CI_1", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_CI_1_R = new TH3D("Pi0_MM_CI_1_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_Ph_CI_0 = new TH3D("Pi0_Ph_CI_0", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi^{0}} (deg);#phi_{#pi^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Pi0_Ph_CI_0_R = new TH3D("Pi0_Ph_CI_0_R", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi^{0}} (deg);#phi_{#pi^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Pi0_Ph_CI_1 = new TH3D("Pi0_Ph_CI_1", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi^{0}} (deg);#phi_{#pi^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Pi0_Ph_CI_1_R = new TH3D("Pi0_Ph_CI_1_R", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi^{0}} (deg);#phi_{#pi^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
 
-    Pi0_MM_WE_0 = new TH3D("Pi0_MM_WE_0", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi0^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_MM_WE_0_R = new TH3D("Pi0_MM_WE_0_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi0^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_MM_WE_1 = new TH3D("Pi0_MM_WE_1", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi0^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_MM_WE_1_R = new TH3D("Pi0_MM_WE_1_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi0^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_Ph_WE_0 = new TH3D("Pi0_Ph_WE_0", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi0^{0}} (deg);#phi_{#pi0^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
-    Pi0_Ph_WE_0_R = new TH3D("Pi0_Ph_WE_0_R", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi0^{0}} (deg);#phi_{#pi0^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
-    Pi0_Ph_WE_1 = new TH3D("Pi0_Ph_WE_1", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi0^{0}} (deg);#phi_{#pi0^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
-    Pi0_Ph_WE_1_R = new TH3D("Pi0_Ph_WE_1_R", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi0^{0}} (deg);#phi_{#pi0^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Pi0_MM_WE_0 = new TH3D("Pi0_MM_WE_0", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_WE_0_R = new TH3D("Pi0_MM_WE_0_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_WE_1 = new TH3D("Pi0_MM_WE_1", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_WE_1_R = new TH3D("Pi0_MM_WE_1_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_Ph_WE_0 = new TH3D("Pi0_Ph_WE_0", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi^{0}} (deg);#phi_{#pi^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Pi0_Ph_WE_0_R = new TH3D("Pi0_Ph_WE_0_R", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi^{0}} (deg);#phi_{#pi^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Pi0_Ph_WE_1 = new TH3D("Pi0_Ph_WE_1", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi^{0}} (deg);#phi_{#pi^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Pi0_Ph_WE_1_R = new TH3D("Pi0_Ph_WE_1_R", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi^{0}} (deg);#phi_{#pi^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
 
-    Pi0_MM_WI_0 = new TH3D("Pi0_MM_WI_0", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi0^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_MM_WI_0_R = new TH3D("Pi0_MM_WI_0_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi0^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_MM_WI_1 = new TH3D("Pi0_MM_WI_1", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi0^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_MM_WI_1_R = new TH3D("Pi0_MM_WI_1_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi0^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_Ph_WI_0 = new TH3D("Pi0_Ph_WI_0", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi0^{0}} (deg);#phi_{#pi0^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
-    Pi0_Ph_WI_0_R = new TH3D("Pi0_Ph_WI_0_R", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi0^{0}} (deg);#phi_{#pi0^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
-    Pi0_Ph_WI_1 = new TH3D("Pi0_Ph_WI_1", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi0^{0}} (deg);#phi_{#pi0^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
-    Pi0_Ph_WI_1_R = new TH3D("Pi0_Ph_WI_1_R", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi0^{0}} (deg);#phi_{#pi0^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Pi0_MM_WI_0 = new TH3D("Pi0_MM_WI_0", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_WI_0_R = new TH3D("Pi0_MM_WI_0_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_WI_1 = new TH3D("Pi0_MM_WI_1", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_WI_1_R = new TH3D("Pi0_MM_WI_1_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_Ph_WI_0 = new TH3D("Pi0_Ph_WI_0", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi^{0}} (deg);#phi_{#pi^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Pi0_Ph_WI_0_R = new TH3D("Pi0_Ph_WI_0_R", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi^{0}} (deg);#phi_{#pi^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Pi0_Ph_WI_1 = new TH3D("Pi0_Ph_WI_1", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi^{0}} (deg);#phi_{#pi^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Pi0_Ph_WI_1_R = new TH3D("Pi0_Ph_WI_1_R", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi^{0}} (deg);#phi_{#pi^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
 
-    Pi0_MM_TE_0 = new TH3D("Pi0_MM_TE_0", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi0^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_MM_TE_0_R = new TH3D("Pi0_MM_TE_0_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi0^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_MM_TE_1 = new TH3D("Pi0_MM_TE_1", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi0^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_MM_TE_1_R = new TH3D("Pi0_MM_TE_1_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi0^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_Ph_TE_0 = new TH3D("Pi0_Ph_TE_0", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi0^{0}} (deg);#phi_{#pi0^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
-    Pi0_Ph_TE_0_R = new TH3D("Pi0_Ph_TE_0_R", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi0^{0}} (deg);#phi_{#pi0^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
-    Pi0_Ph_TE_1 = new TH3D("Pi0_Ph_TE_1", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi0^{0}} (deg);#phi_{#pi0^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
-    Pi0_Ph_TE_1_R = new TH3D("Pi0_Ph_TE_1_R", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi0^{0}} (deg);#phi_{#pi0^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Pi0_MM_TE_0 = new TH3D("Pi0_MM_TE_0", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_TE_0_R = new TH3D("Pi0_MM_TE_0_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_TE_1 = new TH3D("Pi0_MM_TE_1", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_TE_1_R = new TH3D("Pi0_MM_TE_1_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_Ph_TE_0 = new TH3D("Pi0_Ph_TE_0", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi^{0}} (deg);#phi_{#pi^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Pi0_Ph_TE_0_R = new TH3D("Pi0_Ph_TE_0_R", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi^{0}} (deg);#phi_{#pi^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Pi0_Ph_TE_1 = new TH3D("Pi0_Ph_TE_1", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi^{0}} (deg);#phi_{#pi^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Pi0_Ph_TE_1_R = new TH3D("Pi0_Ph_TE_1_R", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi^{0}} (deg);#phi_{#pi^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
 
-    Pi0_MM_TI_0 = new TH3D("Pi0_MM_TI_0", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi0^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_MM_TI_0_R = new TH3D("Pi0_MM_TI_0_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi0^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_MM_TI_1 = new TH3D("Pi0_MM_TI_1", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi0^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_MM_TI_1_R = new TH3D("Pi0_MM_TI_1_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi0^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_Ph_TI_0 = new TH3D("Pi0_Ph_TI_0", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi0^{0}} (deg);#phi_{#pi0^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
-    Pi0_Ph_TI_0_R = new TH3D("Pi0_Ph_TI_0_R", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi0^{0}} (deg);#phi_{#pi0^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
-    Pi0_Ph_TI_1 = new TH3D("Pi0_Ph_TI_1", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi0^{0}} (deg);#phi_{#pi0^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
-    Pi0_Ph_TI_1_R = new TH3D("Pi0_Ph_TI_1_R", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi0^{0}} (deg);#phi_{#pi0^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Pi0_MM_TI_0 = new TH3D("Pi0_MM_TI_0", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_TI_0_R = new TH3D("Pi0_MM_TI_0_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_TI_1 = new TH3D("Pi0_MM_TI_1", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_TI_1_R = new TH3D("Pi0_MM_TI_1_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_Ph_TI_0 = new TH3D("Pi0_Ph_TI_0", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi^{0}} (deg);#phi_{#pi^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Pi0_Ph_TI_0_R = new TH3D("Pi0_Ph_TI_0_R", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi^{0}} (deg);#phi_{#pi^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Pi0_Ph_TI_1 = new TH3D("Pi0_Ph_TI_1", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi^{0}} (deg);#phi_{#pi^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Pi0_Ph_TI_1_R = new TH3D("Pi0_Ph_TI_1_R", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi^{0}} (deg);#phi_{#pi^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
 
     Pi0_Re_All = new TH3D("Pi0_Re_All", "Pi0 Recoil Detection;Tagger Channel;#theta_{miss} (deg);Recoil Energy (MeV)", 352, 0, 352, 12, 0, 60, 200, 0, 200);
     Pi0_Re_All_R = new TH3D("Pi0_Re_All_R", "Pi0 Recoil Detection;Tagger Channel;#theta_{miss} (deg);Recoil Energy (MeV)", 352, 0, 352, 12, 0, 60, 200, 0, 200);
@@ -124,6 +124,96 @@ PAnalyze::PAnalyze()
     Pi0_Re_Dif_R = new TH3D("Pi0_Re_Dif_R", "Pi0 Recoil Detection;Tagger Channel;#theta_{miss} (deg);E_{miss}-E_{det} (MeV)", 352, 0, 352, 12, 0, 60, 200, -50, 150);
     Pi0_Re_NoE = new TH3D("Pi0_Re_NoE", "Pi0 Recoil Detection;Tagger Channel;#theta_{miss} (deg);Recoil Energy (MeV)", 352, 0, 352, 12, 0, 60, 200, 0, 200);
     Pi0_Re_NoE_R = new TH3D("Pi0_Re_NoE_R", "Pi0 Recoil Detection;Tagger Channel;#theta_{miss} (deg);Recoil Energy (MeV)", 352, 0, 352, 12, 0, 60, 200, 0, 200);
+
+    // Pi+ histograms
+    PiP_Sp = new TH2D("PiP_Sp", "Split OA vs Energy Ratio;E_{split}/E_{#gamma};#theta_{OA} (deg)", 200, 0, 1, 180, 0, 180);
+    PiP_CA = new TH1D("PiP_CA", "Pi+ Recoil Coplanarity Angle;#phi_{#pi^{+}}-#phi_{p} (deg)", 360, 0, 360);
+
+    PiP_Tm_NE = new TH2D("PiP_Tm_NE", "Pi+ Time;Tagger Channel;t_{#gamma}-t_{#pi^{+}} (ns)", 352, 0, 352, 1400, -700, 700);
+    PiP_Tm_NI = new TH2D("PiP_Tm_NI", "Pi+ Time;Tagger Channel;t_{#gamma}-t_{#pi^{+}} (ns)", 352, 0, 352, 1400, -700, 700);
+    PiP_Tm_CE = new TH2D("PiP_Tm_CE", "Pi+ Time;Tagger Channel;t_{#gamma}-t_{#pi^{+}} (ns)", 352, 0, 352, 1400, -700, 700);
+    PiP_Tm_CI = new TH2D("PiP_Tm_CI", "Pi+ Time;Tagger Channel;t_{#gamma}-t_{#pi^{+}} (ns)", 352, 0, 352, 1400, -700, 700);
+    PiP_Tm_WE = new TH2D("PiP_Tm_WE", "Pi+ Time;Tagger Channel;t_{#gamma}-t_{#pi^{+}} (ns)", 352, 0, 352, 1400, -700, 700);
+    PiP_Tm_WI = new TH2D("PiP_Tm_WI", "Pi+ Time;Tagger Channel;t_{#gamma}-t_{#pi^{+}} (ns)", 352, 0, 352, 1400, -700, 700);
+    PiP_Tm_TE = new TH2D("PiP_Tm_TE", "Pi+ Time;Tagger Channel;t_{#gamma}-t_{#pi^{+}} (ns)", 352, 0, 352, 1400, -700, 700);
+    PiP_Tm_TI = new TH2D("PiP_Tm_TI", "Pi+ Time;Tagger Channel;t_{#gamma}-t_{#pi^{+}} (ns)", 352, 0, 352, 1400, -700, 700);
+
+    PiP_OA = new TH3D("PiP_OA", "Pi+ Recoil Opening Angle;Tagger Channel;#theta_{miss} (deg);Opening Angle (deg)", 352, 0, 352, 12, 0, 60, 90, 0, 180);
+    PiP_OA_R = new TH3D("PiP_OA_R", "Pi+ Recoil Opening Angle;Tagger Channel;#theta_{miss} (deg);Opening Angle (deg)", 352, 0, 352, 12, 0, 60, 90, 0, 180);
+    PiP_OA_Cut = new TH3D("PiP_OA_Cut", "Pi+ Recoil Opening Angle;Tagger Channel;#theta_{miss} (deg);Opening Angle (deg)", 352, 0, 352, 12, 0, 60, 90, 0, 180);
+    PiP_OA_Cut_R = new TH3D("PiP_OA_Cut_R", "Pi+ Recoil Opening Angle;Tagger Channel;#theta_{miss} (deg);Opening Angle (deg)", 352, 0, 352, 12, 0, 60, 90, 0, 180);
+
+    PiP_MM_NE_0 = new TH3D("PiP_MM_NE_0", "Pi+ Missing Mass;Tagger Channel;#theta_{#pi^{+}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    PiP_MM_NE_0_R = new TH3D("PiP_MM_NE_0_R", "Pi+ Missing Mass;Tagger Channel;#theta_{#pi^{+}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    PiP_MM_NE_1 = new TH3D("PiP_MM_NE_1", "Pi+ Missing Mass;Tagger Channel;#theta_{#pi^{+}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    PiP_MM_NE_1_R = new TH3D("PiP_MM_NE_1_R", "Pi+ Missing Mass;Tagger Channel;#theta_{#pi^{+}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    PiP_Ph_NE_0 = new TH3D("PiP_Ph_NE_0", "Pi+ Phi Distribution;Tagger Channel;#theta_{#pi^{+}} (deg);#phi_{#pi^{+}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    PiP_Ph_NE_0_R = new TH3D("PiP_Ph_NE_0_R", "Pi+ Phi Distribution;Tagger Channel;#theta_{#pi^{+}} (deg);#phi_{#pi^{+}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    PiP_Ph_NE_1 = new TH3D("PiP_Ph_NE_1", "Pi+ Phi Distribution;Tagger Channel;#theta_{#pi^{+}} (deg);#phi_{#pi^{+}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    PiP_Ph_NE_1_R = new TH3D("PiP_Ph_NE_1_R", "Pi+ Phi Distribution;Tagger Channel;#theta_{#pi^{+}} (deg);#phi_{#pi^{+}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+
+    PiP_MM_NI_0 = new TH3D("PiP_MM_NI_0", "Pi+ Missing Mass;Tagger Channel;#theta_{#pi^{+}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    PiP_MM_NI_0_R = new TH3D("PiP_MM_NI_0_R", "Pi+ Missing Mass;Tagger Channel;#theta_{#pi^{+}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    PiP_MM_NI_1 = new TH3D("PiP_MM_NI_1", "Pi+ Missing Mass;Tagger Channel;#theta_{#pi^{+}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    PiP_MM_NI_1_R = new TH3D("PiP_MM_NI_1_R", "Pi+ Missing Mass;Tagger Channel;#theta_{#pi^{+}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    PiP_Ph_NI_0 = new TH3D("PiP_Ph_NI_0", "Pi+ Phi Distribution;Tagger Channel;#theta_{#pi^{+}} (deg);#phi_{#pi^{+}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    PiP_Ph_NI_0_R = new TH3D("PiP_Ph_NI_0_R", "Pi+ Phi Distribution;Tagger Channel;#theta_{#pi^{+}} (deg);#phi_{#pi^{+}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    PiP_Ph_NI_1 = new TH3D("PiP_Ph_NI_1", "Pi+ Phi Distribution;Tagger Channel;#theta_{#pi^{+}} (deg);#phi_{#pi^{+}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    PiP_Ph_NI_1_R = new TH3D("PiP_Ph_NI_1_R", "Pi+ Phi Distribution;Tagger Channel;#theta_{#pi^{+}} (deg);#phi_{#pi^{+}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+
+    PiP_MM_CE_0 = new TH3D("PiP_MM_CE_0", "Pi+ Missing Mass;Tagger Channel;#theta_{#pi^{+}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    PiP_MM_CE_0_R = new TH3D("PiP_MM_CE_0_R", "Pi+ Missing Mass;Tagger Channel;#theta_{#pi^{+}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    PiP_MM_CE_1 = new TH3D("PiP_MM_CE_1", "Pi+ Missing Mass;Tagger Channel;#theta_{#pi^{+}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    PiP_MM_CE_1_R = new TH3D("PiP_MM_CE_1_R", "Pi+ Missing Mass;Tagger Channel;#theta_{#pi^{+}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    PiP_Ph_CE_0 = new TH3D("PiP_Ph_CE_0", "Pi+ Phi Distribution;Tagger Channel;#theta_{#pi^{+}} (deg);#phi_{#pi^{+}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    PiP_Ph_CE_0_R = new TH3D("PiP_Ph_CE_0_R", "Pi+ Phi Distribution;Tagger Channel;#theta_{#pi^{+}} (deg);#phi_{#pi^{+}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    PiP_Ph_CE_1 = new TH3D("PiP_Ph_CE_1", "Pi+ Phi Distribution;Tagger Channel;#theta_{#pi^{+}} (deg);#phi_{#pi^{+}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    PiP_Ph_CE_1_R = new TH3D("PiP_Ph_CE_1_R", "Pi+ Phi Distribution;Tagger Channel;#theta_{#pi^{+}} (deg);#phi_{#pi^{+}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+
+    PiP_MM_CI_0 = new TH3D("PiP_MM_CI_0", "Pi+ Missing Mass;Tagger Channel;#theta_{#pi^{+}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    PiP_MM_CI_0_R = new TH3D("PiP_MM_CI_0_R", "Pi+ Missing Mass;Tagger Channel;#theta_{#pi^{+}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    PiP_MM_CI_1 = new TH3D("PiP_MM_CI_1", "Pi+ Missing Mass;Tagger Channel;#theta_{#pi^{+}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    PiP_MM_CI_1_R = new TH3D("PiP_MM_CI_1_R", "Pi+ Missing Mass;Tagger Channel;#theta_{#pi^{+}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    PiP_Ph_CI_0 = new TH3D("PiP_Ph_CI_0", "Pi+ Phi Distribution;Tagger Channel;#theta_{#pi^{+}} (deg);#phi_{#pi^{+}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    PiP_Ph_CI_0_R = new TH3D("PiP_Ph_CI_0_R", "Pi+ Phi Distribution;Tagger Channel;#theta_{#pi^{+}} (deg);#phi_{#pi^{+}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    PiP_Ph_CI_1 = new TH3D("PiP_Ph_CI_1", "Pi+ Phi Distribution;Tagger Channel;#theta_{#pi^{+}} (deg);#phi_{#pi^{+}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    PiP_Ph_CI_1_R = new TH3D("PiP_Ph_CI_1_R", "Pi+ Phi Distribution;Tagger Channel;#theta_{#pi^{+}} (deg);#phi_{#pi^{+}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+
+    PiP_MM_WE_0 = new TH3D("PiP_MM_WE_0", "Pi+ Missing Mass;Tagger Channel;#theta_{#pi^{+}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    PiP_MM_WE_0_R = new TH3D("PiP_MM_WE_0_R", "Pi+ Missing Mass;Tagger Channel;#theta_{#pi^{+}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    PiP_MM_WE_1 = new TH3D("PiP_MM_WE_1", "Pi+ Missing Mass;Tagger Channel;#theta_{#pi^{+}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    PiP_MM_WE_1_R = new TH3D("PiP_MM_WE_1_R", "Pi+ Missing Mass;Tagger Channel;#theta_{#pi^{+}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    PiP_Ph_WE_0 = new TH3D("PiP_Ph_WE_0", "Pi+ Phi Distribution;Tagger Channel;#theta_{#pi^{+}} (deg);#phi_{#pi^{+}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    PiP_Ph_WE_0_R = new TH3D("PiP_Ph_WE_0_R", "Pi+ Phi Distribution;Tagger Channel;#theta_{#pi^{+}} (deg);#phi_{#pi^{+}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    PiP_Ph_WE_1 = new TH3D("PiP_Ph_WE_1", "Pi+ Phi Distribution;Tagger Channel;#theta_{#pi^{+}} (deg);#phi_{#pi^{+}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    PiP_Ph_WE_1_R = new TH3D("PiP_Ph_WE_1_R", "Pi+ Phi Distribution;Tagger Channel;#theta_{#pi^{+}} (deg);#phi_{#pi^{+}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+
+    PiP_MM_WI_0 = new TH3D("PiP_MM_WI_0", "Pi+ Missing Mass;Tagger Channel;#theta_{#pi^{+}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    PiP_MM_WI_0_R = new TH3D("PiP_MM_WI_0_R", "Pi+ Missing Mass;Tagger Channel;#theta_{#pi^{+}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    PiP_MM_WI_1 = new TH3D("PiP_MM_WI_1", "Pi+ Missing Mass;Tagger Channel;#theta_{#pi^{+}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    PiP_MM_WI_1_R = new TH3D("PiP_MM_WI_1_R", "Pi+ Missing Mass;Tagger Channel;#theta_{#pi^{+}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    PiP_Ph_WI_0 = new TH3D("PiP_Ph_WI_0", "Pi+ Phi Distribution;Tagger Channel;#theta_{#pi^{+}} (deg);#phi_{#pi^{+}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    PiP_Ph_WI_0_R = new TH3D("PiP_Ph_WI_0_R", "Pi+ Phi Distribution;Tagger Channel;#theta_{#pi^{+}} (deg);#phi_{#pi^{+}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    PiP_Ph_WI_1 = new TH3D("PiP_Ph_WI_1", "Pi+ Phi Distribution;Tagger Channel;#theta_{#pi^{+}} (deg);#phi_{#pi^{+}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    PiP_Ph_WI_1_R = new TH3D("PiP_Ph_WI_1_R", "Pi+ Phi Distribution;Tagger Channel;#theta_{#pi^{+}} (deg);#phi_{#pi^{+}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+
+    PiP_MM_TE_0 = new TH3D("PiP_MM_TE_0", "Pi+ Missing Mass;Tagger Channel;#theta_{#pi^{+}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    PiP_MM_TE_0_R = new TH3D("PiP_MM_TE_0_R", "Pi+ Missing Mass;Tagger Channel;#theta_{#pi^{+}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    PiP_MM_TE_1 = new TH3D("PiP_MM_TE_1", "Pi+ Missing Mass;Tagger Channel;#theta_{#pi^{+}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    PiP_MM_TE_1_R = new TH3D("PiP_MM_TE_1_R", "Pi+ Missing Mass;Tagger Channel;#theta_{#pi^{+}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    PiP_Ph_TE_0 = new TH3D("PiP_Ph_TE_0", "Pi+ Phi Distribution;Tagger Channel;#theta_{#pi^{+}} (deg);#phi_{#pi^{+}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    PiP_Ph_TE_0_R = new TH3D("PiP_Ph_TE_0_R", "Pi+ Phi Distribution;Tagger Channel;#theta_{#pi^{+}} (deg);#phi_{#pi^{+}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    PiP_Ph_TE_1 = new TH3D("PiP_Ph_TE_1", "Pi+ Phi Distribution;Tagger Channel;#theta_{#pi^{+}} (deg);#phi_{#pi^{+}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    PiP_Ph_TE_1_R = new TH3D("PiP_Ph_TE_1_R", "Pi+ Phi Distribution;Tagger Channel;#theta_{#pi^{+}} (deg);#phi_{#pi^{+}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+
+    PiP_MM_TI_0 = new TH3D("PiP_MM_TI_0", "Pi+ Missing Mass;Tagger Channel;#theta_{#pi^{+}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    PiP_MM_TI_0_R = new TH3D("PiP_MM_TI_0_R", "Pi+ Missing Mass;Tagger Channel;#theta_{#pi^{+}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    PiP_MM_TI_1 = new TH3D("PiP_MM_TI_1", "Pi+ Missing Mass;Tagger Channel;#theta_{#pi^{+}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    PiP_MM_TI_1_R = new TH3D("PiP_MM_TI_1_R", "Pi+ Missing Mass;Tagger Channel;#theta_{#pi^{+}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    PiP_Ph_TI_0 = new TH3D("PiP_Ph_TI_0", "Pi+ Phi Distribution;Tagger Channel;#theta_{#pi^{+}} (deg);#phi_{#pi^{+}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    PiP_Ph_TI_0_R = new TH3D("PiP_Ph_TI_0_R", "Pi+ Phi Distribution;Tagger Channel;#theta_{#pi^{+}} (deg);#phi_{#pi^{+}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    PiP_Ph_TI_1 = new TH3D("PiP_Ph_TI_1", "Pi+ Phi Distribution;Tagger Channel;#theta_{#pi^{+}} (deg);#phi_{#pi^{+}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    PiP_Ph_TI_1_R = new TH3D("PiP_Ph_TI_1_R", "Pi+ Phi Distribution;Tagger Channel;#theta_{#pi^{+}} (deg);#phi_{#pi^{+}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
 
     // Compton histograms
     Comp_Sp = new TH2D("Comp_Sp", "Split OA vs Energy Ratio;E_{split}/E_{#gamma};#theta_{OA} (deg)", 200, 0, 1, 180, 0, 180);
@@ -379,7 +469,7 @@ void	PAnalyze::ProcessEvent()
     Double_t d_part_tm, d_tagg_tm, d_aver_tm, d_subt_tm;
     Double_t d_tagg_en, d_trk0_en, d_trk1_en, d_part_en, d_reco_en, d_splt_en, d_miss_ma;
     Double_t d_part_th, d_part_ph, d_reco_th, d_miss_th, d_CA, d_OA, d_temp;
-    TLorentzVector lv_trk0, lv_trk1, lv_splt, lv_part, lv_ptot, lv_beam, lv_miss;
+    TLorentzVector lv_trk0, lv_trk1, lv_splt, lv_part, lv_ptot, lv_beam, lv_miss, lv_piP;
     TLorentzVector lv_targ = GetTarget();
     TVector3 v_reco, v_splt;
 
@@ -388,8 +478,8 @@ void	PAnalyze::ProcessEvent()
     //TVector3 v_lab_cm;
     //Double_t d_part_th_cm, d_part_ph_cm;
 
-    Bool_t b_pi0, b_pi0_CC, b_pi0_CT, b_pi0_TC, b_NE, b_NI, b_CE, b_CI, b_TE, b_TI, b_WE, b_WI, b_cut_CA, b_cut_OA;
-    b_pi0 = b_pi0_CC = b_pi0_CT = b_pi0_TC = b_NE = b_NI = b_CE = b_CI = b_TE = b_TI = b_WE = b_WI = b_cut_CA = b_cut_OA = false;
+    Bool_t b_pi0, b_piP, b_comp, b_pi0_CC, b_pi0_CT, b_pi0_TC, b_NE, b_NI, b_CE, b_CI, b_TE, b_TI, b_WE, b_WI, b_cut_CA, b_cut_OA;
+    b_pi0 = b_piP = b_comp = b_pi0_CC = b_pi0_CT = b_pi0_TC = b_NE = b_NI = b_CE = b_CI = b_TE = b_TI = b_WE = b_WI = b_cut_CA = b_cut_OA = false;
 
     n_accept = n_ignore = 0;
     i_trk0 = i_trk1 = i_splt = -1;
@@ -475,7 +565,7 @@ void	PAnalyze::ProcessEvent()
             {
                 d_splt_en = GetTracks()->GetClusterEnergy(k);
                 if (k == i || k == j || d_splt_en == 0 || ignoreTrack.at(k)) continue;
-                if (GetTracks()->IsCharged(k) && match_charge) continue;
+                //if (GetTracks()->IsCharged(k) && match_charge) continue;
                 lv_splt = GetTracks()->GetVector(k);
                 v_splt = GetTracks()->GetUnitVector(k);
 
@@ -591,7 +681,7 @@ void	PAnalyze::ProcessEvent()
     }
 
     //////////////////////////////////////////////////
-    // Initial compton/pi+ stuff
+    // Initial pi+/compton stuff
     //////////////////////////////////////////////////
     if (!b_pi0)
     {
@@ -601,7 +691,10 @@ void	PAnalyze::ProcessEvent()
 
         for (Int_t i=0; i<(GetTracks()->GetNTracks()); i++)
         {
-            if (GetTracks()->GetClusterEnergy(i) < d_part_en || ignoreTrack.at(i)) continue;
+            d_trk0_en = GetTracks()->GetClusterEnergy(i);
+            if (d_trk0_en <= d_part_en || ignoreTrack.at(i)) continue;
+            b_piP = ((GetTracks()->IsCharged(i) && match_charge) || !match_charge);
+            b_comp = ((GetTracks()->IsNeutral(i) && match_charge) || !match_charge);
             i_trk0 = i;
             i_splt = -1;
             lv_part = GetTracks()->GetVector(i);
@@ -610,7 +703,7 @@ void	PAnalyze::ProcessEvent()
             d_part_th = GetTracks()->GetTheta(i);
             d_part_ph = GetTracks()->GetPhi(i);
             i_part_sz = GetTracks()->GetClusterSize(i);
-            //if (GetTracks()->IsNeutral(i) && GetTracks()->IsNeutral(j)) pi0_NN = true;
+
             b_NE = b_NI = false;
             if (n_accept == 1) b_NE = true;
             else b_NI = true;
@@ -623,22 +716,30 @@ void	PAnalyze::ProcessEvent()
             {
                 d_splt_en = GetTracks()->GetClusterEnergy(j);
                 if (j == i || d_splt_en == 0 || ignoreTrack.at(j)) continue;
+                //if (GetTracks()->IsNeutral(j) && match_charge && b_piP) continue;
+                //if (GetTracks()->IsCharged(j) && match_charge && b_comp) continue;
                 lv_splt = GetTracks()->GetVector(j);
                 v_splt = GetTracks()->GetUnitVector(j);
 
-                Comp_Sp->Fill(d_splt_en/d_part_en,(TMath::RadToDeg()*lv_part.Angle(v_splt)));
+                if (b_piP) PiP_Sp->Fill(d_splt_en/d_part_en,(TMath::RadToDeg()*lv_part.Angle(v_splt)));
+                else if (b_comp) Comp_Sp->Fill(d_splt_en/d_part_en,(TMath::RadToDeg()*lv_part.Angle(v_splt)));
+                else
+                {
+                    PiP_Sp->Fill(d_splt_en/d_part_en,(TMath::RadToDeg()*lv_part.Angle(v_splt)));
+                    Comp_Sp->Fill(d_splt_en/d_part_en,(TMath::RadToDeg()*lv_part.Angle(v_splt)));
+                }
 
                 if ((TMath::RadToDeg()*lv_part.Angle(v_splt)) < 40*(1-(2*d_splt_en/d_trk0_en)))
                 {
                     i_trk0 = i;
                     i_splt = j;
                     lv_ptot = lv_part + lv_splt;
-                    lv_part = lv_ptot;
+                    lv_part = AdjustMass(lv_ptot, 0);
                     d_part_en = lv_part.E();
                     d_part_th = lv_part.Theta()*TMath::RadToDeg();
                     d_part_ph = lv_part.Phi()*TMath::RadToDeg();
                     i_part_sz += GetTracks()->GetClusterSize(j);
-                    //if (GetTracks()->IsNeutral(i) && GetTracks()->IsNeutral(j)) pi0_NN = true;
+
                     b_NE = b_NI = false;
                     if (n_accept == 2) b_NE = true;
                     else b_NI = true;
@@ -653,7 +754,9 @@ void	PAnalyze::ProcessEvent()
 
         for (Int_t i=0; i<(GetTracks()->GetNTracks()); i++)
         {
-            if (i == i_trk0 || i == i_splt || ignoreTrack.at(i)) continue;
+            if (i_trk0 < 0 || i == i_trk0 || i == i_splt || d_part_en == 0 || ignoreTrack.at(i)) continue;
+            if (GetTracks()->IsCharged(i) && match_charge && b_piP) continue;
+            if (GetTracks()->IsNeutral(i) && match_charge && b_comp) continue;
             d_temp = TMath::Abs(d_part_ph-GetTracks()->GetPhi(i));
             if (TMath::Abs(180.0-d_temp) < TMath::Abs(180.0-d_CA))
             {
@@ -665,7 +768,7 @@ void	PAnalyze::ProcessEvent()
                     d_reco_en = GetTracks()->GetClusterEnergy(i);
                     d_reco_th = GetTracks()->GetTheta(i);
                     i_reco_sz = GetTracks()->GetClusterSize(i);
-                    //if (GetTracks()->IsNeutral(i)) rec_N = true;
+
                     b_NE = b_NI = b_CE = b_CI = b_WE = b_WI = b_TE = b_TI = false;
                     if (GetTracks()->HasCB(i) && d_reco_en > 0)
                     {
@@ -689,13 +792,23 @@ void	PAnalyze::ProcessEvent()
             }
         }
 
-        Comp_CA->Fill(d_CA, event_weight);
-        if (b_cut_CA)
+        if (b_piP)
         {
-            if (d_reco_en > 0)
+            PiP_CA->Fill(d_CA, event_weight);
+
+            lv_piP = AdjustMass(lv_part, 139.57);
+        }
+        if (b_comp)
+        {
+            Comp_CA->Fill(d_CA, event_weight);
+
+            if (b_cut_CA)
             {
-                Comp_CS->Fill(d_part_en, d_part_th, i_part_sz, event_weight);
-                Reco_CS->Fill(d_reco_en, d_reco_th, i_reco_sz, event_weight);
+                if (d_reco_en > 0)
+                {
+                    Comp_CS->Fill(d_part_en, d_part_th, i_part_sz, event_weight);
+                    Reco_CS->Fill(d_reco_en, d_reco_th, i_reco_sz, event_weight);
+                }
             }
         }
     }
@@ -984,14 +1097,201 @@ void	PAnalyze::ProcessEvent()
             }
         }
 
-        else if(d_part_en > 0)
+        if (b_piP)
+        {
+            d_subt_tm = d_tagg_tm - d_part_tm;
+            lv_miss = lv_beam + lv_targ - lv_piP;
+            d_miss_ma = lv_miss.M()-lv_targ.M();
+            d_miss_th = lv_miss.Theta()*TMath::RadToDeg();
+
+            b_cut_OA = false;
+            if (b_cut_CA)
+            {
+                d_OA = (TMath::RadToDeg()*lv_miss.Angle(v_reco));
+                b_cut_OA = (d_OA < OACut);
+            }
+
+            //////////////////////////////////////////////////
+            // Recoil detection stuff
+            //////////////////////////////////////////////////
+            if (GHistBGSub::IsPrompt(d_subt_tm))
+            {
+                if (b_cut_CA) PiP_OA->Fill(i_tagg_ch, d_miss_th, d_OA, event_weight);
+                if (TMath::Abs(d_miss_ma) < 15)
+                {
+                    if (b_cut_CA) PiP_OA_Cut->Fill(i_tagg_ch, d_miss_th, d_OA, event_weight);
+                }
+            }
+            else if (GHistBGSub::IsRandom(d_subt_tm))
+            {
+                if (b_cut_CA) PiP_OA_R->Fill(i_tagg_ch, d_miss_th, d_OA,event_weight);
+                if (TMath::Abs(d_miss_ma) < 15)
+                {
+                    if (b_cut_CA) PiP_OA_Cut_R->Fill(i_tagg_ch, d_miss_th, d_OA, event_weight);
+                }
+            }
+
+            //////////////////////////////////////////////////
+            // State selection
+            //////////////////////////////////////////////////
+            if (!b_hel) b_fill_Ph_0 = (lv_miss.M() >= MMLoC && lv_miss.M() < MMHiC);
+            else b_fill_Ph_1 = (lv_miss.M() >= MMLoC && lv_miss.M() < MMHiC);
+
+            if (b_NE)
+            {
+                PiP_Tm_NE->Fill(i_tagg_ch, d_subt_tm, event_weight);
+                if (GHistBGSub::IsPrompt(d_subt_tm))
+                {
+                    if (b_fill_MM_0) PiP_MM_NE_0->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) PiP_MM_NE_1->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    if (b_fill_Ph_0) PiP_Ph_NE_0->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                    else if (b_fill_Ph_1) PiP_Ph_NE_1->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                }
+                else if (GHistBGSub::IsRandom(d_subt_tm))
+                {
+                    if (b_fill_MM_0) PiP_MM_NE_0_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) PiP_MM_NE_1_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    if (b_fill_Ph_0) PiP_Ph_NE_0_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                    else if (b_fill_Ph_1) PiP_Ph_NE_1_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                }
+            }
+            // Add all of the now failed recoil ones into inclusive
+            else if (b_NI || !b_cut_OA)
+            {
+                PiP_Tm_NI->Fill(i_tagg_ch, d_subt_tm, event_weight);
+                if (GHistBGSub::IsPrompt(d_subt_tm))
+                {
+                    if (b_fill_MM_0) PiP_MM_NI_0->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) PiP_MM_NI_1->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    if (b_fill_Ph_0) PiP_Ph_NI_0->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                    else if (b_fill_Ph_1) PiP_Ph_NI_1->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                }
+                else if (GHistBGSub::IsRandom(d_subt_tm))
+                {
+                    if (b_fill_MM_0) PiP_MM_NI_0_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) PiP_MM_NI_1_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    if (b_fill_Ph_0) PiP_Ph_NI_0_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                    else if (b_fill_Ph_1) PiP_Ph_NI_1_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                }
+            }
+            // From here on the opening angle must have been satisfied
+            else if (b_CE)
+            {
+                PiP_Tm_CE->Fill(i_tagg_ch, d_subt_tm, event_weight);
+                if (GHistBGSub::IsPrompt(d_subt_tm))
+                {
+                    if (b_fill_MM_0) PiP_MM_CE_0->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) PiP_MM_CE_1->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    if (b_fill_Ph_0) PiP_Ph_CE_0->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                    else if (b_fill_Ph_1) PiP_Ph_CE_1->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                }
+                else if (GHistBGSub::IsRandom(d_subt_tm))
+                {
+                    if (b_fill_MM_0) PiP_MM_CE_0_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) PiP_MM_CE_1_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    if (b_fill_Ph_0) PiP_Ph_CE_0_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                    else if (b_fill_Ph_1) PiP_Ph_CE_1_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                }
+            }
+            else if (b_CI)
+            {
+                PiP_Tm_CI->Fill(i_tagg_ch, d_subt_tm, event_weight);
+                if (GHistBGSub::IsPrompt(d_subt_tm))
+                {
+                    if (b_fill_MM_0) PiP_MM_CI_0->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) PiP_MM_CI_1->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    if (b_fill_Ph_0) PiP_Ph_CI_0->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                    else if (b_fill_Ph_1) PiP_Ph_CI_1->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                }
+                else if (GHistBGSub::IsRandom(d_subt_tm))
+                {
+                    if (b_fill_MM_0) PiP_MM_CI_0_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) PiP_MM_CI_1_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    if (b_fill_Ph_0) PiP_Ph_CI_0_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                    else if (b_fill_Ph_1) PiP_Ph_CI_1_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                }
+            }
+            else if (b_WE)
+            {
+                PiP_Tm_WE->Fill(i_tagg_ch, d_subt_tm, event_weight);
+                if (GHistBGSub::IsPrompt(d_subt_tm))
+                {
+                    if (b_fill_MM_0) PiP_MM_WE_0->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) PiP_MM_WE_1->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    if (b_fill_Ph_0) PiP_Ph_WE_0->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                    else if (b_fill_Ph_1) PiP_Ph_WE_1->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                }
+                else if (GHistBGSub::IsRandom(d_subt_tm))
+                {
+                    if (b_fill_MM_0) PiP_MM_WE_0_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) PiP_MM_WE_1_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    if (b_fill_Ph_0) PiP_Ph_WE_0_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                    else if (b_fill_Ph_1) PiP_Ph_WE_1_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                }
+            }
+            else if (b_WI)
+            {
+                PiP_Tm_WI->Fill(i_tagg_ch, d_subt_tm, event_weight);
+                if (GHistBGSub::IsPrompt(d_subt_tm))
+                {
+                    if (b_fill_MM_0) PiP_MM_WI_0->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) PiP_MM_WI_1->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    if (b_fill_Ph_0) PiP_Ph_WI_0->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                    else if (b_fill_Ph_1) PiP_Ph_WI_1->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                }
+                else if (GHistBGSub::IsRandom(d_subt_tm))
+                {
+                    if (b_fill_MM_0) PiP_MM_WI_0_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) PiP_MM_WI_1_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    if (b_fill_Ph_0) PiP_Ph_WI_0_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                    else if (b_fill_Ph_1) PiP_Ph_WI_1_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                }
+            }
+            else if (b_TE)
+            {
+                PiP_Tm_TE->Fill(i_tagg_ch, d_subt_tm, event_weight);
+                if (GHistBGSub::IsPrompt(d_subt_tm))
+                {
+                    if (b_fill_MM_0) PiP_MM_TE_0->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) PiP_MM_TE_1->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    if (b_fill_Ph_0) PiP_Ph_TE_0->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                    else if (b_fill_Ph_1) PiP_Ph_TE_1->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                }
+                else if (GHistBGSub::IsRandom(d_subt_tm))
+                {
+                    if (b_fill_MM_0) PiP_MM_TE_0_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) PiP_MM_TE_1_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    if (b_fill_Ph_0) PiP_Ph_TE_0_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                    else if (b_fill_Ph_1) PiP_Ph_TE_1_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                }
+            }
+            else if (b_TI)
+            {
+                PiP_Tm_TI->Fill(i_tagg_ch, d_subt_tm, event_weight);
+                if (GHistBGSub::IsPrompt(d_subt_tm))
+                {
+                    if (b_fill_MM_0) PiP_MM_TI_0->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) PiP_MM_TI_1->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    if (b_fill_Ph_0) PiP_Ph_TI_0->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                    else if (b_fill_Ph_1) PiP_Ph_TI_1->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                }
+                else if (GHistBGSub::IsRandom(d_subt_tm))
+                {
+                    if (b_fill_MM_0) PiP_MM_TI_0_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) PiP_MM_TI_1_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    if (b_fill_Ph_0) PiP_Ph_TI_0_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                    else if (b_fill_Ph_1) PiP_Ph_TI_1_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                }
+            }
+        }
+
+        if(b_comp)
         {
             d_subt_tm = d_tagg_tm - d_part_tm;
             lv_miss = lv_beam + lv_targ - lv_part;
             d_miss_ma = lv_miss.M()-lv_targ.M();
             d_miss_th = lv_miss.Theta()*TMath::RadToDeg();
 
-            //pi_plus = GetTracks()->GetVector(j,139.57);
             /*
             lv_ptot = lv_beam + lv_targ;
             v_lab_cm = -lv_ptot.BoostVector();
@@ -1492,6 +1792,20 @@ Bool_t  PAnalyze::InitTargPol()
     return kTRUE;
 }
 
+TLorentzVector  PAnalyze::AdjustMass(TLorentzVector lv, Double_t mass)
+{
+    Double_t th = lv.Theta();
+    Double_t ph = lv.Phi();
+
+    Double_t E 	= lv.E() + mass;
+    Double_t P 	= TMath::Sqrt(E*E - mass*mass);
+    Double_t Px = P* sin(th)*cos(ph);
+    Double_t Py = P* sin(th)*sin(ph);
+    Double_t Pz = P* cos(th);
+
+    return TLorentzVector(Px, Py, Pz, E);
+}
+
 Double_t  PAnalyze::TwoBodyAngleToEnergyMin(Double_t eBeam, Double_t mTarg, Double_t mPar1, Double_t mPar2, Double_t tPar1)
 {
     Double_t dX = ((eBeam*(mPar1-mTarg))-(0.5*(TMath::Power((mTarg-mPar1),2.0)))+(0.5*mPar2*mPar2));
@@ -1535,7 +1849,7 @@ Double_t  PAnalyze::TwoBodyEnergyToAngle(Double_t eBeam, Double_t mTarg, Double_
     return ((TMath::RadToDeg())*(TMath::ACos(((ePar1*(eBeam+mTarg))+(eBeam*(mPar1-mTarg))-(0.5*(TMath::Power((mTarg-mPar1),2.0)))+(0.5*mPar2*mPar2))/(eBeam*TMath::Sqrt((ePar1*ePar1)+(2.0*ePar1*mPar1))))));
 }
 
-Double_t PAnalyze::CalcCircBeamPol(Double_t E_e, Double_t P_e, Double_t E_g)
+Double_t  PAnalyze::CalcCircBeamPol(Double_t E_e, Double_t P_e, Double_t E_g)
 {
     Double_t P_g = P_e*(((4*E_g*E_e)-(E_g*E_g))/((4*E_e*E_e)-(4*E_g*E_e)+(3*E_g*E_g)));
 
@@ -1618,6 +1932,49 @@ Bool_t	PAnalyze::Write()
         TH3D *Pi0_Re_Dif_P = (TH3D*)Pi0_Re_Dif->Clone("Pi0_Re_Dif_P");
         TH3D *Pi0_Re_NoE_P = (TH3D*)Pi0_Re_NoE->Clone("Pi0_Re_NoE_P");
 
+        TH3D *PiP_OA_P = (TH3D*)PiP_OA->Clone("PiP_OA_P");
+        TH3D *PiP_OA_Cut_P = (TH3D*)PiP_OA_Cut->Clone("PiP_OA_Cut_P");
+
+        TH3D *PiP_MM_NE_0_P = (TH3D*)PiP_MM_NE_0->Clone("PiP_MM_NE_0_P");
+        TH3D *PiP_MM_NE_1_P = (TH3D*)PiP_MM_NE_1->Clone("PiP_MM_NE_1_P");
+        TH3D *PiP_Ph_NE_0_P = (TH3D*)PiP_Ph_NE_0->Clone("PiP_Ph_NE_0_P");
+        TH3D *PiP_Ph_NE_1_P = (TH3D*)PiP_Ph_NE_1->Clone("PiP_Ph_NE_1_P");
+
+        TH3D *PiP_MM_NI_0_P = (TH3D*)PiP_MM_NI_0->Clone("PiP_MM_NI_0_P");
+        TH3D *PiP_MM_NI_1_P = (TH3D*)PiP_MM_NI_1->Clone("PiP_MM_NI_1_P");
+        TH3D *PiP_Ph_NI_0_P = (TH3D*)PiP_Ph_NI_0->Clone("PiP_Ph_NI_0_P");
+        TH3D *PiP_Ph_NI_1_P = (TH3D*)PiP_Ph_NI_1->Clone("PiP_Ph_NI_1_P");
+
+        TH3D *PiP_MM_CE_0_P = (TH3D*)PiP_MM_CE_0->Clone("PiP_MM_CE_0_P");
+        TH3D *PiP_MM_CE_1_P = (TH3D*)PiP_MM_CE_1->Clone("PiP_MM_CE_1_P");
+        TH3D *PiP_Ph_CE_0_P = (TH3D*)PiP_Ph_CE_0->Clone("PiP_Ph_CE_0_P");
+        TH3D *PiP_Ph_CE_1_P = (TH3D*)PiP_Ph_CE_1->Clone("PiP_Ph_CE_1_P");
+
+        TH3D *PiP_MM_CI_0_P = (TH3D*)PiP_MM_CI_0->Clone("PiP_MM_CI_0_P");
+        TH3D *PiP_MM_CI_1_P = (TH3D*)PiP_MM_CI_1->Clone("PiP_MM_CI_1_P");
+        TH3D *PiP_Ph_CI_0_P = (TH3D*)PiP_Ph_CI_0->Clone("PiP_Ph_CI_0_P");
+        TH3D *PiP_Ph_CI_1_P = (TH3D*)PiP_Ph_CI_1->Clone("PiP_Ph_CI_1_P");
+
+        TH3D *PiP_MM_WE_0_P = (TH3D*)PiP_MM_WE_0->Clone("PiP_MM_WE_0_P");
+        TH3D *PiP_MM_WE_1_P = (TH3D*)PiP_MM_WE_1->Clone("PiP_MM_WE_1_P");
+        TH3D *PiP_Ph_WE_0_P = (TH3D*)PiP_Ph_WE_0->Clone("PiP_Ph_WE_0_P");
+        TH3D *PiP_Ph_WE_1_P = (TH3D*)PiP_Ph_WE_1->Clone("PiP_Ph_WE_1_P");
+
+        TH3D *PiP_MM_WI_0_P = (TH3D*)PiP_MM_WI_0->Clone("PiP_MM_WI_0_P");
+        TH3D *PiP_MM_WI_1_P = (TH3D*)PiP_MM_WI_1->Clone("PiP_MM_WI_1_P");
+        TH3D *PiP_Ph_WI_0_P = (TH3D*)PiP_Ph_WI_0->Clone("PiP_Ph_WI_0_P");
+        TH3D *PiP_Ph_WI_1_P = (TH3D*)PiP_Ph_WI_1->Clone("PiP_Ph_WI_1_P");
+
+        TH3D *PiP_MM_TE_0_P = (TH3D*)PiP_MM_TE_0->Clone("PiP_MM_TE_0_P");
+        TH3D *PiP_MM_TE_1_P = (TH3D*)PiP_MM_TE_1->Clone("PiP_MM_TE_1_P");
+        TH3D *PiP_Ph_TE_0_P = (TH3D*)PiP_Ph_TE_0->Clone("PiP_Ph_TE_0_P");
+        TH3D *PiP_Ph_TE_1_P = (TH3D*)PiP_Ph_TE_1->Clone("PiP_Ph_TE_1_P");
+
+        TH3D *PiP_MM_TI_0_P = (TH3D*)PiP_MM_TI_0->Clone("PiP_MM_TI_0_P");
+        TH3D *PiP_MM_TI_1_P = (TH3D*)PiP_MM_TI_1->Clone("PiP_MM_TI_1_P");
+        TH3D *PiP_Ph_TI_0_P = (TH3D*)PiP_Ph_TI_0->Clone("PiP_Ph_TI_0_P");
+        TH3D *PiP_Ph_TI_1_P = (TH3D*)PiP_Ph_TI_1->Clone("PiP_Ph_TI_1_P");
+
         TH3D *Comp_OA_P = (TH3D*)Comp_OA->Clone("Comp_OA_P");
         TH3D *Comp_OA_Cut_P = (TH3D*)Comp_OA_Cut->Clone("Comp_OA_Cut_P");
 
@@ -1687,6 +2044,18 @@ Bool_t	PAnalyze::Write()
         Pi0_Re_Dif_P->Write();
         Pi0_Re_NoE_P->Write();
 
+        PiP_OA_P->Write();
+        PiP_OA_Cut_P->Write();
+
+        PiP_MM_NE_0_P->Write();
+        PiP_MM_NI_0_P->Write();
+        PiP_MM_CE_0_P->Write();
+        PiP_MM_CI_0_P->Write();
+        PiP_MM_WE_0_P->Write();
+        PiP_MM_WI_0_P->Write();
+        PiP_MM_TE_0_P->Write();
+        PiP_MM_TI_0_P->Write();
+
         Comp_OA_P->Write();
         Comp_OA_Cut_P->Write();
 
@@ -1732,6 +2101,38 @@ Bool_t	PAnalyze::Write()
             Pi0_MM_TI_1_P->Write();
             Pi0_Ph_TI_0_P->Write();
             Pi0_Ph_TI_1_P->Write();
+
+            PiP_MM_NE_1_P->Write();
+            PiP_Ph_NE_0_P->Write();
+            PiP_Ph_NE_1_P->Write();
+
+            PiP_MM_NI_1_P->Write();
+            PiP_Ph_NI_0_P->Write();
+            PiP_Ph_NI_1_P->Write();
+
+            PiP_MM_CE_1_P->Write();
+            PiP_Ph_CE_0_P->Write();
+            PiP_Ph_CE_1_P->Write();
+
+            PiP_MM_CI_1_P->Write();
+            PiP_Ph_CI_0_P->Write();
+            PiP_Ph_CI_1_P->Write();
+
+            PiP_MM_WE_1_P->Write();
+            PiP_Ph_WE_0_P->Write();
+            PiP_Ph_WE_1_P->Write();
+
+            PiP_MM_WI_1_P->Write();
+            PiP_Ph_WI_0_P->Write();
+            PiP_Ph_WI_1_P->Write();
+
+            PiP_MM_TE_1_P->Write();
+            PiP_Ph_TE_0_P->Write();
+            PiP_Ph_TE_1_P->Write();
+
+            PiP_MM_TI_1_P->Write();
+            PiP_Ph_TI_0_P->Write();
+            PiP_Ph_TI_1_P->Write();
 
             Comp_MM_NE_1_P->Write();
             Comp_Ph_NE_0_P->Write();
@@ -1822,6 +2223,49 @@ Bool_t	PAnalyze::Write()
         delete Pi0_Re_Det_P;
         delete Pi0_Re_Dif_P;
         delete Pi0_Re_NoE_P;
+
+        delete PiP_OA_P;
+        delete PiP_OA_Cut_P;
+
+        delete PiP_MM_NE_0_P;
+        delete PiP_MM_NE_1_P;
+        delete PiP_Ph_NE_0_P;
+        delete PiP_Ph_NE_1_P;
+
+        delete PiP_MM_NI_0_P;
+        delete PiP_MM_NI_1_P;
+        delete PiP_Ph_NI_0_P;
+        delete PiP_Ph_NI_1_P;
+
+        delete PiP_MM_CE_0_P;
+        delete PiP_MM_CE_1_P;
+        delete PiP_Ph_CE_0_P;
+        delete PiP_Ph_CE_1_P;
+
+        delete PiP_MM_CI_0_P;
+        delete PiP_MM_CI_1_P;
+        delete PiP_Ph_CI_0_P;
+        delete PiP_Ph_CI_1_P;
+
+        delete PiP_MM_WE_0_P;
+        delete PiP_MM_WE_1_P;
+        delete PiP_Ph_WE_0_P;
+        delete PiP_Ph_WE_1_P;
+
+        delete PiP_MM_WI_0_P;
+        delete PiP_MM_WI_1_P;
+        delete PiP_Ph_WI_0_P;
+        delete PiP_Ph_WI_1_P;
+
+        delete PiP_MM_TE_0_P;
+        delete PiP_MM_TE_1_P;
+        delete PiP_Ph_TE_0_P;
+        delete PiP_Ph_TE_1_P;
+
+        delete PiP_MM_TI_0_P;
+        delete PiP_MM_TI_1_P;
+        delete PiP_Ph_TI_0_P;
+        delete PiP_Ph_TI_1_P;
 
         delete Comp_OA_P;
         delete Comp_OA_Cut_P;
@@ -1968,6 +2412,83 @@ Bool_t	PAnalyze::Write()
         Pi0_Re_NoE->Sumw2();
         Pi0_Re_NoE->Add(Pi0_Re_NoE_R,-ratio);
 
+        PiP_OA->Sumw2();
+        PiP_OA->Add(PiP_OA_R,-ratio);
+        PiP_OA_Cut->Sumw2();
+        PiP_OA_Cut->Add(PiP_OA_Cut_R,-ratio);
+
+        PiP_MM_NE_0->Sumw2();
+        PiP_MM_NE_0->Add(PiP_MM_NE_0_R,-ratio);
+        PiP_MM_NE_1->Sumw2();
+        PiP_MM_NE_1->Add(PiP_MM_NE_1_R,-ratio);
+        PiP_Ph_NE_0->Sumw2();
+        PiP_Ph_NE_0->Add(PiP_Ph_NE_0_R,-ratio);
+        PiP_Ph_NE_1->Sumw2();
+        PiP_Ph_NE_1->Add(PiP_Ph_NE_1_R,-ratio);
+
+        PiP_MM_NI_0->Sumw2();
+        PiP_MM_NI_0->Add(PiP_MM_NI_0_R,-ratio);
+        PiP_MM_NI_1->Sumw2();
+        PiP_MM_NI_1->Add(PiP_MM_NI_1_R,-ratio);
+        PiP_Ph_NI_0->Sumw2();
+        PiP_Ph_NI_0->Add(PiP_Ph_NI_0_R,-ratio);
+        PiP_Ph_NI_1->Sumw2();
+        PiP_Ph_NI_1->Add(PiP_Ph_NI_1_R,-ratio);
+
+        PiP_MM_CE_0->Sumw2();
+        PiP_MM_CE_0->Add(PiP_MM_CE_0_R,-ratio);
+        PiP_MM_CE_1->Sumw2();
+        PiP_MM_CE_1->Add(PiP_MM_CE_1_R,-ratio);
+        PiP_Ph_CE_0->Sumw2();
+        PiP_Ph_CE_0->Add(PiP_Ph_CE_0_R,-ratio);
+        PiP_Ph_CE_1->Sumw2();
+        PiP_Ph_CE_1->Add(PiP_Ph_CE_1_R,-ratio);
+
+        PiP_MM_CI_0->Sumw2();
+        PiP_MM_CI_0->Add(PiP_MM_CI_0_R,-ratio);
+        PiP_MM_CI_1->Sumw2();
+        PiP_MM_CI_1->Add(PiP_MM_CI_1_R,-ratio);
+        PiP_Ph_CI_0->Sumw2();
+        PiP_Ph_CI_0->Add(PiP_Ph_CI_0_R,-ratio);
+        PiP_Ph_CI_1->Sumw2();
+        PiP_Ph_CI_1->Add(PiP_Ph_CI_1_R,-ratio);
+
+        PiP_MM_WE_0->Sumw2();
+        PiP_MM_WE_0->Add(PiP_MM_WE_0_R,-ratio);
+        PiP_MM_WE_1->Sumw2();
+        PiP_MM_WE_1->Add(PiP_MM_WE_1_R,-ratio);
+        PiP_Ph_WE_0->Sumw2();
+        PiP_Ph_WE_0->Add(PiP_Ph_WE_0_R,-ratio);
+        PiP_Ph_WE_1->Sumw2();
+        PiP_Ph_WE_1->Add(PiP_Ph_WE_1_R,-ratio);
+
+        PiP_MM_WI_0->Sumw2();
+        PiP_MM_WI_0->Add(PiP_MM_WI_0_R,-ratio);
+        PiP_MM_WI_1->Sumw2();
+        PiP_MM_WI_1->Add(PiP_MM_WI_1_R,-ratio);
+        PiP_Ph_WI_0->Sumw2();
+        PiP_Ph_WI_0->Add(PiP_Ph_WI_0_R,-ratio);
+        PiP_Ph_WI_1->Sumw2();
+        PiP_Ph_WI_1->Add(PiP_Ph_WI_1_R,-ratio);
+
+        PiP_MM_TE_0->Sumw2();
+        PiP_MM_TE_0->Add(PiP_MM_TE_0_R,-ratio);
+        PiP_MM_TE_1->Sumw2();
+        PiP_MM_TE_1->Add(PiP_MM_TE_1_R,-ratio);
+        PiP_Ph_TE_0->Sumw2();
+        PiP_Ph_TE_0->Add(PiP_Ph_TE_0_R,-ratio);
+        PiP_Ph_TE_1->Sumw2();
+        PiP_Ph_TE_1->Add(PiP_Ph_TE_1_R,-ratio);
+
+        PiP_MM_TI_0->Sumw2();
+        PiP_MM_TI_0->Add(PiP_MM_TI_0_R,-ratio);
+        PiP_MM_TI_1->Sumw2();
+        PiP_MM_TI_1->Add(PiP_MM_TI_1_R,-ratio);
+        PiP_Ph_TI_0->Sumw2();
+        PiP_Ph_TI_0->Add(PiP_Ph_TI_0_R,-ratio);
+        PiP_Ph_TI_1->Sumw2();
+        PiP_Ph_TI_1->Add(PiP_Ph_TI_1_R,-ratio);
+
         Comp_OA->Sumw2();
         Comp_OA->Add(Comp_OA_R,-ratio);
         Comp_OA_Cut->Sumw2();
@@ -2075,6 +2596,18 @@ Bool_t	PAnalyze::Write()
         Pi0_Re_Dif_R->Write();
         Pi0_Re_NoE_R->Write();
 
+        PiP_OA_R->Write();
+        PiP_OA_Cut_R->Write();
+
+        PiP_MM_NE_0_R->Write();
+        PiP_MM_NI_0_R->Write();
+        PiP_MM_CE_0_R->Write();
+        PiP_MM_CI_0_R->Write();
+        PiP_MM_WE_0_R->Write();
+        PiP_MM_WI_0_R->Write();
+        PiP_MM_TE_0_R->Write();
+        PiP_MM_TI_0_R->Write();
+
         Comp_OA_R->Write();
         Comp_OA_Cut_R->Write();
 
@@ -2123,6 +2656,38 @@ Bool_t	PAnalyze::Write()
             Pi0_MM_TI_1_R->Write();
             Pi0_Ph_TI_0_R->Write();
             Pi0_Ph_TI_1_R->Write();
+
+            PiP_MM_NE_1_R->Write();
+            PiP_Ph_NE_0_R->Write();
+            PiP_Ph_NE_1_R->Write();
+
+            PiP_MM_NI_1_R->Write();
+            PiP_Ph_NI_0_R->Write();
+            PiP_Ph_NI_1_R->Write();
+
+            PiP_MM_CE_1_R->Write();
+            PiP_Ph_CE_0_R->Write();
+            PiP_Ph_CE_1_R->Write();
+
+            PiP_MM_CI_1_R->Write();
+            PiP_Ph_CI_0_R->Write();
+            PiP_Ph_CI_1_R->Write();
+
+            PiP_MM_WE_1_R->Write();
+            PiP_Ph_WE_0_R->Write();
+            PiP_Ph_WE_1_R->Write();
+
+            PiP_MM_WI_1_R->Write();
+            PiP_Ph_WI_0_R->Write();
+            PiP_Ph_WI_1_R->Write();
+
+            PiP_MM_TE_1_R->Write();
+            PiP_Ph_TE_0_R->Write();
+            PiP_Ph_TE_1_R->Write();
+
+            PiP_MM_TI_1_R->Write();
+            PiP_Ph_TI_0_R->Write();
+            PiP_Ph_TI_1_R->Write();
 
             Comp_MM_NE_1_R->Write();
             Comp_Ph_NE_0_R->Write();
@@ -2212,6 +2777,49 @@ Bool_t	PAnalyze::Write()
     delete Pi0_Re_Dif_R;
     delete Pi0_Re_NoE_R;
 
+    delete PiP_OA_R;
+    delete PiP_OA_Cut_R;
+
+    delete PiP_MM_NE_0_R;
+    delete PiP_MM_NE_1_R;
+    delete PiP_Ph_NE_0_R;
+    delete PiP_Ph_NE_1_R;
+
+    delete PiP_MM_NI_0_R;
+    delete PiP_MM_NI_1_R;
+    delete PiP_Ph_NI_0_R;
+    delete PiP_Ph_NI_1_R;
+
+    delete PiP_MM_CE_0_R;
+    delete PiP_MM_CE_1_R;
+    delete PiP_Ph_CE_0_R;
+    delete PiP_Ph_CE_1_R;
+
+    delete PiP_MM_CI_0_R;
+    delete PiP_MM_CI_1_R;
+    delete PiP_Ph_CI_0_R;
+    delete PiP_Ph_CI_1_R;
+
+    delete PiP_MM_WE_0_R;
+    delete PiP_MM_WE_1_R;
+    delete PiP_Ph_WE_0_R;
+    delete PiP_Ph_WE_1_R;
+
+    delete PiP_MM_WI_0_R;
+    delete PiP_MM_WI_1_R;
+    delete PiP_Ph_WI_0_R;
+    delete PiP_Ph_WI_1_R;
+
+    delete PiP_MM_TE_0_R;
+    delete PiP_MM_TE_1_R;
+    delete PiP_Ph_TE_0_R;
+    delete PiP_Ph_TE_1_R;
+
+    delete PiP_MM_TI_0_R;
+    delete PiP_MM_TI_1_R;
+    delete PiP_Ph_TI_0_R;
+    delete PiP_Ph_TI_1_R;
+
     delete Comp_OA_R;
     delete Comp_OA_Cut_R;
 
@@ -2291,6 +2899,38 @@ Bool_t	PAnalyze::Write()
         delete Pi0_MM_TI_1;
         delete Pi0_Ph_TI_0;
         delete Pi0_Ph_TI_1;
+
+        delete PiP_MM_NE_1;
+        delete PiP_Ph_NE_0;
+        delete PiP_Ph_NE_1;
+
+        delete PiP_MM_NI_1;
+        delete PiP_Ph_NI_0;
+        delete PiP_Ph_NI_1;
+
+        delete PiP_MM_CE_1;
+        delete PiP_Ph_CE_0;
+        delete PiP_Ph_CE_1;
+
+        delete PiP_MM_CI_1;
+        delete PiP_Ph_CI_0;
+        delete PiP_Ph_CI_1;
+
+        delete PiP_MM_WE_1;
+        delete PiP_Ph_WE_0;
+        delete PiP_Ph_WE_1;
+
+        delete PiP_MM_WI_1;
+        delete PiP_Ph_WI_0;
+        delete PiP_Ph_WI_1;
+
+        delete PiP_MM_TE_1;
+        delete PiP_Ph_TE_0;
+        delete PiP_Ph_TE_1;
+
+        delete PiP_MM_TI_1;
+        delete PiP_Ph_TI_0;
+        delete PiP_Ph_TI_1;
 
         delete Comp_MM_NE_1;
         delete Comp_Ph_NE_0;
