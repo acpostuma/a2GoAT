@@ -375,7 +375,7 @@ void	PAnalyze::ProcessEvent()
     //////////////////////////////////////////////////
     // Kinematic variables
     //////////////////////////////////////////////////
-    Int_t i_trk0, i_trk1, i_splt, i_part_sz, i_reco_sz, i_tagg_ch;
+    Int_t n_accept, n_ignore, i_trk0, i_trk1, i_splt, i_part_sz, i_reco_sz, i_tagg_ch;
     Double_t d_part_tm, d_tagg_tm, d_aver_tm, d_subt_tm;
     Double_t d_tagg_en, d_trk0_en, d_trk1_en, d_part_en, d_reco_en, d_splt_en, d_miss_ma;
     Double_t d_part_th, d_part_ph, d_reco_th, d_miss_th, d_CA, d_OA, d_temp;
@@ -391,18 +391,28 @@ void	PAnalyze::ProcessEvent()
     Bool_t b_pi0, b_pi0_CC, b_pi0_CT, b_pi0_TC, b_NE, b_NI, b_CE, b_CI, b_TE, b_TI, b_WE, b_WI, b_cut_CA, b_cut_OA;
     b_pi0 = b_pi0_CC = b_pi0_CT = b_pi0_TC = b_NE = b_NI = b_CE = b_CI = b_TE = b_TI = b_WE = b_WI = b_cut_CA = b_cut_OA = false;
 
+    n_accept = n_ignore = 0;
     i_trk0 = i_trk1 = i_splt = -1;
     Double_t d_min_IM = 0;
 
     ignoreTrack.clear();
 
     //////////////////////////////////////////////////
-    // Check for tracks in TAPS
+    // Check for tracks in MWPC and TAPS
     //////////////////////////////////////////////////
     for (Int_t i=0; i<(GetTracks()->GetNTracks()); i++)
     {
-        if ((GetTracks()->HasTAPS(i)) && (gRandom->Rndm() >= taps_eff)) ignoreTrack.push_back(true);
-        else ignoreTrack.push_back(false);
+        if (((GetTracks()->GetClusterEnergy(i) == 0) && !pure_mwpc) ||
+            ((GetTracks()->HasTAPS(i)) && (gRandom->Rndm() >= taps_eff)))
+        {
+            n_ignore++;
+            ignoreTrack.push_back(true);
+        }
+        else
+        {
+            n_accept++;
+            ignoreTrack.push_back(false);
+        }
     }
 
     //////////////////////////////////////////////////
@@ -453,7 +463,7 @@ void	PAnalyze::ProcessEvent()
                 d_min_IM = lv_part.M();
 
                 b_NE = b_NI = false;
-                if (GetTracks()->GetNTracks() == 2) b_NE = true;
+                if (n_accept == 2) b_NE = true;
                 else b_NI = true;
             }
 
@@ -507,7 +517,7 @@ void	PAnalyze::ProcessEvent()
                         d_min_IM = lv_part.M();
 
                         b_NE = b_NI = false;
-                        if (GetTracks()->GetNTracks() == 3) b_NE = true;
+                        if (n_accept == 3) b_NE = true;
                         else b_NI = true;
                     }
                 }
@@ -540,6 +550,7 @@ void	PAnalyze::ProcessEvent()
             for (Int_t i=0; i<(GetTracks()->GetNTracks()); i++)
             {
                 if (i == i_trk0 || i == i_trk1 || i == i_splt || ignoreTrack.at(i)) continue;
+                if (GetTracks()->IsNeutral(i) && match_charge) continue;
                 d_temp = TMath::Abs(d_part_ph-GetTracks()->GetPhi(i));
                 if (TMath::Abs(180.0-d_temp) < TMath::Abs(180.0-d_CA))
                 {
@@ -551,24 +562,24 @@ void	PAnalyze::ProcessEvent()
                         d_reco_en = GetTracks()->GetClusterEnergy(i);
                         d_reco_th = GetTracks()->GetTheta(i);
                         i_reco_sz = GetTracks()->GetClusterSize(i);
-                        //if (GetTracks()->IsNeutral(i)) rec_N = true;
+
                         b_NE = b_NI = b_CE = b_CI = b_WE = b_WI = b_TE = b_TI = false;
                         if (GetTracks()->HasCB(i) && d_reco_en > 0)
                         {
-                            if (i_splt >= 0 && GetTracks()->GetNTracks() == 4) b_CE = true;
-                            else if (i_splt < 0 && GetTracks()->GetNTracks() == 3) b_CE = true;
+                            if (i_splt >= 0 && n_accept == 4) b_CE = true;
+                            else if (i_splt < 0 && n_accept == 3) b_CE = true;
                             else b_CI = true;
                         }
                         else if (GetTracks()->HasCB(i))
                         {
-                            if (i_splt >= 0 && GetTracks()->GetNTracks() == 4) b_WE = true;
-                            else if (i_splt < 0 && GetTracks()->GetNTracks() == 3) b_WE = true;
+                            if (i_splt >= 0 && n_accept == 4) b_WE = true;
+                            else if (i_splt < 0 && n_accept == 3) b_WE = true;
                             else b_WI = true;
                         }
                         else
                         {
-                            if (i_splt >= 0 && GetTracks()->GetNTracks() == 4) b_TE = true;
-                            else if (i_splt < 0 && GetTracks()->GetNTracks() == 3) b_TE = true;
+                            if (i_splt >= 0 && n_accept == 4) b_TE = true;
+                            else if (i_splt < 0 && n_accept == 3) b_TE = true;
                             else b_TI = true;
                         }
                     }
@@ -601,7 +612,7 @@ void	PAnalyze::ProcessEvent()
             i_part_sz = GetTracks()->GetClusterSize(i);
             //if (GetTracks()->IsNeutral(i) && GetTracks()->IsNeutral(j)) pi0_NN = true;
             b_NE = b_NI = false;
-            if (GetTracks()->GetNTracks() == 1) b_NE = true;
+            if (n_accept == 1) b_NE = true;
             else b_NI = true;
 
             if (!split_search) continue;
@@ -629,7 +640,7 @@ void	PAnalyze::ProcessEvent()
                     i_part_sz += GetTracks()->GetClusterSize(j);
                     //if (GetTracks()->IsNeutral(i) && GetTracks()->IsNeutral(j)) pi0_NN = true;
                     b_NE = b_NI = false;
-                    if (GetTracks()->GetNTracks() == 2) b_NE = true;
+                    if (n_accept == 2) b_NE = true;
                     else b_NI = true;
                 }
             }
@@ -658,20 +669,20 @@ void	PAnalyze::ProcessEvent()
                     b_NE = b_NI = b_CE = b_CI = b_WE = b_WI = b_TE = b_TI = false;
                     if (GetTracks()->HasCB(i) && d_reco_en > 0)
                     {
-                        if (i_splt >= 0 && GetTracks()->GetNTracks() == 3) b_CE = true;
-                        else if (i_splt < 0 && GetTracks()->GetNTracks() == 2) b_CE = true;
+                        if (i_splt >= 0 && n_accept == 3) b_CE = true;
+                        else if (i_splt < 0 && n_accept == 2) b_CE = true;
                         else b_CI = true;
                     }
                     else if (GetTracks()->HasCB(i))
                     {
-                        if (i_splt >= 0 && GetTracks()->GetNTracks() == 3) b_WE = true;
-                        else if (i_splt < 0 && GetTracks()->GetNTracks() == 2) b_WE = true;
+                        if (i_splt >= 0 && n_accept == 3) b_WE = true;
+                        else if (i_splt < 0 && n_accept == 2) b_WE = true;
                         else b_WI = true;
                     }
                     else
                     {
-                        if (i_splt >= 0 && GetTracks()->GetNTracks() == 3) b_TE = true;
-                        else if (i_splt < 0 && GetTracks()->GetNTracks() == 2) b_TE = true;
+                        if (i_splt >= 0 && n_accept == 3) b_TE = true;
+                        else if (i_splt < 0 && n_accept == 2) b_TE = true;
                         else b_TI = true;
                     }
                 }
