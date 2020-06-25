@@ -1861,20 +1861,58 @@ Double_t  PAnalyze::CalcCircBeamPol(Double_t E_e, Double_t P_e, Double_t E_g)
 
 void	PAnalyze::ProcessScalerRead()
 {
-    PPhysics::ProcessScalerRead();
+    if (lin_beam)
+    {
+        TH1D *TaggerPreScal = (TH1D*)TaggerAccScal->Clone("TaggerPreScal");
+        TH1D *LiveTimePre = (TH1D*)LiveTimeScal->Clone("LiveTimePre");
+
+        PPhysics::ProcessScalerRead();
+
+        TH1D *TaggerCurScal = (TH1D*)TaggerAccScal->Clone("TaggerCurScal");
+        TaggerCurScal->Add(TaggerPreScal,-1);
+        TH1D *LiveTimeCur = (TH1D*)LiveTimeScal->Clone("LiveTimeCur");
+        LiveTimeCur->Add(LiveTimePre,-1);
+
+        //GoosyTagger(TaggerCurScal);
+        //GoosyVuprom(TaggerCurScal);
+        //GoosyNewFPD(TaggerCurScal);
+        GoosyNewFPDRecabled(TaggerCurScal);
+
+        Double_t livetime = 1;
+        if (LiveTimeScal->GetBinContent(1) > 0) livetime = ((LiveTimeScal->GetBinContent(2))/(LiveTimeScal->GetBinContent(1)));
+        Double_t counts;
+        Double_t photonPol = 1;
+        for (Int_t i=0; i<352; i++)
+        {
+            counts = TaggerCurScal->GetBinContent(i+1);
+            photonPol = GetLinpol()->GetPolarizationDegree(i);
+            CorrTaggScal->SetBinContent(i+1,((CorrTaggScal->GetBinContent(i+1))+(livetime*counts)));
+            PolarizeScal->SetBinContent(i+1,((PolarizeScal->GetBinContent(i+1))+(livetime*targPol*photonPol*counts)));
+        }
+
+        delete TaggerPreScal;
+        delete LiveTimePre;
+        delete TaggerCurScal;
+        delete LiveTimeCur;
+    }
+    else PPhysics::ProcessScalerRead();
 }
 
 Bool_t	PAnalyze::Write()
 {
-    Double_t livetime = ((LiveTimeScal->GetBinContent(2))/(LiveTimeScal->GetBinContent(1)));
-    Double_t counts;
-    Double_t photonPol = 1;
-    for (Int_t i=0; i<352; i++)
+    if (!lin_beam)
     {
-        counts = TaggerAccScal->GetBinContent(i+1);
-        if(beamPol < 1) photonPol = CalcCircBeamPol(450,beamPol,GetSetupParameters()->GetTaggerPhotonEnergy(i));
-        CorrTaggScal->SetBinContent(i+1,(livetime*counts));
-        PolarizeScal->SetBinContent(i+1,(livetime*targPol*photonPol*counts));
+        Double_t livetime = 1;
+        if (LiveTimeScal->GetBinContent(1) > 0) livetime = ((LiveTimeScal->GetBinContent(2))/(LiveTimeScal->GetBinContent(1)));
+        Double_t counts;
+        Double_t photonPol = 1;
+        for (Int_t i=0; i<352; i++)
+        {
+            counts = TaggerAccScal->GetBinContent(i+1);
+            if(beamPol < 1) photonPol = CalcCircBeamPol(450,beamPol,GetSetupParameters()->GetTaggerPhotonEnergy(i));
+            CorrTaggScal->SetBinContent(i+1,(livetime*counts));
+            PolarizeScal->SetBinContent(i+1,(livetime*targPol*photonPol*counts));
+        }
     }
 
     Double_t ratio = GHistBGSub::GetBackgroundSumbtractionFactor();
