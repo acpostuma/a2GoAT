@@ -27,16 +27,17 @@ PAnalyze::PAnalyze()
     Pi0_IM_CC = new TH3D("Pi0_IM_CC", "CB Invariant Mass;E_{#gamma_1};E_{#gamma_2};m_{#gamma#gamma} (MeV)", 80, 0, 800, 80, 0, 800, 200, 0, 200);
     Pi0_IM_CT = new TH3D("Pi0_IM_CT", "CB/TAPS Invariant Mass;E_{#gamma_{CB}};E_{#gamma_{TAPS}};m_{#gamma#gamma} (MeV)", 80, 0, 800, 80, 0, 800, 200, 0, 200);
 
+    Pi0_Sp = new TH2D("Pi0_Sp", "Split OA vs Energy Ratio;E_{split}/E_{#gamma};#theta_{OA} (deg)", 200, 0, 1, 180, 0, 180);
     Pi0_CA = new TH1D("Pi0_Re_CA", "Pi0 Recoil Coplanarity Angle;#phi_{#pi^{0}}-#phi_{p} (deg)", 360, 0, 360);
 
-    Pi0_Tm_NE = new TH2D("Pi0_Tm_N", "Pi0 Time;Tagger Channel;t_{#gamma}-t_{#pi0^{0}} (ns)", 352, 0, 352, 1400, -700, 700);
-    Pi0_Tm_NI = new TH2D("Pi0_Tm_C", "Pi0 Time;Tagger Channel;t_{#gamma}-t_{#pi0^{0}} (ns)", 352, 0, 352, 1400, -700, 700);
-    Pi0_Tm_CE = new TH2D("Pi0_Tm_NN", "Pi0 Time;Tagger Channel;t_{#gamma}-t_{#pi0^{0}} (ns)", 352, 0, 352, 1400, -700, 700);
-    Pi0_Tm_CI = new TH2D("Pi0_Tm_NC", "Pi0 Time;Tagger Channel;t_{#gamma}-t_{#pi0^{0}} (ns)", 352, 0, 352, 1400, -700, 700);
-    Pi0_Tm_WE = new TH2D("Pi0_Tm_NNX", "Pi0 Time;Tagger Channel;t_{#gamma}-t_{#pi0^{0}} (ns)", 352, 0, 352, 1400, -700, 700);
-    Pi0_Tm_WI = new TH2D("Pi0_Tm_NCX", "Pi0 Time;Tagger Channel;t_{#gamma}-t_{#pi0^{0}} (ns)", 352, 0, 352, 1400, -700, 700);
-    Pi0_Tm_TE = new TH2D("Pi0_Tm_NT", "Pi0 Time;Tagger Channel;t_{#gamma}-t_{#pi0^{0}} (ns)", 352, 0, 352, 1400, -700, 700);
-    Pi0_Tm_TI = new TH2D("Pi0_Tm_NW", "Pi0 Time;Tagger Channel;t_{#gamma}-t_{#pi0^{0}} (ns)", 352, 0, 352, 1400, -700, 700);
+    Pi0_Tm_NE = new TH2D("Pi0_Tm_NE", "Pi0 Time;Tagger Channel;t_{#gamma}-t_{#pi0^{0}} (ns)", 352, 0, 352, 1400, -700, 700);
+    Pi0_Tm_NI = new TH2D("Pi0_Tm_NI", "Pi0 Time;Tagger Channel;t_{#gamma}-t_{#pi0^{0}} (ns)", 352, 0, 352, 1400, -700, 700);
+    Pi0_Tm_CE = new TH2D("Pi0_Tm_CE", "Pi0 Time;Tagger Channel;t_{#gamma}-t_{#pi0^{0}} (ns)", 352, 0, 352, 1400, -700, 700);
+    Pi0_Tm_CI = new TH2D("Pi0_Tm_CI", "Pi0 Time;Tagger Channel;t_{#gamma}-t_{#pi0^{0}} (ns)", 352, 0, 352, 1400, -700, 700);
+    Pi0_Tm_WE = new TH2D("Pi0_Tm_WE", "Pi0 Time;Tagger Channel;t_{#gamma}-t_{#pi0^{0}} (ns)", 352, 0, 352, 1400, -700, 700);
+    Pi0_Tm_WI = new TH2D("Pi0_Tm_WI", "Pi0 Time;Tagger Channel;t_{#gamma}-t_{#pi0^{0}} (ns)", 352, 0, 352, 1400, -700, 700);
+    Pi0_Tm_TE = new TH2D("Pi0_Tm_TE", "Pi0 Time;Tagger Channel;t_{#gamma}-t_{#pi0^{0}} (ns)", 352, 0, 352, 1400, -700, 700);
+    Pi0_Tm_TI = new TH2D("Pi0_Tm_TI", "Pi0 Time;Tagger Channel;t_{#gamma}-t_{#pi0^{0}} (ns)", 352, 0, 352, 1400, -700, 700);
 
     Pi0_OA = new TH3D("Pi0_OA", "Pi0 Recoil Opening Angle;Tagger Channel;#theta_{miss} (deg);Opening Angle (deg)", 352, 0, 352, 12, 0, 60, 90, 0, 180);
     Pi0_OA_R = new TH3D("Pi0_OA_R", "Pi0 Recoil Opening Angle;Tagger Channel;#theta_{miss} (deg);Opening Angle (deg)", 352, 0, 352, 12, 0, 60, 90, 0, 180);
@@ -125,16 +126,17 @@ PAnalyze::PAnalyze()
     Pi0_Re_NoE_R = new TH3D("Pi0_Re_NoE_R", "Pi0 Recoil Detection;Tagger Channel;#theta_{miss} (deg);Recoil Energy (MeV)", 352, 0, 352, 12, 0, 60, 200, 0, 200);
 
     // Compton histograms
+    Comp_Sp = new TH2D("Comp_Sp", "Split OA vs Energy Ratio;E_{split}/E_{#gamma};#theta_{OA} (deg)", 200, 0, 1, 180, 0, 180);
     Comp_CA = new TH1D("Comp_CA", "Compton Recoil Coplanarity Angle;#phi_{#gamma}-#phi_{p} (deg)", 360, 0, 360);
 
-    Comp_Tm_NE = new TH2D("Comp_Tm_N", "Compton Time;Tagger Channel;t_{#gamma}-t_{#gamma^{'}} (ns)", 352, 0, 352, 1400, -700, 700);
-    Comp_Tm_NI = new TH2D("Comp_Tm_C", "Compton Time;Tagger Channel;t_{#gamma}-t_{#gamma^{'}} (ns)", 352, 0, 352, 1400, -700, 700);
-    Comp_Tm_CE = new TH2D("Comp_Tm_NN", "Compton Time;Tagger Channel;t_{#gamma}-t_{#gamma^{'}} (ns)", 352, 0, 352, 1400, -700, 700);
-    Comp_Tm_CI = new TH2D("Comp_Tm_NC", "Compton Time;Tagger Channel;t_{#gamma}-t_{#gamma^{'}} (ns)", 352, 0, 352, 1400, -700, 700);
-    Comp_Tm_WE = new TH2D("Comp_Tm_NNX", "Compton Time;Tagger Channel;t_{#gamma}-t_{#gamma^{'}} (ns)", 352, 0, 352, 1400, -700, 700);
-    Comp_Tm_WI = new TH2D("Comp_Tm_NCX", "Compton Time;Tagger Channel;t_{#gamma}-t_{#gamma^{'}} (ns)", 352, 0, 352, 1400, -700, 700);
-    Comp_Tm_TE = new TH2D("Comp_Tm_NT", "Compton Time;Tagger Channel;t_{#gamma}-t_{#gamma^{'}} (ns)", 352, 0, 352, 1400, -700, 700);
-    Comp_Tm_TI = new TH2D("Comp_Tm_NW", "Compton Time;Tagger Channel;t_{#gamma}-t_{#gamma^{'}} (ns)", 352, 0, 352, 1400, -700, 700);
+    Comp_Tm_NE = new TH2D("Comp_Tm_NE", "Compton Time;Tagger Channel;t_{#gamma}-t_{#gamma^{'}} (ns)", 352, 0, 352, 1400, -700, 700);
+    Comp_Tm_NI = new TH2D("Comp_Tm_NI", "Compton Time;Tagger Channel;t_{#gamma}-t_{#gamma^{'}} (ns)", 352, 0, 352, 1400, -700, 700);
+    Comp_Tm_CE = new TH2D("Comp_Tm_CE", "Compton Time;Tagger Channel;t_{#gamma}-t_{#gamma^{'}} (ns)", 352, 0, 352, 1400, -700, 700);
+    Comp_Tm_CI = new TH2D("Comp_Tm_CI", "Compton Time;Tagger Channel;t_{#gamma}-t_{#gamma^{'}} (ns)", 352, 0, 352, 1400, -700, 700);
+    Comp_Tm_WE = new TH2D("Comp_Tm_WE", "Compton Time;Tagger Channel;t_{#gamma}-t_{#gamma^{'}} (ns)", 352, 0, 352, 1400, -700, 700);
+    Comp_Tm_WI = new TH2D("Comp_Tm_NI", "Compton Time;Tagger Channel;t_{#gamma}-t_{#gamma^{'}} (ns)", 352, 0, 352, 1400, -700, 700);
+    Comp_Tm_TE = new TH2D("Comp_Tm_TE", "Compton Time;Tagger Channel;t_{#gamma}-t_{#gamma^{'}} (ns)", 352, 0, 352, 1400, -700, 700);
+    Comp_Tm_TI = new TH2D("Comp_Tm_TI", "Compton Time;Tagger Channel;t_{#gamma}-t_{#gamma^{'}} (ns)", 352, 0, 352, 1400, -700, 700);
 
     Comp_OA = new TH3D("Comp_OA", "Compton Recoil Opening Angle;Tagger Channel;#theta_{miss} (deg);Opening Angle (deg)", 352, 0, 352, 12, 0, 60, 90, 0, 180);
     Comp_OA_R = new TH3D("Comp_OA_R", "Compton Recoil Opening Angle;Tagger Channel;#theta_{miss} (deg);Opening Angle (deg)", 352, 0, 352, 12, 0, 60, 90, 0, 180);
@@ -213,28 +215,17 @@ PAnalyze::PAnalyze()
     Comp_Ph_TI_1 = new TH3D("Comp_Ph_TI_1", "Compton Phi Distribution;Tagger Channel;#theta_{#gamma} (deg);#phi_{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
     Comp_Ph_TI_1_R = new TH3D("Comp_Ph_TI_1_R", "Compton Phi Distribution;Tagger Channel;#theta_{#gamma} (deg);#phi_{#gamma} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
 
-    // Do I want these?
-    Comp_Tm_N_MM = new TH2D("Comp_Tm_N_MM", "Compton Time;Tagger Channel;t_{#gamma}-t_{#gamma^{'}} (ns)", 352, 0, 352, 1400, -700, 700);
-    Comp_Tm_N_CS = new TH2D("Comp_Tm_N_CS", "Compton Time;Tagger Channel;t_{#gamma}-t_{#gamma^{'}} (ns)", 352, 0, 352, 1400, -700, 700);
-    Comp_Tm_N_MMCS = new TH2D("Comp_Tm_N_MMCS", "Compton Time;Tagger Channel;t_{#gamma}-t_{#gamma^{'}} (ns)", 352, 0, 352, 1400, -700, 700);
-
-    Comp_MM_N_C = new TH3D("Comp_MM_N_C", "Compton Missing Mass;Tagger Channel;#theta_{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Comp_MM_N_C_R = new TH3D("Comp_MM_N_C_R", "Compton Missing Mass;Tagger Channel;#theta_{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-
-    Comp_CS = new TH3D("Comp_CS", "Compton Cluster Size;E^{#gamma} (MeV);#theta_{#gamma} (deg);Cluster Size", 300, 0, 300, 36, 0, 180, 12, 0, 12);
-    Comp_CS_MM = new TH3D("Comp_CS_MM", "Compton Cluster Size Cut by MM;E^{#gamma} (MeV);#theta_{#gamma} (deg);Cluster Size", 300, 0, 300, 36, 0, 180, 12, 0, 12);
-    Comp_CS_MM_R = new TH3D("Comp_CS_MM_R", "Compton Cluster Size Cut by MM;E^{#gamma} (MeV);#theta_{#gamma} (deg);Cluster Size", 300, 0, 300, 36, 0, 180, 12, 0, 12);
-    Reco_CS = new TH3D("Reco_CS", "Recoil Cluster Size;E^{p} (MeV);#theta_{p} (deg);Cluster Size", 300, 0, 300, 36, 0, 180, 12, 0, 12);
-    Reco_CS_MM = new TH3D("Reco_CS_MM", "Recoil Cluster Size Cut by MM;E^{p} (MeV);#theta_{p} (deg);Cluster Size", 300, 0, 300, 36, 0, 180, 12, 0, 12);
-    Reco_CS_MM_R = new TH3D("Reco_CS_MM_R", "Recoil Cluster Size Cut by MM;E^{p} (MeV);#theta_{p} (deg);Cluster Size", 300, 0, 300, 36, 0, 180, 12, 0, 12);
-
-    Split_OA_E = new TH2D("Split_OA_E", "Split OA vs Energy Ratio;E_{split}/E_{#gamma};#theta_{OA} (deg)", 200, 0, 1, 180, 0, 180);
-    MM_CA_OA = new TH3D("MM_CA_OA", "Kinematic Cuts;m_{miss}-m_{targ} (MeV);#phi_{0}-#phi_{1} (deg);#theta_{OA} (deg)", 80, -80, 120, 72, 0, 360, 36, 0, 180);
-    MM_CA_OA_R = new TH3D("MM_CA_OA_R", "Kinematic Cuts;m_{miss}-m_{targ} (MeV);#phi_{0}-#phi_{1} (deg);#theta_{OA} (deg)", 80, -80, 120, 72, 0, 360, 36, 0, 180);
+    Comp_CS = new TH3D("Comp_CS", "Compton Cluster Size;E_{#gamma} (MeV);#theta_{#gamma} (deg);Cluster Size", 300, 0, 300, 36, 0, 180, 12, 0, 12);
+    Comp_CS_MM = new TH3D("Comp_CS_MM", "Compton Cluster Size Cut by MM;E_{#gamma} (MeV);#theta_{#gamma} (deg);Cluster Size", 300, 0, 300, 36, 0, 180, 12, 0, 12);
+    Comp_CS_MM_R = new TH3D("Comp_CS_MM_R", "Compton Cluster Size Cut by MM;E_{#gamma} (MeV);#theta_{#gamma} (deg);Cluster Size", 300, 0, 300, 36, 0, 180, 12, 0, 12);
+    Reco_CS = new TH3D("Reco_CS", "Recoil Cluster Size;E_{p} (MeV);#theta_{p} (deg);Cluster Size", 300, 0, 300, 18, 0, 90, 12, 0, 12);
+    Reco_CS_MM = new TH3D("Reco_CS_MM", "Recoil Cluster Size Cut by MM;E_{p} (MeV);#theta_{p} (deg);Cluster Size", 300, 0, 300, 18, 0, 90, 12, 0, 12);
+    Reco_CS_MM_R = new TH3D("Reco_CS_MM_R", "Recoil Cluster Size Cut by MM;E_{p} (MeV);#theta_{p} (deg);Cluster Size", 300, 0, 300, 18, 0, 90, 12, 0, 12);
 
     verbosity = 0;
     excl_pi0 = false;
     excl_pro = false;
+    match_charge = true;
 
     IMCut = 134.98;
     MMLoC = 800.00;
@@ -244,6 +235,7 @@ PAnalyze::PAnalyze()
 
     save_randoms = false;
     split_search = false;
+    pure_mwpc = true;
 
     taps_eff = 1;
 
@@ -383,7 +375,7 @@ void	PAnalyze::ProcessEvent()
     //////////////////////////////////////////////////
     // Kinematic variables
     //////////////////////////////////////////////////
-    Int_t i_tagg_ch, i_part_sz, i_reco_sz;
+    Int_t i_trk0, i_trk1, i_splt, i_part_sz, i_reco_sz, i_tagg_ch;
     Double_t d_part_tm, d_tagg_tm, d_aver_tm, d_subt_tm;
     Double_t d_tagg_en, d_trk0_en, d_trk1_en, d_part_en, d_reco_en, d_splt_en, d_miss_ma;
     Double_t d_part_th, d_part_ph, d_reco_th, d_miss_th, d_CA, d_OA, d_temp;
@@ -396,9 +388,10 @@ void	PAnalyze::ProcessEvent()
     //TVector3 v_lab_cm;
     //Double_t d_part_th_cm, d_part_ph_cm;
 
-    Bool_t b_comp, b_pi0, b_pi0_CC, b_pi0_CT, b_pi0_TC, b_NE, b_NI, b_CE, b_CI, b_TE, b_TI, b_WE, b_WI, b_cut_CA, b_cut_OA;
-    b_comp = b_pi0 = b_pi0_CC = b_pi0_CT = b_pi0_TC = b_NE = b_NI = b_CE = b_CI = b_TE = b_TI = b_WE = b_WI = b_cut_CA = b_cut_OA = false;
+    Bool_t b_pi0, b_pi0_CC, b_pi0_CT, b_pi0_TC, b_NE, b_NI, b_CE, b_CI, b_TE, b_TI, b_WE, b_WI, b_cut_CA, b_cut_OA;
+    b_pi0 = b_pi0_CC = b_pi0_CT = b_pi0_TC = b_NE = b_NI = b_CE = b_CI = b_TE = b_TI = b_WE = b_WI = b_cut_CA = b_cut_OA = false;
 
+    i_trk0 = i_trk1 = i_splt = -1;
     Double_t d_min_IM = 0;
 
     ignoreTrack.clear();
@@ -419,12 +412,14 @@ void	PAnalyze::ProcessEvent()
     {
         d_trk0_en = GetTracks()->GetClusterEnergy(i);
         if (d_trk0_en == 0 || ignoreTrack.at(i)) continue;
+        if (GetTracks()->IsCharged(i) && match_charge) continue;
         lv_trk0 = GetTracks()->GetVector(i);
 
         for (Int_t j=i+1; j<(GetTracks()->GetNTracks()); j++)
         {
             d_trk1_en = GetTracks()->GetClusterEnergy(j);
             if (d_trk1_en == 0 || ignoreTrack.at(j)) continue;
+            if (GetTracks()->IsCharged(j) && match_charge) continue;
             lv_trk1 = GetTracks()->GetVector(j);
 
             lv_ptot = lv_trk0 + lv_trk1;
@@ -449,222 +444,17 @@ void	PAnalyze::ProcessEvent()
                     b_pi0_CC = b_pi0_CT = false;
                 }
                 else continue;
+                i_trk0 = i;
+                i_trk1 = j;
+                i_splt = -1;
                 lv_part = lv_trk0 + lv_trk1;                
                 d_part_th = lv_part.Theta()*TMath::RadToDeg();
                 d_part_ph = lv_part.Phi()*TMath::RadToDeg();
                 d_min_IM = lv_part.M();
-                //if (GetTracks()->IsNeutral(i) && GetTracks()->IsNeutral(j)) pi0_NN = true;
-                b_NE = b_NI = b_CE = b_CI = b_WE = b_WI = b_TE = b_TI = b_cut_CA = false;
+
+                b_NE = b_NI = false;
                 if (GetTracks()->GetNTracks() == 2) b_NE = true;
                 else b_NI = true;
-                d_CA = 360;
-                d_splt_en = 0;
-
-                //////////////////////////////////////////////////
-                // Look for best recoil
-                //////////////////////////////////////////////////
-                for (Int_t k=0; k<(GetTracks()->GetNTracks()); k++)
-                {
-                    if (k == i || k == j || ignoreTrack.at(k)) continue;
-                    d_temp = TMath::Abs(d_part_ph-GetTracks()->GetPhi(k));
-                    if (TMath::Abs(180.0-d_temp) < TMath::Abs(180.0-d_CA))
-                    {
-                        d_CA = d_temp;
-                        if (TMath::Abs(180.0-d_CA) < OACut)
-                        {
-                            b_cut_CA = true;
-                            v_reco = GetTracks()->GetUnitVector(k);
-                            d_reco_en = GetTracks()->GetClusterEnergy(k);
-                            d_reco_th = GetTracks()->GetTheta(k);
-                            i_reco_sz = GetTracks()->GetClusterSize(k);
-                            //if (GetTracks()->IsNeutral(k)) rec_N = true;
-                            b_NE = b_NI = b_CE = b_CI = b_WE = b_WI = b_TE = b_TI = false;
-                            if (GetTracks()->HasCB(k) && d_reco_en > 0)
-                            {
-                                if (GetTracks()->GetNTracks() == 3) b_CE = true;
-                                else b_CI = true;
-                            }
-                            else if (GetTracks()->HasCB(k))
-                            {
-                                if (GetTracks()->GetNTracks() == 3) b_WE = true;
-                                else b_WI = true;
-                            }
-                            else
-                            {
-                                if (GetTracks()->GetNTracks() == 3) b_TE = true;
-                                else b_TI = true;
-                            }
-                        }
-                    }
-                }
-
-                if (!split_search) continue;
-                //////////////////////////////////////////////////
-                // Look for splits
-                //////////////////////////////////////////////////
-                for (Int_t k=0; k<(GetTracks()->GetNTracks()); k++)
-                {
-                    d_splt_en = GetTracks()->GetClusterEnergy(k);
-                    if (k == i || k == j || d_splt_en == 0 || ignoreTrack.at(k)) continue;
-                    lv_splt = GetTracks()->GetVector(k);
-                    v_splt = GetTracks()->GetUnitVector(k);
-
-                    Split_OA_E->Fill(d_splt_en/d_trk0_en,(TMath::RadToDeg()*lv_trk0.Angle(v_splt)));
-                    Split_OA_E->Fill(d_splt_en/d_trk1_en,(TMath::RadToDeg()*lv_trk1.Angle(v_splt)));
-
-                    if ((TMath::RadToDeg()*lv_trk0.Angle(v_splt)) < 40*(1-(2*d_splt_en/d_trk0_en)) ||
-                        (TMath::RadToDeg()*lv_trk1.Angle(v_splt)) < 40*(1-(2*d_splt_en/d_trk1_en)))
-                    {
-                        lv_ptot = lv_trk0 + lv_trk1 + lv_splt;
-                        if (TMath::Abs(134.98 - lv_ptot.M()) < TMath::Abs(134.98 - d_min_IM))
-                        {
-                            if ((GetTracks()->HasCB(i)) && (GetTracks()->HasCB(j)))
-                            {
-                                d_part_tm = 0.5*(GetTracks()->GetTime(i) + GetTracks()->GetTime(j));
-                                b_pi0_CC = true;
-                                b_pi0_CT = b_pi0_TC = false;
-                            }
-                            else if (GetTracks()->HasCB(i))
-                            {
-                                d_part_tm = (GetTracks()->GetTime(i));
-                                b_pi0_CT = true;
-                                b_pi0_CC = b_pi0_TC = false;
-                            }
-                            else if (GetTracks()->HasCB(j))
-                            {
-                                d_part_tm = (GetTracks()->GetTime(j));
-                                b_pi0_TC = true;
-                                b_pi0_CC = b_pi0_CT = false;
-                            }
-                            else continue;
-                            lv_part = lv_trk0 + lv_trk1 + lv_splt;
-                            d_part_th = lv_part.Theta()*TMath::RadToDeg();
-                            d_part_ph = lv_part.Phi()*TMath::RadToDeg();
-                            //pi0_XX = lv_trk0 + lv_trk1;
-                            d_min_IM = lv_part.M();
-                            //if (GetTracks()->IsNeutral(i) && GetTracks()->IsNeutral(j)) pi0_NN = true;
-                            b_NE = b_NI = b_CE = b_CI = b_WE = b_WI = b_TE = b_TI = b_cut_CA = false;
-                            if (GetTracks()->GetNTracks() == 3) b_NE = true;
-                            else b_NI = true;
-                            d_CA = 360;
-
-                            //////////////////////////////////////////////////
-                            // Look for best recoil
-                            //////////////////////////////////////////////////
-                            for (Int_t l=0; l<(GetTracks()->GetNTracks()); l++)
-                            {
-                                if (l == i || l == j || l == k || ignoreTrack.at(l)) continue;
-                                d_temp = TMath::Abs(d_part_ph-GetTracks()->GetPhi(l));
-                                if (TMath::Abs(180.0-d_temp) < TMath::Abs(180.0-d_CA))
-                                {
-                                    d_CA = d_temp;
-                                    if (TMath::Abs(180.0-d_CA) < OACut)
-                                    {
-                                        b_cut_CA = true;
-                                        v_reco = GetTracks()->GetUnitVector(l);
-                                        d_reco_en = GetTracks()->GetClusterEnergy(l);
-                                        d_reco_th = GetTracks()->GetTheta(l);
-                                        i_reco_sz = GetTracks()->GetClusterSize(l);
-                                        //if (GetTracks()->IsNeutral(l)) rec_N = true;
-                                        b_NE = b_NI = b_CE = b_CI = b_WE = b_WI = b_TE = b_TI = false;
-                                        if (GetTracks()->HasCB(l) && d_reco_en > 0)
-                                        {
-                                            if (GetTracks()->GetNTracks() == 4) b_CE = true;
-                                            else b_CI = true;
-                                        }
-                                        else if (GetTracks()->HasCB(l))
-                                        {
-                                            if (GetTracks()->GetNTracks() == 4) b_WE = true;
-                                            else b_WI = true;
-                                        }
-                                        else
-                                        {
-                                            if (GetTracks()->GetNTracks() == 4) b_TE = true;
-                                            else b_TI = true;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    if (d_min_IM > 0)
-    {
-        b_pi0 = (TMath::Abs(134.98 - d_min_IM) < IMCut);
-
-        Pi0_IM_A->Fill(d_min_IM, event_weight);
-        if (b_NE || b_CE || b_WE || b_TE) Pi0_IM_E->Fill(d_min_IM, event_weight);
-        else if(b_NI || b_CI || b_WI || b_TI) Pi0_IM_I->Fill(d_min_IM, event_weight);
-
-        if (b_pi0_CC) Pi0_IM_CC->Fill(d_trk0_en, d_trk1_en, d_min_IM, event_weight);
-        else if (b_pi0_CT) Pi0_IM_CT->Fill(d_trk0_en, d_trk1_en, d_min_IM, event_weight);
-        else if (b_pi0_TC) Pi0_IM_CT->Fill(d_trk1_en, d_trk0_en, d_min_IM, event_weight);
-
-        if (b_pi0) Pi0_CA->Fill(d_CA, event_weight);
-    }
-
-    //////////////////////////////////////////////////
-    // Initial compton stuff
-    //////////////////////////////////////////////////
-    if (!b_pi0)
-    {
-        d_part_en = 0;
-        for (Int_t i=0; i<(GetTracks()->GetNTracks()); i++)
-        {
-            if (GetTracks()->GetClusterEnergy(i) < d_part_en || ignoreTrack.at(i)) continue;
-            lv_part = GetTracks()->GetVector(i);
-            d_part_tm = GetTracks()->GetTime(i);
-            d_part_en = GetTracks()->GetClusterEnergy(i);
-            d_part_th = GetTracks()->GetTheta(i);
-            d_part_ph = GetTracks()->GetPhi(i);
-            i_part_sz = GetTracks()->GetClusterSize(i);
-            //if (GetTracks()->IsNeutral(i) && GetTracks()->IsNeutral(j)) pi0_NN = true;
-            b_NE = b_NI = b_CE = b_CI = b_WE = b_WI = b_TE = b_TI = b_cut_CA = false;
-            if (GetTracks()->GetNTracks() == 1) b_NE = true;
-            else b_NI = true;
-            d_CA = 360;
-            d_splt_en = 0;
-
-            //////////////////////////////////////////////////
-            // Look for best recoil
-            //////////////////////////////////////////////////
-            for (Int_t j=0; j<(GetTracks()->GetNTracks()); j++)
-            {
-                if (j == i || ignoreTrack.at(j)) continue;
-                d_temp = TMath::Abs(d_part_ph-GetTracks()->GetPhi(j));
-                if (TMath::Abs(180.0-d_temp) < TMath::Abs(180.0-d_CA))
-                {
-                    d_CA = d_temp;
-                    if (TMath::Abs(180.0-d_CA) < OACut)
-                    {
-                        b_cut_CA = true;
-                        v_reco = GetTracks()->GetUnitVector(j);
-                        d_reco_en = GetTracks()->GetClusterEnergy(j);
-                        d_reco_th = GetTracks()->GetTheta(j);
-                        i_reco_sz = GetTracks()->GetClusterSize(j);
-                        //if (GetTracks()->IsNeutral(j)) rec_N = true;
-                        b_NE = b_NI = b_CE = b_CI = b_WE = b_WI = b_TE = b_TI = false;
-                        if (GetTracks()->HasCB(j) && d_reco_en > 0)
-                        {
-                            if (GetTracks()->GetNTracks() == 2) b_CE = true;
-                            else b_CI = true;
-                        }
-                        else if (GetTracks()->HasCB(j))
-                        {
-                            if (GetTracks()->GetNTracks() == 2) b_WE = true;
-                            else b_WI = true;
-                        }
-                        else
-                        {
-                            if (GetTracks()->GetNTracks() == 2) b_TE = true;
-                            else b_TI = true;
-                        }
-                    }
-                }
             }
 
             if (!split_search) continue;
@@ -674,68 +464,229 @@ void	PAnalyze::ProcessEvent()
             for (Int_t k=0; k<(GetTracks()->GetNTracks()); k++)
             {
                 d_splt_en = GetTracks()->GetClusterEnergy(k);
-                if (k == i || d_splt_en == 0 || ignoreTrack.at(k)) continue;
+                if (k == i || k == j || d_splt_en == 0 || ignoreTrack.at(k)) continue;
+                if (GetTracks()->IsCharged(k) && match_charge) continue;
                 lv_splt = GetTracks()->GetVector(k);
                 v_splt = GetTracks()->GetUnitVector(k);
 
-                Split_OA_E->Fill(d_splt_en/d_part_en,(TMath::RadToDeg()*lv_part.Angle(v_splt)));
+                Pi0_Sp->Fill(d_splt_en/d_trk0_en,(TMath::RadToDeg()*lv_trk0.Angle(v_splt)));
+                Pi0_Sp->Fill(d_splt_en/d_trk1_en,(TMath::RadToDeg()*lv_trk1.Angle(v_splt)));
+
+                if ((TMath::RadToDeg()*lv_trk0.Angle(v_splt)) < 40*(1-(2*d_splt_en/d_trk0_en)) ||
+                        (TMath::RadToDeg()*lv_trk1.Angle(v_splt)) < 40*(1-(2*d_splt_en/d_trk1_en)))
+                {
+                    lv_ptot = lv_trk0 + lv_trk1 + lv_splt;
+                    if (TMath::Abs(134.98 - lv_ptot.M()) < TMath::Abs(134.98 - d_min_IM))
+                    {
+                        if ((GetTracks()->HasCB(i)) && (GetTracks()->HasCB(j)))
+                        {
+                            d_part_tm = 0.5*(GetTracks()->GetTime(i) + GetTracks()->GetTime(j));
+                            b_pi0_CC = true;
+                            b_pi0_CT = b_pi0_TC = false;
+                        }
+                        else if (GetTracks()->HasCB(i))
+                        {
+                            d_part_tm = (GetTracks()->GetTime(i));
+                            b_pi0_CT = true;
+                            b_pi0_CC = b_pi0_TC = false;
+                        }
+                        else if (GetTracks()->HasCB(j))
+                        {
+                            d_part_tm = (GetTracks()->GetTime(j));
+                            b_pi0_TC = true;
+                            b_pi0_CC = b_pi0_CT = false;
+                        }
+                        else continue;
+                        i_trk0 = i;
+                        i_trk1 = j;
+                        i_splt = k;
+                        lv_part = lv_trk0 + lv_trk1 + lv_splt;
+                        d_part_th = lv_part.Theta()*TMath::RadToDeg();
+                        d_part_ph = lv_part.Phi()*TMath::RadToDeg();
+                        //pi0_XX = lv_trk0 + lv_trk1;
+                        d_min_IM = lv_part.M();
+
+                        b_NE = b_NI = false;
+                        if (GetTracks()->GetNTracks() == 3) b_NE = true;
+                        else b_NI = true;
+                    }
+                }
+            }
+        }
+    }
+
+    //////////////////////////////////////////////////
+    // Found a pi0 candidate
+    //////////////////////////////////////////////////
+    if (d_min_IM > 0)
+    {
+        b_pi0 = (TMath::Abs(134.98 - d_min_IM) < IMCut);
+
+        Pi0_IM_A->Fill(d_min_IM, event_weight);
+        if (b_NE) Pi0_IM_E->Fill(d_min_IM, event_weight);
+        else if(b_NI) Pi0_IM_I->Fill(d_min_IM, event_weight);
+
+        if (b_pi0_CC) Pi0_IM_CC->Fill(d_trk0_en, d_trk1_en, d_min_IM, event_weight);
+        else if (b_pi0_CT) Pi0_IM_CT->Fill(d_trk0_en, d_trk1_en, d_min_IM, event_weight);
+        else if (b_pi0_TC) Pi0_IM_CT->Fill(d_trk1_en, d_trk0_en, d_min_IM, event_weight);
+
+        if (b_pi0)
+        {
+            //////////////////////////////////////////////////
+            // Look for best recoil
+            //////////////////////////////////////////////////
+            d_CA = 360;
+
+            for (Int_t i=0; i<(GetTracks()->GetNTracks()); i++)
+            {
+                if (i == i_trk0 || i == i_trk1 || i == i_splt || ignoreTrack.at(i)) continue;
+                d_temp = TMath::Abs(d_part_ph-GetTracks()->GetPhi(i));
+                if (TMath::Abs(180.0-d_temp) < TMath::Abs(180.0-d_CA))
+                {
+                    d_CA = d_temp;
+                    if (TMath::Abs(180.0-d_CA) < OACut)
+                    {
+                        b_cut_CA = true;
+                        v_reco = GetTracks()->GetUnitVector(i);
+                        d_reco_en = GetTracks()->GetClusterEnergy(i);
+                        d_reco_th = GetTracks()->GetTheta(i);
+                        i_reco_sz = GetTracks()->GetClusterSize(i);
+                        //if (GetTracks()->IsNeutral(i)) rec_N = true;
+                        b_NE = b_NI = b_CE = b_CI = b_WE = b_WI = b_TE = b_TI = false;
+                        if (GetTracks()->HasCB(i) && d_reco_en > 0)
+                        {
+                            if (i_splt >= 0 && GetTracks()->GetNTracks() == 4) b_CE = true;
+                            else if (i_splt < 0 && GetTracks()->GetNTracks() == 3) b_CE = true;
+                            else b_CI = true;
+                        }
+                        else if (GetTracks()->HasCB(i))
+                        {
+                            if (i_splt >= 0 && GetTracks()->GetNTracks() == 4) b_WE = true;
+                            else if (i_splt < 0 && GetTracks()->GetNTracks() == 3) b_WE = true;
+                            else b_WI = true;
+                        }
+                        else
+                        {
+                            if (i_splt >= 0 && GetTracks()->GetNTracks() == 4) b_TE = true;
+                            else if (i_splt < 0 && GetTracks()->GetNTracks() == 3) b_TE = true;
+                            else b_TI = true;
+                        }
+                    }
+                }
+            }
+
+            Pi0_CA->Fill(d_CA, event_weight);
+        }
+    }
+
+    //////////////////////////////////////////////////
+    // Initial compton/pi+ stuff
+    //////////////////////////////////////////////////
+    if (!b_pi0)
+    {
+        i_trk0 = i_trk1 = i_splt = -1;
+        d_part_en = 0;
+        d_reco_en = 0;
+
+        for (Int_t i=0; i<(GetTracks()->GetNTracks()); i++)
+        {
+            if (GetTracks()->GetClusterEnergy(i) < d_part_en || ignoreTrack.at(i)) continue;
+            i_trk0 = i;
+            i_splt = -1;
+            lv_part = GetTracks()->GetVector(i);
+            d_part_tm = GetTracks()->GetTime(i);
+            d_part_en = GetTracks()->GetClusterEnergy(i);
+            d_part_th = GetTracks()->GetTheta(i);
+            d_part_ph = GetTracks()->GetPhi(i);
+            i_part_sz = GetTracks()->GetClusterSize(i);
+            //if (GetTracks()->IsNeutral(i) && GetTracks()->IsNeutral(j)) pi0_NN = true;
+            b_NE = b_NI = false;
+            if (GetTracks()->GetNTracks() == 1) b_NE = true;
+            else b_NI = true;
+
+            if (!split_search) continue;
+            //////////////////////////////////////////////////
+            // Look for splits
+            //////////////////////////////////////////////////
+            for (Int_t j=0; j<(GetTracks()->GetNTracks()); j++)
+            {
+                d_splt_en = GetTracks()->GetClusterEnergy(j);
+                if (j == i || d_splt_en == 0 || ignoreTrack.at(j)) continue;
+                lv_splt = GetTracks()->GetVector(j);
+                v_splt = GetTracks()->GetUnitVector(j);
+
+                Comp_Sp->Fill(d_splt_en/d_part_en,(TMath::RadToDeg()*lv_part.Angle(v_splt)));
 
                 if ((TMath::RadToDeg()*lv_part.Angle(v_splt)) < 40*(1-(2*d_splt_en/d_trk0_en)))
                 {
+                    i_trk0 = i;
+                    i_splt = j;
                     lv_ptot = lv_part + lv_splt;
                     lv_part = lv_ptot;
                     d_part_en = lv_part.E();
                     d_part_th = lv_part.Theta()*TMath::RadToDeg();
                     d_part_ph = lv_part.Phi()*TMath::RadToDeg();
-                    i_part_sz += GetTracks()->GetClusterSize(k);
+                    i_part_sz += GetTracks()->GetClusterSize(j);
                     //if (GetTracks()->IsNeutral(i) && GetTracks()->IsNeutral(j)) pi0_NN = true;
-                    b_NE = b_NI = b_CE = b_CI = b_WE = b_WI = b_TE = b_TI = b_cut_CA = false;
+                    b_NE = b_NI = false;
                     if (GetTracks()->GetNTracks() == 2) b_NE = true;
                     else b_NI = true;
-                    d_CA = 360;
+                }
+            }
+        }
 
-                    //////////////////////////////////////////////////
-                    // Look for best recoil
-                    //////////////////////////////////////////////////
-                    for (Int_t j=0; j<(GetTracks()->GetNTracks()); j++)
+        //////////////////////////////////////////////////
+        // Look for best recoil
+        //////////////////////////////////////////////////
+        d_CA = 360;
+
+        for (Int_t i=0; i<(GetTracks()->GetNTracks()); i++)
+        {
+            if (i == i_trk0 || i == i_splt || ignoreTrack.at(i)) continue;
+            d_temp = TMath::Abs(d_part_ph-GetTracks()->GetPhi(i));
+            if (TMath::Abs(180.0-d_temp) < TMath::Abs(180.0-d_CA))
+            {
+                d_CA = d_temp;
+                if (TMath::Abs(180.0-d_CA) < OACut)
+                {
+                    b_cut_CA = true;
+                    v_reco = GetTracks()->GetUnitVector(i);
+                    d_reco_en = GetTracks()->GetClusterEnergy(i);
+                    d_reco_th = GetTracks()->GetTheta(i);
+                    i_reco_sz = GetTracks()->GetClusterSize(i);
+                    //if (GetTracks()->IsNeutral(i)) rec_N = true;
+                    b_NE = b_NI = b_CE = b_CI = b_WE = b_WI = b_TE = b_TI = false;
+                    if (GetTracks()->HasCB(i) && d_reco_en > 0)
                     {
-                        if (j == i || j == k || ignoreTrack.at(j)) continue;
-                        d_temp = TMath::Abs(d_part_ph-GetTracks()->GetPhi(j));
-                        if (TMath::Abs(180.0-d_temp) < TMath::Abs(180.0-d_CA))
-                        {
-                            d_CA = d_temp;
-                            if (TMath::Abs(180.0-d_CA) < OACut)
-                            {
-                                b_cut_CA = true;
-                                v_reco = GetTracks()->GetUnitVector(j);
-                                d_reco_en = GetTracks()->GetClusterEnergy(j);
-                                d_reco_th = GetTracks()->GetTheta(j);
-                                i_reco_sz = GetTracks()->GetClusterSize(j);
-                                //if (GetTracks()->IsNeutral(j)) rec_N = true;
-                                b_NE = b_NI = b_CE = b_CI = b_WE = b_WI = b_TE = b_TI = false;
-                                if (GetTracks()->HasCB(j) && d_reco_en > 0)
-                                {
-                                    if (GetTracks()->GetNTracks() == 3) b_CE = true;
-                                    else b_CI = true;
-                                }
-                                else if (GetTracks()->HasCB(j))
-                                {
-                                    if (GetTracks()->GetNTracks() == 3) b_WE = true;
-                                    else b_WI = true;
-                                }
-                                else
-                                {
-                                    if (GetTracks()->GetNTracks() == 3) b_TE = true;
-                                    else b_TI = true;
-                                }
-                            }
-                        }
+                        if (i_splt >= 0 && GetTracks()->GetNTracks() == 3) b_CE = true;
+                        else if (i_splt < 0 && GetTracks()->GetNTracks() == 2) b_CE = true;
+                        else b_CI = true;
+                    }
+                    else if (GetTracks()->HasCB(i))
+                    {
+                        if (i_splt >= 0 && GetTracks()->GetNTracks() == 3) b_WE = true;
+                        else if (i_splt < 0 && GetTracks()->GetNTracks() == 2) b_WE = true;
+                        else b_WI = true;
+                    }
+                    else
+                    {
+                        if (i_splt >= 0 && GetTracks()->GetNTracks() == 3) b_TE = true;
+                        else if (i_splt < 0 && GetTracks()->GetNTracks() == 2) b_TE = true;
+                        else b_TI = true;
                     }
                 }
             }
         }
-        b_comp = true;
+
         Comp_CA->Fill(d_CA, event_weight);
+        if (b_cut_CA)
+        {
+            if (d_reco_en > 0)
+            {
+                Comp_CS->Fill(d_part_en, d_part_th, i_part_sz, event_weight);
+                Reco_CS->Fill(d_reco_en, d_reco_th, i_reco_sz, event_weight);
+            }
+        }
     }
 
     //////////////////////////////////////////////////
@@ -753,9 +704,6 @@ void	PAnalyze::ProcessEvent()
         if(b_hel) b_fill_MM_1 = true;
         else b_fill_MM_0 = true;
     }
-
-    //if (comp_X && !comp_C) Comp_CS->Fill(d_part_en, d_part_th, i_part_sz, event_weight);
-    //if (comp_NN || comp_NC || comp_NT || comp_NNX || comp_NCX || comp_NTX) Reco_CS->Fill(d_reco_en, d_reco_th, i_reco_sz, event_weight);
 
     //////////////////////////////////////////////////
     // Get average time for total inclusive
@@ -812,26 +760,6 @@ void	PAnalyze::ProcessEvent()
             else if (GHistBGSub::IsRandom(d_subt_tm)) Inc_0_R->Fill(i_tagg_ch, GetTracks()->GetNTracks());
         }
 
-        /*
-        if (d_min_IM > 0)
-        {
-            d_subt_tm = d_tagg_tm - d_part_tm;
-            lv_miss = lv_beam + lv_targ - lv_part;
-            d_miss_ma = lv_miss.M()-lv_targ.M();
-            Pi0_Tm->Fill(i_tagg_ch,d_subt_tm,event_weight);
-
-            if (GHistBGSub::IsPrompt(d_subt_tm))
-            {
-                Pi0_MM->Fill(i_tagg_ch,lv_part.Theta()*TMath::RadToDeg(),d_miss_ma,event_weight);
-                Pi0_IM_MM->Fill(i_tagg_ch,d_min_IM,d_miss_ma,event_weight);
-            }
-            else if (GHistBGSub::IsRandom(d_subt_tm))
-            {
-                Pi0_MM_R->Fill(i_tagg_ch,lv_part.Theta()*TMath::RadToDeg(),d_miss_ma,event_weight);
-                Pi0_IM_MM_R->Fill(i_tagg_ch,d_min_IM,d_miss_ma,event_weight);
-            }
-        }
-        */
         //////////////////////////////////////////////////
         // Pi0 stuff
         //////////////////////////////////////////////////
@@ -1045,13 +973,14 @@ void	PAnalyze::ProcessEvent()
             }
         }
 
-        else if(b_comp)
+        else if(d_part_en > 0)
         {
             d_subt_tm = d_tagg_tm - d_part_tm;
             lv_miss = lv_beam + lv_targ - lv_part;
             d_miss_ma = lv_miss.M()-lv_targ.M();
             d_miss_th = lv_miss.Theta()*TMath::RadToDeg();
 
+            //pi_plus = GetTracks()->GetVector(j,139.57);
             /*
             lv_ptot = lv_beam + lv_targ;
             v_lab_cm = -lv_ptot.BoostVector();
@@ -1299,6 +1228,25 @@ Bool_t 	PAnalyze::InitExclusivity()
 
 }
 
+Bool_t 	PAnalyze::InitMatchCharge()
+{
+    Int_t sc1;
+    string config = ReadConfig("Match-Charge");
+    if(sscanf( config.c_str(), "%d\n", &sc1) == 1)
+    {
+        cout << "Setting charge matching: " << sc1 << endl << endl;
+        match_charge = sc1;
+    }
+    else if(strcmp(config.c_str(), "nokey") != 0)
+    {
+        cout << "Charge matching not set correctly" << endl << endl;
+        return kFALSE;
+    }
+
+    return kTRUE;
+
+}
+
 Bool_t 	PAnalyze::InitInvariantMass()
 {
     Double_t sc1;
@@ -1388,6 +1336,44 @@ Bool_t 	PAnalyze::InitSaveRandoms()
     else if(strcmp(config.c_str(), "nokey") != 0)
     {
         cout << "Save randoms not set correctly" << endl << endl;
+        return kFALSE;
+    }
+
+    return kTRUE;
+
+}
+
+Bool_t 	PAnalyze::InitSplitSearch()
+{
+    Int_t sc1;
+    string config = ReadConfig("Split-Search");
+    if(sscanf( config.c_str(), "%d\n", &sc1) == 1)
+    {
+        cout << "Search for splits: " << sc1 << endl << endl;
+        split_search = sc1;
+    }
+    else if(strcmp(config.c_str(), "nokey") != 0)
+    {
+        cout << "Split search not set correctly" << endl << endl;
+        return kFALSE;
+    }
+
+    return kTRUE;
+
+}
+
+Bool_t 	PAnalyze::InitPureMWPC()
+{
+    Int_t sc1;
+    string config = ReadConfig("Pure-MWPC");
+    if(sscanf( config.c_str(), "%d\n", &sc1) == 1)
+    {
+        cout << "Use pure MWPC tracks: " << sc1 << endl << endl;
+        pure_mwpc = sc1;
+    }
+    else if(strcmp(config.c_str(), "nokey") != 0)
+    {
+        cout << "Pure MWPC tracks not set correctly" << endl << endl;
         return kFALSE;
     }
 
@@ -1493,25 +1479,6 @@ Bool_t  PAnalyze::InitTargPol()
     if(instance) cout << endl;
 
     return kTRUE;
-}
-
-Bool_t 	PAnalyze::InitSplitSearch()
-{
-    Int_t sc1;
-    string config = ReadConfig("Split-Search");
-    if(sscanf( config.c_str(), "%d\n", &sc1) == 1)
-    {
-        cout << "Search for splits: " << sc1 << endl << endl;
-        split_search = sc1;
-    }
-    else if(strcmp(config.c_str(), "nokey") != 0)
-    {
-        cout << "Split search not set correctly" << endl << endl;
-        return kFALSE;
-    }
-
-    return kTRUE;
-
 }
 
 Double_t  PAnalyze::TwoBodyAngleToEnergyMin(Double_t eBeam, Double_t mTarg, Double_t mPar1, Double_t mPar2, Double_t tPar1)

@@ -39,6 +39,7 @@ private:
     TH3*    Pi0_IM_CC;
     TH3*    Pi0_IM_CT;
 
+    TH2*    Pi0_Sp;
     TH1*    Pi0_CA;
 
     TH2*    Pi0_Tm_NE;
@@ -136,6 +137,7 @@ private:
     TH3*    Pi0_Re_NoE;
     TH3*    Pi0_Re_NoE_R;
 
+    TH2*    Comp_Sp;
     TH1*    Comp_CA;
 
     TH2*    Comp_Tm_NE;
@@ -224,19 +226,6 @@ private:
     TH3*    Comp_Ph_TI_1;
     TH3*    Comp_Ph_TI_1_R;
 
-    // Do I want these?
-
-    TH2*    Split_OA_E;
-    TH3*    MM_CA_OA;
-    TH3*    MM_CA_OA_R;
-
-    TH2*    Comp_Tm_N_MM;
-    TH2*    Comp_Tm_N_CS;
-    TH2*    Comp_Tm_N_MMCS;
-
-    TH3*    Comp_MM_N_C;
-    TH3*    Comp_MM_N_C_R;
-
     TH3*    Comp_CS;
     TH3*    Comp_CS_MM;
     TH3*    Comp_CS_MM_R;
@@ -244,11 +233,10 @@ private:
     TH3*    Reco_CS_MM;
     TH3*    Reco_CS_MM_R;
 
-    //
-
     Int_t   verbosity;
     Bool_t  excl_pi0;
     Bool_t  excl_pro;
+    Bool_t  match_charge;
 
     Double_t IMCut;
     Double_t MMLoC;
@@ -257,7 +245,8 @@ private:
     Double_t ESCut;
 
     Bool_t  save_randoms;
-    Bool_t   split_search;
+    Bool_t  split_search;
+    Bool_t  pure_mwpc;
 
     Double_t taps_eff;
     std::vector<Bool_t> ignoreTrack;
@@ -275,26 +264,28 @@ private:
     Bool_t  firstEvent;
 
 protected:
-    virtual Bool_t  Start();
-    virtual void    ProcessEvent();
-    virtual void	ProcessScalerRead();
-    virtual Bool_t    Write();
+    virtual Bool_t Start();
+    virtual void ProcessEvent();
+    virtual void ProcessScalerRead();
+    virtual Bool_t Write();
 
 public:
     PAnalyze();
     virtual ~PAnalyze();
-    virtual Bool_t  Init();
+    virtual Bool_t Init();
     Bool_t InitVerbosity();
     Bool_t InitExclusivity();
+    Bool_t InitMatchCharge();
     Bool_t InitInvariantMass();
     Bool_t InitMissingMass();
     Bool_t InitOpeningAngle();
     Bool_t InitEnergySum();
     Bool_t InitSaveRandoms();
+    Bool_t InitSplitSearch();
+    Bool_t InitPureMWPC();
     Bool_t InitTAPSEff();
     Bool_t InitBeamPol();
     Bool_t InitTargPol();
-    Bool_t InitSplitSearch();
     Double_t TwoBodyAngleToEnergyMin(Double_t eBeam, Double_t mTarg, Double_t mPar1, Double_t mPar2, Double_t tPar1);
     Double_t TwoBodyAngleToEnergyMax(Double_t eBeam, Double_t mTarg, Double_t mPar1, Double_t mPar2, Double_t tPar1);
     Double_t TwoBodyEnergyToAngle(Double_t eBeam, Double_t mTarg, Double_t mPar1, Double_t mPar2, Double_t ePar1);
