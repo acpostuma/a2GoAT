@@ -351,11 +351,14 @@ Bool_t	PAnalyze::Init()
     if(!InitTargetMass()) return kFALSE;
     if(!InitVerbosity()) return kFALSE;
     if(!InitExclusivity()) return kFALSE;
+    if(!InitMatchCharge()) return kFALSE;
     if(!InitInvariantMass()) return kFALSE;
     if(!InitMissingMass()) return kFALSE;
     if(!InitOpeningAngle()) return kFALSE;
     if(!InitEnergySum()) return kFALSE;
     if(!InitSaveRandoms()) return kFALSE;
+    if(!InitSplitSearch()) return kFALSE;
+    if(!InitPureMWPC()) return kFALSE;
     if(!InitBeamPol()) return kFALSE;
     if(!InitTargPol()) return kFALSE;
 
