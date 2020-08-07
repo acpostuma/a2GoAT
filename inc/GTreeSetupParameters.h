@@ -9,6 +9,8 @@
 class  GTreeSetupParameters : public GTree
 {
 private:
+    Int_t       TimeStamp;
+
     Int_t		nTagger;
     Double_t	TaggerGlobalOffset;
     Double_t	TaggerTDCLoThr[352];
@@ -78,6 +80,8 @@ public:
     virtual ~GTreeSetupParameters();
 
     virtual void    Clear()             {}
+
+            Int_t           GetTimeStamp()                             const	{return TimeStamp;}
 
             Int_t           GetNTagger()                               const	{return nTagger;}
             Double_t        GetTaggerGlobalOffset()                    const	{return TaggerGlobalOffset;}

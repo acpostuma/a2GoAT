@@ -3,6 +3,7 @@
 
 GTreeSetupParameters::GTreeSetupParameters(GTreeManager *Manager)    :
     GTree(Manager, TString("setupParameters"), kFALSE, kTRUE),
+    TimeStamp(0),
     nTagger(0),
     TaggerGlobalOffset(0),
     nNaI(0),
@@ -82,6 +83,8 @@ GTreeSetupParameters::~GTreeSetupParameters()
 
 void    GTreeSetupParameters::SetBranchAdresses()
 {
+    if(inputTree->GetBranch("TimeStamp")) inputTree->SetBranchAddress("TimeStamp", &TimeStamp);
+
     if(inputTree->GetBranch("nTagger")) inputTree->SetBranchAddress("nTagger", &nTagger);
     if(inputTree->GetBranch("TaggerGlobalOffset")) inputTree->SetBranchAddress("TaggerGlobalOffset", &TaggerGlobalOffset);
     if(inputTree->GetBranch("TaggerTDCLoThr")) inputTree->SetBranchAddress("TaggerTDCLoThr", TaggerTDCLoThr);
