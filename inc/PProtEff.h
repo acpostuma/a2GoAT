@@ -9,6 +9,7 @@
 #include "GTreeManager.h"
 #include "PPhysics.h"
 #include "TF1.h"
+#include "TRandom3.h"
 
 class	PProtEff  : public PPhysics
 {
@@ -88,6 +89,18 @@ private:
     TH3*        Pi0_Re_NoE;
     TH3*        Pi0_Re_NoE_R;
 
+    TH3*        Pi0_Re_dT_Det;
+    TH3*        Pi0_Re_dT_Det_R;
+    TH3*        Pi0_Re_dT_NoE;
+    TH3*        Pi0_Re_dT_NoE_R;
+
+    TH1*        Pi0_Re_CA;
+
+    TH3*        Pi0_Re_OA;
+    TH3*        Pi0_Re_OA_R;
+    TH3*        Pi0_Re_OA_Cut;
+    TH3*        Pi0_Re_OA_Cut_R;
+
     Int_t    verbosity;
     Bool_t   excl_pi0;
     Bool_t   excl_pro;
@@ -99,6 +112,10 @@ private:
     Double_t ESCut;
 
     Bool_t   save_randoms;
+    Bool_t   split_search;
+
+    Double_t taps_eff;
+    std::vector<Bool_t> ignoreTrack;
 
     Bool_t cir_beam;
     Bool_t lin_beam;
@@ -129,8 +146,10 @@ public:
     Bool_t InitOpeningAngle();
     Bool_t InitEnergySum();
     Bool_t InitSaveRandoms();
+    Bool_t InitTAPSEff();
     Bool_t InitBeamPol();
     Bool_t InitTargPol();
+    Bool_t InitSplitSearch();
     Double_t TwoBodyAngleToEnergyMin(Double_t eBeam, Double_t mTarg, Double_t mPar1, Double_t mPar2, Double_t tPar1);
     Double_t TwoBodyAngleToEnergyMax(Double_t eBeam, Double_t mTarg, Double_t mPar1, Double_t mPar2, Double_t tPar1);
     Double_t TwoBodyEnergyToAngle(Double_t eBeam, Double_t mTarg, Double_t mPar1, Double_t mPar2, Double_t ePar1);

@@ -32,48 +32,60 @@ PProtEff::PProtEff()
     Pi0_IM_MM = new TH3D("Pi0_IM_MM", "Pi0 Missing Mass;Tagger Channel;m_{#gamma#gamma} (MeV);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 100, 0, 200, 80, -80, 120);
     Pi0_IM_MM_R = new TH3D("Pi0_IM_MM_R", "Pi0 Missing Mass;Tagger Channel;m_{#gamma#gamma} (MeV);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 100, 0, 200, 80, -80, 120);
 
-    Pi0_MM = new TH3D("Pi0_MM", "Pi0 Missing Mass;Tagger Channel;#theta^{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_MM_R = new TH3D("Pi0_MM_R", "Pi0 Missing Mass;Tagger Channel;#theta^{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM = new TH3D("Pi0_MM", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_R = new TH3D("Pi0_MM_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
 
-    Pi0_MM_NN = new TH3D("Pi0_MM_NN", "Pi0 Missing Mass;Tagger Channel;#theta^{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_MM_NN_R = new TH3D("Pi0_MM_NN_R", "Pi0 Missing Mass;Tagger Channel;#theta^{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_MM_NC = new TH3D("Pi0_MM_NC", "Pi0 Missing Mass;Tagger Channel;#theta^{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_MM_NC_R = new TH3D("Pi0_MM_NC_R", "Pi0 Missing Mass;Tagger Channel;#theta^{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_MM_CC = new TH3D("Pi0_MM_CC", "Pi0 Missing Mass;Tagger Channel;#theta^{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_MM_CC_R = new TH3D("Pi0_MM_CC_R", "Pi0 Missing Mass;Tagger Channel;#theta^{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_NN = new TH3D("Pi0_MM_NN", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_NN_R = new TH3D("Pi0_MM_NN_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_NC = new TH3D("Pi0_MM_NC", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_NC_R = new TH3D("Pi0_MM_NC_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_CC = new TH3D("Pi0_MM_CC", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_CC_R = new TH3D("Pi0_MM_CC_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
 
-    Pi0_MM_XXN = new TH3D("Pi0_MM_XXN", "Pi0 Missing Mass;Tagger Channel;#theta^{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_MM_XXN_R = new TH3D("Pi0_MM_XXN_R", "Pi0 Missing Mass;Tagger Channel;#theta^{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_MM_XXC = new TH3D("Pi0_MM_XXC", "Pi0 Missing Mass;Tagger Channel;#theta^{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_MM_XXC_R = new TH3D("Pi0_MM_XXC_R", "Pi0 Missing Mass;Tagger Channel;#theta^{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_MM_XXW = new TH3D("Pi0_MM_XXW", "Pi0 Missing Mass;Tagger Channel;#theta^{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_MM_XXW_R = new TH3D("Pi0_MM_XXW_R", "Pi0 Missing Mass;Tagger Channel;#theta^{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_XXN = new TH3D("Pi0_MM_XXN", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_XXN_R = new TH3D("Pi0_MM_XXN_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_XXC = new TH3D("Pi0_MM_XXC", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_XXC_R = new TH3D("Pi0_MM_XXC_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_XXW = new TH3D("Pi0_MM_XXW", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_XXW_R = new TH3D("Pi0_MM_XXW_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
 
-    Pi0_MM_NNS = new TH3D("Pi0_MM_NNS", "Pi0 Missing Mass;Tagger Channel;#theta^{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_MM_NNS_R = new TH3D("Pi0_MM_NNS_R", "Pi0 Missing Mass;Tagger Channel;#theta^{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_MM_NCS = new TH3D("Pi0_MM_NCS", "Pi0 Missing Mass;Tagger Channel;#theta^{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_MM_NCS_R = new TH3D("Pi0_MM_NCS_R", "Pi0 Missing Mass;Tagger Channel;#theta^{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_MM_CCS = new TH3D("Pi0_MM_CCS", "Pi0 Missing Mass;Tagger Channel;#theta^{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_MM_CCS_R = new TH3D("Pi0_MM_CCS_R", "Pi0 Missing Mass;Tagger Channel;#theta^{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_NNS = new TH3D("Pi0_MM_NNS", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_NNS_R = new TH3D("Pi0_MM_NNS_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_NCS = new TH3D("Pi0_MM_NCS", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_NCS_R = new TH3D("Pi0_MM_NCS_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_CCS = new TH3D("Pi0_MM_CCS", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_CCS_R = new TH3D("Pi0_MM_CCS_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
 
-    Pi0_MM_XXSN = new TH3D("Pi0_MM_XXSN", "Pi0 Missing Mass;Tagger Channel;#theta^{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_MM_XXSN_R = new TH3D("Pi0_MM_XXSN_R", "Pi0 Missing Mass;Tagger Channel;#theta^{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_MM_XXSC = new TH3D("Pi0_MM_XXSC", "Pi0 Missing Mass;Tagger Channel;#theta^{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_MM_XXSC_R = new TH3D("Pi0_MM_XXSC_R", "Pi0 Missing Mass;Tagger Channel;#theta^{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_MM_XXSW = new TH3D("Pi0_MM_XXSW", "Pi0 Missing Mass;Tagger Channel;#theta^{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
-    Pi0_MM_XXSW_R = new TH3D("Pi0_MM_XXSW_R", "Pi0 Missing Mass;Tagger Channel;#theta^{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_XXSN = new TH3D("Pi0_MM_XXSN", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_XXSN_R = new TH3D("Pi0_MM_XXSN_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_XXSC = new TH3D("Pi0_MM_XXSC", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_XXSC_R = new TH3D("Pi0_MM_XXSC_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_XXSW = new TH3D("Pi0_MM_XXSW", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_XXSW_R = new TH3D("Pi0_MM_XXSW_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
 
     Pi0_Sp_IM_MM = new TH3D("Pi0_Sp_IM_MM", "Pi0 Split Improvment;Tagger Channel;|m_{#gamma#gamma}-m_{#pi^0}|-|m_{#gamma#gamma S}-m_{#pi^0}| (MeV);|m_{miss}-m_{targ}|-|m_{miss S}-m_{targ}| (MeV)", 352, 0, 352, 50, 0, 50, 150, -50, 100);
     Pi0_Sp_IM_MM_R = new TH3D("Pi0_Sp_IM_MM_R", "Pi0 Split Improvment;Tagger Channel;|m_{#gamma#gamma}-m_{#pi^0}|-|m_{#gamma#gamma S}-m_{#pi^0}| (MeV);|m_{miss}-m_{targ}|-|m_{miss S}-m_{targ}| (MeV)", 352, 0, 352, 50, 0, 50, 150, -50, 100);
 
-    Pi0_Re_All = new TH3D("Pi0_Re_All", "Pi0 Missing Mass;Recoil Energy (MeV);#theta^{p} (deg);m_{miss}-m_{targ} (MeV)", 200, 0, 200, 36, 0, 180, 80, -80, 120);
-    Pi0_Re_All_R = new TH3D("Pi0_Re_All_R", "Pi0 Missing Mass;Recoil Energy (MeV);#theta^{p} (deg);m_{miss}-m_{targ} (MeV)", 200, 0, 200, 36, 0, 180, 80, -80, 120);
-    Pi0_Re_Det = new TH3D("Pi0_Re_Det", "Pi0 Missing Mass;Recoil Energy (MeV);#theta^{p} (deg);m_{miss}-m_{targ} (MeV)", 200, 0, 200, 36, 0, 180, 80, -80, 120);
-    Pi0_Re_Det_R = new TH3D("Pi0_Re_Det_R", "Pi0 Missing Mass;Recoil Energy (MeV);#theta^{p} (deg);m_{miss}-m_{targ} (MeV)", 200, 0, 200, 36, 0, 180, 80, -80, 120);
-    Pi0_Re_Dif = new TH3D("Pi0_Re_Dif", "Pi0 Missing Mass;E_{miss}-E_{det} (MeV);#theta^{p} (deg);m_{miss}-m_{targ} (MeV)", 150, -50, 100, 36, 0, 180, 80, -80, 120);
-    Pi0_Re_Dif_R = new TH3D("Pi0_Re_Dif_R", "Pi0 Missing Mass;E_{miss}-E_{det} (MeV);#theta^{p} (deg);m_{miss}-m_{targ} (MeV)", 150, -50, 100, 36, 0, 180, 80, -80, 120);
-    Pi0_Re_NoE = new TH3D("Pi0_Re_NoE", "Pi0 Missing Mass;Recoil Energy (MeV);#theta^{p} (deg);m_{miss}-m_{targ} (MeV)", 200, 0, 200, 36, 0, 180, 80, -80, 120);
-    Pi0_Re_NoE_R = new TH3D("Pi0_Re_NoE_R", "Pi0 Missing Mass;Recoil Energy (MeV);#theta^{p} (deg);m_{miss}-m_{targ} (MeV)", 200, 0, 200, 36, 0, 180, 80, -80, 120);
+    Pi0_Re_All = new TH3D("Pi0_Re_All", "Pi0 Missing Mass;Recoil Energy (MeV);#theta_{miss} (deg);Tagger Channel", 200, 0, 200, 36, 0, 180, 352, 0, 352);
+    Pi0_Re_All_R = new TH3D("Pi0_Re_All_R", "Pi0 Missing Mass;Recoil Energy (MeV);#theta_{miss} (deg);Tagger Channel", 200, 0, 200, 36, 0, 180, 352, 0, 352);
+    Pi0_Re_Det = new TH3D("Pi0_Re_Det", "Pi0 Missing Mass;Recoil Energy (MeV);#theta_{miss} (deg);Tagger Channel", 200, 0, 200, 36, 0, 180, 352, 0, 352);
+    Pi0_Re_Det_R = new TH3D("Pi0_Re_Det_R", "Pi0 Missing Mass;Recoil Energy (MeV);#theta_{miss} (deg);Tagger Channel", 200, 0, 200, 36, 0, 180, 352, 0, 352);
+    Pi0_Re_Dif = new TH3D("Pi0_Re_Dif", "Pi0 Missing Mass;E_{miss}-E_{det} (MeV);#theta_{miss} (deg);Tagger Channel", 150, -50, 100, 36, 0, 180, 352, 0, 352);
+    Pi0_Re_Dif_R = new TH3D("Pi0_Re_Dif_R", "Pi0 Missing Mass;E_{miss}-E_{det} (MeV);#theta_{miss} (deg);Tagger Channel", 150, -50, 100, 36, 0, 180, 352, 0, 352);
+    Pi0_Re_NoE = new TH3D("Pi0_Re_NoE", "Pi0 Missing Mass;Recoil Energy (MeV);#theta_{miss} (deg);Tagger Channel", 200, 0, 200, 36, 0, 180, 352, 0, 352);
+    Pi0_Re_NoE_R = new TH3D("Pi0_Re_NoE_R", "Pi0 Missing Mass;Recoil Energy (MeV);#theta_{miss} (deg);Tagger Channel", 200, 0, 200, 36, 0, 180, 352, 0, 352);
+
+    Pi0_Re_dT_Det = new TH3D("Pi0_Re_dT_Det", "Pi0 Missing Mass;#theta_{miss}-#theta_{det} (deg);#theta_{miss} (deg);Tagger Channel", 30, -15, 15, 70, 0, 70, 352, 0, 352);
+    Pi0_Re_dT_Det_R = new TH3D("Pi0_Re_dT_Det_R", "Pi0 Missing Mass;#theta_{miss}-#theta_{det} (deg);#theta_{miss} (deg);Tagger Channel", 30, -15, 15, 70, 0, 70, 352, 0, 352);
+    Pi0_Re_dT_NoE = new TH3D("Pi0_Re_dT_NoE", "Pi0 Missing Mass;#theta_{miss}-#theta_{det} (deg);#theta_{miss} (deg);Tagger Channel", 30, -15, 15, 70, 0, 70, 352, 0, 352);
+    Pi0_Re_dT_NoE_R = new TH3D("Pi0_Re_dT_NoE_R", "Pi0 Missing Mass;#theta_{miss}-#theta_{det} (deg);#theta_{miss} (deg);Tagger Channel", 30, -15, 15, 70, 0, 70, 352, 0, 352);
+
+    Pi0_Re_CA = new TH1D("Pi0_Re_CA", "Pi0 Recoil Coplanarity Angle;Coplanarity Angle (deg)", 360, 0, 360);
+
+    Pi0_Re_OA = new TH3D("Pi0_Re_OA", "Pi0 Recoil Opening Angle;Tagger Channel;#theta_{miss} (deg);Opening Angle (deg)", 352, 0, 352, 12, 0, 60, 90, 0, 180);
+    Pi0_Re_OA_R = new TH3D("Pi0_Re_OA_R", "Pi0 Recoil Opening Angle;Tagger Channel;#theta_{miss} (deg);Opening Angle (deg)", 352, 0, 352, 12, 0, 60, 90, 0, 180);
+    Pi0_Re_OA_Cut = new TH3D("Pi0_Re_OA_Cut", "Pi0 Recoil Opening Angle;Tagger Channel;#theta_{miss} (deg);Opening Angle (deg)", 352, 0, 352, 12, 0, 60, 90, 0, 180);
+    Pi0_Re_OA_Cut_R = new TH3D("Pi0_Re_OA_Cut_R", "Pi0 Recoil Opening Angle;Tagger Channel;#theta_{miss} (deg);Opening Angle (deg)", 352, 0, 352, 12, 0, 60, 90, 0, 180);
 
     verbosity = 0;
     excl_pi0 = false;
@@ -86,6 +98,9 @@ PProtEff::PProtEff()
     ESCut = 0;
 
     save_randoms = false;
+    split_search = false;
+
+    taps_eff = 1;
 
     cir_beam = false;
     lin_beam = false;
@@ -93,6 +108,7 @@ PProtEff::PProtEff()
     targPol = 1;
 
     firstEvent = true;
+    gRandom->SetSeed(0);
 }
 
 PProtEff::~PProtEff()
@@ -113,8 +129,10 @@ Bool_t	PProtEff::Init()
     if(!InitOpeningAngle()) return kFALSE;
     if(!InitEnergySum()) return kFALSE;
     if(!InitSaveRandoms()) return kFALSE;
+    if(!InitTAPSEff()) return kFALSE;
     if(!InitBeamPol()) return kFALSE;
     if(!InitTargPol()) return kFALSE;
+    if(!InitSplitSearch()) return kFALSE;
 
     if(!PPhysics::Init()) return kFALSE;
 
@@ -228,6 +246,17 @@ void	PProtEff::ProcessEvent()
 
     Double_t minIM = 0;
 
+    ignoreTrack.clear();
+
+    //////////////////////////////////////////////////
+    // Check for tracks in TAPS
+    //////////////////////////////////////////////////
+    for (Int_t i=0; i<(GetTracks()->GetNTracks()); i++)
+    {
+        if ((GetTracks()->HasTAPS(i)) && (gRandom->Rndm() >= taps_eff)) ignoreTrack.push_back(true);
+	else ignoreTrack.push_back(false);
+    }
+
     //////////////////////////////////////////////////
     // Initial pi0 stuff
     //////////////////////////////////////////////////
@@ -237,25 +266,28 @@ void	PProtEff::ProcessEvent()
     for (Int_t i=0; i<(GetTracks()->GetNTracks()-1); i++)
     {
 	energy_0 = GetTracks()->GetClusterEnergy(i);
-	if (energy_0 == 0) continue;
+	if (energy_0 == 0 || ignoreTrack.at(i)) continue;
 	track_0 = GetTracks()->GetVector(i);
 
 	for (Int_t j=i+1; j<(GetTracks()->GetNTracks()); j++)
 	{
 	    energy_1 = GetTracks()->GetClusterEnergy(j);
-	    if (energy_1 == 0) continue;
+	    if (energy_1 == 0 || ignoreTrack.at(j)) continue;
 	    track_1 = GetTracks()->GetVector(j);
 
 	    ptot = track_0 + track_1;
 	    if (TMath::Abs(134.98 - ptot.M()) < TMath::Abs(134.98 - minIM))
 	    {
+		if ((GetTracks()->HasCB(i)) && (GetTracks()->HasCB(j))) pi0_time = 0.5*(GetTracks()->GetTime(i) + GetTracks()->GetTime(j));
+		else if (GetTracks()->HasCB(i)) pi0_time = (GetTracks()->GetTime(i));
+		else if (GetTracks()->HasCB(j)) pi0_time = (GetTracks()->GetTime(j));
+		else continue;
 		i0 = i;
 		i1 = j;
 		ir = -1;
 		is = -1;
 		pi0 = track_0 + track_1;
 		minIM = pi0.M();
-		pi0_time = 0.5*(GetTracks()->GetTime(i) + GetTracks()->GetTime(j));
 		if (GetTracks()->IsNeutral(i) && GetTracks()->IsNeutral(j)) pi0_NN = true;
 		else if (GetTracks()->IsNeutral(i) || GetTracks()->IsNeutral(j)) pi0_NC = true;
 		else pi0_CC = true;
@@ -268,9 +300,9 @@ void	PProtEff::ProcessEvent()
 		//////////////////////////////////////////////////
 		for (Int_t k=0; k<(GetTracks()->GetNTracks()); k++)
 		{
-		    if (k == i || k == j) continue;
+		    if (k == i || k == j || ignoreTrack.at(k)) continue;
 		    temp_ang = TMath::Abs(pi0.Phi()*TMath::RadToDeg()-GetTracks()->GetPhi(k));
-		    if (temp_ang < copl_ang)
+		    if (TMath::Abs(180.0-temp_ang) < TMath::Abs(180.0-copl_ang))
 		    {
 			copl_ang = temp_ang;
 			ir = k;
@@ -293,13 +325,14 @@ void	PProtEff::ProcessEvent()
 		else ir = -1;
 	    }
 	    
+	    if (!split_search) continue;
 	    //////////////////////////////////////////////////
 	    // Look for splits
 	    //////////////////////////////////////////////////
 	    for (Int_t k=0; k<(GetTracks()->GetNTracks()); k++)
 	    {
 		energy_s = GetTracks()->GetClusterEnergy(k);
-		if (k == i || k == j || energy_s == 0) continue;
+		if (k == i || k == j || energy_s == 0 || ignoreTrack.at(k)) continue;
 		track_s = GetTracks()->GetVector(k);
 		split = GetTracks()->GetUnitVector(k);
 
@@ -312,6 +345,10 @@ void	PProtEff::ProcessEvent()
 		    ptot = track_0 + track_1 + track_s;
 		    if (TMath::Abs(134.98 - ptot.M()) < TMath::Abs(134.98 - minIM))
 		    {
+		        if ((GetTracks()->HasCB(i)) && (GetTracks()->HasCB(j))) pi0_time = 0.5*(GetTracks()->GetTime(i) + GetTracks()->GetTime(j));
+			else if (GetTracks()->HasCB(i)) pi0_time = (GetTracks()->GetTime(i));
+			else if (GetTracks()->HasCB(j)) pi0_time = (GetTracks()->GetTime(j));
+			else continue;
 			i0 = i;
 			i1 = j;
 			ir = -1;
@@ -319,7 +356,6 @@ void	PProtEff::ProcessEvent()
 			pi0 = track_0 + track_1 + track_s;
 			pi0_XX = track_0 + track_1;
 			minIM = pi0.M();
-			pi0_time = 0.5*(GetTracks()->GetTime(i) + GetTracks()->GetTime(j));
 			if (GetTracks()->IsNeutral(i) && GetTracks()->IsNeutral(j)) pi0_NN = true;
 			else if (GetTracks()->IsNeutral(i) || GetTracks()->IsNeutral(j)) pi0_NC = true;
 			else pi0_CC = true;
@@ -334,9 +370,9 @@ void	PProtEff::ProcessEvent()
 			//////////////////////////////////////////////////
 			for (Int_t l=0; l<(GetTracks()->GetNTracks()); l++)
 			{
-			    if (l == i || l == j || l == k) continue;
+			    if (l == i || l == j || l == k || ignoreTrack.at(l)) continue;
 			    temp_ang = TMath::Abs(pi0.Phi()*TMath::RadToDeg()-GetTracks()->GetPhi(l));
-			    if (temp_ang < copl_ang)
+			    if (TMath::Abs(180.0-temp_ang) < TMath::Abs(180.0-copl_ang))
 			    {
 				copl_ang = temp_ang;
 				ir = l;
@@ -388,6 +424,8 @@ void	PProtEff::ProcessEvent()
 	    else if (pi0_NC) Pi0_IM_NC->Fill(num_extra, minIM, event_weight);
 	    else if (pi0_CC) Pi0_IM_CC->Fill(num_extra, minIM, event_weight);
 	}
+
+	if (pi0_X) Pi0_Re_CA->Fill(copl_ang, event_weight);
     }
 
     Int_t num_clust = 0;
@@ -441,29 +479,49 @@ void	PProtEff::ProcessEvent()
             if (GHistBGSub::IsPrompt(time))
 	    {
 		Pi0_MM->Fill(tagg_chan,theta,m_miss,event_weight);
-	        Pi0_Re_All->Fill(missing.E()-missing.M(),missing.Theta()*TMath::RadToDeg(),m_miss,event_weight);
-		if (cut_OA)
+		if (cut_CA) Pi0_Re_OA->Fill(tagg_chan,missing.Theta()*TMath::RadToDeg(),open_ang,event_weight);
+		if (TMath::Abs(m_miss) < 15)
 		{
-		    if (energy_r > 0)
+		    Pi0_Re_All->Fill(missing.E()-missing.M(),missing.Theta()*TMath::RadToDeg(),tagg_chan,event_weight);
+		    if (cut_CA) Pi0_Re_OA_Cut->Fill(tagg_chan,missing.Theta()*TMath::RadToDeg(),open_ang,event_weight);
+		    if (cut_OA)
 		    {
-			Pi0_Re_Det->Fill(missing.E()-missing.M(),missing.Theta()*TMath::RadToDeg(),m_miss,event_weight);
-			Pi0_Re_Dif->Fill(missing.E()-missing.M()-energy_r,missing.Theta()*TMath::RadToDeg(),m_miss,event_weight);
+			if (energy_r > 0)
+			{
+			    Pi0_Re_Det->Fill(missing.E()-missing.M(),missing.Theta()*TMath::RadToDeg(),tagg_chan,event_weight);
+			    Pi0_Re_Dif->Fill(missing.E()-missing.M()-energy_r,missing.Theta()*TMath::RadToDeg(),tagg_chan,event_weight);
+			    Pi0_Re_dT_Det->Fill((missing.Theta()-recoil.Theta())*TMath::RadToDeg(),missing.Theta()*TMath::RadToDeg(),tagg_chan,event_weight);
+			}
+			else 
+			{
+			    Pi0_Re_NoE->Fill(missing.E()-missing.M(),missing.Theta()*TMath::RadToDeg(),tagg_chan,event_weight);
+			    Pi0_Re_dT_NoE->Fill((missing.Theta()-recoil.Theta())*TMath::RadToDeg(),missing.Theta()*TMath::RadToDeg(),tagg_chan,event_weight);
+			}
 		    }
-		    else Pi0_Re_NoE->Fill(missing.E()-missing.M(),missing.Theta()*TMath::RadToDeg(),m_miss,event_weight);
 		}
 	    }
             else if (GHistBGSub::IsRandom(time)) 
 	    {
 		Pi0_MM_R->Fill(tagg_chan,theta,m_miss,event_weight);
-	        Pi0_Re_All_R->Fill(missing.E()-missing.M(),missing.Theta()*TMath::RadToDeg(),m_miss,event_weight);
-		if (cut_OA)
+		if (cut_CA) Pi0_Re_OA_R->Fill(tagg_chan,missing.Theta()*TMath::RadToDeg(),open_ang,event_weight);
+		if (TMath::Abs(m_miss) < 15)
 		{
-		    if (energy_r > 0)
+		    Pi0_Re_All_R->Fill(missing.E()-missing.M(),missing.Theta()*TMath::RadToDeg(),tagg_chan,event_weight);
+		    if (cut_CA) Pi0_Re_OA_Cut_R->Fill(tagg_chan,missing.Theta()*TMath::RadToDeg(),open_ang,event_weight);
+		    if (cut_OA)
 		    {
-			Pi0_Re_Det_R->Fill(missing.E()-missing.M(),missing.Theta()*TMath::RadToDeg(),m_miss,event_weight);
-			Pi0_Re_Dif_R->Fill(missing.E()-missing.M()-energy_r,missing.Theta()*TMath::RadToDeg(),m_miss,event_weight);
+			if (energy_r > 0)
+			{
+			    Pi0_Re_Det_R->Fill(missing.E()-missing.M(),missing.Theta()*TMath::RadToDeg(),tagg_chan,event_weight);
+			    Pi0_Re_Dif_R->Fill(missing.E()-missing.M()-energy_r,missing.Theta()*TMath::RadToDeg(),tagg_chan,event_weight);
+			    Pi0_Re_dT_Det_R->Fill((missing.Theta()-recoil.Theta())*TMath::RadToDeg(),missing.Theta()*TMath::RadToDeg(),tagg_chan,event_weight);
+			}
+			else 
+			{
+			    Pi0_Re_NoE_R->Fill(missing.E()-missing.M(),missing.Theta()*TMath::RadToDeg(),tagg_chan,event_weight);
+			    Pi0_Re_dT_NoE_R->Fill((missing.Theta()-recoil.Theta())*TMath::RadToDeg(),missing.Theta()*TMath::RadToDeg(),tagg_chan,event_weight);
+			}
 		    }
-		    else Pi0_Re_NoE_R->Fill(missing.E()-missing.M(),missing.Theta()*TMath::RadToDeg(),m_miss,event_weight);
 		}
 	    }
 
@@ -677,6 +735,25 @@ Bool_t 	PProtEff::InitSaveRandoms()
 
 }
 
+Bool_t 	PProtEff::InitTAPSEff()
+{
+    Double_t sc1;
+    string config = ReadConfig("TAPS-Efficiency");
+    if(sscanf( config.c_str(), "%lf\n", &sc1) == 1)
+    {
+        cout << "TAPS efficiency: " << sc1 << endl << endl;
+        taps_eff = sc1;
+    }
+    else if(strcmp(config.c_str(), "nokey") != 0)
+    {
+        cout << "TAPS efficiency not set correctly" << endl << endl;
+        return kFALSE;
+    }
+
+    return kTRUE;
+
+}
+
 Bool_t  PProtEff::InitBeamPol()
 {
     string config;
@@ -756,6 +833,25 @@ Bool_t  PProtEff::InitTargPol()
     if(instance) cout << endl;
 
     return kTRUE;
+}
+
+Bool_t 	PProtEff::InitSplitSearch()
+{
+    Int_t sc1;
+    string config = ReadConfig("Split-Search");
+    if(sscanf( config.c_str(), "%d\n", &sc1) == 1)
+    {
+        cout << "Search for splits: " << sc1 << endl << endl;
+        split_search = sc1;
+    }
+    else if(strcmp(config.c_str(), "nokey") != 0)
+    {
+        cout << "Split search not set correctly" << endl << endl;
+        return kFALSE;
+    }
+
+    return kTRUE;
+
 }
 
 Double_t  PProtEff::TwoBodyAngleToEnergyMin(Double_t eBeam, Double_t mTarg, Double_t mPar1, Double_t mPar2, Double_t tPar1)
@@ -856,6 +952,12 @@ Bool_t	PProtEff::Write()
         TH3D *Pi0_Re_Dif_P = (TH3D*)Pi0_Re_Dif->Clone("Pi0_Re_Dif_P");
         TH3D *Pi0_Re_NoE_P = (TH3D*)Pi0_Re_NoE->Clone("Pi0_Re_NoE_P");
 
+        TH3D *Pi0_Re_dT_Det_P = (TH3D*)Pi0_Re_dT_Det->Clone("Pi0_Re_dT_Det_P");
+        TH3D *Pi0_Re_dT_NoE_P = (TH3D*)Pi0_Re_dT_NoE->Clone("Pi0_Re_dT_NoE_P");
+
+        TH3D *Pi0_Re_OA_P = (TH3D*)Pi0_Re_OA->Clone("Pi0_Re_OA_P");
+        TH3D *Pi0_Re_OA_Cut_P = (TH3D*)Pi0_Re_OA_Cut->Clone("Pi0_Re_OA_Cut_P");
+
         Pi0_IM_MM_P->Write();
 
         Pi0_MM_P->Write();
@@ -883,6 +985,12 @@ Bool_t	PProtEff::Write()
         Pi0_Re_Dif_P->Write();
         Pi0_Re_NoE_P->Write();
 
+        Pi0_Re_dT_Det_P->Write();
+        Pi0_Re_dT_NoE_P->Write();
+
+        Pi0_Re_OA_P->Write();
+        Pi0_Re_OA_Cut_P->Write();
+
         delete Pi0_IM_MM_P;
 
         delete Pi0_MM_P;
@@ -909,6 +1017,12 @@ Bool_t	PProtEff::Write()
         delete Pi0_Re_Det_P;
         delete Pi0_Re_Dif_P;
         delete Pi0_Re_NoE_P;
+
+        delete Pi0_Re_dT_Det_P;
+        delete Pi0_Re_dT_NoE_P;
+
+        delete Pi0_Re_OA_P;
+        delete Pi0_Re_OA_Cut_P;
     }
 
     if(!(IsMCFile()))
@@ -958,6 +1072,16 @@ Bool_t	PProtEff::Write()
         Pi0_Re_Dif->Add(Pi0_Re_Dif_R,-ratio);
         Pi0_Re_NoE->Sumw2();
         Pi0_Re_NoE->Add(Pi0_Re_NoE_R,-ratio);
+
+        Pi0_Re_dT_Det->Sumw2();
+        Pi0_Re_dT_Det->Add(Pi0_Re_dT_Det_R,-ratio);
+        Pi0_Re_dT_NoE->Sumw2();
+        Pi0_Re_dT_NoE->Add(Pi0_Re_dT_NoE_R,-ratio);
+
+        Pi0_Re_OA->Sumw2();
+        Pi0_Re_OA->Add(Pi0_Re_OA_R,-ratio);
+        Pi0_Re_OA_Cut->Sumw2();
+        Pi0_Re_OA_Cut->Add(Pi0_Re_OA_Cut_R,-ratio);
     }
 
     if(save_randoms && !(IsMCFile()))
@@ -988,6 +1112,12 @@ Bool_t	PProtEff::Write()
         Pi0_Re_Det_R->Write();
         Pi0_Re_Dif_R->Write();
         Pi0_Re_NoE_R->Write();
+
+        Pi0_Re_dT_Det_R->Write();
+        Pi0_Re_dT_NoE_R->Write();
+
+        Pi0_Re_OA_R->Write();
+        Pi0_Re_OA_Cut_R->Write();
     }
 
     delete Pi0_IM_MM_R;
@@ -1016,6 +1146,12 @@ Bool_t	PProtEff::Write()
     delete Pi0_Re_Det_R;
     delete Pi0_Re_Dif_R;
     delete Pi0_Re_NoE_R;
+
+    delete Pi0_Re_dT_Det_R;
+    delete Pi0_Re_dT_NoE_R;
+
+    delete Pi0_Re_OA_R;
+    delete Pi0_Re_OA_Cut_R;
 
     // Write all GH1's and TObjects defined in this class
     if(!(GTreeManager::Write())) return false;
