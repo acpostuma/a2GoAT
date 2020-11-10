@@ -31,6 +31,9 @@ Split-Search: 1
 # Use pure MWPC tracks (those with no NaI energy)
 Pure-MWPC: 1
 
+# Use linear polarization
+#Linear-Pol: 1
+
 # TAPS detection efficiency
 #TAPS-Efficiency: 0.9
 
