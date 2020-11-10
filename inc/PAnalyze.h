@@ -323,8 +323,6 @@ private:
     TH3*    Reco_CS_MM_R;
 
     Int_t   verbosity;
-    Bool_t  excl_pi0;
-    Bool_t  excl_pro;
     Bool_t  match_charge;
 
     Double_t IMCut;
@@ -363,7 +361,6 @@ public:
     virtual ~PAnalyze();
     virtual Bool_t Init();
     Bool_t InitVerbosity();
-    Bool_t InitExclusivity();
     Bool_t InitMatchCharge();
     Bool_t InitInvariantMass();
     Bool_t InitMissingMass();
@@ -376,9 +373,6 @@ public:
     Bool_t InitBeamPol();
     Bool_t InitTargPol();
     TLorentzVector AdjustMass(TLorentzVector lv, Double_t mass);
-    Double_t TwoBodyAngleToEnergyMin(Double_t eBeam, Double_t mTarg, Double_t mPar1, Double_t mPar2, Double_t tPar1);
-    Double_t TwoBodyAngleToEnergyMax(Double_t eBeam, Double_t mTarg, Double_t mPar1, Double_t mPar2, Double_t tPar1);
-    Double_t TwoBodyEnergyToAngle(Double_t eBeam, Double_t mTarg, Double_t mPar1, Double_t mPar2, Double_t ePar1);
     Double_t CalcCircBeamPol(Double_t E_e, Double_t P_e, Double_t E_g);
 
 };

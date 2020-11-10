@@ -313,8 +313,6 @@ PAnalyze::PAnalyze()
     Reco_CS_MM_R = new TH3D("Reco_CS_MM_R", "Recoil Cluster Size Cut by MM;E_{p} (MeV);#theta_{p} (deg);Cluster Size", 300, 0, 300, 18, 0, 90, 12, 0, 12);
 
     verbosity = 0;
-    excl_pi0 = false;
-    excl_pro = false;
     match_charge = true;
 
     IMCut = 134.98;
@@ -350,7 +348,6 @@ Bool_t	PAnalyze::Init()
     if(!InitBackgroundCuts()) return kFALSE;
     if(!InitTargetMass()) return kFALSE;
     if(!InitVerbosity()) return kFALSE;
-    if(!InitExclusivity()) return kFALSE;
     if(!InitMatchCharge()) return kFALSE;
     if(!InitInvariantMass()) return kFALSE;
     if(!InitMissingMass()) return kFALSE;
@@ -888,7 +885,7 @@ void	PAnalyze::ProcessEvent()
         }
 
         //////////////////////////////////////////////////
-        // Pi0 stuff
+        // Good pi0 event
         //////////////////////////////////////////////////
         if (b_pi0)
         {
@@ -952,6 +949,7 @@ void	PAnalyze::ProcessEvent()
             if (!b_hel) b_fill_Ph_0 = (lv_miss.M() >= MMLoC && lv_miss.M() < MMHiC);
             else b_fill_Ph_1 = (lv_miss.M() >= MMLoC && lv_miss.M() < MMHiC);
 
+            // Exclusive event, without recoil detected
             if (b_NE)
             {
                 Pi0_Tm_NE->Fill(i_tagg_ch, d_subt_tm, event_weight);
@@ -970,7 +968,7 @@ void	PAnalyze::ProcessEvent()
                     else if (b_fill_Ph_1) Pi0_Ph_NE_1_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
                 }
             }
-            // Add all of the now failed recoil ones into inclusive
+            // Inclusive event, without recoil detected (add all of the now failed recoil ones in)
             else if (b_NI || !b_cut_OA)
             {
                 Pi0_Tm_NI->Fill(i_tagg_ch, d_subt_tm, event_weight);
@@ -990,6 +988,7 @@ void	PAnalyze::ProcessEvent()
                 }
             }
             // From here on the opening angle must have been satisfied
+            // Exclusive event, with recoil detected in CB
             else if (b_CE)
             {
                 Pi0_Tm_CE->Fill(i_tagg_ch, d_subt_tm, event_weight);
@@ -1008,6 +1007,7 @@ void	PAnalyze::ProcessEvent()
                     else if (b_fill_Ph_1) Pi0_Ph_CE_1_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
                 }
             }
+            // Inclusive event, with recoil detected in CB
             else if (b_CI)
             {
                 Pi0_Tm_CI->Fill(i_tagg_ch, d_subt_tm, event_weight);
@@ -1026,6 +1026,7 @@ void	PAnalyze::ProcessEvent()
                     else if (b_fill_Ph_1) Pi0_Ph_CI_1_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
                 }
             }
+            // Exclusive event, with recoil detected in MWPC
             else if (b_WE)
             {
                 Pi0_Tm_WE->Fill(i_tagg_ch, d_subt_tm, event_weight);
@@ -1044,6 +1045,7 @@ void	PAnalyze::ProcessEvent()
                     else if (b_fill_Ph_1) Pi0_Ph_WE_1_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
                 }
             }
+            // Inclusive event, with recoil detected in MWPC
             else if (b_WI)
             {
                 Pi0_Tm_WI->Fill(i_tagg_ch, d_subt_tm, event_weight);
@@ -1062,6 +1064,7 @@ void	PAnalyze::ProcessEvent()
                     else if (b_fill_Ph_1) Pi0_Ph_WI_1_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
                 }
             }
+            // Exclusive event, with recoil detected in TAPS
             else if (b_TE)
             {
                 Pi0_Tm_TE->Fill(i_tagg_ch, d_subt_tm, event_weight);
@@ -1080,6 +1083,7 @@ void	PAnalyze::ProcessEvent()
                     else if (b_fill_Ph_1) Pi0_Ph_TE_1_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
                 }
             }
+            // Inclusive event, with recoil detected in TAPS
             else if (b_TI)
             {
                 Pi0_Tm_TI->Fill(i_tagg_ch, d_subt_tm, event_weight);
@@ -1100,6 +1104,9 @@ void	PAnalyze::ProcessEvent()
             }
         }
 
+        //////////////////////////////////////////////////
+        // Good pi+ event
+        //////////////////////////////////////////////////
         if (b_piP)
         {
             d_subt_tm = d_tagg_tm - d_part_tm;
@@ -1140,6 +1147,7 @@ void	PAnalyze::ProcessEvent()
             if (!b_hel) b_fill_Ph_0 = (lv_miss.M() >= MMLoC && lv_miss.M() < MMHiC);
             else b_fill_Ph_1 = (lv_miss.M() >= MMLoC && lv_miss.M() < MMHiC);
 
+            // Exclusive event, without recoil detection
             if (b_NE)
             {
                 PiP_Tm_NE->Fill(i_tagg_ch, d_subt_tm, event_weight);
@@ -1158,7 +1166,7 @@ void	PAnalyze::ProcessEvent()
                     else if (b_fill_Ph_1) PiP_Ph_NE_1_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
                 }
             }
-            // Add all of the now failed recoil ones into inclusive
+            // Inclusive event, without recoil detection (add all of the now failed recoil ones in)
             else if (b_NI || !b_cut_OA)
             {
                 PiP_Tm_NI->Fill(i_tagg_ch, d_subt_tm, event_weight);
@@ -1178,6 +1186,7 @@ void	PAnalyze::ProcessEvent()
                 }
             }
             // From here on the opening angle must have been satisfied
+            // Exclusive event, with recoil detected in CB
             else if (b_CE)
             {
                 PiP_Tm_CE->Fill(i_tagg_ch, d_subt_tm, event_weight);
@@ -1196,6 +1205,7 @@ void	PAnalyze::ProcessEvent()
                     else if (b_fill_Ph_1) PiP_Ph_CE_1_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
                 }
             }
+            // Inclusive event, with recoil detected in CB
             else if (b_CI)
             {
                 PiP_Tm_CI->Fill(i_tagg_ch, d_subt_tm, event_weight);
@@ -1214,6 +1224,7 @@ void	PAnalyze::ProcessEvent()
                     else if (b_fill_Ph_1) PiP_Ph_CI_1_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
                 }
             }
+            // Exclusive event, with recoil detected in MWPC
             else if (b_WE)
             {
                 PiP_Tm_WE->Fill(i_tagg_ch, d_subt_tm, event_weight);
@@ -1232,6 +1243,7 @@ void	PAnalyze::ProcessEvent()
                     else if (b_fill_Ph_1) PiP_Ph_WE_1_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
                 }
             }
+            // Inclusive event, with recoil detected in MWPC
             else if (b_WI)
             {
                 PiP_Tm_WI->Fill(i_tagg_ch, d_subt_tm, event_weight);
@@ -1250,6 +1262,7 @@ void	PAnalyze::ProcessEvent()
                     else if (b_fill_Ph_1) PiP_Ph_WI_1_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
                 }
             }
+            // Exclusive event, with recoil detected in TAPS
             else if (b_TE)
             {
                 PiP_Tm_TE->Fill(i_tagg_ch, d_subt_tm, event_weight);
@@ -1268,6 +1281,7 @@ void	PAnalyze::ProcessEvent()
                     else if (b_fill_Ph_1) PiP_Ph_TE_1_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
                 }
             }
+            // Inclusive event, with recoil detected in TAPS
             else if (b_TI)
             {
                 PiP_Tm_TI->Fill(i_tagg_ch, d_subt_tm, event_weight);
@@ -1288,6 +1302,9 @@ void	PAnalyze::ProcessEvent()
             }
         }
 
+        //////////////////////////////////////////////////
+        // Good Compton event
+        //////////////////////////////////////////////////
         if(b_comp)
         {
             d_subt_tm = d_tagg_tm - d_part_tm;
@@ -1353,6 +1370,7 @@ void	PAnalyze::ProcessEvent()
             if (!b_hel) b_fill_Ph_0 = (lv_miss.M() >= MMLoC && lv_miss.M() < MMHiC);
             else b_fill_Ph_1 = (lv_miss.M() >= MMLoC && lv_miss.M() < MMHiC);
 
+            // Exclusive event, without recoil detection
             if (b_NE)
             {
                 Comp_Tm_NE->Fill(i_tagg_ch, d_subt_tm, event_weight);
@@ -1371,7 +1389,7 @@ void	PAnalyze::ProcessEvent()
                     else if (b_fill_Ph_1) Comp_Ph_NE_1_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
                 }
             }
-            // Add all of the now failed recoil ones into inclusive
+            // Inclusive event, without recoil detection (add all of the now failed recoil ones in)
             else if (b_NI || !b_cut_OA)
             {
                 Comp_Tm_NI->Fill(i_tagg_ch, d_subt_tm, event_weight);
@@ -1391,6 +1409,7 @@ void	PAnalyze::ProcessEvent()
                 }
             }
             // From here on the opening angle must have been satisfied
+            // Exclusive event, with recoil detected in CB
             else if (b_CE)
             {
                 Comp_Tm_CE->Fill(i_tagg_ch, d_subt_tm, event_weight);
@@ -1409,6 +1428,7 @@ void	PAnalyze::ProcessEvent()
                     else if (b_fill_Ph_1) Comp_Ph_CE_1_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
                 }
             }
+            // Inclusive event, with recoil detected in CB
             else if (b_CI)
             {
                 Comp_Tm_CI->Fill(i_tagg_ch, d_subt_tm, event_weight);
@@ -1427,6 +1447,7 @@ void	PAnalyze::ProcessEvent()
                     else if (b_fill_Ph_1) Comp_Ph_CI_1_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
                 }
             }
+            // Exclusive event, with recoil detected in MWPC
             else if (b_WE)
             {
                 Comp_Tm_WE->Fill(i_tagg_ch, d_subt_tm, event_weight);
@@ -1445,6 +1466,7 @@ void	PAnalyze::ProcessEvent()
                     else if (b_fill_Ph_1) Comp_Ph_WE_1_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
                 }
             }
+            // Inclusive event, with recoil detected in MWPC
             else if (b_WI)
             {
                 Comp_Tm_WI->Fill(i_tagg_ch, d_subt_tm, event_weight);
@@ -1463,6 +1485,7 @@ void	PAnalyze::ProcessEvent()
                     else if (b_fill_Ph_1) Comp_Ph_WI_1_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
                 }
             }
+            // Exclusive event, with recoil detected in TAPS
             else if (b_TE)
             {
                 Comp_Tm_TE->Fill(i_tagg_ch, d_subt_tm, event_weight);
@@ -1481,6 +1504,7 @@ void	PAnalyze::ProcessEvent()
                     else if (b_fill_Ph_1) Comp_Ph_TE_1_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
                 }
             }
+            // Inclusive event, with recoil detected in TAPS
             else if (b_TI)
             {
                 Comp_Tm_TI->Fill(i_tagg_ch, d_subt_tm, event_weight);
@@ -1503,6 +1527,9 @@ void	PAnalyze::ProcessEvent()
     }
 }
 
+//////////////////////////////////////////////////
+// Set verbosity (not currently used)
+//////////////////////////////////////////////////
 Bool_t 	PAnalyze::InitVerbosity()
 {
     Int_t sc1;
@@ -1522,26 +1549,9 @@ Bool_t 	PAnalyze::InitVerbosity()
 
 }
 
-Bool_t 	PAnalyze::InitExclusivity()
-{
-    Int_t sc1, sc2;
-    string config = ReadConfig("Exclusivity");
-    if(sscanf( config.c_str(), "%d%d\n", &sc1, &sc2) == 2)
-    {
-        cout << "Setting exclusivity: pi0 = " << sc1 << ", p = " << sc2 << endl << endl;
-        excl_pi0 = sc1;
-        excl_pro = sc2;
-    }
-    else if(strcmp(config.c_str(), "nokey") != 0)
-    {
-        cout << "Exclusivity not set correctly" << endl << endl;
-        return kFALSE;
-    }
-
-    return kTRUE;
-
-}
-
+//////////////////////////////////////////////////
+// Set charge matching
+//////////////////////////////////////////////////
 Bool_t 	PAnalyze::InitMatchCharge()
 {
     Int_t sc1;
@@ -1561,6 +1571,9 @@ Bool_t 	PAnalyze::InitMatchCharge()
 
 }
 
+//////////////////////////////////////////////////
+// Invariant mass cut limits
+//////////////////////////////////////////////////
 Bool_t 	PAnalyze::InitInvariantMass()
 {
     Double_t sc1;
@@ -1580,6 +1593,9 @@ Bool_t 	PAnalyze::InitInvariantMass()
 
 }
 
+//////////////////////////////////////////////////
+// Missing mass cut limits
+//////////////////////////////////////////////////
 Bool_t 	PAnalyze::InitMissingMass()
 {
     Double_t sc1, sc2;
@@ -1600,6 +1616,9 @@ Bool_t 	PAnalyze::InitMissingMass()
 
 }
 
+//////////////////////////////////////////////////
+// Opening angle cut limit
+//////////////////////////////////////////////////
 Bool_t 	PAnalyze::InitOpeningAngle()
 {
     Double_t sc1;
@@ -1619,6 +1638,9 @@ Bool_t 	PAnalyze::InitOpeningAngle()
 
 }
 
+//////////////////////////////////////////////////
+// Energy sum threshold
+//////////////////////////////////////////////////
 Bool_t 	PAnalyze::InitEnergySum()
 {
     Double_t sc1;
@@ -1638,6 +1660,9 @@ Bool_t 	PAnalyze::InitEnergySum()
 
 }
 
+//////////////////////////////////////////////////
+// Option to save separate histograms for randoms (and prompts)
+//////////////////////////////////////////////////
 Bool_t 	PAnalyze::InitSaveRandoms()
 {
     Int_t sc1;
@@ -1657,6 +1682,9 @@ Bool_t 	PAnalyze::InitSaveRandoms()
 
 }
 
+//////////////////////////////////////////////////
+// Option to perform a simplistic split-off search
+//////////////////////////////////////////////////
 Bool_t 	PAnalyze::InitSplitSearch()
 {
     Int_t sc1;
@@ -1676,6 +1704,9 @@ Bool_t 	PAnalyze::InitSplitSearch()
 
 }
 
+//////////////////////////////////////////////////
+// Option to use pure MWPC tracks
+//////////////////////////////////////////////////
 Bool_t 	PAnalyze::InitPureMWPC()
 {
     Int_t sc1;
@@ -1695,6 +1726,9 @@ Bool_t 	PAnalyze::InitPureMWPC()
 
 }
 
+//////////////////////////////////////////////////
+// Option to adjust TAPS detection efficiency
+//////////////////////////////////////////////////
 Bool_t 	PAnalyze::InitTAPSEff()
 {
     Double_t sc1;
@@ -1714,6 +1748,9 @@ Bool_t 	PAnalyze::InitTAPSEff()
 
 }
 
+//////////////////////////////////////////////////
+// Configure beam polarization
+//////////////////////////////////////////////////
 Bool_t  PAnalyze::InitBeamPol()
 {
     string config;
@@ -1761,6 +1798,9 @@ Bool_t  PAnalyze::InitBeamPol()
     return kTRUE;
 }
 
+//////////////////////////////////////////////////
+// Configure target polarization
+//////////////////////////////////////////////////
 Bool_t  PAnalyze::InitTargPol()
 {
     string config;
@@ -1795,12 +1835,15 @@ Bool_t  PAnalyze::InitTargPol()
     return kTRUE;
 }
 
+//////////////////////////////////////////////////
+// Set a different mass for a lorentz vector
+//////////////////////////////////////////////////
 TLorentzVector  PAnalyze::AdjustMass(TLorentzVector lv, Double_t mass)
 {
     Double_t th = lv.Theta();
     Double_t ph = lv.Phi();
 
-    Double_t E 	= lv.E() + mass;
+    Double_t E 	= lv.E() - lv.M() + mass;
     Double_t P 	= TMath::Sqrt(E*E - mass*mass);
     Double_t Px = P* sin(th)*cos(ph);
     Double_t Py = P* sin(th)*sin(ph);
@@ -1809,49 +1852,9 @@ TLorentzVector  PAnalyze::AdjustMass(TLorentzVector lv, Double_t mass)
     return TLorentzVector(Px, Py, Pz, E);
 }
 
-Double_t  PAnalyze::TwoBodyAngleToEnergyMin(Double_t eBeam, Double_t mTarg, Double_t mPar1, Double_t mPar2, Double_t tPar1)
-{
-    Double_t dX = ((eBeam*(mPar1-mTarg))-(0.5*(TMath::Power((mTarg-mPar1),2.0)))+(0.5*mPar2*mPar2));
-
-    Double_t dA = ((TMath::Power(eBeam*TMath::Cos(tPar1*(TMath::DegToRad())),2.0))-(TMath::Power((eBeam+mTarg),2.0)));
-
-    Double_t dB = ((2.0*mPar1*(TMath::Power(eBeam*TMath::Cos(tPar1*(TMath::DegToRad())),2.0)))-((2.0*dX*(eBeam+mTarg))));
-
-    Double_t dC = (-dX*dX);
-
-    Double_t dY = ((dB*dB)-(4.0*dA*dC));
-
-    if (dA==0 || dY<0) return 0;
-
-    Double_t dP = ((-dB+(TMath::Sqrt(dY)))/(2.0*dA));
-    Double_t dM = ((-dB-(TMath::Sqrt(dY)))/(2.0*dA));
-    return TMath::Min(dP,dM);
-}
-
-Double_t  PAnalyze::TwoBodyAngleToEnergyMax(Double_t eBeam, Double_t mTarg, Double_t mPar1, Double_t mPar2, Double_t tPar1)
-{
-    Double_t dX = ((eBeam*(mPar1-mTarg))-(0.5*(TMath::Power((mTarg-mPar1),2.0)))+(0.5*mPar2*mPar2));
-
-    Double_t dA = ((TMath::Power(eBeam*TMath::Cos(tPar1*(TMath::DegToRad())),2.0))-(TMath::Power((eBeam+mTarg),2.0)));
-
-    Double_t dB = ((2.0*mPar1*(TMath::Power(eBeam*TMath::Cos(tPar1*(TMath::DegToRad())),2.0)))-((2.0*dX*(eBeam+mTarg))));
-
-    Double_t dC = (-dX*dX);
-
-    Double_t dY = ((dB*dB)-(4.0*dA*dC));
-
-    if (dA==0 || dY<0) return 0;
-
-    Double_t dP = ((-dB+(TMath::Sqrt(dY)))/(2.0*dA));
-    Double_t dM = ((-dB-(TMath::Sqrt(dY)))/(2.0*dA));
-    return TMath::Max(dP,dM);
-}
-
-Double_t  PAnalyze::TwoBodyEnergyToAngle(Double_t eBeam, Double_t mTarg, Double_t mPar1, Double_t mPar2, Double_t ePar1)
-{
-    return ((TMath::RadToDeg())*(TMath::ACos(((ePar1*(eBeam+mTarg))+(eBeam*(mPar1-mTarg))-(0.5*(TMath::Power((mTarg-mPar1),2.0)))+(0.5*mPar2*mPar2))/(eBeam*TMath::Sqrt((ePar1*ePar1)+(2.0*ePar1*mPar1))))));
-}
-
+//////////////////////////////////////////////////
+// Calculate the circular photon polarization
+//////////////////////////////////////////////////
 Double_t  PAnalyze::CalcCircBeamPol(Double_t E_e, Double_t P_e, Double_t E_g)
 {
     Double_t P_g = P_e*(((4*E_g*E_e)-(E_g*E_g))/((4*E_e*E_e)-(4*E_g*E_e)+(3*E_g*E_g)));
@@ -1859,6 +1862,9 @@ Double_t  PAnalyze::CalcCircBeamPol(Double_t E_e, Double_t P_e, Double_t E_g)
     return P_g;
 }
 
+//////////////////////////////////////////////////
+// Individual scaler read stuff
+//////////////////////////////////////////////////
 void	PAnalyze::ProcessScalerRead()
 {
     if (lin_beam)
@@ -1898,6 +1904,9 @@ void	PAnalyze::ProcessScalerRead()
     else PPhysics::ProcessScalerRead();
 }
 
+//////////////////////////////////////////////////
+// Process histograms, prompt/random subtraction
+//////////////////////////////////////////////////
 Bool_t	PAnalyze::Write()
 {
     if (!lin_beam)
