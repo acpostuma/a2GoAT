@@ -33,6 +33,13 @@ private:
     TH2*    Inc_1;
     TH2*    Inc_1_R;
 
+    TH1*    AHe_En;
+    TH1*    AHe_Ng;
+    TH1*    AHe_En_T;
+    TH1*    AHe_Ng_T;
+    TH1*    AHe_Ch;
+    TH1*    AHe_Vz;
+
     TH1*    Pi0_IM_A;
     TH1*    Pi0_IM_E;
     TH1*    Pi0_IM_I;
@@ -87,6 +94,11 @@ private:
     TH3*    Pi0_Ph_TT_0_R;
     TH3*    Pi0_Ph_TT_1;
     TH3*    Pi0_Ph_TT_1_R;
+
+    TH3*    Pi0_MM_AE_0;
+    TH3*    Pi0_MM_AE_0_R;
+    TH3*    Pi0_MM_AE_1;
+    TH3*    Pi0_MM_AE_1_R;
 
     TH3*    Pi0_MM_NE_0;
     TH3*    Pi0_MM_NE_0_R;
@@ -186,6 +198,11 @@ private:
     TH3*    PiP_OA_Cut;
     TH3*    PiP_OA_Cut_R;
 
+    TH3*    PiP_MM_AE_0;
+    TH3*    PiP_MM_AE_0_R;
+    TH3*    PiP_MM_AE_1;
+    TH3*    PiP_MM_AE_1_R;
+
     TH3*    PiP_MM_NE_0;
     TH3*    PiP_MM_NE_0_R;
     TH3*    PiP_MM_NE_1;
@@ -275,6 +292,11 @@ private:
     TH3*    Comp_OA_Cut;
     TH3*    Comp_OA_Cut_R;
 
+    TH3*    Comp_MM_AE_0;
+    TH3*    Comp_MM_AE_0_R;
+    TH3*    Comp_MM_AE_1;
+    TH3*    Comp_MM_AE_1_R;
+
     TH3*    Comp_MM_NE_0;
     TH3*    Comp_MM_NE_0_R;
     TH3*    Comp_MM_NE_1;
@@ -363,6 +385,11 @@ private:
     Double_t OACut;
     Double_t ESCut;
 
+    Double_t AHe_Gain;
+    Int_t    AHe_Thresh;
+    Double_t AHe_Length;
+    Int_t    AHe_NFibers;
+
     Bool_t  save_randoms;
     Bool_t  split_search;
     Bool_t  pure_mwpc;
@@ -405,6 +432,7 @@ public:
     Bool_t InitTAPSEff();
     Bool_t InitBeamPol();
     Bool_t InitTargPol();
+    Bool_t InitActiveTarget();
     Bool_t InitCenterOfMass();
     TLorentzVector AdjustMass(TLorentzVector lv, Double_t mass);
     Double_t CalcCircBeamPol(Double_t E_e, Double_t P_e, Double_t E_g);

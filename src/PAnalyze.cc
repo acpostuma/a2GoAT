@@ -20,6 +20,14 @@ PAnalyze::PAnalyze()
     Inc_1 = new TH2D("Inc_1", "Total Inclusive Hits;Tagger Channel;Number of Tracks", 352, 0, 352, 10, 0, 10);
     Inc_1_R = new TH2D("Inc_1_R", "Total Inclusive Hits;Tagger Channel;Number of Tracks", 352, 0, 352, 10, 0, 10);
 
+    // Active target histograms
+    AHe_En = new TH1D("AHe_En", "Active Target Energy;Energy per SiPM (eV)", 1000, 0, 100);
+    AHe_Ng = new TH1D("AHe_Ng", "Active Target Photons;Photons per SiPM", 50, 0, 50);
+    AHe_En_T = new TH1D("AHe_En_T", "Active Target Energy;Total Energy (eV)", 1000, 0, 10000);
+    AHe_Ng_T = new TH1D("AHe_Ng_T", "Active Target Photons;Total Photons", 500, 0, 5000);
+    AHe_Ch = new TH1D("AHe_Ch", "Active Target Channel;Channel;Photons", 100, 0, 200);
+    AHe_Vz = new TH1D("AHe_Vz", "Active Target Z-Vertex;Z-Vertex (cm)", 400, -20, 20);
+
     // Pi0 histograms
     Pi0_IM_A = new TH1D("Pi0_IM_A", "Pi0 Invariant Mass;m_{#gamma#gamma} (MeV)", 400, 0, 400);
     Pi0_IM_E = new TH1D("Pi0_IM_E", "Pi0 Invariant Mass;m_{#gamma#gamma} (MeV)", 400, 0, 400);
@@ -75,6 +83,11 @@ PAnalyze::PAnalyze()
     Pi0_Ph_TT_0_R = new TH3D("Pi0_Ph_TT_0_R", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi^{0}} (deg);#phi_{#pi^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
     Pi0_Ph_TT_1 = new TH3D("Pi0_Ph_TT_1", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi^{0}} (deg);#phi_{#pi^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
     Pi0_Ph_TT_1_R = new TH3D("Pi0_Ph_TT_1_R", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi^{0}} (deg);#phi_{#pi^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+
+    Pi0_MM_AE_0 = new TH3D("Pi0_MM_AE_0", "Pi0 Missing Mass;Scintillation Photons;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 500, 0, 5000, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_AE_0_R = new TH3D("Pi0_MM_AE_0_R", "Pi0 Missing Mass;Scintillation Photons;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 500, 0, 5000, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_AE_1 = new TH3D("Pi0_MM_AE_1", "Pi0 Missing Mass;Scintillation Photons;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 500, 0, 5000, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_AE_1_R = new TH3D("Pi0_MM_AE_1_R", "Pi0 Missing Mass;Scintillation Photons;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 500, 0, 5000, 36, 0, 180, 80, -80, 120);
 
     Pi0_MM_NE_0 = new TH3D("Pi0_MM_NE_0", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
     Pi0_MM_NE_0_R = new TH3D("Pi0_MM_NE_0_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
@@ -175,6 +188,11 @@ PAnalyze::PAnalyze()
     PiP_OA_Cut = new TH3D("PiP_OA_Cut", "Pi+ Recoil Opening Angle;Tagger Channel;#theta_{miss} (deg);Opening Angle (deg)", 352, 0, 352, 12, 0, 60, 90, 0, 180);
     PiP_OA_Cut_R = new TH3D("PiP_OA_Cut_R", "Pi+ Recoil Opening Angle;Tagger Channel;#theta_{miss} (deg);Opening Angle (deg)", 352, 0, 352, 12, 0, 60, 90, 0, 180);
 
+    PiP_MM_AE_0 = new TH3D("PiP_MM_AE_0", "Pi+ Missing Mass;Scintillation Photons;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 500, 0, 5000, 36, 0, 180, 80, -80, 120);
+    PiP_MM_AE_0_R = new TH3D("PiP_MM_AE_0_R", "Pi+ Missing Mass;Scintillation Photons;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 500, 0, 5000, 36, 0, 180, 80, -80, 120);
+    PiP_MM_AE_1 = new TH3D("PiP_MM_AE_1", "Pi+ Missing Mass;Scintillation Photons;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 500, 0, 5000, 36, 0, 180, 80, -80, 120);
+    PiP_MM_AE_1_R = new TH3D("PiP_MM_AE_1_R", "Pi+ Missing Mass;Scintillation Photons;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 500, 0, 5000, 36, 0, 180, 80, -80, 120);
+
     PiP_MM_NE_0 = new TH3D("PiP_MM_NE_0", "Pi+ Missing Mass;Tagger Channel;#theta_{#pi^{+}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
     PiP_MM_NE_0_R = new TH3D("PiP_MM_NE_0_R", "Pi+ Missing Mass;Tagger Channel;#theta_{#pi^{+}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
     PiP_MM_NE_1 = new TH3D("PiP_MM_NE_1", "Pi+ Missing Mass;Tagger Channel;#theta_{#pi^{+}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
@@ -265,6 +283,11 @@ PAnalyze::PAnalyze()
     Comp_OA_Cut = new TH3D("Comp_OA_Cut", "Compton Recoil Opening Angle;Tagger Channel;#theta_{miss} (deg);Opening Angle (deg)", 352, 0, 352, 12, 0, 60, 90, 0, 180);
     Comp_OA_Cut_R = new TH3D("Comp_OA_Cut_R", "Compton Recoil Opening Angle;Tagger Channel;#theta_{miss} (deg);Opening Angle (deg)", 352, 0, 352, 12, 0, 60, 90, 0, 180);
 
+    Comp_MM_AE_0 = new TH3D("Comp_MM_AE_0", "Compton Missing Mass;Scintillation Photons;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 500, 0, 5000, 36, 0, 180, 80, -80, 120);
+    Comp_MM_AE_0_R = new TH3D("Comp_MM_AE_0_R", "Compton Missing Mass;Scintillation Photons;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 500, 0, 5000, 36, 0, 180, 80, -80, 120);
+    Comp_MM_AE_1 = new TH3D("Comp_MM_AE_1", "Compton Missing Mass;Scintillation Photons;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 500, 0, 5000, 36, 0, 180, 80, -80, 120);
+    Comp_MM_AE_1_R = new TH3D("Comp_MM_AE_1_R", "Compton Missing Mass;Scintillation Photons;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 500, 0, 5000, 36, 0, 180, 80, -80, 120);
+
     Comp_MM_NE_0 = new TH3D("Comp_MM_NE_0", "Compton Missing Mass;Tagger Channel;#theta_{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
     Comp_MM_NE_0_R = new TH3D("Comp_MM_NE_0_R", "Compton Missing Mass;Tagger Channel;#theta_{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
     Comp_MM_NE_1 = new TH3D("Comp_MM_NE_1", "Compton Missing Mass;Tagger Channel;#theta_{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
@@ -353,6 +376,11 @@ PAnalyze::PAnalyze()
     OACut = 180;
     ESCut = 0;
 
+    AHe_Gain = 2.875;
+    AHe_Thresh = 3;
+    AHe_Length = 41.0;
+    AHe_NFibers = 60;
+
     save_randoms = false;
     split_search = false;
     pure_mwpc = true;
@@ -391,6 +419,7 @@ Bool_t	PAnalyze::Init()
     if(!InitPureMWPC()) return kFALSE;
     if(!InitBeamPol()) return kFALSE;
     if(!InitTargPol()) return kFALSE;
+    if(!InitActiveTarget()) return kFALSE;
     if(!InitCenterOfMass()) return kFALSE;
 
     if(!PPhysics::Init()) return kFALSE;
@@ -533,6 +562,41 @@ void	PAnalyze::ProcessEvent()
             ignoreTrack.push_back(false);
         }
     }
+
+    //////////////////////////////////////////////////
+    // Get active target hits
+    //////////////////////////////////////////////////
+    Double_t d_ahe_en, d_ahe_en_tot = 0;
+    Int_t i_ahe_ng, i_ahe_ng_tot = 0;
+    AHe_Ch->Reset();
+
+    for (Int_t i=0; i<(GetDetectorHits()->GetNActiveHits()); i++)
+    {
+        // Get energy in eV
+        d_ahe_en = 1e9 * GetDetectorHits()->GetActiveEnergy(i);
+        AHe_En->Fill(d_ahe_en);
+
+        // Convert energy to number of photons
+        i_ahe_ng = TMath::Nint(d_ahe_en/AHe_Gain);
+        AHe_Ng->Fill(i_ahe_ng);
+
+        // Cut out dark current
+        if (i_ahe_ng < AHe_Thresh) continue;
+
+        // Histogram hits vs index for phi/z check
+        // Note pairs of channels are added together to get the total for each fiber/ring
+        AHe_Ch->AddBinContent(1 + (GetDetectorHits()->GetActiveHits(i))/2 + 1, i_ahe_ng);
+
+        // Add to total
+        d_ahe_en_tot += d_ahe_en;
+        i_ahe_ng_tot += i_ahe_ng;
+    }
+    AHe_En_T->Fill(d_ahe_en_tot);
+    AHe_Ng_T->Fill(i_ahe_ng_tot);
+
+    // Get mean from the channel histogram and convert to a z-vertex
+    AHe_Ch->ResetStats();
+    AHe_Vz->Fill(0.5 * AHe_Length * (AHe_Ch->GetMean() - AHe_NFibers) / AHe_NFibers);
 
     //////////////////////////////////////////////////
     // Initial pi0 stuff
@@ -1064,6 +1128,9 @@ void	PAnalyze::ProcessEvent()
                 Pi0_Tm_NE->Fill(i_tagg_ch, d_subt_tm, event_weight);
                 if (GHistBGSub::IsPrompt(d_subt_tm))
                 {
+                    if (b_fill_MM_0) Pi0_MM_AE_0->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) Pi0_MM_AE_1->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
+
                     if (b_fill_MM_0) Pi0_MM_NE_0->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
                     else if (b_fill_MM_1) Pi0_MM_NE_1->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
                     if (b_fill_Ph_0) Pi0_Ph_NE_0->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
@@ -1071,6 +1138,9 @@ void	PAnalyze::ProcessEvent()
                 }
                 else if (GHistBGSub::IsRandom(d_subt_tm))
                 {
+                    if (b_fill_MM_0) Pi0_MM_AE_0_R->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) Pi0_MM_AE_1_R->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
+
                     if (b_fill_MM_0) Pi0_MM_NE_0_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
                     else if (b_fill_MM_1) Pi0_MM_NE_1_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
                     if (b_fill_Ph_0) Pi0_Ph_NE_0_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
@@ -1272,6 +1342,9 @@ void	PAnalyze::ProcessEvent()
                 PiP_Tm_NE->Fill(i_tagg_ch, d_subt_tm, event_weight);
                 if (GHistBGSub::IsPrompt(d_subt_tm))
                 {
+                    if (b_fill_MM_0) PiP_MM_AE_0->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) PiP_MM_AE_1->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
+
                     if (b_fill_MM_0) PiP_MM_NE_0->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
                     else if (b_fill_MM_1) PiP_MM_NE_1->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
                     if (b_fill_Ph_0) PiP_Ph_NE_0->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
@@ -1279,6 +1352,9 @@ void	PAnalyze::ProcessEvent()
                 }
                 else if (GHistBGSub::IsRandom(d_subt_tm))
                 {
+                    if (b_fill_MM_0) PiP_MM_AE_0_R->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) PiP_MM_AE_1_R->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
+
                     if (b_fill_MM_0) PiP_MM_NE_0_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
                     else if (b_fill_MM_1) PiP_MM_NE_1_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
                     if (b_fill_Ph_0) PiP_Ph_NE_0_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
@@ -1496,6 +1572,9 @@ void	PAnalyze::ProcessEvent()
                 Comp_Tm_NE->Fill(i_tagg_ch, d_subt_tm, event_weight);
                 if (GHistBGSub::IsPrompt(d_subt_tm))
                 {
+                    if (b_fill_MM_0) Comp_MM_AE_0->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) Comp_MM_AE_1->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
+
                     if (b_fill_MM_0) Comp_MM_NE_0->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
                     else if (b_fill_MM_1) Comp_MM_NE_1->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
                     if (b_fill_Ph_0) Comp_Ph_NE_0->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
@@ -1503,6 +1582,9 @@ void	PAnalyze::ProcessEvent()
                 }
                 else if (GHistBGSub::IsRandom(d_subt_tm))
                 {
+                    if (b_fill_MM_0) Comp_MM_AE_0_R->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) Comp_MM_AE_1_R->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
+
                     if (b_fill_MM_0) Comp_MM_NE_0_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
                     else if (b_fill_MM_1) Comp_MM_NE_1_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
                     if (b_fill_Ph_0) Comp_Ph_NE_0_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
@@ -1956,6 +2038,36 @@ Bool_t  PAnalyze::InitTargPol()
 }
 
 //////////////////////////////////////////////////
+// Configure active target
+//////////////////////////////////////////////////
+Bool_t  PAnalyze::InitActiveTarget()
+{
+    Double_t gain, length;
+    Int_t threshold, fibers;
+    string config = ReadConfig("Active-Target");
+    if(sscanf( config.c_str(), "%lf %d %lf %d\n", &gain, &threshold, &length, &fibers) == 4)
+    {
+        cout << "Setting active target:" << endl;
+        cout << "                gain = " << gain << " photons/eV" << endl;
+        cout << "           threshold = " << threshold << " photons" << endl;
+        cout << "              length = " << length << " cm" << endl;
+        cout << "            # fibers = " << fibers << endl;
+        AHe_Gain = gain;
+        AHe_Thresh = threshold;
+        AHe_Length = length;
+        AHe_NFibers = fibers;
+    }
+    else if(strcmp(config.c_str(), "nokey") != 0)
+    {
+        cout << "Active target not set correctly" << endl << endl;
+        return kFALSE;
+    }
+
+    return kTRUE;
+
+}
+
+//////////////////////////////////////////////////
 // Option to use center of mass for histograms
 //////////////////////////////////////////////////
 Bool_t 	PAnalyze::InitCenterOfMass()
@@ -2094,6 +2206,9 @@ Bool_t	PAnalyze::Write()
         TH3D *Pi0_Ph_TT_0_P = (TH3D*)Pi0_Ph_TT_0->Clone("Pi0_Ph_TT_0_P");
         TH3D *Pi0_Ph_TT_1_P = (TH3D*)Pi0_Ph_TT_1->Clone("Pi0_Ph_TT_1_P");
 
+        TH3D *Pi0_MM_AE_0_P = (TH3D*)Pi0_MM_AE_0->Clone("Pi0_MM_AE_0_P");
+        TH3D *Pi0_MM_AE_1_P = (TH3D*)Pi0_MM_AE_1->Clone("Pi0_MM_AE_1_P");
+
         TH3D *Pi0_MM_NE_0_P = (TH3D*)Pi0_MM_NE_0->Clone("Pi0_MM_NE_0_P");
         TH3D *Pi0_MM_NE_1_P = (TH3D*)Pi0_MM_NE_1->Clone("Pi0_MM_NE_1_P");
         TH3D *Pi0_Ph_NE_0_P = (TH3D*)Pi0_Ph_NE_0->Clone("Pi0_Ph_NE_0_P");
@@ -2142,6 +2257,9 @@ Bool_t	PAnalyze::Write()
         TH3D *PiP_OA_P = (TH3D*)PiP_OA->Clone("PiP_OA_P");
         TH3D *PiP_OA_Cut_P = (TH3D*)PiP_OA_Cut->Clone("PiP_OA_Cut_P");
 
+        TH3D *PiP_MM_AE_0_P = (TH3D*)PiP_MM_AE_0->Clone("PiP_MM_AE_0_P");
+        TH3D *PiP_MM_AE_1_P = (TH3D*)PiP_MM_AE_1->Clone("PiP_MM_AE_1_P");
+
         TH3D *PiP_MM_NE_0_P = (TH3D*)PiP_MM_NE_0->Clone("PiP_MM_NE_0_P");
         TH3D *PiP_MM_NE_1_P = (TH3D*)PiP_MM_NE_1->Clone("PiP_MM_NE_1_P");
         TH3D *PiP_Ph_NE_0_P = (TH3D*)PiP_Ph_NE_0->Clone("PiP_Ph_NE_0_P");
@@ -2184,6 +2302,9 @@ Bool_t	PAnalyze::Write()
 
         TH3D *Comp_OA_P = (TH3D*)Comp_OA->Clone("Comp_OA_P");
         TH3D *Comp_OA_Cut_P = (TH3D*)Comp_OA_Cut->Clone("Comp_OA_Cut_P");
+
+        TH3D *Comp_MM_AE_0_P = (TH3D*)Comp_MM_AE_0->Clone("Comp_MM_AE_0_P");
+        TH3D *Comp_MM_AE_1_P = (TH3D*)Comp_MM_AE_1->Clone("Comp_MM_AE_1_P");
 
         TH3D *Comp_MM_NE_0_P = (TH3D*)Comp_MM_NE_0->Clone("Comp_MM_NE_0_P");
         TH3D *Comp_MM_NE_1_P = (TH3D*)Comp_MM_NE_1->Clone("Comp_MM_NE_1_P");
@@ -2241,6 +2362,8 @@ Bool_t	PAnalyze::Write()
         Pi0_MM_CT_0_P->Write();
         Pi0_MM_TT_0_P->Write();
 
+        Pi0_MM_AE_0_P->Write();
+
         Pi0_MM_NE_0_P->Write();
         Pi0_MM_NI_0_P->Write();
         Pi0_MM_CE_0_P->Write();
@@ -2258,6 +2381,8 @@ Bool_t	PAnalyze::Write()
         PiP_OA_P->Write();
         PiP_OA_Cut_P->Write();
 
+        PiP_MM_AE_0_P->Write();
+
         PiP_MM_NE_0_P->Write();
         PiP_MM_NI_0_P->Write();
         PiP_MM_CE_0_P->Write();
@@ -2269,6 +2394,8 @@ Bool_t	PAnalyze::Write()
 
         Comp_OA_P->Write();
         Comp_OA_Cut_P->Write();
+
+        Comp_MM_AE_0_P->Write();
 
         Comp_MM_NE_0_P->Write();
         Comp_MM_NI_0_P->Write();
@@ -2292,6 +2419,8 @@ Bool_t	PAnalyze::Write()
             Pi0_MM_TT_1_P->Write();
             Pi0_Ph_TT_0_P->Write();
             Pi0_Ph_TT_1_P->Write();
+
+            Pi0_MM_AE_1_P->Write();
 
             Pi0_MM_NE_1_P->Write();
             Pi0_Ph_NE_0_P->Write();
@@ -2325,6 +2454,8 @@ Bool_t	PAnalyze::Write()
             Pi0_Ph_TI_0_P->Write();
             Pi0_Ph_TI_1_P->Write();
 
+            PiP_MM_AE_1_P->Write();
+
             PiP_MM_NE_1_P->Write();
             PiP_Ph_NE_0_P->Write();
             PiP_Ph_NE_1_P->Write();
@@ -2356,6 +2487,8 @@ Bool_t	PAnalyze::Write()
             PiP_MM_TI_1_P->Write();
             PiP_Ph_TI_0_P->Write();
             PiP_Ph_TI_1_P->Write();
+
+            Comp_MM_AE_1_P->Write();
 
             Comp_MM_NE_1_P->Write();
             Comp_Ph_NE_0_P->Write();
@@ -2417,6 +2550,9 @@ Bool_t	PAnalyze::Write()
         delete Pi0_Ph_TT_0_P;
         delete Pi0_Ph_TT_1_P;
 
+        delete Pi0_MM_AE_0_P;
+        delete Pi0_MM_AE_1_P;
+
         delete Pi0_MM_NE_0_P;
         delete Pi0_MM_NE_1_P;
         delete Pi0_Ph_NE_0_P;
@@ -2465,6 +2601,9 @@ Bool_t	PAnalyze::Write()
         delete PiP_OA_P;
         delete PiP_OA_Cut_P;
 
+        delete PiP_MM_AE_0_P;
+        delete PiP_MM_AE_1_P;
+
         delete PiP_MM_NE_0_P;
         delete PiP_MM_NE_1_P;
         delete PiP_Ph_NE_0_P;
@@ -2507,6 +2646,9 @@ Bool_t	PAnalyze::Write()
 
         delete Comp_OA_P;
         delete Comp_OA_Cut_P;
+
+        delete Comp_MM_AE_0_P;
+        delete Comp_MM_AE_1_P;
 
         delete Comp_MM_NE_0_P;
         delete Comp_MM_NE_1_P;
@@ -2596,6 +2738,11 @@ Bool_t	PAnalyze::Write()
         Pi0_Ph_TT_1->Sumw2();
         Pi0_Ph_TT_1->Add(Pi0_Ph_TT_1_R,-ratio);
 
+        Pi0_MM_AE_0->Sumw2();
+        Pi0_MM_AE_0->Add(Pi0_MM_AE_0_R,-ratio);
+        Pi0_MM_AE_1->Sumw2();
+        Pi0_MM_AE_1->Add(Pi0_MM_AE_1_R,-ratio);
+
         Pi0_MM_NE_0->Sumw2();
         Pi0_MM_NE_0->Add(Pi0_MM_NE_0_R,-ratio);
         Pi0_MM_NE_1->Sumw2();
@@ -2682,6 +2829,11 @@ Bool_t	PAnalyze::Write()
         PiP_OA_Cut->Sumw2();
         PiP_OA_Cut->Add(PiP_OA_Cut_R,-ratio);
 
+        PiP_MM_AE_0->Sumw2();
+        PiP_MM_AE_0->Add(PiP_MM_AE_0_R,-ratio);
+        PiP_MM_AE_1->Sumw2();
+        PiP_MM_AE_1->Add(PiP_MM_AE_1_R,-ratio);
+
         PiP_MM_NE_0->Sumw2();
         PiP_MM_NE_0->Add(PiP_MM_NE_0_R,-ratio);
         PiP_MM_NE_1->Sumw2();
@@ -2758,6 +2910,11 @@ Bool_t	PAnalyze::Write()
         Comp_OA->Add(Comp_OA_R,-ratio);
         Comp_OA_Cut->Sumw2();
         Comp_OA_Cut->Add(Comp_OA_Cut_R,-ratio);
+
+        Comp_MM_AE_0->Sumw2();
+        Comp_MM_AE_0->Add(Comp_MM_AE_0_R,-ratio);
+        Comp_MM_AE_1->Sumw2();
+        Comp_MM_AE_1->Add(Comp_MM_AE_1_R,-ratio);
 
         Comp_MM_NE_0->Sumw2();
         Comp_MM_NE_0->Add(Comp_MM_NE_0_R,-ratio);
@@ -2851,6 +3008,8 @@ Bool_t	PAnalyze::Write()
         Pi0_MM_CT_0_R->Write();
         Pi0_MM_TT_0_R->Write();
 
+        Pi0_MM_AE_0_R->Write();
+
         Pi0_MM_NE_0_R->Write();
         Pi0_MM_NI_0_R->Write();
         Pi0_MM_CE_0_R->Write();
@@ -2868,6 +3027,8 @@ Bool_t	PAnalyze::Write()
         PiP_OA_R->Write();
         PiP_OA_Cut_R->Write();
 
+        PiP_MM_AE_0_R->Write();
+
         PiP_MM_NE_0_R->Write();
         PiP_MM_NI_0_R->Write();
         PiP_MM_CE_0_R->Write();
@@ -2879,6 +3040,8 @@ Bool_t	PAnalyze::Write()
 
         Comp_OA_R->Write();
         Comp_OA_Cut_R->Write();
+
+        Comp_MM_AE_0_R->Write();
 
         Comp_MM_NE_0_R->Write();
         Comp_MM_NI_0_R->Write();
@@ -2905,6 +3068,8 @@ Bool_t	PAnalyze::Write()
             Pi0_MM_TT_1_R->Write();
             Pi0_Ph_TT_0_R->Write();
             Pi0_Ph_TT_1_R->Write();
+
+            Pi0_MM_AE_1_R->Write();
 
             Pi0_MM_NE_1_R->Write();
             Pi0_Ph_NE_0_R->Write();
@@ -2938,6 +3103,8 @@ Bool_t	PAnalyze::Write()
             Pi0_Ph_TI_0_R->Write();
             Pi0_Ph_TI_1_R->Write();
 
+            PiP_MM_AE_1_R->Write();
+
             PiP_MM_NE_1_R->Write();
             PiP_Ph_NE_0_R->Write();
             PiP_Ph_NE_1_R->Write();
@@ -2969,6 +3136,8 @@ Bool_t	PAnalyze::Write()
             PiP_MM_TI_1_R->Write();
             PiP_Ph_TI_0_R->Write();
             PiP_Ph_TI_1_R->Write();
+
+            Comp_MM_AE_1_R->Write();
 
             Comp_MM_NE_1_R->Write();
             Comp_Ph_NE_0_R->Write();
@@ -3028,6 +3197,9 @@ Bool_t	PAnalyze::Write()
     delete Pi0_Ph_TT_0_R;
     delete Pi0_Ph_TT_1_R;
 
+    delete Pi0_MM_AE_0_R;
+    delete Pi0_MM_AE_1_R;
+
     delete Pi0_MM_NE_0_R;
     delete Pi0_MM_NE_1_R;
     delete Pi0_Ph_NE_0_R;
@@ -3076,6 +3248,9 @@ Bool_t	PAnalyze::Write()
     delete PiP_OA_R;
     delete PiP_OA_Cut_R;
 
+    delete PiP_MM_AE_0_R;
+    delete PiP_MM_AE_1_R;
+
     delete PiP_MM_NE_0_R;
     delete PiP_MM_NE_1_R;
     delete PiP_Ph_NE_0_R;
@@ -3118,6 +3293,9 @@ Bool_t	PAnalyze::Write()
 
     delete Comp_OA_R;
     delete Comp_OA_Cut_R;
+
+    delete Comp_MM_AE_0_R;
+    delete Comp_MM_AE_1_R;
 
     delete Comp_MM_NE_0_R;
     delete Comp_MM_NE_1_R;
@@ -3176,6 +3354,8 @@ Bool_t	PAnalyze::Write()
         delete Pi0_Ph_TT_0;
         delete Pi0_Ph_TT_1;
 
+        delete Pi0_MM_AE_1;
+
         delete Pi0_MM_NE_1;
         delete Pi0_Ph_NE_0;
         delete Pi0_Ph_NE_1;
@@ -3208,6 +3388,8 @@ Bool_t	PAnalyze::Write()
         delete Pi0_Ph_TI_0;
         delete Pi0_Ph_TI_1;
 
+        delete PiP_MM_AE_1;
+
         delete PiP_MM_NE_1;
         delete PiP_Ph_NE_0;
         delete PiP_Ph_NE_1;
@@ -3239,6 +3421,8 @@ Bool_t	PAnalyze::Write()
         delete PiP_MM_TI_1;
         delete PiP_Ph_TI_0;
         delete PiP_Ph_TI_1;
+
+        delete Comp_MM_AE_1;
 
         delete Comp_MM_NE_1;
         delete Comp_Ph_NE_0;
