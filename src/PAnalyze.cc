@@ -26,7 +26,7 @@ PAnalyze::PAnalyze()
     AHe_En_T = new TH1D("AHe_En_T", "Active Target Energy;Total Energy (eV)", 1000, 0, 10000);
     AHe_Ng_T = new TH1D("AHe_Ng_T", "Active Target Photons;Total Photons", 500, 0, 5000);
     AHe_Ch = new TH1D("AHe_Ch", "Active Target Channel;Channel;Photons", 100, 0, 200);
-    AHe_Vz = new TH1D("AHe_Vz", "Active Target Z-Vertex;Z-Vertex (cm)", 400, -20, 20);
+    AHe_Vz = new TH1D("AHe_Vz", "Active Target Z-Vertex;Z-Vertex (cm)", 420, -21, 21);
 
     // Pi0 histograms
     Pi0_IM_A = new TH1D("Pi0_IM_A", "Pi0 Invariant Mass;m_{#gamma#gamma} (MeV)", 400, 0, 400);
@@ -566,7 +566,7 @@ void	PAnalyze::ProcessEvent()
     //////////////////////////////////////////////////
     // Get active target hits
     //////////////////////////////////////////////////
-    Double_t d_ahe_en, d_ahe_en_tot = 0;
+    Double_t d_ahe_en, d_ahe_en_tot = 0, d_ahe_vz;
     Int_t i_ahe_ng, i_ahe_ng_tot = 0;
     AHe_Ch->Reset();
 
@@ -585,7 +585,7 @@ void	PAnalyze::ProcessEvent()
 
         // Histogram hits vs index for phi/z check
         // Note pairs of channels are added together to get the total for each fiber/ring
-        AHe_Ch->AddBinContent(1 + (GetDetectorHits()->GetActiveHits(i))/2 + 1, i_ahe_ng);
+        AHe_Ch->AddBinContent(1 + (GetDetectorHits()->GetActiveHits(i))/2, i_ahe_ng);
 
         // Add to total
         d_ahe_en_tot += d_ahe_en;
@@ -596,7 +596,11 @@ void	PAnalyze::ProcessEvent()
 
     // Get mean from the channel histogram and convert to a z-vertex
     AHe_Ch->ResetStats();
-    AHe_Vz->Fill(0.5 * AHe_Length * (AHe_Ch->GetMean() - AHe_NFibers) / AHe_NFibers);
+    AHe_Ch->GetXaxis()->SetRange(1, 60);
+    if (AHe_Ch->GetMaximumBin() < 21) AHe_Ch->GetXaxis()->SetRange(1, 2 * AHe_Ch->GetMaximumBin());
+    else if (AHe_Ch->GetMaximumBin() > 40) AHe_Ch->GetXaxis()->SetRange(61 - 2 * (61 - AHe_Ch->GetMaximumBin()), 60);
+    d_ahe_vz = 0.5 * AHe_Length * (AHe_Ch->GetMean() - AHe_NFibers) / AHe_NFibers;
+    if (i_ahe_ng_tot > 0) AHe_Vz->Fill(d_ahe_vz);
 
     //////////////////////////////////////////////////
     // Initial pi0 stuff
