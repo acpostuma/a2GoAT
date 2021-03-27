@@ -324,6 +324,7 @@ PAnalyze::PAnalyze()
     save_randoms = false;
     split_search = false;
     pure_mwpc = true;
+    use_com = false;
 
     taps_eff = 1;
 
@@ -358,6 +359,7 @@ Bool_t	PAnalyze::Init()
     if(!InitPureMWPC()) return kFALSE;
     if(!InitBeamPol()) return kFALSE;
     if(!InitTargPol()) return kFALSE;
+    if(!InitCenterOfMass()) return kFALSE;
 
     if(!PPhysics::Init()) return kFALSE;
 
@@ -469,14 +471,9 @@ void	PAnalyze::ProcessEvent()
     Double_t d_part_tm, d_tagg_tm, d_aver_tm, d_subt_tm;
     Double_t d_tagg_en, d_trk0_en, d_trk1_en, d_part_en, d_reco_en, d_splt_en, d_miss_ma;
     Double_t d_part_th, d_part_ph, d_reco_th, d_miss_th, d_CA, d_OA, d_temp;
-    TLorentzVector lv_trk0, lv_trk1, lv_splt, lv_part, lv_ptot, lv_beam, lv_miss, lv_piP;
+    TLorentzVector lv_trk0, lv_trk1, lv_splt, lv_part, lv_ptot, lv_beam, lv_miss, lv_piP, lv_part_cm, lv_miss_cm;
     TLorentzVector lv_targ = GetTarget();
-    TVector3 v_reco, v_splt;
-
-    // Currently unused center of mass stuff
-    //TLorentzVector lv_part_cm;
-    //TVector3 v_lab_cm;
-    //Double_t d_part_th_cm, d_part_ph_cm;
+    TVector3 v_reco, v_splt, v_lab_cm;
 
     Bool_t b_pi0, b_piP, b_comp, b_pi0_CC, b_pi0_CT, b_pi0_TC, b_NE, b_NI, b_CE, b_CI, b_TE, b_TI, b_WE, b_WI, b_cut_CA, b_cut_OA;
     b_pi0 = b_piP = b_comp = b_pi0_CC = b_pi0_CT = b_pi0_TC = b_NE = b_NI = b_CE = b_CI = b_TE = b_TI = b_WE = b_WI = b_cut_CA = b_cut_OA = false;
@@ -855,6 +852,8 @@ void	PAnalyze::ProcessEvent()
         d_tagg_tm = GetTagger()->GetTaggedTime(i);
         d_tagg_en = GetTagger()->GetTaggedEnergy(i);
         lv_beam = TLorentzVector(0., 0., d_tagg_en, d_tagg_en);
+        lv_ptot = lv_beam + lv_targ;
+        v_lab_cm = -lv_ptot.BoostVector();
 
         //////////////////////////////////////////////////
         // Total inclusive stuff
@@ -899,6 +898,16 @@ void	PAnalyze::ProcessEvent()
             {
                 d_OA = (TMath::RadToDeg()*lv_miss.Angle(v_reco));
                 b_cut_OA = (d_OA < OACut);
+            }
+
+            if (use_com)
+            {
+                lv_part_cm = lv_part;
+                lv_part_cm.Boost(v_lab_cm);
+                d_part_th = lv_part_cm.Theta()*TMath::RadToDeg();
+                lv_miss_cm = lv_miss;
+                lv_miss_cm.Boost(v_lab_cm);
+                d_miss_th = lv_miss_cm.Theta()*TMath::RadToDeg();
             }
 
             //////////////////////////////////////////////////
@@ -1121,6 +1130,16 @@ void	PAnalyze::ProcessEvent()
                 b_cut_OA = (d_OA < OACut);
             }
 
+            if (use_com)
+            {
+                lv_part_cm = lv_piP;
+                lv_part_cm.Boost(v_lab_cm);
+                d_part_th = lv_part_cm.Theta()*TMath::RadToDeg();
+                lv_miss_cm = lv_miss;
+                lv_miss_cm.Boost(v_lab_cm);
+                d_miss_th = lv_miss_cm.Theta()*TMath::RadToDeg();
+            }
+
             //////////////////////////////////////////////////
             // Recoil detection stuff
             //////////////////////////////////////////////////
@@ -1312,20 +1331,21 @@ void	PAnalyze::ProcessEvent()
             d_miss_ma = lv_miss.M()-lv_targ.M();
             d_miss_th = lv_miss.Theta()*TMath::RadToDeg();
 
-            /*
-            lv_ptot = lv_beam + lv_targ;
-            v_lab_cm = -lv_ptot.BoostVector();
-            lv_part_cm = lv_part;
-            lv_part_cm.Boost(v_lab_cm);
-            d_part_th_cm = lv_part_cm.Theta()*TMath::RadToDeg();
-            d_part_ph_cm = lv_part_cm.Phi()*TMath::RadToDeg();
-            */
-
             b_cut_OA = false;
             if (b_cut_CA)
             {
                 d_OA = (TMath::RadToDeg()*lv_miss.Angle(v_reco));
                 b_cut_OA = (d_OA < OACut);
+            }
+
+            if (use_com)
+            {
+                lv_part_cm = lv_part;
+                lv_part_cm.Boost(v_lab_cm);
+                d_part_th = lv_part_cm.Theta()*TMath::RadToDeg();
+                lv_miss_cm = lv_miss;
+                lv_miss_cm.Boost(v_lab_cm);
+                d_miss_th = lv_miss_cm.Theta()*TMath::RadToDeg();
             }
 
             //////////////////////////////////////////////////
@@ -1833,6 +1853,28 @@ Bool_t  PAnalyze::InitTargPol()
     if(instance) cout << endl;
 
     return kTRUE;
+}
+
+//////////////////////////////////////////////////
+// Option to use center of mass for histograms
+//////////////////////////////////////////////////
+Bool_t 	PAnalyze::InitCenterOfMass()
+{
+    Int_t sc1;
+    string config = ReadConfig("Center-of-Mass");
+    if(sscanf( config.c_str(), "%d\n", &sc1) == 1)
+    {
+        cout << "Center of mass: " << sc1 << endl << endl;
+        use_com = sc1;
+    }
+    else if(strcmp(config.c_str(), "nokey") != 0)
+    {
+        cout << "Center of mass not set correctly" << endl << endl;
+        return kFALSE;
+    }
+
+    return kTRUE;
+
 }
 
 //////////////////////////////////////////////////

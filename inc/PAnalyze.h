@@ -334,6 +334,7 @@ private:
     Bool_t  save_randoms;
     Bool_t  split_search;
     Bool_t  pure_mwpc;
+    Bool_t  use_com;
 
     Double_t taps_eff;
     std::vector<Bool_t> ignoreTrack;
@@ -372,6 +373,7 @@ public:
     Bool_t InitTAPSEff();
     Bool_t InitBeamPol();
     Bool_t InitTargPol();
+    Bool_t InitCenterOfMass();
     TLorentzVector AdjustMass(TLorentzVector lv, Double_t mass);
     Double_t CalcCircBeamPol(Double_t E_e, Double_t P_e, Double_t E_g);
 
