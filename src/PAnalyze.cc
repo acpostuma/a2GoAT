@@ -2073,7 +2073,9 @@ Bool_t  PAnalyze::InitActiveTarget()
             Double_t xmax = 10*yield;
             if (yield > 1000) nbins = TMath::Nint(yield/10);
 
+            AHe_En->SetBins(10*TMath::Nint(gain*yield/10), 0, TMath::Nint(gain*yield/10));
             AHe_Ng->SetBins(TMath::Nint(yield/10), 0, TMath::Nint(yield/10));
+            AHe_En_T->SetBins(TMath::Nint(gain*yield), 0, 10*TMath::Nint(gain*yield));
             AHe_Ng_T->SetBins(nbins, 0, xmax);
 
             Pi0_MM_AE_0->SetBins(nbins, 0, xmax, 36, 0, 180, 80, -80, 120);
