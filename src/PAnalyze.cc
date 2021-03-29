@@ -22,9 +22,9 @@ PAnalyze::PAnalyze()
 
     // Active target histograms
     AHe_En = new TH1D("AHe_En", "Active Target Energy;Energy per SiPM (eV)", 1000, 0, 100);
-    AHe_Ng = new TH1D("AHe_Ng", "Active Target Photons;Photons per SiPM", 50, 0, 50);
+    AHe_Ng = new TH1D("AHe_Ng", "Active Target Photons;Photons per SiPM", 65, 0, 65);
     AHe_En_T = new TH1D("AHe_En_T", "Active Target Energy;Total Energy (eV)", 1000, 0, 10000);
-    AHe_Ng_T = new TH1D("AHe_Ng_T", "Active Target Photons;Total Photons", 500, 0, 5000);
+    AHe_Ng_T = new TH1D("AHe_Ng_T", "Active Target Photons;Total Photons", 650, 0, 6500);
     AHe_Ch = new TH1D("AHe_Ch", "Active Target Channel;Channel;Photons", 100, 0, 200);
     AHe_Vz = new TH1D("AHe_Vz", "Active Target Z-Vertex;Z-Vertex (cm)", 420, -21, 21);
 
@@ -88,6 +88,11 @@ PAnalyze::PAnalyze()
     Pi0_MM_AE_0_R = new TH3D("Pi0_MM_AE_0_R", "Pi0 Missing Mass;Scintillation Photons;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 500, 0, 5000, 36, 0, 180, 80, -80, 120);
     Pi0_MM_AE_1 = new TH3D("Pi0_MM_AE_1", "Pi0 Missing Mass;Scintillation Photons;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 500, 0, 5000, 36, 0, 180, 80, -80, 120);
     Pi0_MM_AE_1_R = new TH3D("Pi0_MM_AE_1_R", "Pi0 Missing Mass;Scintillation Photons;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 500, 0, 5000, 36, 0, 180, 80, -80, 120);
+
+    Pi0_MM_AE_0 = new TH3D("Pi0_MM_AE_0", "Pi0 Missing Mass;Scintillation Photons;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 650, 0, 6500, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_AE_0_R = new TH3D("Pi0_MM_AE_0_R", "Pi0 Missing Mass;Scintillation Photons;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 650, 0, 6500, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_AE_1 = new TH3D("Pi0_MM_AE_1", "Pi0 Missing Mass;Scintillation Photons;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 650, 0, 6500, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_AE_1_R = new TH3D("Pi0_MM_AE_1_R", "Pi0 Missing Mass;Scintillation Photons;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 650, 0, 6500, 36, 0, 180, 80, -80, 120);
 
     Pi0_MM_NE_0 = new TH3D("Pi0_MM_NE_0", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
     Pi0_MM_NE_0_R = new TH3D("Pi0_MM_NE_0_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
@@ -188,10 +193,10 @@ PAnalyze::PAnalyze()
     PiP_OA_Cut = new TH3D("PiP_OA_Cut", "Pi+ Recoil Opening Angle;Tagger Channel;#theta_{miss} (deg);Opening Angle (deg)", 352, 0, 352, 12, 0, 60, 90, 0, 180);
     PiP_OA_Cut_R = new TH3D("PiP_OA_Cut_R", "Pi+ Recoil Opening Angle;Tagger Channel;#theta_{miss} (deg);Opening Angle (deg)", 352, 0, 352, 12, 0, 60, 90, 0, 180);
 
-    PiP_MM_AE_0 = new TH3D("PiP_MM_AE_0", "Pi+ Missing Mass;Scintillation Photons;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 500, 0, 5000, 36, 0, 180, 80, -80, 120);
-    PiP_MM_AE_0_R = new TH3D("PiP_MM_AE_0_R", "Pi+ Missing Mass;Scintillation Photons;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 500, 0, 5000, 36, 0, 180, 80, -80, 120);
-    PiP_MM_AE_1 = new TH3D("PiP_MM_AE_1", "Pi+ Missing Mass;Scintillation Photons;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 500, 0, 5000, 36, 0, 180, 80, -80, 120);
-    PiP_MM_AE_1_R = new TH3D("PiP_MM_AE_1_R", "Pi+ Missing Mass;Scintillation Photons;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 500, 0, 5000, 36, 0, 180, 80, -80, 120);
+    PiP_MM_AE_0 = new TH3D("PiP_MM_AE_0", "Pi+ Missing Mass;Scintillation Photons;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 650, 0, 6500, 36, 0, 180, 80, -80, 120);
+    PiP_MM_AE_0_R = new TH3D("PiP_MM_AE_0_R", "Pi+ Missing Mass;Scintillation Photons;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 650, 0, 6500, 36, 0, 180, 80, -80, 120);
+    PiP_MM_AE_1 = new TH3D("PiP_MM_AE_1", "Pi+ Missing Mass;Scintillation Photons;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 650, 0, 6500, 36, 0, 180, 80, -80, 120);
+    PiP_MM_AE_1_R = new TH3D("PiP_MM_AE_1_R", "Pi+ Missing Mass;Scintillation Photons;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 650, 0, 6500, 36, 0, 180, 80, -80, 120);
 
     PiP_MM_NE_0 = new TH3D("PiP_MM_NE_0", "Pi+ Missing Mass;Tagger Channel;#theta_{#pi^{+}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
     PiP_MM_NE_0_R = new TH3D("PiP_MM_NE_0_R", "Pi+ Missing Mass;Tagger Channel;#theta_{#pi^{+}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
@@ -283,10 +288,10 @@ PAnalyze::PAnalyze()
     Comp_OA_Cut = new TH3D("Comp_OA_Cut", "Compton Recoil Opening Angle;Tagger Channel;#theta_{miss} (deg);Opening Angle (deg)", 352, 0, 352, 12, 0, 60, 90, 0, 180);
     Comp_OA_Cut_R = new TH3D("Comp_OA_Cut_R", "Compton Recoil Opening Angle;Tagger Channel;#theta_{miss} (deg);Opening Angle (deg)", 352, 0, 352, 12, 0, 60, 90, 0, 180);
 
-    Comp_MM_AE_0 = new TH3D("Comp_MM_AE_0", "Compton Missing Mass;Scintillation Photons;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 500, 0, 5000, 36, 0, 180, 80, -80, 120);
-    Comp_MM_AE_0_R = new TH3D("Comp_MM_AE_0_R", "Compton Missing Mass;Scintillation Photons;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 500, 0, 5000, 36, 0, 180, 80, -80, 120);
-    Comp_MM_AE_1 = new TH3D("Comp_MM_AE_1", "Compton Missing Mass;Scintillation Photons;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 500, 0, 5000, 36, 0, 180, 80, -80, 120);
-    Comp_MM_AE_1_R = new TH3D("Comp_MM_AE_1_R", "Compton Missing Mass;Scintillation Photons;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 500, 0, 5000, 36, 0, 180, 80, -80, 120);
+    Comp_MM_AE_0 = new TH3D("Comp_MM_AE_0", "Compton Missing Mass;Scintillation Photons;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 650, 0, 6500, 36, 0, 180, 80, -80, 120);
+    Comp_MM_AE_0_R = new TH3D("Comp_MM_AE_0_R", "Compton Missing Mass;Scintillation Photons;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 650, 0, 6500, 36, 0, 180, 80, -80, 120);
+    Comp_MM_AE_1 = new TH3D("Comp_MM_AE_1", "Compton Missing Mass;Scintillation Photons;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 650, 0, 6500, 36, 0, 180, 80, -80, 120);
+    Comp_MM_AE_1_R = new TH3D("Comp_MM_AE_1_R", "Compton Missing Mass;Scintillation Photons;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 650, 0, 6500, 36, 0, 180, 80, -80, 120);
 
     Comp_MM_NE_0 = new TH3D("Comp_MM_NE_0", "Compton Missing Mass;Tagger Channel;#theta_{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
     Comp_MM_NE_0_R = new TH3D("Comp_MM_NE_0_R", "Compton Missing Mass;Tagger Channel;#theta_{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
@@ -380,6 +385,7 @@ PAnalyze::PAnalyze()
     AHe_Thresh = 3;
     AHe_Length = 41.0;
     AHe_NFibers = 60;
+    AHe_Yield = 650;
 
     save_randoms = false;
     split_search = false;
@@ -573,7 +579,7 @@ void	PAnalyze::ProcessEvent()
     for (Int_t i=0; i<(GetDetectorHits()->GetNActiveHits()); i++)
     {
         // Get energy in eV
-        d_ahe_en = 1e9 * GetDetectorHits()->GetActiveEnergy(i);
+        d_ahe_en = 1e6 * GetDetectorHits()->GetActiveEnergy(i);
         AHe_En->Fill(d_ahe_en);
 
         // Convert energy to number of photons
@@ -2046,20 +2052,48 @@ Bool_t  PAnalyze::InitTargPol()
 //////////////////////////////////////////////////
 Bool_t  PAnalyze::InitActiveTarget()
 {
-    Double_t gain, length;
+    Double_t gain, length, yield;
     Int_t threshold, fibers;
     string config = ReadConfig("Active-Target");
-    if(sscanf( config.c_str(), "%lf %d %lf %d\n", &gain, &threshold, &length, &fibers) == 4)
+    if(sscanf( config.c_str(), "%lf %d %lf %d %lf\n", &gain, &threshold, &length, &fibers, &yield) == 5)
     {
         cout << "Setting active target:" << endl;
         cout << "                gain = " << gain << " photons/eV" << endl;
         cout << "           threshold = " << threshold << " photons" << endl;
         cout << "              length = " << length << " cm" << endl;
         cout << "            # fibers = " << fibers << endl;
+        cout << "         scin. yield = " << yield << endl;
         AHe_Gain = gain;
         AHe_Thresh = threshold;
         AHe_Length = length;
         AHe_NFibers = fibers;
+        if (AHe_Yield != yield)
+        {
+            Int_t nbins = yield;
+            Double_t xmax = 10*yield;
+            if (yield > 1000) nbins = TMath::Nint(yield/10);
+
+            AHe_Ng->SetBins(TMath::Nint(yield/10), 0, TMath::Nint(yield/10));
+            AHe_Ng_T->SetBins(nbins, 0, xmax);
+
+            Pi0_MM_AE_0->SetBins(nbins, 0, xmax, 36, 0, 180, 80, -80, 120);
+            Pi0_MM_AE_0_R->SetBins(nbins, 0, xmax, 36, 0, 180, 80, -80, 120);
+            Pi0_MM_AE_1->SetBins(nbins, 0, xmax, 36, 0, 180, 80, -80, 120);
+            Pi0_MM_AE_1_R->SetBins(nbins, 0, xmax, 36, 0, 180, 80, -80, 120);
+
+            PiP_MM_AE_0->SetBins(nbins, 0, xmax, 36, 0, 180, 80, -80, 120);
+            PiP_MM_AE_0_R->SetBins(nbins, 0, xmax, 36, 0, 180, 80, -80, 120);
+            PiP_MM_AE_1->SetBins(nbins, 0, xmax, 36, 0, 180, 80, -80, 120);
+            PiP_MM_AE_1_R->SetBins(nbins, 0, xmax, 36, 0, 180, 80, -80, 120);
+
+            Comp_MM_AE_0->SetBins(nbins, 0, xmax, 36, 0, 180, 80, -80, 120);
+            Comp_MM_AE_0_R->SetBins(nbins, 0, xmax, 36, 0, 180, 80, -80, 120);
+            Comp_MM_AE_1->SetBins(nbins, 0, xmax, 36, 0, 180, 80, -80, 120);
+            Comp_MM_AE_1_R->SetBins(nbins, 0, xmax, 36, 0, 180, 80, -80, 120);
+
+            AHe_Yield = yield;
+        }
+
     }
     else if(strcmp(config.c_str(), "nokey") != 0)
     {

@@ -389,6 +389,7 @@ private:
     Int_t    AHe_Thresh;
     Double_t AHe_Length;
     Int_t    AHe_NFibers;
+    Double_t AHe_Yield;
 
     Bool_t  save_randoms;
     Bool_t  split_search;
