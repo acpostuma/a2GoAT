@@ -193,10 +193,10 @@ PAnalyze::PAnalyze()
     PiP_OA_Cut = new TH3D("PiP_OA_Cut", "Pi+ Recoil Opening Angle;Tagger Channel;#theta_{miss} (deg);Opening Angle (deg)", 352, 0, 352, 12, 0, 60, 90, 0, 180);
     PiP_OA_Cut_R = new TH3D("PiP_OA_Cut_R", "Pi+ Recoil Opening Angle;Tagger Channel;#theta_{miss} (deg);Opening Angle (deg)", 352, 0, 352, 12, 0, 60, 90, 0, 180);
 
-    PiP_MM_AE_0 = new TH3D("PiP_MM_AE_0", "Pi+ Missing Mass;Scintillation Photons;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 650, 0, 6500, 36, 0, 180, 80, -80, 120);
-    PiP_MM_AE_0_R = new TH3D("PiP_MM_AE_0_R", "Pi+ Missing Mass;Scintillation Photons;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 650, 0, 6500, 36, 0, 180, 80, -80, 120);
-    PiP_MM_AE_1 = new TH3D("PiP_MM_AE_1", "Pi+ Missing Mass;Scintillation Photons;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 650, 0, 6500, 36, 0, 180, 80, -80, 120);
-    PiP_MM_AE_1_R = new TH3D("PiP_MM_AE_1_R", "Pi+ Missing Mass;Scintillation Photons;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 650, 0, 6500, 36, 0, 180, 80, -80, 120);
+    PiP_MM_AE_0 = new TH3D("PiP_MM_AE_0", "Pi+ Missing Mass;Scintillation Photons;#theta_{#pi^{+}} (deg);m_{miss}-m_{targ} (MeV)", 650, 0, 6500, 36, 0, 180, 80, -80, 120);
+    PiP_MM_AE_0_R = new TH3D("PiP_MM_AE_0_R", "Pi+ Missing Mass;Scintillation Photons;#theta_{#pi^{+}} (deg);m_{miss}-m_{targ} (MeV)", 650, 0, 6500, 36, 0, 180, 80, -80, 120);
+    PiP_MM_AE_1 = new TH3D("PiP_MM_AE_1", "Pi+ Missing Mass;Scintillation Photons;#theta_{#pi^{+}} (deg);m_{miss}-m_{targ} (MeV)", 650, 0, 6500, 36, 0, 180, 80, -80, 120);
+    PiP_MM_AE_1_R = new TH3D("PiP_MM_AE_1_R", "Pi+ Missing Mass;Scintillation Photons;#theta_{#pi^{+}} (deg);m_{miss}-m_{targ} (MeV)", 650, 0, 6500, 36, 0, 180, 80, -80, 120);
 
     PiP_MM_NE_0 = new TH3D("PiP_MM_NE_0", "Pi+ Missing Mass;Tagger Channel;#theta_{#pi^{+}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
     PiP_MM_NE_0_R = new TH3D("PiP_MM_NE_0_R", "Pi+ Missing Mass;Tagger Channel;#theta_{#pi^{+}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
@@ -288,10 +288,10 @@ PAnalyze::PAnalyze()
     Comp_OA_Cut = new TH3D("Comp_OA_Cut", "Compton Recoil Opening Angle;Tagger Channel;#theta_{miss} (deg);Opening Angle (deg)", 352, 0, 352, 12, 0, 60, 90, 0, 180);
     Comp_OA_Cut_R = new TH3D("Comp_OA_Cut_R", "Compton Recoil Opening Angle;Tagger Channel;#theta_{miss} (deg);Opening Angle (deg)", 352, 0, 352, 12, 0, 60, 90, 0, 180);
 
-    Comp_MM_AE_0 = new TH3D("Comp_MM_AE_0", "Compton Missing Mass;Scintillation Photons;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 650, 0, 6500, 36, 0, 180, 80, -80, 120);
-    Comp_MM_AE_0_R = new TH3D("Comp_MM_AE_0_R", "Compton Missing Mass;Scintillation Photons;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 650, 0, 6500, 36, 0, 180, 80, -80, 120);
-    Comp_MM_AE_1 = new TH3D("Comp_MM_AE_1", "Compton Missing Mass;Scintillation Photons;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 650, 0, 6500, 36, 0, 180, 80, -80, 120);
-    Comp_MM_AE_1_R = new TH3D("Comp_MM_AE_1_R", "Compton Missing Mass;Scintillation Photons;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 650, 0, 6500, 36, 0, 180, 80, -80, 120);
+    Comp_MM_AE_0 = new TH3D("Comp_MM_AE_0", "Compton Missing Mass;Scintillation Photons;#theta_{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 650, 0, 6500, 36, 0, 180, 80, -80, 120);
+    Comp_MM_AE_0_R = new TH3D("Comp_MM_AE_0_R", "Compton Missing Mass;Scintillation Photons;#theta_{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 650, 0, 6500, 36, 0, 180, 80, -80, 120);
+    Comp_MM_AE_1 = new TH3D("Comp_MM_AE_1", "Compton Missing Mass;Scintillation Photons;#theta_{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 650, 0, 6500, 36, 0, 180, 80, -80, 120);
+    Comp_MM_AE_1_R = new TH3D("Comp_MM_AE_1_R", "Compton Missing Mass;Scintillation Photons;#theta_{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 650, 0, 6500, 36, 0, 180, 80, -80, 120);
 
     Comp_MM_NE_0 = new TH3D("Comp_MM_NE_0", "Compton Missing Mass;Tagger Channel;#theta_{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
     Comp_MM_NE_0_R = new TH3D("Comp_MM_NE_0_R", "Compton Missing Mass;Tagger Channel;#theta_{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
