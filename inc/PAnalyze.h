@@ -37,8 +37,10 @@ private:
     TH1*    AHe_Ng;
     TH1*    AHe_En_T;
     TH1*    AHe_Ng_T;
-    TH1*    AHe_Ch;
+    TH1*    AHe_Fi;
+    TH1*    AHe_Si;
     TH1*    AHe_Vz;
+    TH1*    AHe_Vp;
 
     TH1*    Pi0_IM_A;
     TH1*    Pi0_IM_E;
@@ -385,6 +387,7 @@ private:
     Double_t OACut;
     Double_t ESCut;
 
+    Bool_t   AHe_Helix;
     Double_t AHe_Gain;
     Int_t    AHe_Thresh;
     Double_t AHe_Length;

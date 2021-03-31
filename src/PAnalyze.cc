@@ -25,8 +25,10 @@ PAnalyze::PAnalyze()
     AHe_Ng = new TH1D("AHe_Ng", "Active Target Photons;Photons per SiPM", 65, 0, 65);
     AHe_En_T = new TH1D("AHe_En_T", "Active Target Energy;Total Energy (eV)", 1000, 0, 10000);
     AHe_Ng_T = new TH1D("AHe_Ng_T", "Active Target Photons;Total Photons", 650, 0, 6500);
-    AHe_Ch = new TH1D("AHe_Ch", "Active Target Channel;Channel;Photons", 100, 0, 200);
+    AHe_Fi = new TH1D("AHe_Fi", "Active Target Hits per Fiber;Fiber;Photons", 100, 0, 100);
+    AHe_Si = new TH1D("AHe_Si", "Active Target Hits per Side;Side;Photons", 2, 0, 2);
     AHe_Vz = new TH1D("AHe_Vz", "Active Target Z-Vertex;Z-Vertex (cm)", 420, -21, 21);
+    AHe_Vp = new TH1D("AHe_Vp", "Active Target Phi-Vertex;Phi-Vertex (deg)", 360, -180, 180);
 
     // Pi0 histograms
     Pi0_IM_A = new TH1D("Pi0_IM_A", "Pi0 Invariant Mass;m_{#gamma#gamma} (MeV)", 400, 0, 400);
@@ -381,6 +383,7 @@ PAnalyze::PAnalyze()
     OACut = 180;
     ESCut = 0;
 
+    AHe_Helix = true;
     AHe_Gain = 2.875;
     AHe_Thresh = 3;
     AHe_Length = 41.0;
@@ -572,9 +575,10 @@ void	PAnalyze::ProcessEvent()
     //////////////////////////////////////////////////
     // Get active target hits
     //////////////////////////////////////////////////
-    Double_t d_ahe_en, d_ahe_en_tot = 0, d_ahe_vz;
+    Double_t d_ahe_en, d_ahe_en_tot = 0, d_ahe_vz, d_ahe_vp;
     Int_t i_ahe_ng, i_ahe_ng_tot = 0;
-    AHe_Ch->Reset();
+    AHe_Fi->Reset();
+    AHe_Si->Reset();
 
     for (Int_t i=0; i<(GetDetectorHits()->GetNActiveHits()); i++)
     {
@@ -591,7 +595,8 @@ void	PAnalyze::ProcessEvent()
 
         // Histogram hits vs index for phi/z check
         // Note pairs of channels are added together to get the total for each fiber/ring
-        AHe_Ch->AddBinContent(1 + (GetDetectorHits()->GetActiveHits(i))/2, i_ahe_ng);
+        AHe_Fi->AddBinContent(1 + (GetDetectorHits()->GetActiveHits(i))/2, i_ahe_ng);
+        AHe_Si->AddBinContent(1 + (GetDetectorHits()->GetActiveHits(i))%2, i_ahe_ng);
 
         // Add to total
         d_ahe_en_tot += d_ahe_en;
@@ -600,13 +605,36 @@ void	PAnalyze::ProcessEvent()
     AHe_En_T->Fill(d_ahe_en_tot);
     AHe_Ng_T->Fill(i_ahe_ng_tot);
 
-    // Get mean from the channel histogram and convert to a z-vertex
-    AHe_Ch->ResetStats();
-    AHe_Ch->GetXaxis()->SetRange(1, 60);
-    if (AHe_Ch->GetMaximumBin() < 21) AHe_Ch->GetXaxis()->SetRange(1, 2 * AHe_Ch->GetMaximumBin());
-    else if (AHe_Ch->GetMaximumBin() > 40) AHe_Ch->GetXaxis()->SetRange(61 - 2 * (61 - AHe_Ch->GetMaximumBin()), 60);
-    d_ahe_vz = 0.5 * AHe_Length * (AHe_Ch->GetMean() - AHe_NFibers) / AHe_NFibers;
-    if (i_ahe_ng_tot > 0) AHe_Vz->Fill(d_ahe_vz);
+    if (AHe_Helix)
+    {
+        // Get mean from the fiber histogram and convert to a z-vertex
+        AHe_Fi->ResetStats();
+        AHe_Fi->GetXaxis()->SetRange(1, AHe_NFibers);
+        if (AHe_Fi->GetMaximumBin() <= (AHe_NFibers/3)) AHe_Fi->GetXaxis()->SetRange(1, 2 * AHe_Fi->GetMaximumBin());
+        else if (AHe_Fi->GetMaximumBin() > (2*AHe_NFibers/3)) AHe_Fi->GetXaxis()->SetRange(AHe_NFibers + 1 - 2 * (AHe_NFibers + 1 - AHe_Fi->GetMaximumBin()), AHe_NFibers);
+        d_ahe_vz = AHe_Length * (AHe_Fi->GetMean() - 0.5 * AHe_NFibers) / AHe_NFibers;
+        if (i_ahe_ng_tot > 0) AHe_Vz->Fill(d_ahe_vz);
+
+        // Get ratio of hits from the side histogram and convert to a phi-vertex
+        AHe_Si->ResetStats();
+        d_ahe_vp = 20 * 360 * ((AHe_Si->GetBinContent(1)/AHe_Si->Integral()) - 0.5);
+        if (i_ahe_ng_tot > 0) AHe_Vp->Fill(d_ahe_vp);
+    }
+    else
+    {
+        // Get mean from the fiber histogram and convert to a phi-vertex
+        AHe_Fi->ResetStats();
+        AHe_Fi->GetXaxis()->SetRange(1, AHe_NFibers);
+        if (AHe_Fi->GetMaximumBin() <= (AHe_NFibers/3)) AHe_Fi->GetXaxis()->SetRange(1, 2 * AHe_Fi->GetMaximumBin());
+        else if (AHe_Fi->GetMaximumBin() > (2*AHe_NFibers/3)) AHe_Fi->GetXaxis()->SetRange(AHe_NFibers + 1 - 2 * (AHe_NFibers + 1 - AHe_Fi->GetMaximumBin()), AHe_NFibers);
+        d_ahe_vp = 360 * (AHe_Fi->GetMean() - 0.5 * AHe_NFibers) / AHe_NFibers;
+        if (i_ahe_ng_tot > 0) AHe_Vp->Fill(d_ahe_vp);
+
+        // Get ratio of hits from the side histogram and convert to a z-vertex
+        AHe_Si->ResetStats();
+        d_ahe_vz = 20 * AHe_Length * ((AHe_Si->GetBinContent(1)/AHe_Si->Integral()) - 0.5);
+        if (i_ahe_ng_tot > 0) AHe_Vz->Fill(d_ahe_vz);
+    }
 
     //////////////////////////////////////////////////
     // Initial pi0 stuff
@@ -2052,12 +2080,22 @@ Bool_t  PAnalyze::InitTargPol()
 //////////////////////////////////////////////////
 Bool_t  PAnalyze::InitActiveTarget()
 {
+    Int_t helix, threshold, fibers;
     Double_t gain, length, yield;
-    Int_t threshold, fibers;
     string config = ReadConfig("Active-Target");
-    if(sscanf( config.c_str(), "%lf %d %lf %d %lf\n", &gain, &threshold, &length, &fibers, &yield) == 5)
+    if(sscanf( config.c_str(), "%d %lf %d %lf %d %lf\n", &helix, &gain, &threshold, &length, &fibers, &yield) == 6)
     {
-        cout << "Setting active target:" << endl;
+        cout << "Setting active target";
+        if (helix > 0)
+        {
+            cout << " to helix:" << endl;
+            AHe_Helix = true;
+        }
+        else
+        {
+            cout << " to barrel:" << endl;
+            AHe_Helix = false;
+        }
         cout << "                gain = " << gain << " photons/eV" << endl;
         cout << "           threshold = " << threshold << " photons" << endl;
         cout << "              length = " << length << " cm" << endl;

@@ -2,8 +2,8 @@
 # Config file for a general Analysis of GoAT-Trees
 #=======================================================================
 
-# Configure active target - gain, threshold, length, # fibers, yield
-Active-Target: 2.875 3 41.0 60 650
+# Configure active target - helix?, gain, threshold, length, # fibers, yield
+Active-Target: 1 2.875 3 41.0 60 650
 
 # Set prompt and random windows (standard library and GH1 library)
 Set-Prompt-Cut: -13 12
