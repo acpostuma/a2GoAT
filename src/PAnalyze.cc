@@ -1166,8 +1166,8 @@ void	PAnalyze::ProcessEvent()
                 Pi0_Tm_NE->Fill(i_tagg_ch, d_subt_tm, event_weight);
                 if (GHistBGSub::IsPrompt(d_subt_tm))
                 {
-                    if (b_fill_MM_0) Pi0_MM_AE_0->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
-                    else if (b_fill_MM_1) Pi0_MM_AE_1->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
+                    if (b_fill_MM_0 && i_ahe_ng_tot > 0) Pi0_MM_AE_0->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1 && i_ahe_ng_tot > 0) Pi0_MM_AE_1->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
 
                     if (b_fill_MM_0) Pi0_MM_NE_0->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
                     else if (b_fill_MM_1) Pi0_MM_NE_1->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
@@ -1176,8 +1176,8 @@ void	PAnalyze::ProcessEvent()
                 }
                 else if (GHistBGSub::IsRandom(d_subt_tm))
                 {
-                    if (b_fill_MM_0) Pi0_MM_AE_0_R->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
-                    else if (b_fill_MM_1) Pi0_MM_AE_1_R->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
+                    if (b_fill_MM_0 && i_ahe_ng_tot > 0) Pi0_MM_AE_0_R->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1 && i_ahe_ng_tot > 0) Pi0_MM_AE_1_R->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
 
                     if (b_fill_MM_0) Pi0_MM_NE_0_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
                     else if (b_fill_MM_1) Pi0_MM_NE_1_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
@@ -1380,8 +1380,8 @@ void	PAnalyze::ProcessEvent()
                 PiP_Tm_NE->Fill(i_tagg_ch, d_subt_tm, event_weight);
                 if (GHistBGSub::IsPrompt(d_subt_tm))
                 {
-                    if (b_fill_MM_0) PiP_MM_AE_0->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
-                    else if (b_fill_MM_1) PiP_MM_AE_1->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
+                    if (b_fill_MM_0 && i_ahe_ng_tot > 0) PiP_MM_AE_0->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1 && i_ahe_ng_tot > 0) PiP_MM_AE_1->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
 
                     if (b_fill_MM_0) PiP_MM_NE_0->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
                     else if (b_fill_MM_1) PiP_MM_NE_1->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
@@ -1390,8 +1390,8 @@ void	PAnalyze::ProcessEvent()
                 }
                 else if (GHistBGSub::IsRandom(d_subt_tm))
                 {
-                    if (b_fill_MM_0) PiP_MM_AE_0_R->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
-                    else if (b_fill_MM_1) PiP_MM_AE_1_R->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
+                    if (b_fill_MM_0 && i_ahe_ng_tot > 0) PiP_MM_AE_0_R->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1 && i_ahe_ng_tot > 0) PiP_MM_AE_1_R->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
 
                     if (b_fill_MM_0) PiP_MM_NE_0_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
                     else if (b_fill_MM_1) PiP_MM_NE_1_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
@@ -1610,8 +1610,8 @@ void	PAnalyze::ProcessEvent()
                 Comp_Tm_NE->Fill(i_tagg_ch, d_subt_tm, event_weight);
                 if (GHistBGSub::IsPrompt(d_subt_tm))
                 {
-                    if (b_fill_MM_0) Comp_MM_AE_0->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
-                    else if (b_fill_MM_1) Comp_MM_AE_1->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
+                    if (b_fill_MM_0 && i_ahe_ng_tot > 0) Comp_MM_AE_0->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1 && i_ahe_ng_tot > 0) Comp_MM_AE_1->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
 
                     if (b_fill_MM_0) Comp_MM_NE_0->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
                     else if (b_fill_MM_1) Comp_MM_NE_1->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
@@ -1620,8 +1620,8 @@ void	PAnalyze::ProcessEvent()
                 }
                 else if (GHistBGSub::IsRandom(d_subt_tm))
                 {
-                    if (b_fill_MM_0) Comp_MM_AE_0_R->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
-                    else if (b_fill_MM_1) Comp_MM_AE_1_R->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
+                    if (b_fill_MM_0 && i_ahe_ng_tot > 0) Comp_MM_AE_0_R->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1 && i_ahe_ng_tot > 0) Comp_MM_AE_1_R->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
 
                     if (b_fill_MM_0) Comp_MM_NE_0_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
                     else if (b_fill_MM_1) Comp_MM_NE_1_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
