@@ -23,6 +23,7 @@ PAnalyze::PAnalyze()
     // Active target histograms
     AHe_En = new TH1D("AHe_En", "Active Target Energy;Energy per SiPM (eV)", 1000, 0, 100);
     AHe_Ng = new TH1D("AHe_Ng", "Active Target Photons;Photons per SiPM", 65, 0, 65);
+    AHe_Av = new TH1D("AHe_Av", "Active Target Photons;Average Photons per SiPM", 65, 0, 65);
     AHe_En_T = new TH1D("AHe_En_T", "Active Target Energy;Total Energy (eV)", 1000, 0, 10000);
     AHe_Ng_T = new TH1D("AHe_Ng_T", "Active Target Photons;Total Photons", 650, 0, 6500);
     AHe_Fi = new TH1D("AHe_Fi", "Active Target Hits per Fiber;Fiber;Photons", 100, 0, 100);
@@ -577,6 +578,7 @@ void	PAnalyze::ProcessEvent()
     //////////////////////////////////////////////////
     Double_t d_ahe_en, d_ahe_en_tot = 0, d_ahe_vz, d_ahe_vp;
     Int_t i_ahe_ng, i_ahe_ng_tot = 0;
+    std::vector<Int_t> vi_ahe_av;
     AHe_Fi->Reset();
     AHe_Si->Reset();
 
@@ -589,6 +591,7 @@ void	PAnalyze::ProcessEvent()
         // Convert energy to number of photons
         i_ahe_ng = TMath::Nint(d_ahe_en/AHe_Gain);
         AHe_Ng->Fill(i_ahe_ng);
+        vi_ahe_av.push_back(i_ahe_ng);
 
         // Cut out dark current
         if (i_ahe_ng < AHe_Thresh) continue;
@@ -602,6 +605,7 @@ void	PAnalyze::ProcessEvent()
         d_ahe_en_tot += d_ahe_en;
         i_ahe_ng_tot += i_ahe_ng;
     }
+    AHe_Av->Fill(TMath::Median(GetDetectorHits()->GetNActiveHits(), vi_ahe_av.data()));
     AHe_En_T->Fill(d_ahe_en_tot);
     AHe_Ng_T->Fill(i_ahe_ng_tot);
 
