@@ -22,10 +22,10 @@ PAnalyze::PAnalyze()
 
     // Active target histograms
     AHe_En = new TH1D("AHe_En", "Active Target Energy;Energy per SiPM (eV)", 1000, 0, 100);
-    AHe_Ng = new TH1D("AHe_Ng", "Active Target Photons;Photons per SiPM", 65, 0, 65);
-    AHe_Av = new TH1D("AHe_Av", "Active Target Photons;Average Photons per SiPM", 65, 0, 65);
+    AHe_Ng = new TH1D("AHe_Ng", "Active Target Photons;Photons per SiPM", 65, 0.5, 65.5);
+    AHe_Av = new TH1D("AHe_Av", "Active Target Photons;Average Photons per SiPM", 65, 0.5, 65.5);
     AHe_En_T = new TH1D("AHe_En_T", "Active Target Energy;Total Energy (eV)", 1000, 0, 10000);
-    AHe_Ng_T = new TH1D("AHe_Ng_T", "Active Target Photons;Total Photons", 650, 0, 6500);
+    AHe_Ng_T = new TH1D("AHe_Ng_T", "Active Target Photons;Total Photons", 6500, 0.5, 6500.5);
     AHe_Fi = new TH1D("AHe_Fi", "Active Target Hits per Fiber;Fiber;Photons", 100, 0, 100);
     AHe_Si = new TH1D("AHe_Si", "Active Target Hits per Side;Side;Photons", 2, 0, 2);
     AHe_Vz = new TH1D("AHe_Vz", "Active Target Z-Vertex;Z-Vertex (cm)", 420, -21, 21);
@@ -2116,9 +2116,9 @@ Bool_t  PAnalyze::InitActiveTarget()
             if (yield > 1000) nbins = TMath::Nint(yield/10);
 
             AHe_En->SetBins(10*TMath::Nint(gain*yield/10), 0, TMath::Nint(gain*yield/10));
-            AHe_Ng->SetBins(TMath::Nint(yield/10), 0, TMath::Nint(yield/10));
+            //AHe_Ng->SetBins(TMath::Nint(yield/10), 0, TMath::Nint(yield/10));
             AHe_En_T->SetBins(TMath::Nint(gain*yield), 0, 10*TMath::Nint(gain*yield));
-            AHe_Ng_T->SetBins(nbins, 0, xmax);
+            //AHe_Ng_T->SetBins(nbins, 0, xmax);
 
             Pi0_MM_AE_0->SetBins(nbins, 0, xmax, 36, 0, 180, 80, -80, 120);
             Pi0_MM_AE_0_R->SetBins(nbins, 0, xmax, 36, 0, 180, 80, -80, 120);
