@@ -22,10 +22,10 @@ PAnalyze::PAnalyze()
 
     // Active target histograms
     AHe_En = new TH1D("AHe_En", "Active Target Energy;Energy per SiPM (eV)", 1000, 0, 100);
-    AHe_Ng = new TH1D("AHe_Ng", "Active Target Photons;Photons per SiPM", 65, 0.5, 65.5);
+    AHe_Ng = new TH1D("AHe_Ng", "Active Target Photons;Photons per SiPM", 650, 0.5, 650.5);
     AHe_Av = new TH1D("AHe_Av", "Active Target Photons;Average Photons per SiPM", 65, 0.5, 65.5);
     AHe_En_T = new TH1D("AHe_En_T", "Active Target Energy;Total Energy (eV)", 1000, 0, 10000);
-    AHe_Ng_T = new TH1D("AHe_Ng_T", "Active Target Photons;Total Photons", 6500, 0.5, 6500.5);
+    AHe_Ng_T = new TH1D("AHe_Ng_T", "Active Target Photons;Total Photons", 65000, 0.5, 65000.5);
     AHe_Fi = new TH1D("AHe_Fi", "Active Target Hits per Fiber;Fiber;Photons", 100, 0, 100);
     AHe_Si = new TH1D("AHe_Si", "Active Target Hits per Side;Side;Photons", 2, 0, 2);
     AHe_Vz = new TH1D("AHe_Vz", "Active Target Z-Vertex;Z-Vertex (cm)", 420, -21, 21);
