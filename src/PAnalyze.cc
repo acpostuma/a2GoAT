@@ -577,12 +577,14 @@ void	PAnalyze::ProcessEvent()
     // Get active target hits
     //////////////////////////////////////////////////
     Double_t d_ahe_en, d_ahe_en_tot = 0, d_ahe_vz, d_ahe_vp;
-    Int_t i_ahe_ng, i_ahe_ng_tot = 0;
+    Int_t n_ahe, i_ahe_ng, i_ahe_ng_tot = 0;
     std::vector<Int_t> vi_ahe_av;
     AHe_Fi->Reset();
     AHe_Si->Reset();
 
-    for (Int_t i=0; i<(GetDetectorHits()->GetNActiveHits()); i++)
+    n_ahe = GetDetectorHits()->GetNActiveHits();
+
+    for (Int_t i=0; i<n_ahe; i++)
     {
         // Get energy in eV
         d_ahe_en = 1e6 * GetDetectorHits()->GetActiveEnergy(i);
@@ -605,7 +607,7 @@ void	PAnalyze::ProcessEvent()
         d_ahe_en_tot += d_ahe_en;
         i_ahe_ng_tot += i_ahe_ng;
     }
-    AHe_Av->Fill(TMath::Median(GetDetectorHits()->GetNActiveHits(), vi_ahe_av.data()));
+    if (n_ahe > 4) AHe_Av->Fill(TMath::Median(n_ahe, vi_ahe_av.data()));
     AHe_En_T->Fill(d_ahe_en_tot);
     AHe_Ng_T->Fill(i_ahe_ng_tot);
 
