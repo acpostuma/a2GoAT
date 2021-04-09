@@ -23,9 +23,10 @@ PAnalyze::PAnalyze()
     // Active target histograms
     AHe_En = new TH1D("AHe_En", "Active Target Energy;Energy per SiPM (eV)", 1000, 0, 100);
     AHe_Ng = new TH1D("AHe_Ng", "Active Target Photons;Photons per SiPM", 650, 0.5, 650.5);
-    AHe_Av = new TH1D("AHe_Av", "Active Target Photons;Average Photons per SiPM", 650, 0.5, 650.5);
-    AHe_En_T = new TH1D("AHe_En_T", "Active Target Energy;Total Energy (eV)", 1000, 0, 10000);
-    AHe_Ng_T = new TH1D("AHe_Ng_T", "Active Target Photons;Total Photons", 65000, 0.5, 65000.5);
+    AHe_Av = new TH1D("AHe_Av", "Active Target Photons;Average Photons per SiPM", 651, -0.5, 650.5);
+    AHe_Av_Cut = new TH1D("AHe_Av_Cut", "Active Target Photons;Average Photons per SiPM", 651, -0.5, 650.5);
+    AHe_En_Tot = new TH1D("AHe_En_Tot", "Active Target Energy;Total Energy (eV)", 1000, 0, 10000);
+    AHe_Ng_Tot = new TH1D("AHe_Ng_Tot", "Active Target Photons;Total Photons", 65000, 0.5, 65000.5);
     AHe_Fi = new TH1D("AHe_Fi", "Active Target Hits per Fiber;Fiber;Photons", 100, 0, 100);
     AHe_Si = new TH1D("AHe_Si", "Active Target Hits per Side;Side;Photons", 2, 0, 2);
     AHe_Vz = new TH1D("AHe_Vz", "Active Target Z-Vertex;Z-Vertex (cm)", 420, -21, 21);
@@ -607,9 +608,11 @@ void	PAnalyze::ProcessEvent()
         d_ahe_en_tot += d_ahe_en;
         i_ahe_ng_tot += i_ahe_ng;
     }
-    if (n_ahe > 4) AHe_Av->Fill(TMath::Median(n_ahe, vi_ahe_av.data()));
-    AHe_En_T->Fill(d_ahe_en_tot);
-    AHe_Ng_T->Fill(i_ahe_ng_tot);
+    AHe_Av->Fill(TMath::Median(n_ahe, vi_ahe_av.data()));
+    if (n_ahe > 4) AHe_Av_Cut->Fill(TMath::Median(n_ahe, vi_ahe_av.data()));
+    else AHe_Av_Cut->Fill(0);
+    AHe_En_Tot->Fill(d_ahe_en_tot);
+    AHe_Ng_Tot->Fill(i_ahe_ng_tot);
 
     if (AHe_Helix)
     {
@@ -2119,7 +2122,7 @@ Bool_t  PAnalyze::InitActiveTarget()
 
             AHe_En->SetBins(10*TMath::Nint(gain*yield/10), 0, TMath::Nint(gain*yield/10));
             //AHe_Ng->SetBins(TMath::Nint(yield/10), 0, TMath::Nint(yield/10));
-            AHe_En_T->SetBins(TMath::Nint(gain*yield), 0, 10*TMath::Nint(gain*yield));
+            AHe_En_Tot->SetBins(TMath::Nint(gain*yield), 0, 10*TMath::Nint(gain*yield));
             //AHe_Ng_T->SetBins(nbins, 0, xmax);
 
             Pi0_MM_AE_0->SetBins(nbins, 0, xmax, 36, 0, 180, 80, -80, 120);
