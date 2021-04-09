@@ -24,6 +24,7 @@ PAnalyze::PAnalyze()
     AHe_En = new TH1D("AHe_En", "Active Target Energy;Energy per SiPM (eV)", 1000, 0, 100);
     AHe_Ng = new TH1D("AHe_Ng", "Active Target Photons;Photons per SiPM", 650, 0.5, 650.5);
     AHe_Av = new TH1D("AHe_Av", "Active Target Photons;Average Photons per SiPM", 651, -0.5, 650.5);
+    AHe_Av_Num = new TH2D("AHe_Av_Num", "Active Target Photons;Average Photons per SiPM;Number of SiPMs Hit", 651, -0.5, 650.5, 651, -0.5, 650.5);
     AHe_Av_Cut = new TH1D("AHe_Av_Cut", "Active Target Photons;Average Photons per SiPM", 651, -0.5, 650.5);
     AHe_En_Tot = new TH1D("AHe_En_Tot", "Active Target Energy;Total Energy (eV)", 1000, 0, 10000);
     AHe_Ng_Tot = new TH1D("AHe_Ng_Tot", "Active Target Photons;Total Photons", 65000, 0.5, 65000.5);
@@ -609,6 +610,7 @@ void	PAnalyze::ProcessEvent()
         i_ahe_ng_tot += i_ahe_ng;
     }
     AHe_Av->Fill(TMath::Median(n_ahe, vi_ahe_av.data()));
+    AHe_Av_Num->Fill(TMath::Median(n_ahe, vi_ahe_av.data()), n_ahe);
     if (n_ahe > 4) AHe_Av_Cut->Fill(TMath::Median(n_ahe, vi_ahe_av.data()));
     else AHe_Av_Cut->Fill(0);
     AHe_En_Tot->Fill(d_ahe_en_tot);

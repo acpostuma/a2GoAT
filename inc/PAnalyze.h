@@ -36,6 +36,7 @@ private:
     TH1*    AHe_En;
     TH1*    AHe_Ng;
     TH1*    AHe_Av;
+    TH2*    AHe_Av_Num;
     TH1*    AHe_Av_Cut;
     TH1*    AHe_En_Tot;
     TH1*    AHe_Ng_Tot;
