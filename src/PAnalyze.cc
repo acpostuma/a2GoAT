@@ -24,7 +24,7 @@ PAnalyze::PAnalyze()
     AHe_En = new TH1D("AHe_En", "Active Target Energy;Energy per SiPM (eV)", 1000, 0, 100);
     AHe_Ng = new TH1D("AHe_Ng", "Active Target Photons;Photons per SiPM", 650, 0.5, 650.5);
     AHe_Av = new TH1D("AHe_Av", "Active Target Photons;Average Photons per SiPM", 651, -0.5, 650.5);
-    AHe_Av_Num = new TH2D("AHe_Av_Num", "Active Target Photons;Average Photons per SiPM;Number of SiPMs Hit", 651, -0.5, 650.5, 651, -0.5, 650.5);
+    AHe_Av_Num = new TH2D("AHe_Av_Num", "Active Target Photons;Number of SiPMs Hit;Average Photons per SiPM", 121, -0.5, 120.5, 651, -0.5, 650.5);
     AHe_Av_Cut = new TH1D("AHe_Av_Cut", "Active Target Photons;Average Photons per SiPM", 651, -0.5, 650.5);
     AHe_En_Tot = new TH1D("AHe_En_Tot", "Active Target Energy;Total Energy (eV)", 1000, 0, 10000);
     AHe_Ng_Tot = new TH1D("AHe_Ng_Tot", "Active Target Photons;Total Photons", 65000, 0.5, 65000.5);
@@ -548,8 +548,8 @@ void	PAnalyze::ProcessEvent()
     TLorentzVector lv_targ = GetTarget();
     TVector3 v_reco, v_splt, v_lab_cm;
 
-    Bool_t b_pi0, b_piP, b_comp, b_pi0_CC, b_pi0_CT, b_pi0_TC, b_pi0_TT, b_NE, b_NI, b_CE, b_CI, b_TE, b_TI, b_WE, b_WI, b_cut_CA, b_cut_OA;
-    b_pi0 = b_piP = b_comp = b_pi0_CC = b_pi0_CT = b_pi0_TC = b_pi0_TT = b_NE = b_NI = b_CE = b_CI = b_TE = b_TI = b_WE = b_WI = b_cut_CA = b_cut_OA = false;
+    Bool_t b_pi0, b_piP, b_comp, b_pi0_CC, b_pi0_CT, b_pi0_TC, b_pi0_TT, b_AE, b_NE, b_NI, b_CE, b_CI, b_TE, b_TI, b_WE, b_WI, b_cut_CA, b_cut_OA;
+    b_pi0 = b_piP = b_comp = b_pi0_CC = b_pi0_CT = b_pi0_TC = b_pi0_TT = b_AE = b_NE = b_NI = b_CE = b_CI = b_TE = b_TI = b_WE = b_WI = b_cut_CA = b_cut_OA = false;
 
     n_accept = n_ignore = 0;
     i_trk0 = i_trk1 = i_splt = -1;
@@ -610,14 +610,20 @@ void	PAnalyze::ProcessEvent()
         i_ahe_ng_tot += i_ahe_ng;
     }
     AHe_Av->Fill(TMath::Median(n_ahe, vi_ahe_av.data()));
-    AHe_Av_Num->Fill(TMath::Median(n_ahe, vi_ahe_av.data()), n_ahe);
-    if (n_ahe > 4) AHe_Av_Cut->Fill(TMath::Median(n_ahe, vi_ahe_av.data()));
-    else AHe_Av_Cut->Fill(0);
+    AHe_Av_Num->Fill(n_ahe, TMath::Median(n_ahe, vi_ahe_av.data()));
+
     AHe_En_Tot->Fill(d_ahe_en_tot);
     AHe_Ng_Tot->Fill(i_ahe_ng_tot);
 
     if (AHe_Helix)
     {
+        if (n_ahe > 4)
+        {
+            AHe_Av_Cut->Fill(TMath::Median(n_ahe, vi_ahe_av.data()));
+            if (i_ahe_ng_tot > 0) b_AE = true;
+        }
+        else AHe_Av_Cut->Fill(0);
+
         // Get mean from the fiber histogram and convert to a z-vertex
         AHe_Fi->ResetStats();
         AHe_Fi->GetXaxis()->SetRange(1, AHe_NFibers);
@@ -633,6 +639,13 @@ void	PAnalyze::ProcessEvent()
     }
     else
     {
+        if (n_ahe > 8)
+        {
+            AHe_Av_Cut->Fill(TMath::Median(n_ahe, vi_ahe_av.data()));
+            if (i_ahe_ng_tot > 0) b_AE = true;
+        }
+        else AHe_Av_Cut->Fill(0);
+
         // Get mean from the fiber histogram and convert to a phi-vertex
         AHe_Fi->ResetStats();
         AHe_Fi->GetXaxis()->SetRange(1, AHe_NFibers);
@@ -966,6 +979,11 @@ void	PAnalyze::ProcessEvent()
     }
 
     //////////////////////////////////////////////////
+    // Only fill active target histograms for NE case
+    //////////////////////////////////////////////////
+    if (!b_NE) b_AE = false;
+
+    //////////////////////////////////////////////////
     // Decide which state to fill
     //////////////////////////////////////////////////
     Bool_t b_fill_Ph_0, b_fill_Ph_1, b_fill_MM_0, b_fill_MM_1;
@@ -1171,15 +1189,27 @@ void	PAnalyze::ProcessEvent()
                 }
             }
 
+            // Exclusive event, with active target hits
+            if (b_AE)
+            {
+                if (GHistBGSub::IsPrompt(d_subt_tm))
+                {
+                    if (b_fill_MM_0) Pi0_MM_AE_0->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) Pi0_MM_AE_1->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
+                }
+                else if (GHistBGSub::IsRandom(d_subt_tm))
+                {
+                    if (b_fill_MM_0) Pi0_MM_AE_0_R->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) Pi0_MM_AE_1_R->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
+                }
+            }
+
             // Exclusive event, without recoil detected
             if (b_NE)
             {
                 Pi0_Tm_NE->Fill(i_tagg_ch, d_subt_tm, event_weight);
                 if (GHistBGSub::IsPrompt(d_subt_tm))
                 {
-                    if (b_fill_MM_0 && i_ahe_ng_tot > 0) Pi0_MM_AE_0->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
-                    else if (b_fill_MM_1 && i_ahe_ng_tot > 0) Pi0_MM_AE_1->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
-
                     if (b_fill_MM_0) Pi0_MM_NE_0->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
                     else if (b_fill_MM_1) Pi0_MM_NE_1->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
                     if (b_fill_Ph_0) Pi0_Ph_NE_0->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
@@ -1187,9 +1217,6 @@ void	PAnalyze::ProcessEvent()
                 }
                 else if (GHistBGSub::IsRandom(d_subt_tm))
                 {
-                    if (b_fill_MM_0 && i_ahe_ng_tot > 0) Pi0_MM_AE_0_R->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
-                    else if (b_fill_MM_1 && i_ahe_ng_tot > 0) Pi0_MM_AE_1_R->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
-
                     if (b_fill_MM_0) Pi0_MM_NE_0_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
                     else if (b_fill_MM_1) Pi0_MM_NE_1_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
                     if (b_fill_Ph_0) Pi0_Ph_NE_0_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
@@ -1385,15 +1412,27 @@ void	PAnalyze::ProcessEvent()
             if (!b_hel) b_fill_Ph_0 = (lv_miss.M() >= MMLoC && lv_miss.M() < MMHiC);
             else b_fill_Ph_1 = (lv_miss.M() >= MMLoC && lv_miss.M() < MMHiC);
 
+            // Exclusive event, with active target hits
+            if (b_AE)
+            {
+                if (GHistBGSub::IsPrompt(d_subt_tm))
+                {
+                    if (b_fill_MM_0) PiP_MM_AE_0->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) PiP_MM_AE_1->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
+                }
+                else if (GHistBGSub::IsRandom(d_subt_tm))
+                {
+                    if (b_fill_MM_0) PiP_MM_AE_0_R->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) PiP_MM_AE_1_R->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
+                }
+            }
+
             // Exclusive event, without recoil detection
             if (b_NE)
             {
                 PiP_Tm_NE->Fill(i_tagg_ch, d_subt_tm, event_weight);
                 if (GHistBGSub::IsPrompt(d_subt_tm))
                 {
-                    if (b_fill_MM_0 && i_ahe_ng_tot > 0) PiP_MM_AE_0->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
-                    else if (b_fill_MM_1 && i_ahe_ng_tot > 0) PiP_MM_AE_1->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
-
                     if (b_fill_MM_0) PiP_MM_NE_0->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
                     else if (b_fill_MM_1) PiP_MM_NE_1->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
                     if (b_fill_Ph_0) PiP_Ph_NE_0->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
@@ -1401,9 +1440,6 @@ void	PAnalyze::ProcessEvent()
                 }
                 else if (GHistBGSub::IsRandom(d_subt_tm))
                 {
-                    if (b_fill_MM_0 && i_ahe_ng_tot > 0) PiP_MM_AE_0_R->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
-                    else if (b_fill_MM_1 && i_ahe_ng_tot > 0) PiP_MM_AE_1_R->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
-
                     if (b_fill_MM_0) PiP_MM_NE_0_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
                     else if (b_fill_MM_1) PiP_MM_NE_1_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
                     if (b_fill_Ph_0) PiP_Ph_NE_0_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
@@ -1615,15 +1651,27 @@ void	PAnalyze::ProcessEvent()
             if (!b_hel) b_fill_Ph_0 = (lv_miss.M() >= MMLoC && lv_miss.M() < MMHiC);
             else b_fill_Ph_1 = (lv_miss.M() >= MMLoC && lv_miss.M() < MMHiC);
 
+            // Exclusive event, with active target hits
+            if (b_AE)
+            {
+                if (GHistBGSub::IsPrompt(d_subt_tm))
+                {
+                    if (b_fill_MM_0) Comp_MM_AE_0->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) Comp_MM_AE_1->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
+                }
+                else if (GHistBGSub::IsRandom(d_subt_tm))
+                {
+                    if (b_fill_MM_0) Comp_MM_AE_0_R->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) Comp_MM_AE_1_R->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
+                }
+            }
+
             // Exclusive event, without recoil detection
             if (b_NE)
             {
                 Comp_Tm_NE->Fill(i_tagg_ch, d_subt_tm, event_weight);
                 if (GHistBGSub::IsPrompt(d_subt_tm))
                 {
-                    if (b_fill_MM_0 && i_ahe_ng_tot > 0) Comp_MM_AE_0->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
-                    else if (b_fill_MM_1 && i_ahe_ng_tot > 0) Comp_MM_AE_1->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
-
                     if (b_fill_MM_0) Comp_MM_NE_0->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
                     else if (b_fill_MM_1) Comp_MM_NE_1->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
                     if (b_fill_Ph_0) Comp_Ph_NE_0->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
@@ -1631,9 +1679,6 @@ void	PAnalyze::ProcessEvent()
                 }
                 else if (GHistBGSub::IsRandom(d_subt_tm))
                 {
-                    if (b_fill_MM_0 && i_ahe_ng_tot > 0) Comp_MM_AE_0_R->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
-                    else if (b_fill_MM_1 && i_ahe_ng_tot > 0) Comp_MM_AE_1_R->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
-
                     if (b_fill_MM_0) Comp_MM_NE_0_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
                     else if (b_fill_MM_1) Comp_MM_NE_1_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
                     if (b_fill_Ph_0) Comp_Ph_NE_0_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
