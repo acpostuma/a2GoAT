@@ -86,8 +86,11 @@ public:
     const	Double_t*       GetTime()                           const	{return time;}
             Double_t        GetTime(const Int_t index)          const	{return time[index];}
     inline  TLorentzVector	GetVector(const Int_t index)        const;
+    inline  TLorentzVector	GetShiftedVector(const Int_t index, const Double_t vertex) const;
     inline  TLorentzVector	GetVector(const Int_t index, const Double_t mass)   const;
+    inline  TLorentzVector	GetShiftedVector(const Int_t index, const Double_t vertex, const Double_t mass) const;
     inline  TVector3    	GetUnitVector(const Int_t index)        const;
+    inline  TVector3    	GetShiftedUnitVector(const Int_t index, const Double_t vertex) const;
     const	Double_t*       GetMWPC0Energy()                          const	{return MWPC0Energy;}
             Double_t        GetMWPC0Energy(const Int_t index)         const	{return MWPC0Energy[index];}
     const	Double_t*       GetMWPC1Energy()                          const	{return MWPC1Energy;}
@@ -169,6 +172,27 @@ TLorentzVector	GTreeTrack::GetVector(const Int_t index) const
     return TLorentzVector(Px, Py, Pz, clusterEnergy[index]);
 }
 
+TLorentzVector	GTreeTrack::GetShiftedVector(const Int_t index, const Double_t vertex) const
+{
+    Double_t th = GetThetaRad(index);
+    Double_t ph = GetPhiRad(index);
+
+    if(vertex != 0 && HasCB(index) && !HasTAPS(index))
+    {
+        th = (TMath::ATan2((CBDistance*TMath::Sin(th)),((CBDistance*TMath::Cos(th))-vertex)));
+    }
+    else if(vertex != 0 && !HasCB(index) && HasTAPS(index))
+    {
+        th = (TMath::ATan2((TAPSDistance*TMath::Tan(th)),(TAPSDistance-vertex)));
+    }
+
+    Double_t Px = clusterEnergy[index]* sin(th)*cos(ph);
+    Double_t Py = clusterEnergy[index]* sin(th)*sin(ph);
+    Double_t Pz = clusterEnergy[index]* cos(th);
+
+    return TLorentzVector(Px, Py, Pz, clusterEnergy[index]);
+}
+
 TLorentzVector	GTreeTrack::GetVector(const Int_t index, const Double_t mass) const
 {
     Double_t th = GetThetaRad(index);
@@ -183,10 +207,54 @@ TLorentzVector	GTreeTrack::GetVector(const Int_t index, const Double_t mass) con
     return TLorentzVector(Px, Py, Pz, E);
 }
 
+TLorentzVector	GTreeTrack::GetShiftedVector(const Int_t index, const Double_t vertex, const Double_t mass) const
+{
+    Double_t th = GetThetaRad(index);
+    Double_t ph = GetPhiRad(index);
+
+    if(vertex != 0 && HasCB(index) && !HasTAPS(index))
+    {
+        th = (TMath::ATan2((CBDistance*TMath::Sin(th)),((CBDistance*TMath::Cos(th))-vertex)));
+    }
+    else if(vertex != 0 && !HasCB(index) && HasTAPS(index))
+    {
+        th = (TMath::ATan2((TAPSDistance*TMath::Tan(th)),(TAPSDistance-vertex)));
+    }
+
+    Double_t E 	= clusterEnergy[index] + mass;
+    Double_t P 	= TMath::Sqrt(E*E - mass*mass);
+    Double_t Px = P* sin(th)*cos(ph);
+    Double_t Py = P* sin(th)*sin(ph);
+    Double_t Pz = P* cos(th);
+
+    return TLorentzVector(Px, Py, Pz, E);
+}
+
 TVector3	GTreeTrack::GetUnitVector(const Int_t index) const
 {
     Double_t th = GetThetaRad(index);
     Double_t ph = GetPhiRad(index);
+
+    Double_t Px = sin(th)*cos(ph);
+    Double_t Py = sin(th)*sin(ph);
+    Double_t Pz = cos(th);
+
+    return TVector3(Px, Py, Pz);
+}
+
+TVector3	GTreeTrack::GetShiftedUnitVector(const Int_t index, const Double_t vertex) const
+{
+    Double_t th = GetThetaRad(index);
+    Double_t ph = GetPhiRad(index);
+
+    if(vertex != 0 && HasCB(index) && !HasTAPS(index))
+    {
+        th = (TMath::ATan2((CBDistance*TMath::Sin(th)),((CBDistance*TMath::Cos(th))-vertex)));
+    }
+    else if(vertex != 0 && !HasCB(index) && HasTAPS(index))
+    {
+        th = (TMath::ATan2((TAPSDistance*TMath::Tan(th)),(TAPSDistance-vertex)));
+    }
 
     Double_t Px = sin(th)*cos(ph);
     Double_t Py = sin(th)*sin(ph);
