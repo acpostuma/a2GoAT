@@ -30,6 +30,8 @@ PAnalyze::PAnalyze()
     AHe_Ng_Tot = new TH1D("AHe_Ng_Tot", "Active Target Photons;Total Photons", 65000, 0.5, 65000.5);
     AHe_Fi = new TH1D("AHe_Fi", "Active Target Hits per Fiber;Fiber;Photons", 100, 0, 100);
     AHe_Si = new TH1D("AHe_Si", "Active Target Hits per Side;Side;Photons", 2, 0, 2);
+    AHe_Num_RMS = new TH2D("AHe_Num_RMS", "Active Target Z-Vertex RMS;Number of SiPMs Hit;RMS of Vertex Variable", 121, -0.5, 120.5, 100, 0, 10);
+    AHe_NgT_RMS = new TH2D("AHe_NgT_RMS", "Active Target Z-Vertex RMS;Total Photons;RMS of Vertex Variable", 650, 0, 6500, 100, 0, 10);
     AHe_Vz = new TH1D("AHe_Vz", "Active Target Z-Vertex;Z-Vertex (cm)", 420, -21, 21);
     AHe_Vp = new TH1D("AHe_Vp", "Active Target Phi-Vertex;Phi-Vertex (deg)", 360, -180, 180);
 
@@ -298,6 +300,11 @@ PAnalyze::PAnalyze()
     Comp_MM_AE_1 = new TH3D("Comp_MM_AE_1", "Compton Missing Mass;Scintillation Photons;#theta_{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 650, 0, 6500, 36, 0, 180, 80, -80, 120);
     Comp_MM_AE_1_R = new TH3D("Comp_MM_AE_1_R", "Compton Missing Mass;Scintillation Photons;#theta_{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 650, 0, 6500, 36, 0, 180, 80, -80, 120);
 
+    Comp_MM_AV_0 = new TH3D("Comp_MM_AV_0", "Compton Missing Mass;Scintillation Photons;#theta_{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 650, 0, 6500, 36, 0, 180, 80, -80, 120);
+    Comp_MM_AV_0_R = new TH3D("Comp_MM_AV_0_R", "Compton Missing Mass;Scintillation Photons;#theta_{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 650, 0, 6500, 36, 0, 180, 80, -80, 120);
+    Comp_MM_AV_1 = new TH3D("Comp_MM_AV_1", "Compton Missing Mass;Scintillation Photons;#theta_{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 650, 0, 6500, 36, 0, 180, 80, -80, 120);
+    Comp_MM_AV_1_R = new TH3D("Comp_MM_AV_1_R", "Compton Missing Mass;Scintillation Photons;#theta_{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 650, 0, 6500, 36, 0, 180, 80, -80, 120);
+
     Comp_MM_NE_0 = new TH3D("Comp_MM_NE_0", "Compton Missing Mass;Tagger Channel;#theta_{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
     Comp_MM_NE_0_R = new TH3D("Comp_MM_NE_0_R", "Compton Missing Mass;Tagger Channel;#theta_{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
     Comp_MM_NE_1 = new TH3D("Comp_MM_NE_1", "Compton Missing Mass;Tagger Channel;#theta_{#gamma} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
@@ -543,8 +550,8 @@ void	PAnalyze::ProcessEvent()
     Int_t n_accept, n_ignore, i_trk0, i_trk1, i_splt, i_part_sz, i_reco_sz, i_tagg_ch;
     Double_t d_part_tm, d_tagg_tm, d_aver_tm, d_subt_tm;
     Double_t d_tagg_en, d_trk0_en, d_trk1_en, d_part_en, d_reco_en, d_splt_en, d_miss_ma;
-    Double_t d_part_th, d_part_ph, d_reco_th, d_miss_th, d_CA, d_OA, d_temp;
-    TLorentzVector lv_trk0, lv_trk1, lv_splt, lv_part, lv_ptot, lv_beam, lv_miss, lv_piP, lv_part_cm, lv_miss_cm;
+    Double_t d_part_th, d_part_ph, d_reco_th, d_miss_th, d_CA, d_OA, d_temp, d_shft_th;
+    TLorentzVector lv_trk0, lv_trk1, lv_splt, lv_part, lv_ptot, lv_beam, lv_miss, lv_piP, lv_part_cm, lv_miss_cm, lv_shft;
     TLorentzVector lv_targ = GetTarget();
     TVector3 v_reco, v_splt, v_lab_cm;
 
@@ -578,7 +585,7 @@ void	PAnalyze::ProcessEvent()
     //////////////////////////////////////////////////
     // Get active target hits
     //////////////////////////////////////////////////
-    Double_t d_ahe_en, d_ahe_en_tot = 0, d_ahe_vz, d_ahe_vp;
+    Double_t d_ahe_en, d_ahe_en_tot = 0, d_ahe_vz = 0, d_ahe_vp;
     Int_t n_ahe, i_ahe_ng, i_ahe_ng_tot = 0;
     std::vector<Int_t> vi_ahe_av;
     AHe_Fi->Reset();
@@ -630,7 +637,12 @@ void	PAnalyze::ProcessEvent()
         if (AHe_Fi->GetMaximumBin() <= (AHe_NFibers/3)) AHe_Fi->GetXaxis()->SetRange(1, 2 * AHe_Fi->GetMaximumBin());
         else if (AHe_Fi->GetMaximumBin() > (2*AHe_NFibers/3)) AHe_Fi->GetXaxis()->SetRange(AHe_NFibers + 1 - 2 * (AHe_NFibers + 1 - AHe_Fi->GetMaximumBin()), AHe_NFibers);
         d_ahe_vz = AHe_Length * (AHe_Fi->GetMean() - 0.5 * AHe_NFibers) / AHe_NFibers;
-        if (i_ahe_ng_tot > 0) AHe_Vz->Fill(d_ahe_vz);
+        if (i_ahe_ng_tot > 0)
+        {
+            AHe_Num_RMS->Fill(n_ahe, AHe_Fi->GetRMS());
+            AHe_NgT_RMS->Fill(i_ahe_ng_tot, AHe_Fi->GetRMS());
+            AHe_Vz->Fill(d_ahe_vz);
+        }
 
         // Get ratio of hits from the side histogram and convert to a phi-vertex
         AHe_Si->ResetStats();
@@ -868,6 +880,9 @@ void	PAnalyze::ProcessEvent()
             d_part_th = GetTracks()->GetTheta(i);
             d_part_ph = GetTracks()->GetPhi(i);
             i_part_sz = GetTracks()->GetClusterSize(i);
+
+            lv_shft = GetTracks()->GetShiftedVector(i, d_ahe_vz);
+            d_shft_th = lv_shft.Theta()*TMath::RadToDeg();
 
             b_NE = b_NI = false;
             if (n_accept == 1) b_NE = true;
@@ -1651,21 +1666,6 @@ void	PAnalyze::ProcessEvent()
             if (!b_hel) b_fill_Ph_0 = (lv_miss.M() >= MMLoC && lv_miss.M() < MMHiC);
             else b_fill_Ph_1 = (lv_miss.M() >= MMLoC && lv_miss.M() < MMHiC);
 
-            // Exclusive event, with active target hits
-            if (b_AE)
-            {
-                if (GHistBGSub::IsPrompt(d_subt_tm))
-                {
-                    if (b_fill_MM_0) Comp_MM_AE_0->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
-                    else if (b_fill_MM_1) Comp_MM_AE_1->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
-                }
-                else if (GHistBGSub::IsRandom(d_subt_tm))
-                {
-                    if (b_fill_MM_0) Comp_MM_AE_0_R->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
-                    else if (b_fill_MM_1) Comp_MM_AE_1_R->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
-                }
-            }
-
             // Exclusive event, without recoil detection
             if (b_NE)
             {
@@ -1817,6 +1817,36 @@ void	PAnalyze::ProcessEvent()
                     else if (b_fill_MM_1) Comp_MM_TI_1_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
                     if (b_fill_Ph_0) Comp_Ph_TI_0_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
                     else if (b_fill_Ph_1) Comp_Ph_TI_1_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                }
+            }
+
+            // Exclusive event, with active target hits
+            if (b_AE)
+            {
+                if (GHistBGSub::IsPrompt(d_subt_tm))
+                {
+                    if (b_fill_MM_0) Comp_MM_AE_0->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) Comp_MM_AE_1->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
+                }
+                else if (GHistBGSub::IsRandom(d_subt_tm))
+                {
+                    if (b_fill_MM_0) Comp_MM_AE_0_R->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) Comp_MM_AE_1_R->Fill(i_ahe_ng_tot, d_part_th, d_miss_ma, event_weight);
+                }
+
+                // Use shifted vertex lorentz vector
+                lv_miss = lv_beam + lv_targ - lv_shft;
+                d_miss_ma = lv_miss.M()-lv_targ.M();
+
+                if (GHistBGSub::IsPrompt(d_subt_tm))
+                {
+                    if (b_fill_MM_0) Comp_MM_AV_0->Fill(i_ahe_ng_tot, d_shft_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) Comp_MM_AV_1->Fill(i_ahe_ng_tot, d_shft_th, d_miss_ma, event_weight);
+                }
+                else if (GHistBGSub::IsRandom(d_subt_tm))
+                {
+                    if (b_fill_MM_0) Comp_MM_AV_0_R->Fill(i_ahe_ng_tot, d_shft_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) Comp_MM_AV_1_R->Fill(i_ahe_ng_tot, d_shft_th, d_miss_ma, event_weight);
                 }
             }
         }
@@ -2187,6 +2217,11 @@ Bool_t  PAnalyze::InitActiveTarget()
             Comp_MM_AE_1->SetBins(nbins, 0, xmax, 36, 0, 180, 80, -80, 120);
             Comp_MM_AE_1_R->SetBins(nbins, 0, xmax, 36, 0, 180, 80, -80, 120);
 
+            Comp_MM_AV_0->SetBins(nbins, 0, xmax, 36, 0, 180, 80, -80, 120);
+            Comp_MM_AV_0_R->SetBins(nbins, 0, xmax, 36, 0, 180, 80, -80, 120);
+            Comp_MM_AV_1->SetBins(nbins, 0, xmax, 36, 0, 180, 80, -80, 120);
+            Comp_MM_AV_1_R->SetBins(nbins, 0, xmax, 36, 0, 180, 80, -80, 120);
+
             AHe_Yield = yield;
         }
 
@@ -2440,6 +2475,9 @@ Bool_t	PAnalyze::Write()
         TH3D *Comp_MM_AE_0_P = (TH3D*)Comp_MM_AE_0->Clone("Comp_MM_AE_0_P");
         TH3D *Comp_MM_AE_1_P = (TH3D*)Comp_MM_AE_1->Clone("Comp_MM_AE_1_P");
 
+        TH3D *Comp_MM_AV_0_P = (TH3D*)Comp_MM_AV_0->Clone("Comp_MM_AV_0_P");
+        TH3D *Comp_MM_AV_1_P = (TH3D*)Comp_MM_AV_1->Clone("Comp_MM_AV_1_P");
+
         TH3D *Comp_MM_NE_0_P = (TH3D*)Comp_MM_NE_0->Clone("Comp_MM_NE_0_P");
         TH3D *Comp_MM_NE_1_P = (TH3D*)Comp_MM_NE_1->Clone("Comp_MM_NE_1_P");
         TH3D *Comp_Ph_NE_0_P = (TH3D*)Comp_Ph_NE_0->Clone("Comp_Ph_NE_0_P");
@@ -2530,6 +2568,7 @@ Bool_t	PAnalyze::Write()
         Comp_OA_Cut_P->Write();
 
         Comp_MM_AE_0_P->Write();
+        Comp_MM_AV_0_P->Write();
 
         Comp_MM_NE_0_P->Write();
         Comp_MM_NI_0_P->Write();
@@ -2623,6 +2662,7 @@ Bool_t	PAnalyze::Write()
             PiP_Ph_TI_1_P->Write();
 
             Comp_MM_AE_1_P->Write();
+            Comp_MM_AV_1_P->Write();
 
             Comp_MM_NE_1_P->Write();
             Comp_Ph_NE_0_P->Write();
@@ -2783,6 +2823,9 @@ Bool_t	PAnalyze::Write()
 
         delete Comp_MM_AE_0_P;
         delete Comp_MM_AE_1_P;
+
+        delete Comp_MM_AV_0_P;
+        delete Comp_MM_AV_1_P;
 
         delete Comp_MM_NE_0_P;
         delete Comp_MM_NE_1_P;
@@ -3050,6 +3093,11 @@ Bool_t	PAnalyze::Write()
         Comp_MM_AE_1->Sumw2();
         Comp_MM_AE_1->Add(Comp_MM_AE_1_R,-ratio);
 
+        Comp_MM_AV_0->Sumw2();
+        Comp_MM_AV_0->Add(Comp_MM_AV_0_R,-ratio);
+        Comp_MM_AV_1->Sumw2();
+        Comp_MM_AV_1->Add(Comp_MM_AV_1_R,-ratio);
+
         Comp_MM_NE_0->Sumw2();
         Comp_MM_NE_0->Add(Comp_MM_NE_0_R,-ratio);
         Comp_MM_NE_1->Sumw2();
@@ -3176,6 +3224,7 @@ Bool_t	PAnalyze::Write()
         Comp_OA_Cut_R->Write();
 
         Comp_MM_AE_0_R->Write();
+        Comp_MM_AV_0_R->Write();
 
         Comp_MM_NE_0_R->Write();
         Comp_MM_NI_0_R->Write();
@@ -3272,6 +3321,7 @@ Bool_t	PAnalyze::Write()
             PiP_Ph_TI_1_R->Write();
 
             Comp_MM_AE_1_R->Write();
+            Comp_MM_AV_1_R->Write();
 
             Comp_MM_NE_1_R->Write();
             Comp_Ph_NE_0_R->Write();
@@ -3431,6 +3481,9 @@ Bool_t	PAnalyze::Write()
     delete Comp_MM_AE_0_R;
     delete Comp_MM_AE_1_R;
 
+    delete Comp_MM_AV_0_R;
+    delete Comp_MM_AV_1_R;
+
     delete Comp_MM_NE_0_R;
     delete Comp_MM_NE_1_R;
     delete Comp_Ph_NE_0_R;
@@ -3557,6 +3610,7 @@ Bool_t	PAnalyze::Write()
         delete PiP_Ph_TI_1;
 
         delete Comp_MM_AE_1;
+        delete Comp_MM_AV_1;
 
         delete Comp_MM_NE_1;
         delete Comp_Ph_NE_0;

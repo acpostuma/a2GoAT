@@ -42,6 +42,8 @@ private:
     TH1*    AHe_Ng_Tot;
     TH1*    AHe_Fi;
     TH1*    AHe_Si;
+    TH2*    AHe_Num_RMS;
+    TH2*    AHe_NgT_RMS;
     TH1*    AHe_Vz;
     TH1*    AHe_Vp;
 
@@ -301,6 +303,11 @@ private:
     TH3*    Comp_MM_AE_0_R;
     TH3*    Comp_MM_AE_1;
     TH3*    Comp_MM_AE_1_R;
+
+    TH3*    Comp_MM_AV_0;
+    TH3*    Comp_MM_AV_0_R;
+    TH3*    Comp_MM_AV_1;
+    TH3*    Comp_MM_AV_1_R;
 
     TH3*    Comp_MM_NE_0;
     TH3*    Comp_MM_NE_0_R;
