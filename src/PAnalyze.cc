@@ -26,9 +26,14 @@ PAnalyze::PAnalyze()
     Pi0_IM_I = new TH1D("Pi0_IM_I", "Pi0 Invariant Mass;m_{#gamma#gamma} (MeV)", 400, 0, 400);
     Pi0_IM_CC = new TH3D("Pi0_IM_CC", "CB Invariant Mass;E_{#gamma_1};E_{#gamma_2};m_{#gamma#gamma} (MeV)", 80, 0, 800, 80, 0, 800, 200, 0, 200);
     Pi0_IM_CT = new TH3D("Pi0_IM_CT", "CB/TAPS Invariant Mass;E_{#gamma_{CB}};E_{#gamma_{TAPS}};m_{#gamma#gamma} (MeV)", 80, 0, 800, 80, 0, 800, 200, 0, 200);
+    Pi0_IM_TT = new TH3D("Pi0_IM_TT", "TAPS Invariant Mass;E_{#gamma_1};E_{#gamma_2};m_{#gamma#gamma} (MeV)", 80, 0, 800, 80, 0, 800, 200, 0, 200);
 
     Pi0_Sp = new TH2D("Pi0_Sp", "Split OA vs Energy Ratio;E_{split}/E_{#gamma};#theta_{OA} (deg)", 200, 0, 1, 180, 0, 180);
     Pi0_CA = new TH1D("Pi0_CA", "Pi0 Recoil Coplanarity Angle;#phi_{#pi^{0}}-#phi_{p} (deg)", 360, 0, 360);
+
+    Pi0_Tm_CC = new TH2D("Pi0_Tm_CC", "Pi0 Time;Tagger Channel;t_{#gamma}-t_{#pi^{0}} (ns)", 352, 0, 352, 1400, -700, 700);
+    Pi0_Tm_CT = new TH2D("Pi0_Tm_CT", "Pi0 Time;Tagger Channel;t_{#gamma}-t_{#pi^{0}} (ns)", 352, 0, 352, 1400, -700, 700);
+    Pi0_Tm_TT = new TH2D("Pi0_Tm_TT", "Pi0 Time;Tagger Channel;t_{#gamma}-t_{#pi^{0}} (ns)", 352, 0, 352, 1400, -700, 700);
 
     Pi0_Tm_NE = new TH2D("Pi0_Tm_NE", "Pi0 Time;Tagger Channel;t_{#gamma}-t_{#pi^{0}} (ns)", 352, 0, 352, 1400, -700, 700);
     Pi0_Tm_NI = new TH2D("Pi0_Tm_NI", "Pi0 Time;Tagger Channel;t_{#gamma}-t_{#pi^{0}} (ns)", 352, 0, 352, 1400, -700, 700);
@@ -43,6 +48,33 @@ PAnalyze::PAnalyze()
     Pi0_OA_R = new TH3D("Pi0_OA_R", "Pi0 Recoil Opening Angle;Tagger Channel;#theta_{miss} (deg);Opening Angle (deg)", 352, 0, 352, 12, 0, 60, 90, 0, 180);
     Pi0_OA_Cut = new TH3D("Pi0_OA_Cut", "Pi0 Recoil Opening Angle;Tagger Channel;#theta_{miss} (deg);Opening Angle (deg)", 352, 0, 352, 12, 0, 60, 90, 0, 180);
     Pi0_OA_Cut_R = new TH3D("Pi0_OA_Cut_R", "Pi0 Recoil Opening Angle;Tagger Channel;#theta_{miss} (deg);Opening Angle (deg)", 352, 0, 352, 12, 0, 60, 90, 0, 180);
+
+    Pi0_MM_CC_0 = new TH3D("Pi0_MM_CC_0", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_CC_0_R = new TH3D("Pi0_MM_CC_0_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_CC_1 = new TH3D("Pi0_MM_CC_1", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_CC_1_R = new TH3D("Pi0_MM_CC_1_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_Ph_CC_0 = new TH3D("Pi0_Ph_CC_0", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi^{0}} (deg);#phi_{#pi^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Pi0_Ph_CC_0_R = new TH3D("Pi0_Ph_CC_0_R", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi^{0}} (deg);#phi_{#pi^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Pi0_Ph_CC_1 = new TH3D("Pi0_Ph_CC_1", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi^{0}} (deg);#phi_{#pi^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Pi0_Ph_CC_1_R = new TH3D("Pi0_Ph_CC_1_R", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi^{0}} (deg);#phi_{#pi^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+
+    Pi0_MM_CT_0 = new TH3D("Pi0_MM_CT_0", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_CT_0_R = new TH3D("Pi0_MM_CT_0_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_CT_1 = new TH3D("Pi0_MM_CT_1", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_CT_1_R = new TH3D("Pi0_MM_CT_1_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_Ph_CT_0 = new TH3D("Pi0_Ph_CT_0", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi^{0}} (deg);#phi_{#pi^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Pi0_Ph_CT_0_R = new TH3D("Pi0_Ph_CT_0_R", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi^{0}} (deg);#phi_{#pi^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Pi0_Ph_CT_1 = new TH3D("Pi0_Ph_CT_1", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi^{0}} (deg);#phi_{#pi^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Pi0_Ph_CT_1_R = new TH3D("Pi0_Ph_CT_1_R", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi^{0}} (deg);#phi_{#pi^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+
+    Pi0_MM_TT_0 = new TH3D("Pi0_MM_TT_0", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_TT_0_R = new TH3D("Pi0_MM_TT_0_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_TT_1 = new TH3D("Pi0_MM_TT_1", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_MM_TT_1_R = new TH3D("Pi0_MM_TT_1_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
+    Pi0_Ph_TT_0 = new TH3D("Pi0_Ph_TT_0", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi^{0}} (deg);#phi_{#pi^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Pi0_Ph_TT_0_R = new TH3D("Pi0_Ph_TT_0_R", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi^{0}} (deg);#phi_{#pi^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Pi0_Ph_TT_1 = new TH3D("Pi0_Ph_TT_1", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi^{0}} (deg);#phi_{#pi^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
+    Pi0_Ph_TT_1_R = new TH3D("Pi0_Ph_TT_1_R", "Pi0 Phi Distribution;Tagger Channel;#theta_{#pi^{0}} (deg);#phi_{#pi^{0}} (deg)", 352, 0, 352, 36, 0, 180, 72, -180, 180);
 
     Pi0_MM_NE_0 = new TH3D("Pi0_MM_NE_0", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
     Pi0_MM_NE_0_R = new TH3D("Pi0_MM_NE_0_R", "Pi0 Missing Mass;Tagger Channel;#theta_{#pi^{0}} (deg);m_{miss}-m_{targ} (MeV)", 352, 0, 352, 36, 0, 180, 80, -80, 120);
@@ -475,8 +507,8 @@ void	PAnalyze::ProcessEvent()
     TLorentzVector lv_targ = GetTarget();
     TVector3 v_reco, v_splt, v_lab_cm;
 
-    Bool_t b_pi0, b_piP, b_comp, b_pi0_CC, b_pi0_CT, b_pi0_TC, b_NE, b_NI, b_CE, b_CI, b_TE, b_TI, b_WE, b_WI, b_cut_CA, b_cut_OA;
-    b_pi0 = b_piP = b_comp = b_pi0_CC = b_pi0_CT = b_pi0_TC = b_NE = b_NI = b_CE = b_CI = b_TE = b_TI = b_WE = b_WI = b_cut_CA = b_cut_OA = false;
+    Bool_t b_pi0, b_piP, b_comp, b_pi0_CC, b_pi0_CT, b_pi0_TC, b_pi0_TT, b_NE, b_NI, b_CE, b_CI, b_TE, b_TI, b_WE, b_WI, b_cut_CA, b_cut_OA;
+    b_pi0 = b_piP = b_comp = b_pi0_CC = b_pi0_CT = b_pi0_TC = b_pi0_TT = b_NE = b_NI = b_CE = b_CI = b_TE = b_TI = b_WE = b_WI = b_cut_CA = b_cut_OA = false;
 
     n_accept = n_ignore = 0;
     i_trk0 = i_trk1 = i_splt = -1;
@@ -526,21 +558,26 @@ void	PAnalyze::ProcessEvent()
                 {
                     d_part_tm = 0.5*(GetTracks()->GetTime(i) + GetTracks()->GetTime(j));
                     b_pi0_CC = true;
-                    b_pi0_CT = b_pi0_TC = false;
+                    b_pi0_CT = b_pi0_TC = b_pi0_TT = false;
                 }
                 else if (GetTracks()->HasCB(i))
                 {
                     d_part_tm = (GetTracks()->GetTime(i));
                     b_pi0_CT = true;
-                    b_pi0_CC = b_pi0_TC = false;
+                    b_pi0_CC = b_pi0_TC = b_pi0_TT = false;
                 }
                 else if (GetTracks()->HasCB(j))
                 {
                     d_part_tm = (GetTracks()->GetTime(j));
                     b_pi0_TC = true;
-                    b_pi0_CC = b_pi0_CT = false;
+                    b_pi0_CC = b_pi0_CT = b_pi0_TT = false;
                 }
-                else continue;
+                else
+                {
+                    d_part_tm = 0.5*(GetTracks()->GetTime(i) + GetTracks()->GetTime(j));
+                    b_pi0_TT = true;
+                    b_pi0_CC = b_pi0_CT = b_pi0_TC = false;
+                }
                 i_trk0 = i;
                 i_trk1 = j;
                 i_splt = -1;
@@ -579,21 +616,26 @@ void	PAnalyze::ProcessEvent()
                         {
                             d_part_tm = 0.5*(GetTracks()->GetTime(i) + GetTracks()->GetTime(j));
                             b_pi0_CC = true;
-                            b_pi0_CT = b_pi0_TC = false;
+                            b_pi0_CT = b_pi0_TC = b_pi0_TT = false;
                         }
                         else if (GetTracks()->HasCB(i))
                         {
                             d_part_tm = (GetTracks()->GetTime(i));
                             b_pi0_CT = true;
-                            b_pi0_CC = b_pi0_TC = false;
+                            b_pi0_CC = b_pi0_TC = b_pi0_TT = false;
                         }
                         else if (GetTracks()->HasCB(j))
                         {
                             d_part_tm = (GetTracks()->GetTime(j));
                             b_pi0_TC = true;
-                            b_pi0_CC = b_pi0_CT = false;
+                            b_pi0_CC = b_pi0_CT = b_pi0_TT = false;
                         }
-                        else continue;
+                        else
+                        {
+                            d_part_tm = 0.5*(GetTracks()->GetTime(i) + GetTracks()->GetTime(j));
+                            b_pi0_TT = true;
+                            b_pi0_CC = b_pi0_CT = b_pi0_TC = false;
+                        }
                         i_trk0 = i;
                         i_trk1 = j;
                         i_splt = k;
@@ -957,6 +999,64 @@ void	PAnalyze::ProcessEvent()
             //////////////////////////////////////////////////
             if (!b_hel) b_fill_Ph_0 = (lv_miss.M() >= MMLoC && lv_miss.M() < MMHiC);
             else b_fill_Ph_1 = (lv_miss.M() >= MMLoC && lv_miss.M() < MMHiC);
+
+            // Inclusive event, both photons in CB
+            if (b_pi0_CC)
+            {
+                Pi0_Tm_CC->Fill(i_tagg_ch, d_subt_tm, event_weight);
+                if (GHistBGSub::IsPrompt(d_subt_tm))
+                {
+                    if (b_fill_MM_0) Pi0_MM_CC_0->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) Pi0_MM_CC_1->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    if (b_fill_Ph_0) Pi0_Ph_CC_0->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                    else if (b_fill_Ph_1) Pi0_Ph_CC_1->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                }
+                else if (GHistBGSub::IsRandom(d_subt_tm))
+                {
+                    if (b_fill_MM_0) Pi0_MM_CC_0_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) Pi0_MM_CC_1_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    if (b_fill_Ph_0) Pi0_Ph_CC_0_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                    else if (b_fill_Ph_1) Pi0_Ph_CC_1_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                }
+            }
+            // Inclusive event, both photons in TAPS
+            else if (b_pi0_TT)
+            {
+                Pi0_Tm_TT->Fill(i_tagg_ch, d_subt_tm, event_weight);
+                if (GHistBGSub::IsPrompt(d_subt_tm))
+                {
+                    if (b_fill_MM_0) Pi0_MM_TT_0->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) Pi0_MM_TT_1->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    if (b_fill_Ph_0) Pi0_Ph_TT_0->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                    else if (b_fill_Ph_1) Pi0_Ph_TT_1->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                }
+                else if (GHistBGSub::IsRandom(d_subt_tm))
+                {
+                    if (b_fill_MM_0) Pi0_MM_TT_0_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) Pi0_MM_TT_1_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    if (b_fill_Ph_0) Pi0_Ph_TT_0_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                    else if (b_fill_Ph_1) Pi0_Ph_TT_1_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                }
+            }
+            // Inclusive event, one photon in CB one in TAPS
+            else if (b_pi0_CT || b_pi0_TC)
+            {
+                Pi0_Tm_CT->Fill(i_tagg_ch, d_subt_tm, event_weight);
+                if (GHistBGSub::IsPrompt(d_subt_tm))
+                {
+                    if (b_fill_MM_0) Pi0_MM_CT_0->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) Pi0_MM_CT_1->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    if (b_fill_Ph_0) Pi0_Ph_CT_0->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                    else if (b_fill_Ph_1) Pi0_Ph_CT_1->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                }
+                else if (GHistBGSub::IsRandom(d_subt_tm))
+                {
+                    if (b_fill_MM_0) Pi0_MM_CT_0_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    else if (b_fill_MM_1) Pi0_MM_CT_1_R->Fill(i_tagg_ch, d_part_th, d_miss_ma, event_weight);
+                    if (b_fill_Ph_0) Pi0_Ph_CT_0_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                    else if (b_fill_Ph_1) Pi0_Ph_CT_1_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
+                }
+            }
 
             // Exclusive event, without recoil detected
             if (b_NE)
@@ -1979,6 +2079,21 @@ Bool_t	PAnalyze::Write()
         TH3D *Pi0_OA_P = (TH3D*)Pi0_OA->Clone("Pi0_OA_P");
         TH3D *Pi0_OA_Cut_P = (TH3D*)Pi0_OA_Cut->Clone("Pi0_OA_Cut_P");
 
+        TH3D *Pi0_MM_CC_0_P = (TH3D*)Pi0_MM_CC_0->Clone("Pi0_MM_CC_0_P");
+        TH3D *Pi0_MM_CC_1_P = (TH3D*)Pi0_MM_CC_1->Clone("Pi0_MM_CC_1_P");
+        TH3D *Pi0_Ph_CC_0_P = (TH3D*)Pi0_Ph_CC_0->Clone("Pi0_Ph_CC_0_P");
+        TH3D *Pi0_Ph_CC_1_P = (TH3D*)Pi0_Ph_CC_1->Clone("Pi0_Ph_CC_1_P");
+
+        TH3D *Pi0_MM_CT_0_P = (TH3D*)Pi0_MM_CT_0->Clone("Pi0_MM_CT_0_P");
+        TH3D *Pi0_MM_CT_1_P = (TH3D*)Pi0_MM_CT_1->Clone("Pi0_MM_CT_1_P");
+        TH3D *Pi0_Ph_CT_0_P = (TH3D*)Pi0_Ph_CT_0->Clone("Pi0_Ph_CT_0_P");
+        TH3D *Pi0_Ph_CT_1_P = (TH3D*)Pi0_Ph_CT_1->Clone("Pi0_Ph_CT_1_P");
+
+        TH3D *Pi0_MM_TT_0_P = (TH3D*)Pi0_MM_TT_0->Clone("Pi0_MM_TT_0_P");
+        TH3D *Pi0_MM_TT_1_P = (TH3D*)Pi0_MM_TT_1->Clone("Pi0_MM_TT_1_P");
+        TH3D *Pi0_Ph_TT_0_P = (TH3D*)Pi0_Ph_TT_0->Clone("Pi0_Ph_TT_0_P");
+        TH3D *Pi0_Ph_TT_1_P = (TH3D*)Pi0_Ph_TT_1->Clone("Pi0_Ph_TT_1_P");
+
         TH3D *Pi0_MM_NE_0_P = (TH3D*)Pi0_MM_NE_0->Clone("Pi0_MM_NE_0_P");
         TH3D *Pi0_MM_NE_1_P = (TH3D*)Pi0_MM_NE_1->Clone("Pi0_MM_NE_1_P");
         TH3D *Pi0_Ph_NE_0_P = (TH3D*)Pi0_Ph_NE_0->Clone("Pi0_Ph_NE_0_P");
@@ -2122,6 +2237,10 @@ Bool_t	PAnalyze::Write()
         Pi0_OA_P->Write();
         Pi0_OA_Cut_P->Write();
 
+        Pi0_MM_CC_0_P->Write();
+        Pi0_MM_CT_0_P->Write();
+        Pi0_MM_TT_0_P->Write();
+
         Pi0_MM_NE_0_P->Write();
         Pi0_MM_NI_0_P->Write();
         Pi0_MM_CE_0_P->Write();
@@ -2162,6 +2281,18 @@ Bool_t	PAnalyze::Write()
 
         if(cir_beam || lin_beam)
         {
+            Pi0_MM_CC_1_P->Write();
+            Pi0_Ph_CC_0_P->Write();
+            Pi0_Ph_CC_1_P->Write();
+
+            Pi0_MM_CT_1_P->Write();
+            Pi0_Ph_CT_0_P->Write();
+            Pi0_Ph_CT_1_P->Write();
+
+            Pi0_MM_TT_1_P->Write();
+            Pi0_Ph_TT_0_P->Write();
+            Pi0_Ph_TT_1_P->Write();
+
             Pi0_MM_NE_1_P->Write();
             Pi0_Ph_NE_0_P->Write();
             Pi0_Ph_NE_1_P->Write();
@@ -2270,6 +2401,21 @@ Bool_t	PAnalyze::Write()
 
         delete Pi0_OA_P;
         delete Pi0_OA_Cut_P;
+
+        delete Pi0_MM_CC_0_P;
+        delete Pi0_MM_CC_1_P;
+        delete Pi0_Ph_CC_0_P;
+        delete Pi0_Ph_CC_1_P;
+
+        delete Pi0_MM_CT_0_P;
+        delete Pi0_MM_CT_1_P;
+        delete Pi0_Ph_CT_0_P;
+        delete Pi0_Ph_CT_1_P;
+
+        delete Pi0_MM_TT_0_P;
+        delete Pi0_MM_TT_1_P;
+        delete Pi0_Ph_TT_0_P;
+        delete Pi0_Ph_TT_1_P;
 
         delete Pi0_MM_NE_0_P;
         delete Pi0_MM_NE_1_P;
@@ -2422,6 +2568,33 @@ Bool_t	PAnalyze::Write()
         Pi0_OA->Add(Pi0_OA_R,-ratio);
         Pi0_OA_Cut->Sumw2();
         Pi0_OA_Cut->Add(Pi0_OA_Cut_R,-ratio);
+
+        Pi0_MM_CC_0->Sumw2();
+        Pi0_MM_CC_0->Add(Pi0_MM_CC_0_R,-ratio);
+        Pi0_MM_CC_1->Sumw2();
+        Pi0_MM_CC_1->Add(Pi0_MM_CC_1_R,-ratio);
+        Pi0_Ph_CC_0->Sumw2();
+        Pi0_Ph_CC_0->Add(Pi0_Ph_CC_0_R,-ratio);
+        Pi0_Ph_CC_1->Sumw2();
+        Pi0_Ph_CC_1->Add(Pi0_Ph_CC_1_R,-ratio);
+
+        Pi0_MM_CT_0->Sumw2();
+        Pi0_MM_CT_0->Add(Pi0_MM_CT_0_R,-ratio);
+        Pi0_MM_CT_1->Sumw2();
+        Pi0_MM_CT_1->Add(Pi0_MM_CT_1_R,-ratio);
+        Pi0_Ph_CT_0->Sumw2();
+        Pi0_Ph_CT_0->Add(Pi0_Ph_CT_0_R,-ratio);
+        Pi0_Ph_CT_1->Sumw2();
+        Pi0_Ph_CT_1->Add(Pi0_Ph_CT_1_R,-ratio);
+
+        Pi0_MM_TT_0->Sumw2();
+        Pi0_MM_TT_0->Add(Pi0_MM_TT_0_R,-ratio);
+        Pi0_MM_TT_1->Sumw2();
+        Pi0_MM_TT_1->Add(Pi0_MM_TT_1_R,-ratio);
+        Pi0_Ph_TT_0->Sumw2();
+        Pi0_Ph_TT_0->Add(Pi0_Ph_TT_0_R,-ratio);
+        Pi0_Ph_TT_1->Sumw2();
+        Pi0_Ph_TT_1->Add(Pi0_Ph_TT_1_R,-ratio);
 
         Pi0_MM_NE_0->Sumw2();
         Pi0_MM_NE_0->Add(Pi0_MM_NE_0_R,-ratio);
@@ -2674,6 +2847,10 @@ Bool_t	PAnalyze::Write()
         Pi0_OA_R->Write();
         Pi0_OA_Cut_R->Write();
 
+        Pi0_MM_CC_0_R->Write();
+        Pi0_MM_CT_0_R->Write();
+        Pi0_MM_TT_0_R->Write();
+
         Pi0_MM_NE_0_R->Write();
         Pi0_MM_NI_0_R->Write();
         Pi0_MM_CE_0_R->Write();
@@ -2717,6 +2894,18 @@ Bool_t	PAnalyze::Write()
 
         if(cir_beam || lin_beam)
         {
+            Pi0_MM_CC_1_R->Write();
+            Pi0_Ph_CC_0_R->Write();
+            Pi0_Ph_CC_1_R->Write();
+
+            Pi0_MM_CT_1_R->Write();
+            Pi0_Ph_CT_0_R->Write();
+            Pi0_Ph_CT_1_R->Write();
+
+            Pi0_MM_TT_1_R->Write();
+            Pi0_Ph_TT_0_R->Write();
+            Pi0_Ph_TT_1_R->Write();
+
             Pi0_MM_NE_1_R->Write();
             Pi0_Ph_NE_0_R->Write();
             Pi0_Ph_NE_1_R->Write();
@@ -2823,6 +3012,21 @@ Bool_t	PAnalyze::Write()
 
     delete Pi0_OA_R;
     delete Pi0_OA_Cut_R;
+
+    delete Pi0_MM_CC_0_R;
+    delete Pi0_MM_CC_1_R;
+    delete Pi0_Ph_CC_0_R;
+    delete Pi0_Ph_CC_1_R;
+
+    delete Pi0_MM_CT_0_R;
+    delete Pi0_MM_CT_1_R;
+    delete Pi0_Ph_CT_0_R;
+    delete Pi0_Ph_CT_1_R;
+
+    delete Pi0_MM_TT_0_R;
+    delete Pi0_MM_TT_1_R;
+    delete Pi0_Ph_TT_0_R;
+    delete Pi0_Ph_TT_1_R;
 
     delete Pi0_MM_NE_0_R;
     delete Pi0_MM_NE_1_R;
@@ -2960,6 +3164,18 @@ Bool_t	PAnalyze::Write()
 
     if(!cir_beam && !lin_beam)
     {
+        delete Pi0_MM_CC_1;
+        delete Pi0_Ph_CC_0;
+        delete Pi0_Ph_CC_1;
+
+        delete Pi0_MM_CT_1;
+        delete Pi0_Ph_CT_0;
+        delete Pi0_Ph_CT_1;
+
+        delete Pi0_MM_TT_1;
+        delete Pi0_Ph_TT_0;
+        delete Pi0_Ph_TT_1;
+
         delete Pi0_MM_NE_1;
         delete Pi0_Ph_NE_0;
         delete Pi0_Ph_NE_1;

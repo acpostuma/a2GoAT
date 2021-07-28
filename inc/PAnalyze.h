@@ -38,9 +38,14 @@ private:
     TH1*    Pi0_IM_I;
     TH3*    Pi0_IM_CC;
     TH3*    Pi0_IM_CT;
+    TH3*    Pi0_IM_TT;
 
     TH2*    Pi0_Sp;
     TH1*    Pi0_CA;
+
+    TH2*    Pi0_Tm_CC;
+    TH2*    Pi0_Tm_CT;
+    TH2*    Pi0_Tm_TT;
 
     TH2*    Pi0_Tm_NE;
     TH2*    Pi0_Tm_NI;
@@ -55,6 +60,33 @@ private:
     TH3*    Pi0_OA_R;
     TH3*    Pi0_OA_Cut;
     TH3*    Pi0_OA_Cut_R;
+
+    TH3*    Pi0_MM_CC_0;
+    TH3*    Pi0_MM_CC_0_R;
+    TH3*    Pi0_MM_CC_1;
+    TH3*    Pi0_MM_CC_1_R;
+    TH3*    Pi0_Ph_CC_0;
+    TH3*    Pi0_Ph_CC_0_R;
+    TH3*    Pi0_Ph_CC_1;
+    TH3*    Pi0_Ph_CC_1_R;
+
+    TH3*    Pi0_MM_CT_0;
+    TH3*    Pi0_MM_CT_0_R;
+    TH3*    Pi0_MM_CT_1;
+    TH3*    Pi0_MM_CT_1_R;
+    TH3*    Pi0_Ph_CT_0;
+    TH3*    Pi0_Ph_CT_0_R;
+    TH3*    Pi0_Ph_CT_1;
+    TH3*    Pi0_Ph_CT_1_R;
+
+    TH3*    Pi0_MM_TT_0;
+    TH3*    Pi0_MM_TT_0_R;
+    TH3*    Pi0_MM_TT_1;
+    TH3*    Pi0_MM_TT_1_R;
+    TH3*    Pi0_Ph_TT_0;
+    TH3*    Pi0_Ph_TT_0_R;
+    TH3*    Pi0_Ph_TT_1;
+    TH3*    Pi0_Ph_TT_1_R;
 
     TH3*    Pi0_MM_NE_0;
     TH3*    Pi0_MM_NE_0_R;
