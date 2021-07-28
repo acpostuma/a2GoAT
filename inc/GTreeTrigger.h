@@ -41,10 +41,14 @@ public:
             Double_t	GetEnergySum()          const {return energySum;}
             Int_t		GetNTriggerPattern()    const {return nTriggerPattern;}
     const   Int_t*		GetTriggerPattern()     const {return triggerPattern;}
+            Int_t		GetTriggerPattern(const Int_t index) const {return triggerPattern[index];}
             Int_t		GetNErrors()            const {return nErrors;}
     const   Int_t*		GetErrorModuleID()      const {return errorModuleID;}
+            Int_t		GetErrorModuleID(const Int_t index) const {return errorModuleID[index];}
     const   Int_t*		GetErrorModuleIndex()   const {return errorModuleIndex;}
+            Int_t		GetErrorModuleIndex(const Int_t index) const {return errorModuleIndex[index];}
     const   Int_t*		GetErrorCode()          const {return errorCode;}
+            Int_t		GetErrorCode(const Int_t index) const {return errorCode[index];}
             Bool_t 	    GetHelicity()    	    const {return helicity;}
             Bool_t 	    HasHelicity()    	    const {return hasHelicity;}
             Float_t     GetMCWeight()           const {return MC_weight;}
