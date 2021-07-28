@@ -190,6 +190,15 @@ add_executable(Analyze
    )
 target_link_libraries(Analyze goatbase ghist ${LIBS} ${ROOT_LIBRARIES})
 
+add_executable(CBESum
+   inc/PPhysics.h
+   src/PPhysics.cc
+   inc/PCBESum.h
+   src/PCBESum.cc
+   src/CBESum_main.cc
+   )
+target_link_libraries(CBESum goatbase ghist ${LIBS} ${ROOT_LIBRARIES})
+
 # install some scripts to the bin directory
 # by creating symlinks
 file(GLOB CORE_EXTRA_SCRIPTS "scripts/*")
