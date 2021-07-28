@@ -14,17 +14,31 @@ private:
     Int_t		NaICluster[720];
     Double_t    NaIEnergy[720];
     Double_t    NaITime[720];
+
+    Int_t       nNaIADCs;
+    Int_t       NaIADCs[720];
+    Int_t       NaIADCsRaw[720];
+    Bool_t      NaIADCsHit[720];
+
+    Int_t       nNaITDCs;
+    Int_t       NaITDCs[720];
+    Int_t       NaITDCsRaw[720];
+    Bool_t      NaITDCsHit[720];
+
     Int_t		nPIDHits;
     Int_t		PIDHits[24];
     Double_t    PIDEnergy[24];
     Double_t    PIDTime[24];
+
     Int_t		nMWPCHits;
     Int_t		MWPCHits[860];
+
     Int_t		nBaF2Hits;
     Int_t		BaF2Hits[438];
     Int_t		BaF2Cluster[438];
     Double_t    BaF2Energy[438];
     Double_t    BaF2Time[438];
+
     Int_t		nVetoHits;
     Int_t		VetoHits[438];
     Double_t    VetoEnergy[438];
@@ -38,7 +52,7 @@ public:
     GTreeDetectorHits(GTreeManager *Manager);
     virtual ~GTreeDetectorHits();
 
-    virtual void            Clear()                         {nNaIHits=0; nPIDHits=0; nMWPCHits=0; nBaF2Hits=0; nVetoHits=0;}
+    virtual void            Clear()                         {nNaIHits=0; nNaIADCs=0; nNaITDCs=0; nPIDHits=0; nMWPCHits=0; nBaF2Hits=0; nVetoHits=0;}
 
             Int_t		GetNNaIHits()              	const	{return nNaIHits;}
     const	Int_t*		GetNaIHits()           		const	{return NaIHits;}
@@ -49,6 +63,22 @@ public:
             Double_t	GetNaIEnergy(const Int_t index)	const	{return NaIEnergy[index];}
     const	Double_t*	GetNaITime()           		const	{return NaITime;}
             Double_t	GetNaITime(const Int_t index)	const	{return NaITime[index];}
+
+            Int_t		GetNNaIADCs()              	const	{return nNaIADCs;}
+    const	Int_t*		GetNaIADCs()           		const	{return NaIADCs;}
+            Int_t		GetNaIADCs(const Int_t index)	const	{return NaIADCs[index];}
+    const	Int_t*		GetNaIADCsRaw()           		const	{return NaIADCsRaw;}
+            Int_t		GetNaIADCsRaw(const Int_t index)	const	{return NaIADCsRaw[index];}
+    const	Bool_t*		GetNaIADCsHit()           		const	{return NaIADCsHit;}
+            Bool_t		GetNaIADCsHit(const Int_t index)	const	{return NaIADCsHit[index];}
+
+            Int_t		GetNNaITDCs()              	const	{return nNaITDCs;}
+    const	Int_t*		GetNaITDCs()           		const	{return NaITDCs;}
+            Int_t		GetNaITDCs(const Int_t index)	const	{return NaITDCs[index];}
+    const	Int_t*		GetNaITDCsRaw()           		const	{return NaITDCsRaw;}
+            Int_t		GetNaITDCsRaw(const Int_t index)	const	{return NaITDCsRaw[index];}
+    const	Bool_t*		GetNaITDCsHit()           		const	{return NaITDCsHit;}
+            Bool_t		GetNaITDCsHit(const Int_t index)	const	{return NaITDCsHit[index];}
 
             Int_t		GetNPIDHits()      			const	{return nPIDHits;}
     const	Int_t*		GetPIDHits()               	const	{return PIDHits;}
