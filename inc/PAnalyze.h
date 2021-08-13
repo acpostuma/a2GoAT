@@ -33,6 +33,26 @@ private:
     TH2*    Inc_1;
     TH2*    Inc_1_R;
 
+    //TPC histograms
+    TH1* TPC_Energy;
+    TH1* TPC_Z;
+    TH1* TPC_Phi;
+    TH1* TPC_Theta;
+    
+    TH1*    AHe_En;
+    TH1*    AHe_Ng;
+    TH1*    AHe_Av;
+    TH2*    AHe_Av_Num;
+    TH1*    AHe_Av_Cut;
+    TH1*    AHe_En_Tot;
+    TH1*    AHe_Ng_Tot;
+    TH1*    AHe_Fi;
+    TH1*    AHe_Si;
+    TH2*    AHe_Num_RMS;
+    TH2*    AHe_NgT_RMS;
+    TH1*    AHe_Vz;
+    TH1*    AHe_Vp;
+
     TH1*    Pi0_IM_A;
     TH1*    Pi0_IM_E;
     TH1*    Pi0_IM_I;
@@ -362,6 +382,13 @@ private:
     Double_t MMHiC;
     Double_t OACut;
     Double_t ESCut;
+
+    Bool_t   AHe_Helix;
+    Double_t AHe_Gain;
+    Int_t    AHe_Thresh;
+    Double_t AHe_Length;
+    Int_t    AHe_NFibers;
+    Double_t AHe_Yield;
 
     Bool_t  save_randoms;
     Bool_t  split_search;

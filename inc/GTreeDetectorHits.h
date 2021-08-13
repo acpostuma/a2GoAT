@@ -44,6 +44,16 @@ private:
     Double_t    VetoEnergy[438];
     Double_t    VetoTime[438];
 
+    Int_t		nActiveHits;
+    Int_t		ActiveHits[200];
+    Double_t	ActiveEnergy[200];
+    Double_t	ActiveTime[200];
+
+    Int_t		nTPCHits;
+    Int_t		TPCHits[200];
+    Double_t	TPCCharge[200];
+    Double_t	TPCTime[200];
+
 protected:
     virtual void    SetBranchAdresses();
     virtual void    SetBranches();
@@ -52,7 +62,7 @@ public:
     GTreeDetectorHits(GTreeManager *Manager);
     virtual ~GTreeDetectorHits();
 
-    virtual void            Clear()                         {nNaIHits=0; nNaIADCs=0; nNaITDCs=0; nPIDHits=0; nMWPCHits=0; nBaF2Hits=0; nVetoHits=0;}
+    virtual void            Clear()                         {nNaIHits=0; nNaIADCs=0; nNaITDCs=0; nPIDHits=0; nMWPCHits=0; nBaF2Hits=0; nVetoHits=0; nActiveHits=0; nTPCHits=0;}
 
             Int_t		GetNNaIHits()              	const	{return nNaIHits;}
     const	Int_t*		GetNaIHits()           		const	{return NaIHits;}
@@ -109,6 +119,22 @@ public:
             Double_t	GetVetoEnergy(const Int_t index)	const	{return VetoEnergy[index];}
     const	Double_t*	GetVetoTime()           		const	{return VetoTime;}
             Double_t	GetVetoTime(const Int_t index)	const	{return VetoTime[index];}
+	//Active and TPC
+	Int_t GetNActiveHits() const {return nActiveHits;}
+	const Int_t* GetActiveHits() const {return ActiveHits;}
+	Int_t GetActiveHits(const Int_t index) const {return ActiveHits[index];}
+	const Double_t* GetActiveEnergy() const {return ActiveEnergy;}
+	Double_t GetActiveEnergy(const Int_t index) const {return ActiveEnergy[index];}
+	const Double_t*	GetActiveTime() const {return ActiveTime;}
+	Double_t GetActiveTime(const Int_t index) const {return ActiveTime[index];}
+	//TPC
+	Int_t GetNTPCHits() const {return nTPCHits;}
+	const Int_t* GetTPCHits() const {return TPCHits;}
+	Int_t GetTPcHits(const Int_t index) const {return TPCHits[index];}
+	const Double_t* GetTPCCharge() const {return TPCCharge;}
+	Double_t GetTPCCharge(const Int_t index) const {return TPCCharge[index];}
+	const Double_t*	GetTPCTime() const {return TPCTime;}
+	Double_t GetTPCTime(const Int_t index) const {return TPCTime[index];}
 };
 
 

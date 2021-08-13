@@ -10,7 +10,9 @@ GTreeDetectorHits::GTreeDetectorHits(GTreeManager *Manager)    :
     nPIDHits(0),
     nMWPCHits(0),
     nBaF2Hits(0),
-    nVetoHits(0)
+    nVetoHits(0),
+    nActiveHits(0),
+    nTPCHits(0)
 {
 }
 
@@ -54,6 +56,14 @@ void    GTreeDetectorHits::SetBranchAdresses()
     if(inputTree->GetBranch("VetoHits")) inputTree->SetBranchAddress("VetoHits", VetoHits);
     if(inputTree->GetBranch("VetoEnergy")) inputTree->SetBranchAddress("VetoEnergy", VetoEnergy);
     if(inputTree->GetBranch("VetoTime")) inputTree->SetBranchAddress("VetoTime", VetoTime);
+    if(inputTree->GetBranch("nActiveHits")) inputTree->SetBranchAddress("nActiveHits", &nActiveHits);
+    if(inputTree->GetBranch("ActiveHits")) inputTree->SetBranchAddress("ActiveHits", ActiveHits);
+    if(inputTree->GetBranch("ActiveEnergy")) inputTree->SetBranchAddress("ActiveEnergy", ActiveEnergy);
+    if(inputTree->GetBranch("ActiveTime")) inputTree->SetBranchAddress("ActiveTime", ActiveTime);
+    if(inputTree->GetBranch("nTPCHits")) inputTree->SetBranchAddress("nTPCHits", &nTPCHits);
+    if(inputTree->GetBranch("TPCHits")) inputTree->SetBranchAddress("TPCHits", TPCHits);
+    if(inputTree->GetBranch("TPCCharge")) inputTree->SetBranchAddress("TPCCharge", TPCCharge);
+    if(inputTree->GetBranch("TPCTime")) inputTree->SetBranchAddress("TPCTime", TPCTime);
 }
 
 void    GTreeDetectorHits::SetBranches()

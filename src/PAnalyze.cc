@@ -20,6 +20,28 @@ PAnalyze::PAnalyze()
     Inc_1 = new TH2D("Inc_1", "Total Inclusive Hits;Tagger Channel;Number of Tracks", 352, 0, 352, 10, 0, 10);
     Inc_1_R = new TH2D("Inc_1_R", "Total Inclusive Hits;Tagger Channel;Number of Tracks", 352, 0, 352, 10, 0, 10);
 
+    // TPC Histograms
+    TPC_Energy = new TH1D("TPC_Energy","Recoil Kinetic Energy in TPC (MeV)",100,0,25);
+    TPC_Z = new TH1D("TPC_Z","Z Position of Event in TPC (cm)",30,-15,15);
+    TPC_Theta = new TH1D("TPC_Theta","Recoil Theta in TPC (deg)",180,0,180);
+    TPC_Phi = new TH1D("TPC_Phi","Recoil Phi in TPC (deg)",16,0,360); //one bin per section of anode
+
+    // Active Target histograms
+    AHe_En = new TH1D("AHe_En", "Active Target Energy;Energy per SiPM (eV)", 1000, 0, 100);
+    AHe_Ng = new TH1D("AHe_Ng", "Active Target Photons;Photons per SiPM", 650, 0.5, 650.5);
+    AHe_Av = new TH1D("AHe_Av", "Active Target Photons;Average Photons per SiPM", 651, -0.5, 650.5);
+    AHe_Av_Num = new TH2D("AHe_Av_Num", "Active Target Photons;Number of SiPMs Hit;Average Photons per SiPM", 121, -0.5, 120.5, 651, -0.5, 650.5);
+    AHe_Av_Cut = new TH1D("AHe_Av_Cut", "Active Target Photons;Average Photons per SiPM", 651, -0.5, 650.5);
+    AHe_En_Tot = new TH1D("AHe_En_Tot", "Active Target Energy;Total Energy (eV)", 1000, 0, 10000);
+    AHe_Ng_Tot = new TH1D("AHe_Ng_Tot", "Active Target Photons;Total Photons", 65000, 0.5, 65000.5);
+    AHe_Fi = new TH1D("AHe_Fi", "Active Target Hits per Fiber;Fiber;Photons", 100, 0, 100);
+    AHe_Si = new TH1D("AHe_Si", "Active Target Hits per Side;Side;Photons", 2, 0, 2);
+    AHe_Num_RMS = new TH2D("AHe_Num_RMS", "Active Target Z-Vertex RMS;Number of SiPMs Hit;RMS of Vertex Variable", 121, -0.5, 120.5, 100, 0, 10);
+    AHe_NgT_RMS = new TH2D("AHe_NgT_RMS", "Active Target Z-Vertex RMS;Total Photons;RMS of Vertex Variable", 650, 0, 6500, 100, 0, 10);
+    AHe_Vz = new TH1D("AHe_Vz", "Active Target Z-Vertex;Z-Vertex (cm)", 420, -21, 21);
+    AHe_Vp = new TH1D("AHe_Vp", "Active Target Phi-Vertex;Phi-Vertex (deg)", 360, -180, 180);
+
+
     // Pi0 histograms
     Pi0_IM_A = new TH1D("Pi0_IM_A", "Pi0 Invariant Mass;m_{#gamma#gamma} (MeV)", 400, 0, 400);
     Pi0_IM_E = new TH1D("Pi0_IM_E", "Pi0 Invariant Mass;m_{#gamma#gamma} (MeV)", 400, 0, 400);
@@ -507,8 +529,8 @@ void	PAnalyze::ProcessEvent()
     TLorentzVector lv_targ = GetTarget();
     TVector3 v_reco, v_splt, v_lab_cm;
 
-    Bool_t b_pi0, b_piP, b_comp, b_pi0_CC, b_pi0_CT, b_pi0_TC, b_pi0_TT, b_NE, b_NI, b_CE, b_CI, b_TE, b_TI, b_WE, b_WI, b_cut_CA, b_cut_OA;
-    b_pi0 = b_piP = b_comp = b_pi0_CC = b_pi0_CT = b_pi0_TC = b_pi0_TT = b_NE = b_NI = b_CE = b_CI = b_TE = b_TI = b_WE = b_WI = b_cut_CA = b_cut_OA = false;
+    Bool_t b_pi0, b_piP, b_comp, b_pi0_CC, b_pi0_CT, b_pi0_TC, b_pi0_TT, b_AE, b_NE, b_NI, b_CE, b_CI, b_TE, b_TI, b_WE, b_WI, b_cut_CA, b_cut_OA;
+    b_pi0 = b_piP = b_comp = b_pi0_CC = b_pi0_CT = b_pi0_TC = b_pi0_TT = b_AE = b_NE = b_NI = b_CE = b_CI = b_TE = b_TI = b_WE = b_WI = b_cut_CA = b_cut_OA = false;
 
     n_accept = n_ignore = 0;
     i_trk0 = i_trk1 = i_splt = -1;
@@ -533,6 +555,129 @@ void	PAnalyze::ProcessEvent()
             ignoreTrack.push_back(false);
         }
     }
+
+    /////////////////////////////////////////////////////
+    // Get TPC Hits
+    ////////////////////////////////////////////////////
+    Double_t tpc_charge, tpc_time, tpc_id; //hold data from trees
+    Double_t tpc_energy, tpc_z, tpc_theta, tpc_phi; //reconstructed data
+    Double_t x_max, x_min, t_max, t_min, argument; //variables for use in reconstruction
+    tpc_charge=0; //initialize
+    t_max=GetDetectorHits()->GetTPCTime(0); //init
+    t_min=GetDetectorHits()->GetTPCTime(0); //init
+
+    //reconstruct TPC data
+    Int_t n_tpc = GetDetectorHits()->GetNTPCHits();
+    for (Int_t i=0; i<n_tpc; i++){
+	    tpc_charge+=GetDetectorHits()->GetTPCCharge(i);
+	    tpc_time=GetDetectorHits()->GetTPCTime(i);
+	    if(tpc_time>t_max)t_max=tpc_time;
+	    if(tpc_time<t_min)t_min=tpc_time;
+	    //for now
+    }
+     x_max=1; //getX later
+     x_min=0; //getX later
+     argument=260*(t_max-t_min)/(x_max-x_min);
+     tpc_theta=atan(argument)*180/TMath::Pi();
+     tpc_phi=30; //for now
+     tpc_energy=2.5-0.025*tpc_charge;
+     tpc_z=-11.5+260*t_min;
+     TPC_Energy->Fill(tpc_energy);
+     TPC_Z->Fill(tpc_z);
+     TPC_Theta->Fill(tpc_theta);
+     TPC_Phi->Fill(tpc_phi);
+
+
+	//////////////////////////////////////////////////
+    // Get active target hits
+    //////////////////////////////////////////////////
+    Double_t d_ahe_en, d_ahe_en_tot = 0, d_ahe_vz = 0, d_ahe_vp;
+    Int_t n_ahe, i_ahe_ng, i_ahe_ng_tot = 0;
+    std::vector<Int_t> vi_ahe_av;
+    AHe_Fi->Reset();
+    AHe_Si->Reset();
+
+    n_ahe = GetDetectorHits()->GetNActiveHits();
+
+    for (Int_t i=0; i<n_ahe; i++)
+    {
+        // Get energy in eV
+        d_ahe_en = 1e6 * GetDetectorHits()->GetActiveEnergy(i);
+        AHe_En->Fill(d_ahe_en);
+
+        // Convert energy to number of photons
+        i_ahe_ng = TMath::Nint(d_ahe_en/AHe_Gain);
+        AHe_Ng->Fill(i_ahe_ng);
+        vi_ahe_av.push_back(i_ahe_ng);
+
+        // Cut out dark current
+        if (i_ahe_ng < AHe_Thresh) continue;
+
+        // Histogram hits vs index for phi/z check
+        // Note pairs of channels are added together to get the total for each fiber/ring
+        AHe_Fi->AddBinContent(1 + (GetDetectorHits()->GetActiveHits(i))/2, i_ahe_ng);
+        AHe_Si->AddBinContent(1 + (GetDetectorHits()->GetActiveHits(i))%2, i_ahe_ng);
+
+        // Add to total
+        d_ahe_en_tot += d_ahe_en;
+        i_ahe_ng_tot += i_ahe_ng;
+    }
+    AHe_Av->Fill(TMath::Median(n_ahe, vi_ahe_av.data()));
+    AHe_Av_Num->Fill(n_ahe, TMath::Median(n_ahe, vi_ahe_av.data()));
+
+    AHe_En_Tot->Fill(d_ahe_en_tot);
+    AHe_Ng_Tot->Fill(i_ahe_ng_tot);
+
+    if (AHe_Helix)
+    {
+        if (n_ahe > 4)
+        {
+            AHe_Av_Cut->Fill(TMath::Median(n_ahe, vi_ahe_av.data()));
+            if (i_ahe_ng_tot > 0) b_AE = true;
+	            }
+        else AHe_Av_Cut->Fill(0);
+
+        // Get mean from the fiber histogram and convert to a z-vertex
+        AHe_Fi->ResetStats();
+        AHe_Fi->GetXaxis()->SetRange(1, AHe_NFibers);
+        if (AHe_Fi->GetMaximumBin() <= (AHe_NFibers/3)) AHe_Fi->GetXaxis()->SetRange(1, 2 * AHe_Fi->GetMaximumBin());
+        else if (AHe_Fi->GetMaximumBin() > (2*AHe_NFibers/3)) AHe_Fi->GetXaxis()->SetRange(AHe_NFibers + 1 - 2 * (AHe_NFibers + 1 - AHe_Fi->GetMaximumBin()), AHe_NFibers);
+        d_ahe_vz = AHe_Length * (AHe_Fi->GetMean() - 0.5 * AHe_NFibers) / AHe_NFibers;
+        if (i_ahe_ng_tot > 0)
+        {
+            AHe_Num_RMS->Fill(n_ahe, AHe_Fi->GetRMS());
+            AHe_NgT_RMS->Fill(i_ahe_ng_tot, AHe_Fi->GetRMS());
+            AHe_Vz->Fill(d_ahe_vz);
+        }
+
+        // Get ratio of hits from the side histogram and convert to a phi-vertex
+        AHe_Si->ResetStats();
+        d_ahe_vp = 20 * 360 * ((AHe_Si->GetBinContent(1)/AHe_Si->Integral()) - 0.5);
+        if (i_ahe_ng_tot > 0) AHe_Vp->Fill(d_ahe_vp);
+    }
+    else
+    {
+        if (n_ahe > 8)
+        {
+            AHe_Av_Cut->Fill(TMath::Median(n_ahe, vi_ahe_av.data()));
+            if (i_ahe_ng_tot > 0) b_AE = true;
+        }
+        else AHe_Av_Cut->Fill(0);
+
+        // Get mean from the fiber histogram and convert to a phi-vertex
+        AHe_Fi->ResetStats();
+        AHe_Fi->GetXaxis()->SetRange(1, AHe_NFibers);
+        if (AHe_Fi->GetMaximumBin() <= (AHe_NFibers/3)) AHe_Fi->GetXaxis()->SetRange(1, 2 * AHe_Fi->GetMaximumBin());
+        else if (AHe_Fi->GetMaximumBin() > (2*AHe_NFibers/3)) AHe_Fi->GetXaxis()->SetRange(AHe_NFibers + 1 - 2 * (AHe_NFibers + 1 - AHe_Fi->GetMaximumBin()), AHe_NFibers);
+        d_ahe_vp = 360 * (AHe_Fi->GetMean() - 0.5 * AHe_NFibers) / AHe_NFibers;
+        if (i_ahe_ng_tot > 0) AHe_Vp->Fill(d_ahe_vp);
+
+        // Get ratio of hits from the side histogram and convert to a z-vertex
+        AHe_Si->ResetStats();
+        d_ahe_vz = 20 * AHe_Length * ((AHe_Si->GetBinContent(1)/AHe_Si->Integral()) - 0.5);
+        if (i_ahe_ng_tot > 0) AHe_Vz->Fill(d_ahe_vz);
+    }
+
 
     //////////////////////////////////////////////////
     // Initial pi0 stuff
