@@ -1,4 +1,5 @@
 #include "PAnalyze.h"
+#include "TSpline.h"
 
 PAnalyze::PAnalyze()
 {
@@ -24,7 +25,6 @@ PAnalyze::PAnalyze()
     TPC_Energy = new TH1D("TPC_Energy","Recoil Kinetic Energy in TPC (MeV)",100,0,25);
     TPC_Z = new TH1D("TPC_Z","Z Position of Event in TPC (cm)",30,-15,15);
     TPC_Theta = new TH1D("TPC_Theta","Recoil Theta in TPC (deg)",180,0,180);
-    TPC_Phi = new TH1D("TPC_Phi","Recoil Phi in TPC (deg)",16,0,360); //one bin per section of anode
 
     // Active Target histograms
     AHe_En = new TH1D("AHe_En", "Active Target Energy;Energy per SiPM (eV)", 1000, 0, 100);
@@ -414,6 +414,7 @@ Bool_t	PAnalyze::Init()
     if(!InitBeamPol()) return kFALSE;
     if(!InitTargPol()) return kFALSE;
     if(!InitCenterOfMass()) return kFALSE;
+    if(!InitTPC()) return kFALSE;
 
     if(!PPhysics::Init()) return kFALSE;
 
@@ -559,33 +560,78 @@ void	PAnalyze::ProcessEvent()
     /////////////////////////////////////////////////////
     // Get TPC Hits
     ////////////////////////////////////////////////////
+    //define variables needed
     Double_t tpc_charge, tpc_time, tpc_id; //hold data from trees
-    Double_t tpc_energy, tpc_z, tpc_theta, tpc_phi; //reconstructed data
-    Double_t x_max, x_min, t_max, t_min, argument; //variables for use in reconstruction
-    tpc_charge=0; //initialize
-    t_max=GetDetectorHits()->GetTPCTime(0); //init
-    t_min=GetDetectorHits()->GetTPCTime(0); //init
-
+    Double_t mintime, maxtime, minsec, maxsec, minx, maxx, deltat, deltax, arg; //for theta
+    Double_t tpc_energy, tpc_z, tpc_theta; //reconstructed data
+    //define the x coordinates using config file data
+    Int_t row1[nAngularSecs+1],row2[nAngularSecs+1],row3[nAngularSecs+1],row4[nAngularSecs+1];
+    for (int i=0; i<nAngularSecs; i++){
+	    row1[i]=1+i*4;
+	    row2[i]=2+i*4;
+	    row3[i]=3+i*4;
+	    row4[i]=4+i*4;
+    	}
+    row1[nAngularSecs]=rad1;
+    row2[nAngularSecs]=rad2;
+    row3[nAngularSecs]=rad3;
+    row4[nAngularSecs]=rad4;
+    Int_t ringsec= nAngularSecs*4+1;
+    Int_t centresec = nAngularSecs*4+2;
     //reconstruct TPC data
     Int_t n_tpc = GetDetectorHits()->GetNTPCHits();
+    //get two data points for angular reconstruction
+    //hit closest to centre
+    mintime=GetDetectorHits()->GetTPCTime(n_tpc-1);
+    minsec=GetDetectorHits()->GetTPCHits(n_tpc-1);
+    //last hit recorded: should be farthest out along track
+    maxsec=GetDetectorHits()->GetTPCHits(0);
+    maxtime=GetDetectorHits()->GetTPCTime(0);
+    minx=maxx=tpc_charge=0; //initialize
+    //get Z before correcting sections for angular purposes
+    tpc_z=-11.5 + drift_vel*mintime; //reconstruct position
     for (Int_t i=0; i<n_tpc; i++){
-	    tpc_charge+=GetDetectorHits()->GetTPCCharge(i);
+	    tpc_charge+=GetDetectorHits()->GetTPCCharge(i); //sum charge: to get E
+	    tpc_id=GetDetectorHits()->GetTPCHits(i);
 	    tpc_time=GetDetectorHits()->GetTPCTime(i);
-	    if(tpc_time>t_max)t_max=tpc_time;
-	    if(tpc_time<t_min)t_min=tpc_time;
-	    //for now
+	    //check if inner pad can be replaced with ring
+	    if (tpc_id==ringsec){
+		minsec=ringsec;
+	        mintime = tpc_time;
+	    }
     }
-     x_max=1; //getX later
-     x_min=0; //getX later
-     argument=260*(t_max-t_min)/(x_max-x_min);
-     tpc_theta=atan(argument)*180/TMath::Pi();
-     tpc_phi=30; //for now
-     tpc_energy=2.5-0.025*tpc_charge;
-     tpc_z=-11.5+260*t_min;
-     TPC_Energy->Fill(tpc_energy);
-     TPC_Z->Fill(tpc_z);
-     TPC_Theta->Fill(tpc_theta);
-     TPC_Phi->Fill(tpc_phi);
+    //assign section ID number to associated radius
+    if (minsec==ringsec)minx=radR;
+    if (maxsec==ringsec)maxx=radR;
+    if (minsec==centresec)minx=0;
+    if (maxsec==centresec)maxx=0;
+    for (Int_t j=0; j<16; j++){
+	if (minsec==row1[j])minx=row1[16];    
+	if (minsec==row2[j])minx=row2[16];    
+	if (minsec==row3[j])minx=row3[16];    
+	if (minsec==row4[j])minx=row4[16];    
+	if (maxsec==row1[j])maxx=row1[16];    
+	if (maxsec==row2[j])maxx=row2[16];    
+	if (maxsec==row3[j])maxx=row3[16];    
+	if (maxsec==row4[j])maxx=row4[16];
+    }
+    //calculate theta
+    deltat=maxtime-mintime; //take differences
+    deltax=maxx-minx;
+    tpc_theta=0; //initialize
+    if (deltax!=0 && deltat!=0){ //only if enough data
+   	arg=(drift_vel*10*deltat)/deltax;
+    	tpc_theta=90-atan(arg)*(180/3.14);
+    }
+    //calculate next two variables    
+    tpc_energy=-0.88-0.000206*tpc_charge; //energy calculated from deposited charge
+    //fill my histograms
+    TPC_Energy->Fill(tpc_energy);
+    TPC_Z->Fill(tpc_z);
+    if (tpc_theta!=0)TPC_Theta->Fill(tpc_theta);
+
+
+
 
 
 	//////////////////////////////////////////////////
@@ -1814,6 +1860,60 @@ Bool_t 	PAnalyze::InitVerbosity()
 
 }
 
+/////////////////////////////////////////////////
+// Read in TPC dimensions 
+////////////////////////////////////////////////
+Bool_t PAnalyze::InitTPC(){
+	Double_t sc1, sc2, sc3, sc4, sc5, sc7;
+	Int_t sc6, sc8;
+	string config = ReadConfig("TPC-Dim");
+	if(sscanf(config.c_str(), "%lf%lf%lf%lf%lf%i%lf%i\n", &sc1, &sc2, &sc3, &sc4, &sc5, &sc6, &sc7, &sc8) ==8){
+	cout<<"Setting TPC anode radii to "<<sc1 <<" "<<sc2<<" "<<sc3<<" "<<sc4<<" "<<sc5<<", with "<<sc6<<" angular sections"<<endl;
+	cout<<"Active gas pressure "<<sc7<<" bar helium-"<<sc8<<endl;
+	cout<<endl;
+        radR=sc1;
+	rad1=sc2;
+	rad2=sc3;
+	rad3=sc4;
+	rad4=sc5;
+	nAngularSecs=sc6;
+	drift_vel=0; //initialize
+	Double_t p_bar[6]={5,10,15,20,25,30}; //supported pressures
+        //set the correct set of constants for helium isotope
+        if (sc8 == 3){ //helium-3
+                Double_t v[6]={782.5,544.5,449.8,394.0,354.0,323.5};
+		//calculate drift velocity: same was as in Geant4
+	        for (int i=0; i>6; i++){
+                if (sc7 == p_bar[i]){ //if pressure at exact point
+                        drift_vel = v[i]; //use exact values
+                        }
+                }
+        if (drift_vel ==0){ //if none of the exact values are found
+                //spline it
+                TSpline3* v_spline = new TSpline3("v_spline",p_bar,v,6);
+                drift_vel = v_spline->Eval(sc7);
+                }
+        } else { //helium-4
+                Double_t v[6]={768.0,529.7,436.7,383.0,343.7,314.5};
+                for (int i=0; i>6; i++){
+                        if (sc7 == p_bar[i]){ //if pressure at exact point
+                                drift_vel = v[i]; //use exact values
+                        }
+                }
+        if (drift_vel ==0){ //if no exact value found
+                //spline it
+                TSpline3* v_spline = new TSpline3("v_spline",p_bar,v,6);
+                drift_vel = v_spline->Eval(sc7);
+                }
+        }
+	} else if(strcmp(config.c_str(), "nokey") != 0){
+        cout << "Charge matching not set correctly" << endl << endl;
+        return kFALSE;
+    	}
+    return kTRUE;
+}
+ 	
+
 //////////////////////////////////////////////////
 // Set charge matching
 //////////////////////////////////////////////////
@@ -1915,6 +2015,7 @@ Bool_t 	PAnalyze::InitEnergySum()
         cout << "Setting energy sum: " << sc1 << " MeV " << endl << endl;
         ESCut = sc1;
     }
+     
     else if(strcmp(config.c_str(), "nokey") != 0)
     {
         cout << "Energy sum cut not set correctly" << endl << endl;

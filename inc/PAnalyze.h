@@ -390,6 +390,16 @@ private:
     Int_t    AHe_NFibers;
     Double_t AHe_Yield;
 
+    //stuff for TPC
+    Double_t drift_vel;
+    Int_t nAngularSecs;
+    Double_t radC;
+    Double_t radR;
+    Double_t rad1;
+    Double_t rad2;
+    Double_t rad3;
+    Double_t rad4;
+
     Bool_t  save_randoms;
     Bool_t  split_search;
     Bool_t  pure_mwpc;
@@ -433,6 +443,7 @@ public:
     Bool_t InitBeamPol();
     Bool_t InitTargPol();
     Bool_t InitCenterOfMass();
+    Bool_t InitTPC();
     TLorentzVector AdjustMass(TLorentzVector lv, Double_t mass);
     Double_t CalcCircBeamPol(Double_t E_e, Double_t P_e, Double_t E_g);
 

@@ -130,7 +130,7 @@ public:
 	//TPC
 	Int_t GetNTPCHits() const {return nTPCHits;}
 	const Int_t* GetTPCHits() const {return TPCHits;}
-	Int_t GetTPcHits(const Int_t index) const {return TPCHits[index];}
+	Int_t GetTPCHits(const Int_t index) const {return TPCHits[index];}
 	const Double_t* GetTPCCharge() const {return TPCCharge;}
 	Double_t GetTPCCharge(const Int_t index) const {return TPCCharge[index];}
 	const Double_t*	GetTPCTime() const {return TPCTime;}
