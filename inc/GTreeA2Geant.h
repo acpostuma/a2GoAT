@@ -93,52 +93,52 @@ public:
     virtual Double_t    GetTAPSVetoESum() const;
 
     virtual Int_t                   GetNCBHits() const;
-    virtual Int_t                   GetCBHitIndex(const UInt_t n) const throw (std::out_of_range);
+    virtual Int_t                   GetCBHitIndex(const UInt_t n) const noexcept(false);
     virtual const Int_t * const     GetCBHitIndices() const;
-    virtual Float_t                 GetCBHitEnergy(const UInt_t n) const throw (std::out_of_range);
+    virtual Float_t                 GetCBHitEnergy(const UInt_t n) const noexcept(false);
     virtual const Float_t * const   GetCBHitEnergies() const;
 
     virtual Int_t                   GetNPIDHits() const;
-    virtual Int_t                   GetPIDHitIndex(const UInt_t n) const throw (std::out_of_range);
+    virtual Int_t                   GetPIDHitIndex(const UInt_t n) const noexcept(false);
     virtual const Int_t * const     GetPIDHitIndices() const;
-    virtual Float_t                 GetPIDHitEnergy(const UInt_t n) const throw (std::out_of_range);
+    virtual Float_t                 GetPIDHitEnergy(const UInt_t n) const noexcept(false);
     virtual const Float_t * const   GetPIDHitEnergies() const;
-    virtual Float_t                 GetPIDHitTime(const UInt_t n) const throw (std::out_of_range);
+    virtual Float_t                 GetPIDHitTime(const UInt_t n) const noexcept(false);
     virtual const Float_t * const   GetPIDHitTimes() const;
 
     virtual Int_t                   GetNTAPSHits() const;
-    virtual Int_t                   GetTAPSHitIndex(const UInt_t n) const throw (std::out_of_range);
+    virtual Int_t                   GetTAPSHitIndex(const UInt_t n) const noexcept(false);
     virtual const Int_t * const     GetTAPSHitIndices() const;
-    virtual Float_t                 GetTAPSHitEnergyLong(const UInt_t n) const throw (std::out_of_range);
+    virtual Float_t                 GetTAPSHitEnergyLong(const UInt_t n) const noexcept(false);
     virtual const Float_t * const   GetTAPSHitEnergiesLong() const;
-    virtual Float_t                 GetTAPSHitEnergyShort(const UInt_t n) const throw (std::out_of_range);
+    virtual Float_t                 GetTAPSHitEnergyShort(const UInt_t n) const noexcept(false);
     virtual const Float_t * const   GetTAPSHitEnergiesShort() const;
-    virtual Float_t                 GetTAPSHitTime(const UInt_t n) const throw (std::out_of_range);
+    virtual Float_t                 GetTAPSHitTime(const UInt_t n) const noexcept(false);
     virtual const Float_t * const   GetTAPSHitTimes() const;
 
     virtual Int_t                   GetNTAPSVetoHits() const;
-    virtual Int_t                   GetTAPSVetoHitIndex(const UInt_t n) const throw (std::out_of_range);
+    virtual Int_t                   GetTAPSVetoHitIndex(const UInt_t n) const noexcept(false);
     virtual const Int_t * const     GetTAPSVetoHitIndices() const;
-    virtual Float_t                 GetTAPSVetoHitEnergy(const UInt_t n) const throw (std::out_of_range);
+    virtual Float_t                 GetTAPSVetoHitEnergy(const UInt_t n) const noexcept(false);
     virtual const Float_t * const   GetTAPSVetoHitEnergies() const;
 
 
     virtual Int_t                   GetNMWPCHits() const;
-    virtual Int_t                   GetMWPCIndex( const UInt_t n )  const throw (std::out_of_range);
+    virtual Int_t                   GetMWPCIndex( const UInt_t n )  const noexcept(false);
     virtual const Int_t * const     GetMWPCHitIndices() const;
-    virtual Float_t                 GetMWPCEnergy( const UInt_t n ) const throw (std::out_of_range);
+    virtual Float_t                 GetMWPCEnergy( const UInt_t n ) const noexcept(false);
     virtual const Float_t * const   GetMWPCHitEnergies() const;
     virtual const Float_t * const   GetMWPCHitPosX() const;
     virtual const Float_t * const   GetMWPCHitPosY() const;
     virtual const Float_t * const   GetMWPCHitPosZ() const;
-    virtual TVector3                GetMWPCVector( const UInt_t n ) const throw (std::out_of_range);
+    virtual TVector3                GetMWPCVector( const UInt_t n ) const noexcept(false);
 
     virtual void        BuildCBHitPattern( hitvector& pattern) const;
     virtual void        BuildTAPSHitPattern( hitvector& pattern) const;
 
     virtual UInt_t      GetNTrueParticles() const;
-    virtual UInt_t      GetTrueID( const UInt_t n ) const throw (std::out_of_range);
-    virtual TLorentzVector GetTrueVector( const UInt_t n ) const throw (std::out_of_range);
+    virtual UInt_t      GetTrueID( const UInt_t n ) const noexcept(false);
+    virtual TLorentzVector GetTrueVector( const UInt_t n ) const noexcept (false);
 
     virtual void        Clear();
 

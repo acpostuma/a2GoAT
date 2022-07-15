@@ -12,6 +12,9 @@ endif()
 include(cmake/settings.cmake)
 include(cmake/doxygen.cmake)
 
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED on)
+
 message(STATUS "*** Build Type:      " ${CMAKE_BUILD_TYPE})
 message(STATUS "*** Compiler Flags:  " ${DEFAULT_COMPILE_FLAGS})
 message(STATUS "*** Install libs to: " ${LIBRARY_OUTPUT_PATH})
