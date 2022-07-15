@@ -8,6 +8,37 @@ PAnalyze::PAnalyze()
 
     Helicity = new TH1D("Helicity", "Helicity", 3, 0, 3);
 
+    //Define a tree so I can stop complaining that I don't have a tree
+    GoATree = new TTree("GoATree","Kinematics Tree");
+    //Add branches
+    //First: tagger parameters: channel number, hit time, and energy
+    GoATree->Branch("tagger_chan",&i_tagg_ch,"tagger_chan/I");
+    GoATree->Branch("tagger_time",&d_tagg_tm,"tagger_time/D");
+    GoATree->Branch("tagger_energy",&d_tagg_en, "tagger_energy/D");
+    //Next: scattered particle properties: pion or photon
+    GoATree->Branch("scattered_energy",&d_part_en, "scattered_energy/D");
+    GoATree->Branch("scattered_theta",&d_part_th, "scattered_theta/D");
+    GoATree->Branch("scattered_phi",&d_part_ph, "scattered_phi/D");
+    GoATree->Branch("scattered_time", &d_part_tm, "scattered_time/D"); 
+    //Recoil quantities
+    GoATree->Branch("recoil_energy",&d_reco_en, "recoil_energy/D");
+    GoATree->Branch("recoil_theta",&d_reco_th, "recoil_theta/D");
+    //GoATree->Branch("recoil_phi",&d_reco_ph, "recoil_phi/D");
+    //Missing mass
+    GoATree->Branch("missing_mass",&d_miss_ma, "missing_mass/D");
+    //conditions
+    GoATree->Branch("event_type",i_event,"event_type/I"); //0 for compton
+							  //1 for pi0
+							  //2 for pi+
+    GoATree->Branch("inclusive",&i_inclu,"inclusive/I"); //like a boolean
+							 //0 for inclusive
+							 //1 for exclusive
+    GoATree->Branch("recoil",&i_recoil,"recoil/I"); //0 for no recoil
+						    //1 for CB
+						    //2 for TAPS
+						    //3 for MWPC
+    
+
     // Inclusive histograms
     Tagg_Tm = new TH1D("Tagg_Tm", "Tagger Time;t_{#gamma} (ns)", 1400, -700, 700);
     Tagg_0 = new TH1D("Tagg_0", "Tagger Hits;Tagger Channel", 352, 0, 352);
@@ -522,16 +553,19 @@ void	PAnalyze::ProcessEvent()
     //////////////////////////////////////////////////
     // Kinematic variables
     //////////////////////////////////////////////////
-    Int_t n_accept, n_ignore, i_trk0, i_trk1, i_splt, i_part_sz, i_reco_sz, i_tagg_ch;
-    Double_t d_part_tm, d_tagg_tm, d_aver_tm, d_subt_tm;
-    Double_t d_tagg_en, d_trk0_en, d_trk1_en, d_part_en, d_reco_en, d_splt_en, d_miss_ma;
-    Double_t d_part_th, d_part_ph, d_reco_th, d_miss_th, d_CA, d_OA, d_temp;
+    //Int_t n_accept, n_ignore, i_trk0, i_trk1, i_splt, i_part_sz, i_reco_sz, i_tagg_ch;
+    //Double_t d_part_tm, d_tagg_tm, d_aver_tm, d_subt_tm;
+    //Double_t d_tagg_en, d_trk0_en, d_trk1_en, d_part_en, d_reco_en, d_splt_en, d_miss_ma;
+    //Double_t d_part_th, d_part_ph, d_reco_th, d_miss_th, d_CA, d_OA, d_temp;
     TLorentzVector lv_trk0, lv_trk1, lv_splt, lv_part, lv_ptot, lv_beam, lv_miss, lv_piP, lv_part_cm, lv_miss_cm;
     TLorentzVector lv_targ = GetTarget();
     TVector3 v_reco, v_splt, v_lab_cm;
 
     Bool_t b_pi0, b_piP, b_comp, b_pi0_CC, b_pi0_CT, b_pi0_TC, b_pi0_TT, b_AE, b_NE, b_NI, b_CE, b_CI, b_TE, b_TI, b_WE, b_WI, b_cut_CA, b_cut_OA;
     b_pi0 = b_piP = b_comp = b_pi0_CC = b_pi0_CT = b_pi0_TC = b_pi0_TT = b_AE = b_NE = b_NI = b_CE = b_CI = b_TE = b_TI = b_WE = b_WI = b_cut_CA = b_cut_OA = false;
+
+    //integers to store states in tree
+    i_inclu = i_recoil = 0;
 
     n_accept = n_ignore = 0;
     i_trk0 = i_trk1 = i_splt = -1;
@@ -910,6 +944,7 @@ void	PAnalyze::ProcessEvent()
         }
     }
 
+
     //////////////////////////////////////////////////
     // Initial pi+/compton stuff
     //////////////////////////////////////////////////
@@ -1030,6 +1065,7 @@ void	PAnalyze::ProcessEvent()
         }
         if (b_comp)
         {
+	    i_event=0;
             Comp_CA->Fill(d_CA, event_weight);
 
             if (b_cut_CA)
@@ -1120,6 +1156,7 @@ void	PAnalyze::ProcessEvent()
         // Good pi0 event
         //////////////////////////////////////////////////
         if (b_pi0)
+	i_event=1;
         {
             d_subt_tm = d_tagg_tm - d_part_tm;
             lv_miss = lv_beam + lv_targ - lv_part;
@@ -1252,6 +1289,9 @@ void	PAnalyze::ProcessEvent()
             // Exclusive event, without recoil detected
             if (b_NE)
             {
+		//state integers
+		i_recoil=0;
+		i_inclu=0;
                 Pi0_Tm_NE->Fill(i_tagg_ch, d_subt_tm, event_weight);
                 if (GHistBGSub::IsPrompt(d_subt_tm))
                 {
@@ -1271,6 +1311,8 @@ void	PAnalyze::ProcessEvent()
             // Inclusive event, without recoil detected (add all of the now failed recoil ones in)
             else if (b_NI || !b_cut_OA)
             {
+		i_inclu=1;
+		i_recoil=0;
                 Pi0_Tm_NI->Fill(i_tagg_ch, d_subt_tm, event_weight);
                 if (GHistBGSub::IsPrompt(d_subt_tm))
                 {
@@ -1291,6 +1333,8 @@ void	PAnalyze::ProcessEvent()
             // Exclusive event, with recoil detected in CB
             else if (b_CE)
             {
+		i_inclu=0;
+		i_recoil=1;
                 Pi0_Tm_CE->Fill(i_tagg_ch, d_subt_tm, event_weight);
                 if (GHistBGSub::IsPrompt(d_subt_tm))
                 {
@@ -1310,6 +1354,8 @@ void	PAnalyze::ProcessEvent()
             // Inclusive event, with recoil detected in CB
             else if (b_CI)
             {
+		i_inclu=1;
+		i_recoil=1;
                 Pi0_Tm_CI->Fill(i_tagg_ch, d_subt_tm, event_weight);
                 if (GHistBGSub::IsPrompt(d_subt_tm))
                 {
@@ -1329,6 +1375,8 @@ void	PAnalyze::ProcessEvent()
             // Exclusive event, with recoil detected in MWPC
             else if (b_WE)
             {
+		i_inclu=0;
+		i_recoil=3;
                 Pi0_Tm_WE->Fill(i_tagg_ch, d_subt_tm, event_weight);
                 if (GHistBGSub::IsPrompt(d_subt_tm))
                 {
@@ -1348,6 +1396,8 @@ void	PAnalyze::ProcessEvent()
             // Inclusive event, with recoil detected in MWPC
             else if (b_WI)
             {
+		   i_inclu=1;
+		   i_recoil=3;
                 Pi0_Tm_WI->Fill(i_tagg_ch, d_subt_tm, event_weight);
                 if (GHistBGSub::IsPrompt(d_subt_tm))
                 {
@@ -1367,6 +1417,8 @@ void	PAnalyze::ProcessEvent()
             // Exclusive event, with recoil detected in TAPS
             else if (b_TE)
             {
+		    i_inclu=0;
+		    i_recoil=2;
                 Pi0_Tm_TE->Fill(i_tagg_ch, d_subt_tm, event_weight);
                 if (GHistBGSub::IsPrompt(d_subt_tm))
                 {
@@ -1386,6 +1438,8 @@ void	PAnalyze::ProcessEvent()
             // Inclusive event, with recoil detected in TAPS
             else if (b_TI)
             {
+		    i_inclu=1;
+		    i_recoil=2;
                 Pi0_Tm_TI->Fill(i_tagg_ch, d_subt_tm, event_weight);
                 if (GHistBGSub::IsPrompt(d_subt_tm))
                 {
@@ -1408,6 +1462,7 @@ void	PAnalyze::ProcessEvent()
         // Good pi+ event
         //////////////////////////////////////////////////
         if (b_piP)
+	i_event=2;
         {
             d_subt_tm = d_tagg_tm - d_part_tm;
             lv_miss = lv_beam + lv_targ - lv_piP;
@@ -1460,6 +1515,8 @@ void	PAnalyze::ProcessEvent()
             // Exclusive event, without recoil detection
             if (b_NE)
             {
+		    i_inclu=0;
+		    i_recoil=0;
                 PiP_Tm_NE->Fill(i_tagg_ch, d_subt_tm, event_weight);
                 if (GHistBGSub::IsPrompt(d_subt_tm))
                 {
@@ -1479,6 +1536,8 @@ void	PAnalyze::ProcessEvent()
             // Inclusive event, without recoil detection (add all of the now failed recoil ones in)
             else if (b_NI || !b_cut_OA)
             {
+		    i_inclu=1;
+		    i_recoil=0;
                 PiP_Tm_NI->Fill(i_tagg_ch, d_subt_tm, event_weight);
                 if (GHistBGSub::IsPrompt(d_subt_tm))
                 {
@@ -1499,6 +1558,8 @@ void	PAnalyze::ProcessEvent()
             // Exclusive event, with recoil detected in CB
             else if (b_CE)
             {
+		    i_inclu=0;
+		    i_recoil=1;
                 PiP_Tm_CE->Fill(i_tagg_ch, d_subt_tm, event_weight);
                 if (GHistBGSub::IsPrompt(d_subt_tm))
                 {
@@ -1518,6 +1579,8 @@ void	PAnalyze::ProcessEvent()
             // Inclusive event, with recoil detected in CB
             else if (b_CI)
             {
+		    i_inclu=1;
+		    i_recoil=1;
                 PiP_Tm_CI->Fill(i_tagg_ch, d_subt_tm, event_weight);
                 if (GHistBGSub::IsPrompt(d_subt_tm))
                 {
@@ -1537,6 +1600,8 @@ void	PAnalyze::ProcessEvent()
             // Exclusive event, with recoil detected in MWPC
             else if (b_WE)
             {
+		    i_inclu=0;
+		    i_recoil=3;
                 PiP_Tm_WE->Fill(i_tagg_ch, d_subt_tm, event_weight);
                 if (GHistBGSub::IsPrompt(d_subt_tm))
                 {
@@ -1556,6 +1621,8 @@ void	PAnalyze::ProcessEvent()
             // Inclusive event, with recoil detected in MWPC
             else if (b_WI)
             {
+		    i_inclu=1;
+		    i_recoil=3;
                 PiP_Tm_WI->Fill(i_tagg_ch, d_subt_tm, event_weight);
                 if (GHistBGSub::IsPrompt(d_subt_tm))
                 {
@@ -1575,6 +1642,8 @@ void	PAnalyze::ProcessEvent()
             // Exclusive event, with recoil detected in TAPS
             else if (b_TE)
             {
+		    i_inclu=0;
+		    i_recoil=2;
                 PiP_Tm_TE->Fill(i_tagg_ch, d_subt_tm, event_weight);
                 if (GHistBGSub::IsPrompt(d_subt_tm))
                 {
@@ -1594,6 +1663,8 @@ void	PAnalyze::ProcessEvent()
             // Inclusive event, with recoil detected in TAPS
             else if (b_TI)
             {
+		    i_inclu=1;
+		    i_recoil=2;
                 PiP_Tm_TI->Fill(i_tagg_ch, d_subt_tm, event_weight);
                 if (GHistBGSub::IsPrompt(d_subt_tm))
                 {
@@ -1616,6 +1687,7 @@ void	PAnalyze::ProcessEvent()
         // Good Compton event
         //////////////////////////////////////////////////
         if(b_comp)
+	i_event=0;
         {
             d_subt_tm = d_tagg_tm - d_part_tm;
             lv_miss = lv_beam + lv_targ - lv_part;
@@ -1684,6 +1756,8 @@ void	PAnalyze::ProcessEvent()
             // Exclusive event, without recoil detection
             if (b_NE)
             {
+		    i_inclu=0;
+		    i_recoil=0;
                 Comp_Tm_NE->Fill(i_tagg_ch, d_subt_tm, event_weight);
                 if (GHistBGSub::IsPrompt(d_subt_tm))
                 {
@@ -1703,6 +1777,8 @@ void	PAnalyze::ProcessEvent()
             // Inclusive event, without recoil detection (add all of the now failed recoil ones in)
             else if (b_NI || !b_cut_OA)
             {
+		    i_inclu=1;
+		    i_recoil=0;
                 Comp_Tm_NI->Fill(i_tagg_ch, d_subt_tm, event_weight);
                 if (GHistBGSub::IsPrompt(d_subt_tm))
                 {
@@ -1723,6 +1799,8 @@ void	PAnalyze::ProcessEvent()
             // Exclusive event, with recoil detected in CB
             else if (b_CE)
             {
+		    i_inclu=0;
+		    i_recoil=1;
                 Comp_Tm_CE->Fill(i_tagg_ch, d_subt_tm, event_weight);
                 if (GHistBGSub::IsPrompt(d_subt_tm))
                 {
@@ -1742,6 +1820,8 @@ void	PAnalyze::ProcessEvent()
             // Inclusive event, with recoil detected in CB
             else if (b_CI)
             {
+		    i_inclu=1;
+		    i_recoil=1;
                 Comp_Tm_CI->Fill(i_tagg_ch, d_subt_tm, event_weight);
                 if (GHistBGSub::IsPrompt(d_subt_tm))
                 {
@@ -1761,6 +1841,8 @@ void	PAnalyze::ProcessEvent()
             // Exclusive event, with recoil detected in MWPC
             else if (b_WE)
             {
+		    i_inclu=0;
+		    i_recoil=3;
                 Comp_Tm_WE->Fill(i_tagg_ch, d_subt_tm, event_weight);
                 if (GHistBGSub::IsPrompt(d_subt_tm))
                 {
@@ -1780,6 +1862,8 @@ void	PAnalyze::ProcessEvent()
             // Inclusive event, with recoil detected in MWPC
             else if (b_WI)
             {
+		    i_inclu=1;
+		    i_recoil=3;
                 Comp_Tm_WI->Fill(i_tagg_ch, d_subt_tm, event_weight);
                 if (GHistBGSub::IsPrompt(d_subt_tm))
                 {
@@ -1799,6 +1883,8 @@ void	PAnalyze::ProcessEvent()
             // Exclusive event, with recoil detected in TAPS
             else if (b_TE)
             {
+		    i_inclu=0;
+		    i_recoil=2;
                 Comp_Tm_TE->Fill(i_tagg_ch, d_subt_tm, event_weight);
                 if (GHistBGSub::IsPrompt(d_subt_tm))
                 {
@@ -1818,6 +1904,8 @@ void	PAnalyze::ProcessEvent()
             // Inclusive event, with recoil detected in TAPS
             else if (b_TI)
             {
+		    i_inclu=1;
+		    i_recoil=2;
                 Comp_Tm_TI->Fill(i_tagg_ch, d_subt_tm, event_weight);
                 if (GHistBGSub::IsPrompt(d_subt_tm))
                 {
@@ -1834,8 +1922,10 @@ void	PAnalyze::ProcessEvent()
                     else if (b_fill_Ph_1) Comp_Ph_TI_1_R->Fill(i_tagg_ch, d_part_th, d_part_ph, event_weight);
                 }
             }
+
         }
     }
+    GoATree->Fill(); //outside of all if statements
 }
 
 //////////////////////////////////////////////////
@@ -2638,6 +2728,8 @@ Bool_t	PAnalyze::Write()
 
         Comp_CS_MM_P->Write();
         Reco_CS_MM_P->Write();
+
+	//GoATree->Write();
 
         delete Tagg_0_P;
         delete Tagg_1_P;

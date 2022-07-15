@@ -420,6 +420,17 @@ private:
 
     Bool_t  firstEvent;
 
+    TTree* GoATree; //kinematic tree
+
+    //Kinematic variables: need global definitions for tree storeage
+    Int_t n_accept, n_ignore, i_trk0, i_trk1, i_splt, i_part_sz, i_reco_sz, i_tagg_ch;
+    Double_t d_part_tm, d_tagg_tm, d_aver_tm, d_subt_tm;
+    Double_t d_tagg_en, d_trk0_en, d_trk1_en, d_part_en, d_reco_en, d_splt_en, d_miss_ma;
+    Double_t d_part_th, d_part_ph, d_reco_th, d_miss_th, d_CA, d_OA, d_temp;
+    
+    //conditions for state selection in the tree
+    Int_t i_inclu, i_event, i_recoil;
+
 protected:
     virtual Bool_t Start();
     virtual void ProcessEvent();
